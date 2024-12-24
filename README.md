@@ -2,7 +2,8 @@
 A vast collection of security tools for ethical hackers and security researchers
 
 ## View in GUI: https://pentestingtools.netlify.app
-![image](https://github.com/user-attachments/assets/70e9a7b0-8972-42bc-a4eb-184f53fc0fe0)
+![image](https://github.com/user-attachments/assets/e3679418-b254-42b1-89e7-884bf0bb6349)
+
 
 ## Generate Markdown:
 ```
