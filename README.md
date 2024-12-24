@@ -12,6 +12,8 @@ curl -s "https://pentestingtools.netlify.app/tools.json" | go run markdown-gener
 ## View in Markdown:
 | NAME                  | DESCRIPTION           |
 |-----------------------|-----------------------|
+| [Smap](https://github.com/s0md3v/Smap) | a drop-in replacement for Nmap powered by shodan.io |
+| [ShodanX](https://github.com/RevoltSecurities/ShodanX) | ShodanX is a tool to gather information of targets using shodan dorks |
 | [reconftw](https://github.com/six2dez/reconftw) | reconFTW is a tool designed to perform automated recon on a target domain by running the best set of tools to perform scanning and finding out vulnerabilities |
 | [rengine](https://github.com/yogeshojha/rengine) | Automated reconnaissance framework for webapps, highly configurable streamlined recon process. |
 | [altdns](https://github.com/infosec-au/altdns) | Generates permutations, alterations and mutations of subdomains and then resolves them |
