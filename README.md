@@ -12,6 +12,8 @@ curl -s "https://pentestingtools.netlify.app/tools.json" | go run markdown-gener
 ## View in Markdown:
 | NAME                  | DESCRIPTION           |
 |-----------------------|-----------------------|
+| [subwiz](https://github.com/hadriansecurity/subwiz) | A recon tool that uses ML to predict subdomains. Then returns those that resolve. |
+| [portmap](https://github.com/rix4uni/portmap) | portmap is a fast portscan tool, uses shodan public data for port scan used internetdb.shodan.io and api.shodan.io/shodan/host |
 | [Smap](https://github.com/s0md3v/Smap) | a drop-in replacement for Nmap powered by shodan.io |
 | [ShodanX](https://github.com/RevoltSecurities/ShodanX) | ShodanX is a tool to gather information of targets using shodan dorks |
 | [reconftw](https://github.com/six2dez/reconftw) | reconFTW is a tool designed to perform automated recon on a target domain by running the best set of tools to perform scanning and finding out vulnerabilities |
@@ -170,3 +172,4 @@ curl -s "https://pentestingtools.netlify.app/tools.json" | go run markdown-gener
 | [dnstake](https://github.com/pwnesia/dnstake) | DNSTake — A fast tool to check missing hosted DNS zones that can lead to subdomain takeover |
 | [ssb](https://github.com/pwnesia/ssb) | Secure Shell Bruteforcer — A faster & simpler way to bruteforce SSH server |
 | [4-Zero-3](https://github.com/Dheerajmadhukar/4-ZERO-3) | 403/401 Bypass Methods |
+
