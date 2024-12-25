@@ -1,5 +1,75 @@
 [
   {
+    "name": "JShunter",
+    "url": "https://github.com/cc1a2b/JShunter",
+    "image": "https://opengraph.githubassets.com/fef375f1454041cc893f4cab24508c55200c43314457810116295ef4129118f8/cc1a2b/JShunter",
+    "title": "jshunter is a command-line tool designed for analyzing JavaScript files and extracting endpoints.",
+    "tags": ["cc1a2b", "golang", "crawler", "urls"]
+  },
+  {
+    "name": "ppfuzz",
+    "url": "https://github.com/dwisiswant0/ppfuzz",
+    "image": "https://repository-images.githubusercontent.com/377060135/db8a8e00-daf7-11eb-8685-e45f646b5a66",
+    "title": "A fast tool to scan client-side prototype pollution vulnerability written in Rust.",
+    "tags": ["dwisiswant0", "rust", "prototype-pollution", "vulnerability"]
+  },
+  {
+    "name": "XSpear",
+    "url": "https://github.com/hahwul/XSpear",
+    "image": "https://repository-images.githubusercontent.com/196596188/1c6b2f80-b25d-11e9-8960-8cf4f5de123f",
+    "title": "Powerfull XSS Scanning and Parameter analysis tool&gem",
+    "tags": ["hahwul", "ruby", "xss", "vulnerability"]
+  },
+  {
+    "name": "AllAboutBugBounty",
+    "url": "https://github.com/daffainfo/AllAboutBugBounty",
+    "image": "https://opengraph.githubassets.com/e1949b1cc7b5898fce7ca52ca6fd807427eaf61fcfb49d506b6ed9345f52bbd4/daffainfo/AllAboutBugBounty",
+    "title": "All about bug bounty (bypasses, payloads, and etc)",
+    "tags": ["daffainfo", "bypasses", "payloads"]
+  },
+  {
+    "name": "bruteforce-lists",
+    "url": "https://github.com/random-robbie/bruteforce-lists",
+    "image": "https://opengraph.githubassets.com/bb29df6307856eddeb29c1cb674100022285d9a19d6bbb8815a3fe6c6c42a345/random-robbie/bruteforce-lists",
+    "title": "Some files for bruteforcing certain things",
+    "tags": ["random-robbie", "wordlist", "fuzzing"]
+  },
+  {
+    "name": "BugBountyBooks",
+    "url": "https://github.com/akr3ch/BugBountyBooks",
+    "image": "https://repository-images.githubusercontent.com/463301659/94a7de81-777e-4f30-940a-fe54c462efa9",
+    "title": "A collection of PDF/books about the modern web application security and bug bounty.",
+    "tags": ["akr3ch", "bugbountybooks", "bugbountypdf"]
+  },
+  {
+    "name": "awesome-oneliner-bugbounty",
+    "url": "https://github.com/dwisiswant0/awesome-oneliner-bugbounty",
+    "image": "https://opengraph.githubassets.com/cf59e789124203f9f013751aaf02a82407f3d00d9aaf1127ddc8bb7c85f3e4a3/dwisiswant0/awesome-oneliner-bugbounty",
+    "title": "A collection of awesome one-liner scripts especially for bug bounty tips.",
+    "tags": ["dwisiswant0", "bugbountytips", "oneliner"]
+  },
+  {
+    "name": "HowToHunt",
+    "url": "https://github.com/KathanP19/HowToHunt",
+    "image": "https://opengraph.githubassets.com/9c054b5250bada7004fd66dc2f66e41111b592de853b562ddfa7563e1eb573f8/KathanP19/HowToHunt",
+    "title": "Collection of methodology and test case for various web vulnerabilities.",
+    "tags": ["KathanP19", "bugbountytips", "oneliner"]
+  },
+  {
+    "name": "KingOfBugBountyTips",
+    "url": "https://github.com/KingOfBugbounty/KingOfBugBountyTips",
+    "image": "https://repository-images.githubusercontent.com/290483689/4f436800-e77c-11ea-9212-fc1ce0f0d7fd",
+    "title": "Our main goal is to share tips from some well-known bughunters. Using recon methodology, we are able to find subdomains, apis, and tokens that are already exploitable",
+    "tags": ["KingOfBugbounty", "golang", "bugbountytips", "oneliner"]
+  },
+  {
+    "name": "BigBountyRecon",
+    "url": "https://github.com/Viralmaniar/BigBountyRecon",
+    "image": "https://opengraph.githubassets.com/7a3eff804e1bddec7e4fe8911392a3fa889cb8c22f836861cc4304f1564c5877/Viralmaniar/BigBountyRecon",
+    "title": "BigBountyRecon tool utilizes 58 different techniques using various Google dorks and open source tools to expedite the process of initial reconnaissance on the target organization.",
+    "tags": ["Viralmaniar", "C#", "google-dorking"]
+  },
+  {
     "name": "SecLists",
     "url": "https://github.com/danielmiessler/SecLists",
     "image": "https://opengraph.githubassets.com/6f9d47370a96e3e74bb1083729afd5a6aab5b113a9142176f5858597cb5efa9c/danielmiessler/SecLists",
