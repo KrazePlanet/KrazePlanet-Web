@@ -1,5 +1,47 @@
 [
   {
+    "name": "SecLists",
+    "url": "https://github.com/danielmiessler/SecLists",
+    "image": "https://opengraph.githubassets.com/6f9d47370a96e3e74bb1083729afd5a6aab5b113a9142176f5858597cb5efa9c/danielmiessler/SecLists",
+    "title": "SecLists is the security tester's companion. It's a collection of multiple types of lists used during security assessments, collected in one place.",
+    "tags": ["danielmiessler", "wordlist", "fuzzing"]
+  },
+  {
+    "name": "assetnote-wordlists",
+    "url": "https://wordlists.assetnote.io",
+    "image": "",
+    "title": "Automated & Manual Wordlists provided by Assetnote",
+    "tags": ["assetnote", "wordlist", "fuzzing"]
+  },
+  {
+    "name": "scope",
+    "url": "https://github.com/rix4uni/scope",
+    "image": "https://opengraph.githubassets.com/76d477802c27965d6af16f9fdc36bfcfd27a66ccedb6d338732256d40c11f240/rix4uni/scope",
+    "title": "This repo maintain's in-scope and out-of-scope",
+    "tags": ["rix4uni", "github-actions", "bash", "bbscope"]
+  },
+  {
+    "name": "targets-filter",
+    "url": "https://github.com/rix4uni/targets-filter",
+    "image": "https://opengraph.githubassets.com/f0d088e41ab88b18b7627baf16c9b4a7e55e5508f334a21ff471ce9bcb00b6e4/rix4uni/targets-filter",
+    "title": "Converting trickest and chaos bbp targets in json, updates every 12 hour",
+    "tags": ["rix4uni", "github-actions", "golang", "bbscope"]
+  },
+  {
+    "name": "bugbounty-targets",
+    "url": "https://github.com/Osb0rn3/bugbounty-targets",
+    "image": "https://opengraph.githubassets.com/566fc77a81e11776837a8db82abdf5d58e0bfc3a40c90f21d206235431768ca4/Osb0rn3/bugbounty-targets",
+    "title": "An automated GitHub Actions-based crawler that fetches and updates public scopes from popular bug bounty platforms.",
+    "tags": ["Osb0rn3", "github-actions", "bbscope"]
+  },
+  {
+    "name": "bounty-targets-data",
+    "url": "https://github.com/arkadiyt/bounty-targets-data",
+    "image": "https://repository-images.githubusercontent.com/113006883/746d3d80-b15a-11e9-9e2c-a5d494419968",
+    "title": "This repo contains hourly-updated data dumps of bug bounty platform scopes (like Hackerone/Bugcrowd/Intigriti/etc) that are eligible for reports",
+    "tags": ["arkadiyt", "github-actions", "bbscope"]
+  },
+  {
     "name": "theHarvester",
     "url": "https://github.com/laramies/theHarvester",
     "image": "https://repository-images.githubusercontent.com/1212922/0933ae00-d41e-11e9-85da-8c22b674c731",
@@ -424,7 +466,7 @@
     "url": "https://github.com/projectdiscovery/public-bugbounty-programs",
     "image": "https://opengraph.githubassets.com/c352428a24b9ebcc3499b908285c343d45f71999946a34d13de5657114af5d98/projectdiscovery/public-bugbounty-programs",
     "title": "Community curated list of public bug bounty and responsible disclosure programs.",
-    "tags": ["projectdiscovery", "golang", "Community curated list of public bug bounty and responsible disclosure programs."]
+    "tags": ["projectdiscovery", "golang", "bbscope"]
   },
   {
     "name": "notify",
