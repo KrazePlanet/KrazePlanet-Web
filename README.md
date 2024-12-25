@@ -7,6 +7,16 @@ A vast collection of security tools for ethical hackers and security researchers
 ## View in Markdown:
 | NAME                  | DESCRIPTION           |
 |-----------------------|-----------------------|
+| [JShunter](https://github.com/cc1a2b/JShunter) | jshunter is a command-line tool designed for analyzing JavaScript files and extracting endpoints. |
+| [ppfuzz](https://github.com/dwisiswant0/ppfuzz) | A fast tool to scan client-side prototype pollution vulnerability written in Rust. |
+| [XSpear](https://github.com/hahwul/XSpear) | Powerfull XSS Scanning and Parameter analysis tool&gem |
+| [AllAboutBugBounty](https://github.com/daffainfo/AllAboutBugBounty) | All about bug bounty (bypasses, payloads, and etc) |
+| [bruteforce-lists](https://github.com/random-robbie/bruteforce-lists) | Some files for bruteforcing certain things |
+| [BugBountyBooks](https://github.com/akr3ch/BugBountyBooks) | A collection of PDF/books about the modern web application security and bug bounty. |
+| [awesome-oneliner-bugbounty](https://github.com/dwisiswant0/awesome-oneliner-bugbounty) | A collection of awesome one-liner scripts especially for bug bounty tips. |
+| [HowToHunt](https://github.com/KathanP19/HowToHunt) | Collection of methodology and test case for various web vulnerabilities. |
+| [KingOfBugBountyTips](https://github.com/KingOfBugbounty/KingOfBugBountyTips) | Our main goal is to share tips from some well-known bughunters. Using recon methodology, we are able to find subdomains, apis, and tokens that are already exploitable |
+| [BigBountyRecon](https://github.com/Viralmaniar/BigBountyRecon) | BigBountyRecon tool utilizes 58 different techniques using various Google dorks and open source tools to expedite the process of initial reconnaissance on the target organization. |
 | [SecLists](https://github.com/danielmiessler/SecLists) | SecLists is the security tester's companion. It's a collection of multiple types of lists used during security assessments, collected in one place. |
 | [assetnote-wordlists](https://wordlists.assetnote.io) | Wordlists that are up to date and effective against the most popular technologies on the internet. |
 | [scope](https://github.com/rix4uni/scope) | This repo maintain's in-scope and out-of-scope |
