@@ -1,0 +1,1129 @@
+[
+  {
+    "name": "theHarvester",
+    "url": "https://github.com/laramies/theHarvester",
+    "image": "https://repository-images.githubusercontent.com/1212922/0933ae00-d41e-11e9-85da-8c22b674c731",
+    "title": "E-mails, subdomains and names Harvester - OSINT",
+    "tags": ["laramies", "python", "subdomains"]
+  },
+  {
+    "name": "subwiz",
+    "url": "https://github.com/hadriansecurity/subwiz",
+    "image": "https://opengraph.githubassets.com/372b7734a8b6d818b419e745c6b22168a687b316a3c5d7a752b5f5d481fd9db6/hadriansecurity/subwiz",
+    "title": "A recon tool that uses ML to predict subdomains. Then returns those that resolve.",
+    "tags": ["hadriansecurity", "python", "subdomains"]
+  },
+  {
+    "name": "portmap",
+    "url": "https://github.com/rix4uni/portmap",
+    "image": "https://opengraph.githubassets.com/80cd534f0462fd207132ff848ee27ffe35fed515ec441e3ac7587f6190d4c031/rix4uni/portmap",
+    "title": "portmap is a fast portscan tool, uses shodan public data for port scan used internetdb.shodan.io and api.shodan.io/shodan/host",
+    "tags": ["rix4uni", "golang", "portscanner"]
+  },
+  {
+    "name": "Smap",
+    "url": "https://github.com/s0md3v/Smap",
+    "image": "https://repository-images.githubusercontent.com/471627548/3d5b9ffe-008a-41be-9d14-32bdcbf5b96f",
+    "title": "a drop-in replacement for Nmap powered by shodan.io",
+    "tags": ["s0md3v", "golang", "portscanner"]
+  },
+  {
+    "name": "ShodanX",
+    "url": "https://github.com/RevoltSecurities/ShodanX",
+    "image": "https://opengraph.githubassets.com/1059b6fcb00d03c3642e588db431ff35cf2ebb5d287f2ddbe9a12cd6b5fe5827/RevoltSecurities/ShodanX",
+    "title": "ShodanX is a tool to gather information of targets using shodan dorks",
+    "tags": ["RevoltSecurities", "python", "portscanner"]
+  },
+  {
+    "name": "reconftw",
+    "url": "https://github.com/six2dez/reconftw",
+    "image": "https://repository-images.githubusercontent.com/325671936/e190df94-4fc5-4335-9b73-23e04e060768",
+    "title": "reconFTW is a tool designed to perform automated recon on a target domain by running the best set of tools to perform scanning and finding out vulnerabilities",
+    "tags": ["six2dez", "bash", "vulnerability", "framework"]
+  },
+  {
+    "name": "rengine",
+    "url": "https://github.com/yogeshojha/rengine",
+    "image": "https://opengraph.githubassets.com/5ee802b25b5b74c045e9674c17b568e8f1c30ece93f915d051544964857e2f02/yogeshojha/rengine",
+    "title": "Automated reconnaissance framework for webapps, highly configurable streamlined recon process.",
+    "tags": ["yogeshojha", "python", "vulnerability", "framework"]
+  },
+  {
+    "name": "altdns",
+    "url": "https://github.com/infosec-au/altdns",
+    "image": "https://opengraph.githubassets.com/345a6ec2d18d0f6478d0c911ae1ec8beb321f976f80dcf252aacdc266c409aca/infosec-au/altdns",
+    "title": "Generates permutations, alterations and mutations of subdomains and then resolves them",
+    "tags": ["infosec-au", "subdomain", "permutations", "alteration", "mutations", "resolving"]
+  },
+  {
+    "name": "dmut",
+    "url": "https://github.com/bp0lr/dmut",
+    "image": "https://opengraph.githubassets.com/96ea2e621937bb7bd34761bc3958fba0f5db577b5f8ec32ee774d3d3a477253e/bp0lr/dmut",
+    "title": "A tool to perform permutations, mutations and alteration of subdomains in golang.",
+    "tags": ["subdomain", "permutations", "alteration", "mutations"]
+  },
+  {
+    "name": "goaltdns",
+    "url": "https://github.com/subfinder/goaltdns",
+    "image": "https://opengraph.githubassets.com/91d7cc1e37f2be846634919b25e22cebced598d7dd7de80cca9b81ddd19f5b17/subfinder/goaltdns",
+    "title": "A permutation generation tool written in golang",
+    "tags": ["subdomain", "permutations", "alteration", "mutations"]
+  },
+  {
+    "name": "dnsgen",
+    "url": "https://github.com/ProjectAnte/dnsgen",
+    "image": "https://opengraph.githubassets.com/bf82c74113fabd98d6888bb7424363d817f999e4d9ba3f29c0bcfeed1f9bcd11/AlephNullSK/dnsgen",
+    "title": "Generates combination of domain names from the provided input.",
+    "tags": ["subdomain", "permutations", "alteration", "mutations"]
+  },
+  {
+    "name": "resolvers",
+    "url": "https://github.com/rix4uni/resolvers",
+    "image": "https://opengraph.githubassets.com/85b826ea7728acae7c9f0bb8c0ae01386f714842102c5e33872eec0c1c763427/rix4uni/resolvers",
+    "title": "List of Fresh DNS resolvers updates every 1 hour",
+    "tags": ["resolver", "dns", "resolvers"]
+  },
+  {
+    "name": "medium-writeups",
+    "url": "https://github.com/rix4uni/medium-writeups",
+    "image": "https://opengraph.githubassets.com/d354d9721730950acda511110c6531618a0a215e85a65e5cdf0b6bb9d0a1d26c/rix4uni/medium-writeups",
+    "title": "This repository updates latest Bug Bounty medium writeups every 10 minutes",
+    "tags": ["bugbounty-writeups"]
+  },
+  {
+    "name": "nucleihub-templates",
+    "url": "https://github.com/rix4uni/nucleihub-templates",
+    "image": "https://opengraph.githubassets.com/92711a3589b3b214255584969441759ed1ce70db2d771c5ce9f05e12fc52994d/rix4uni/nucleihub-templates",
+    "title": "This repo collects nuclei template from 600+ github repos, updates every 6 hours.",
+    "tags": ["nuclei", "nuclei-templates", "nuclei-checks", "fingerprint"]
+  },
+  {
+    "name": "cvemapping",
+    "url": "https://github.com/rix4uni/cvemapping",
+    "image": "https://opengraph.githubassets.com/9f9e3d6b5772a1517ada4ee87af0437cb4faa497ef6e190ee55dc00ce70b0d5f/rix4uni/cvemapping",
+    "title": "This repo Gathers all available cve exploits from github.⚠️ Be careful Malware.",
+    "tags": ["cve", "exploits"]
+  },
+  {
+    "name": "gocl",
+    "url": "https://github.com/rix4uni/gocl",
+    "image": "https://opengraph.githubassets.com/7ce806c08d79e1b5c044afaa648a898bdf3633533bbdae1970d9aeaa147806ad/rix4uni/gocl",
+    "title": "gocl is similar tool like go install command that install's go tools.",
+    "tags": ["golang"]
+  },
+  {
+    "name": "WordList",
+    "url": "https://github.com/rix4uni/WordList",
+    "image": "https://opengraph.githubassets.com/fc95f8b532f7a4614677df22c6a50a660cb1ab88a1f74005069bcb542cc14a5a/rix4uni/WordList",
+    "title": "Custom wordlist, updated regularly",
+    "tags": ["wordlist", "fuzzing"]
+  },
+  {
+    "name": "pathcrawler",
+    "url": "https://github.com/rix4uni/pathcrawler",
+    "image": "https://opengraph.githubassets.com/2f982d031400fa9ba8c917c723e0e7e232ff7eba0541dce2446cee03555bfdf0/rix4uni/pathcrawler",
+    "title": "Discover new paths via scanning html.",
+    "tags": ["crawler", "urls"]
+  },
+  {
+    "name": "cspfinder",
+    "url": "https://github.com/rix4uni/cspfinder",
+    "image": "https://opengraph.githubassets.com/a7030a025adcde18e46badf0e8350252b19dbadb027c68e1be55ccb9e0aef07f/rix4uni/cspfinder",
+    "title": "Discover new target domains using Content Security Policy",
+    "tags": ["golang", "csp", "content-security-policy"]
+  },
+  {
+    "name": "jscrawler",
+    "url": "https://github.com/rix4uni/jscrawler",
+    "image": "https://opengraph.githubassets.com/f87fcd31b8fef5caf6f97cb94b89fbe43284068b4419b05d7c299d7e3b0a84be/rix4uni/jscrawler",
+    "title": "Fetches javascript file from a list of URLS or subdomains.",
+    "tags": ["python", "javascript", "urls"]
+  },
+  {
+    "name": "uforall",
+    "url": "https://github.com/rix4uni/uforall",
+    "image": "https://opengraph.githubassets.com/48a05b643a5e4549ed7fb2e4b623e58bb5a1a8353a73e4d5abd3c75c056eec72/rix4uni/uforall",
+    "title": "uforall is a fast url crawler this tool crawl all URLs number of different sources, alienvault,WayBackMachine,urlscan,commoncrawl",
+    "tags": ["golang", "crawler", "wayback", "alienvault", "commoncrawl", "urlscan", "urls"]
+  },
+  {
+    "name": "gorker",
+    "url": "https://github.com/rix4uni/gorker",
+    "image": "https://opengraph.githubassets.com/1bfe0a1279ca56dc387a65d5112058185701a94357fa1e196d44304478081029/rix4uni/gorker",
+    "title": "Google dorking with Selenium.",
+    "tags": ["python", "google-dorking", "dorking", "urls"]
+  },
+  {
+    "name": "Bug-Bounty-Tampermonkey-Scripts",
+    "url": "https://github.com/rix4uni/Bug-Bounty-Tampermonkey-Scripts",
+    "image": "https://opengraph.githubassets.com/9b4d2e6077d53cc558d16e61705d93444e563685d6788bde2c3aed09bc13eae4/rix4uni/Bug-Bounty-Tampermonkey-Scripts",
+    "title": "Google dorking with Selenium.",
+    "tags": ["javascript", "google-dorking", "dorking", "tampermonkey", "urls"]
+  },
+  {
+    "name": "unew",
+    "url": "https://github.com/rix4uni/unew",
+    "image": "https://opengraph.githubassets.com/014cf0b34d6ed417f31b450414625f70c515d3dd5670689f68c27f48091c9dde/rix4uni/unew",
+    "title": "A tool combined of 2 commands features in 1 sort and tee for adding new lines to files, skipping duplicates",
+    "tags": ["golang", "duplicates"]
+  },
+  {
+    "name": "timelimitx",
+    "url": "https://github.com/rix4uni/timelimitx",
+    "image": "https://opengraph.githubassets.com/33a3b45415b16e4cb7c924c2561ec3e7615f4133adb071a3b8f07f62fed4ba9c/rix4uni/timelimitx",
+    "title": "timelimitx is alternative advanced version of timeout command.",
+    "tags": ["golang"]
+  },
+  {
+    "name": "GoLinkFinder",
+    "url": "https://github.com/rix4uni/GoLinkFinder",
+    "image": "https://opengraph.githubassets.com/3c28f2a6ca1876464cd3312fa8feaa626cc149869eb9a5319df6830c16996ace/rix4uni/GoLinkFinder",
+    "title": "A fast and minimal JS endpoint extractor",
+    "tags": ["golang", "crawler", "urls"]
+  },
+  {
+    "name": "robotxt",
+    "url": "https://github.com/rix4uni/robotxt",
+    "image": "https://opengraph.githubassets.com/17f1512ddf469e77534059634e3003693674d32936a29d503f98896fcc3009ab/rix4uni/robotxt",
+    "title": "Extract endpoints marked as Allow and Disallow in robots.txt",
+    "tags": ["golang", "robotstxt", "urls"]
+  },
+  {
+    "name": "certinfo",
+    "url": "https://github.com/rix4uni/certinfo",
+    "image": "https://opengraph.githubassets.com/bc1a104737754cee8d7b5763c3c98689d03e27f16f54cc29a4959c7f538a261c/rix4uni/certinfo",
+    "title": "Scrape domain names from Certificate Subject Alternative Name",
+    "tags": ["golang", "ssl", "tls", "subdomains"]
+  },
+  {
+    "name": "wordgen",
+    "url": "https://github.com/rix4uni/wordgen",
+    "image": "https://opengraph.githubassets.com/22e986fe5c4749fad7dd6e1b62d893228deb7393ba52aa8284a79469b57bba14/rix4uni/wordgen",
+    "title": "Easy wordlist generator tool for backup files.",
+    "tags": ["golang", "wordlist-generator", "wordlist"]
+  },
+  {
+    "name": "haktrailsfree",
+    "url": "https://github.com/rix4uni/haktrailsfree",
+    "image": "https://opengraph.githubassets.com/b87cc13f586b5a070e9f214b2d0ebf56544b1a867915446a1afecdfe0b16643f/rix4uni/haktrailsfree",
+    "title": "Get 10k subdomains in securitytrails using cookie without apikey.",
+    "tags": ["golang", "subdomains"]
+  },
+  {
+    "name": "gitrepoenum",
+    "url": "https://github.com/rix4uni/gitrepoenum",
+    "image": "https://opengraph.githubassets.com/3d02ea3020926629224f870e2ca3cba412658756152e1cb926815b83abbeb38a/rix4uni/gitrepoenum",
+    "title": "Download all github repositories of a org, user, fetch all member of a org, then Find leaked credentials.",
+    "tags": ["golang", "github-osint"]
+  },
+  {
+    "name": "org2asn",
+    "url": "https://github.com/rix4uni/org2asn",
+    "image": "https://opengraph.githubassets.com/1ad8f8f86c43ddb4a70de6f4a26de0fcd67796d2952795500c5d3e58166d84d3/rix4uni/org2asn",
+    "title": "Extract ASN and IPs in bgp.he.net",
+    "tags": ["golang", "org", "asn", "ip"]
+  },
+  {
+    "name": "favinfo",
+    "url": "https://github.com/rix4uni/favinfo",
+    "image": "https://opengraph.githubassets.com/8522ba6ea8f9045383523a4eb22a86d07f061cb77aa8dee3846dfc2ed16f5aa1/rix4uni/favinfo",
+    "title": "favinfo scrapes favicon in HTML code and many other different ways.",
+    "tags": ["golang", "favicon", "favicon-generator", "favicon-hash", "favicon-hash-generator", "favicon-recon"]
+  },
+  {
+    "name": "msarjun",
+    "url": "https://github.com/rix4uni/msarjun",
+    "image": "https://opengraph.githubassets.com/b1b974dd5d447cad6ce428462bd7deaff6b0964d9da743101b8f23dc5dd828c8/rix4uni/msarjun",
+    "title": "Mass scale Hidden parameters discovery using Arjun.",
+    "tags": ["golang", "parameters", "hidden-parameter", "parameter-discovery", "urls"]
+  },
+  {
+    "name": "nucleihub",
+    "url": "https://github.com/rix4uni/nucleihub",
+    "image": "https://opengraph.githubassets.com/1568722fad698f45ed983fc0caaa8bfb06170aeb2b281838c4bac9f8747f0f4d/rix4uni/nucleihub",
+    "title": "A simple tool that allows you to organize all the Nuclei templates offered by the community in one place",
+    "tags": ["golang", "nuclei", "nuclei-templates", "nuclei-checks", "fingerprint"]
+  },
+  {
+    "name": "pyxss",
+    "url": "https://github.com/rix4uni/pyxss",
+    "image": "https://opengraph.githubassets.com/2025046ea0d4a8adc6c4e2bcb67edb6d7650b83595ce80ac42b1f78aa1704c6f/rix4uni/pyxss",
+    "title": "Simple XSS vulnerability checker tool very useful with xsschecker.",
+    "tags": ["python", "xss", "xssvalidator", "vulnerability"]
+  },
+  {
+    "name": "xsschecker",
+    "url": "https://github.com/rix4uni/xsschecker",
+    "image": "https://opengraph.githubassets.com/cb0a559185678fb34cf6b5e84e46d4b33d15927c6dc2dc3d8e94babe8e8b88ae/rix4uni/xsschecker",
+    "title": "xsschecker tool checking reflected endpoints finding possible xss vulnerable endpoints.",
+    "tags": ["golang", "xss", "vulnerability"]
+  },
+  {
+    "name": "subdomainfuzz",
+    "url": "https://github.com/rix4uni/subdomainfuzz",
+    "image": "https://opengraph.githubassets.com/0fa89663f9704cdc80300492c67c079a5652168ab9ab4f22db71e55c7a3baf57/rix4uni/subdomainfuzz",
+    "title": "A lightweight tool for inserting custom payloads into URL subdomains, for domain mutation after that pass this output to ffuf",
+    "tags": ["golang", "fuzzing", "subdomains"]
+  },
+  {
+    "name": "emailfinder",
+    "url": "https://github.com/rix4uni/emailfinder",
+    "image": "https://opengraph.githubassets.com/8dfcdb560c905781d2b809551f9fcba3d0c12db51512d088626248b704821ce8/rix4uni/emailfinder",
+    "title": "Email OSINT tool, emailfinder collects emails from different sources like Google, DuckDuckGo, Bing, Yahoo, Yandex, Github, etc.",
+    "tags": ["golang", "email"]
+  },
+  {
+    "name": "ftpx",
+    "url": "https://github.com/rix4uni/ftpx",
+    "image": "https://opengraph.githubassets.com/03710d646031760cf5f9ccf6b3fb3d32cb5553a2a86cfa9db9553249a82951e8/rix4uni/ftpx",
+    "title": "ftpx - A faster & simpler way to bruteforce FTP server",
+    "tags": ["golang", "ftpbruteforce", "password-generator", "ftp"]
+  },
+  {
+    "name": "subdog",
+    "url": "https://github.com/rix4uni/subdog",
+    "image": "https://opengraph.githubassets.com/8dde99c44ba20dbb275b76a560f96396b5602fb80630eb555ceb407049d82b55/rix4uni/subdog",
+    "title": "subdog is a subdomain enumeration tools, this tool collect number of different sources to create a list of root subdomains",
+    "tags": ["golang", "subdomains"]
+  },
+  {
+    "name": "tldscan",
+    "url": "https://github.com/rix4uni/tldscan",
+    "image": "https://opengraph.githubassets.com/1d37dfcb0be6af571e45769890a89d2600cacb6391a8680b16a3f3eeded33a0e/rix4uni/tldscan",
+    "title": "Scan all possible TLD's for a given domain name",
+    "tags": ["golang", "tld", "subdomains"]
+  },
+  {
+    "name": "dlevel",
+    "url": "https://github.com/rix4uni/dlevel",
+    "image": "https://opengraph.githubassets.com/9345cd644b892013d8f8c860582d48bfb3c14a46cbdd66b97faa10b312015e91/rix4uni/dlevel",
+    "title": "Filter list of subdomains by level.",
+    "tags": ["golang", "subdomain-filter", "subdomains"]
+  },
+  {
+    "name": "paramfinder",
+    "url": "https://github.com/rix4uni/paramfinder",
+    "image": "https://opengraph.githubassets.com/9762280e0ecc8c762510715033360a8b09293eb8dfb59d44fefaec7ede079127/rix4uni/paramfinder",
+    "title": "Find input and textarea hidden parameters in html.",
+    "tags": ["golang", "hidden-parameter", "parameter-discovery", "parameters", "urls"]
+  },
+  {
+    "name": "ip2org",
+    "url": "https://github.com/rix4uni/ip2org",
+    "image": "https://opengraph.githubassets.com/0683928fa4ed43ac821458bbe933c7d51710d66a4212f6e8381b90fb80e513ca/rix4uni/ip2org",
+    "title": "Find org name using ip address",
+    "tags": ["golang", "org", "ip"]
+  },
+  {
+    "name": "pvreplace",
+    "url": "https://github.com/rix4uni/pvreplace",
+    "image": "https://opengraph.githubassets.com/d152e4f1bbcd175f5fdcb3c47cc2a4ff2a131ff12641f391a8229318a4cd1b6f/rix4uni/pvreplace",
+    "title": "Accept URLs on stdin, replace all query string values with a user-supplied value",
+    "tags": ["golang", "query-replace"]
+  },
+  {
+    "name": "originip",
+    "url": "https://github.com/rix4uni/originip",
+    "image": "https://opengraph.githubassets.com/a73c7bc2f2faa985e8c14268ebc201a51251c69ab4aafc637d48b89eeb3d375a/rix4uni/originip",
+    "title": "originip finds origin ip from dig, shodan, censys, securitytrails, viewdns, hunter how, fofa, zoomeye.",
+    "tags": ["golang", "origin-ip"]
+  },
+  {
+    "name": "uro",
+    "url": "https://github.com/s0md3v/uro",
+    "image": "https://opengraph.githubassets.com/8adcde26ec1610a36e19c5890472437f8e3370442fa27ec338aa6442be20f525/s0md3v/uro",
+    "title": "declutters url lists for crawling/pentesting",
+    "tags": ["python", "declutters", "urls"]
+  },
+  {
+    "name": "urldedupe",
+    "url": "https://github.com/ameenmaali/urldedupe",
+    "image": "https://opengraph.githubassets.com/6320cc9d791271172d27edf121f850f49558d493c21678ca41931ea55bfc16fb/ameenmaali/urldedupe",
+    "title": "Pass in a list of URLs with query strings, get back a unique list of URLs and query string combinations",
+    "tags": ["c++", "declutters", "urls"]
+  },
+  {
+    "name": "urless",
+    "url": "https://github.com/xnl-h4ck3r/urless",
+    "image": "https://opengraph.githubassets.com/e1adfacbe0bbfe194704fb80bb0e8f516339c1ca1380f20101fb1178a7785f22/xnl-h4ck3r/urless",
+    "title": "De-clutter a list of URLs",
+    "tags": ["python", "declutters", "urls"]
+  },
+  {
+    "name": "waymore",
+    "url": "https://github.com/xnl-h4ck3r/waymore",
+    "image": "https://opengraph.githubassets.com/3b18463fb4e5962a8bf3fb523219bb967d136c81688151fcfabaed837a3ba37d/xnl-h4ck3r/waymore",
+    "title": "Find way more from the Wayback Machine, Common Crawl, Alien Vault OTX, URLScan & VirusTotal!",
+    "tags": ["python", "crawler", "wayback", "alienvault", "commoncrawl", "urlscan", "urls"]
+  },
+  {
+    "name": "xnLinkFinder",
+    "url": "https://github.com/xnl-h4ck3r/xnLinkFinder",
+    "image": "https://opengraph.githubassets.com/1beab18a0b8eb81cfb41cc623333175ce5a9e46fecd6dbf7affc81eb430aa60a/xnl-h4ck3r/xnLinkFinder",
+    "title": "A python tool used to discover endpoints, potential parameters, and a target specific wordlist for a given target",
+    "tags": ["python", "crawler", "urls"]
+  },
+  {
+    "name": "GAP-Burp-Extension",
+    "url": "https://github.com/xnl-h4ck3r/GAP-Burp-Extension",
+    "image": "https://opengraph.githubassets.com/164cbb8d9246087c520eb807401225c72f7c7f11607208df72831a783061acd4/xnl-h4ck3r/GAP-Burp-Extension",
+    "title": "Burp Extension to find potential endpoints, parameters, and generate a custom target wordlist",
+    "tags": ["python", "parameters", "hidden-parameter", "parameter-discovery", "urls"]
+  },
+  {
+    "name": "knoxnl",
+    "url": "https://github.com/xnl-h4ck3r/knoxnl",
+    "image": "https://opengraph.githubassets.com/11cab99f8ce6e33066356a78b0eebc0ae3d87edef19328b02d438688e247c465/xnl-h4ck3r/knoxnl",
+    "title": "This is a python wrapper around the amazing KNOXSS API by Brute Logic",
+    "tags": ["python", "xss", "vulnerability"]
+  },
+  {
+    "name": "xnldorker",
+    "url": "https://github.com/xnl-h4ck3r/xnldorker",
+    "image": "https://opengraph.githubassets.com/2a6d85c81f6e6b1bc51d388f09ee306bbf30c6f2f41f23e928d07fa0cdaa077f/xnl-h4ck3r/xnldorker",
+    "title": "Gather results of dorks across a number of search engines",
+    "tags": ["python", "google-dorking", "dorking", "urls"]
+  },
+  {
+    "name": "nuclei-templates",
+    "url": "https://github.com/projectdiscovery/nuclei-templates",
+    "image": "https://opengraph.githubassets.com/f1bacdb12b5bca44bdc66d069866c4c4c83988bf1c9fad620056b912d872d5bc/projectdiscovery/nuclei-templates",
+    "title": "Community curated list of templates for the nuclei engine to find security vulnerabilities.",
+    "tags": ["nuclei", "nuclei-templates", "nuclei-checks", "fingerprint"]
+  },
+  {
+    "name": "nuclei",
+    "url": "https://github.com/projectdiscovery/nuclei",
+    "image": "https://opengraph.githubassets.com/21e33c1b8ffde410d3589dae24a1f2f2707d7f27f79b5f7a2eda6fd0c4e6d2de/projectdiscovery/nuclei",
+    "title": "Nuclei is a fast, customizable vulnerability scanner powered by the global security community and built on a simple YAML-based DSL, enabling collaboration to tackle trending vulnerabilities on the internet. It helps you find vulnerabilities in your applications, APIs, networks, DNS, and cloud configurations.",
+    "tags": ["golang", "nuclei", "nuclei-templates", "nuclei-checks", "fingerprint"]
+  },
+  {
+    "name": "subfinder",
+    "url": "https://github.com/projectdiscovery/subfinder",
+    "image": "https://opengraph.githubassets.com/fb81eb814ffac657a55c54f054a6314e57b4c75b1c018f915b5f23f08a4e0f78/projectdiscovery/subfinder",
+    "title": "Fast passive subdomain enumeration tool.",
+    "tags": ["golang", "subdomains"]
+  },
+  {
+    "name": "httpx",
+    "url": "https://github.com/projectdiscovery/httpx",
+    "image": "https://opengraph.githubassets.com/f476484ab44f09906e611bbb48e8dd1c6e04912752f0615b81af6fbedc82b6a5/projectdiscovery/httpx",
+    "title": "httpx is a fast and multi-purpose HTTP toolkit that allows running multiple probes using the retryablehttp library.",
+    "tags": ["golang", "probes"]
+  },
+  {
+    "name": "wappalyzergo",
+    "url": "https://github.com/projectdiscovery/wappalyzergo",
+    "image": "https://opengraph.githubassets.com/049827b5f8aecbf839568a13595d33acf5a64dc5bcba0e206563ece83e0ac659/projectdiscovery/wappalyzergo",
+    "title": "A high performance go implementation of Wappalyzer Technology Detection Library",
+    "tags": ["golang", "technology"]
+  },
+  {
+    "name": "public-bugbounty-programs",
+    "url": "https://github.com/projectdiscovery/public-bugbounty-programs",
+    "image": "https://opengraph.githubassets.com/c352428a24b9ebcc3499b908285c343d45f71999946a34d13de5657114af5d98/projectdiscovery/public-bugbounty-programs",
+    "title": "Community curated list of public bug bounty and responsible disclosure programs.",
+    "tags": ["golang", "Community curated list of public bug bounty and responsible disclosure programs."]
+  },
+  {
+    "name": "notify",
+    "url": "https://github.com/projectdiscovery/notify",
+    "image": "https://opengraph.githubassets.com/3c28337a1eed4c16c6ebd4c5556dda8c9bda5ea72bf45e63ef881809de5eeebd/projectdiscovery/notify",
+    "title": "Notify is a Go-based assistance package that enables you to stream the output of several tools (or read from a file) and publish it to a variety of supported platforms.",
+    "tags": ["golang", "notify"]
+  },
+  {
+    "name": "mapcidr",
+    "url": "https://github.com/projectdiscovery/mapcidr",
+    "image": "https://opengraph.githubassets.com/594ab8f4cad4fe0481e9f5a07591d3f231cf969dce90cb21c096b79134f76337/projectdiscovery/mapcidr",
+    "title": "Utility program to perform multiple operations for a given subnet/CIDR ranges.",
+    "tags": ["golang", "cidr-mapping"]
+  },
+  {
+    "name": "shuffledns",
+    "url": "https://github.com/projectdiscovery/shuffledns",
+    "image": "https://opengraph.githubassets.com/46c4dd30288ce79e9fd47869b05549b4bc63fcddb8862e100fc4c2a344475b4a/projectdiscovery/shuffledns",
+    "title": "MassDNS wrapper written in go to enumerate valid subdomains using active bruteforce as well as resolve subdomains with wildcard filtering and easy input-output support.",
+    "tags": ["golang", "subdomain", "resolving"]
+  },
+  {
+    "name": "uncover",
+    "url": "https://github.com/projectdiscovery/uncover",
+    "image": "https://opengraph.githubassets.com/aa9051f16899fa5838193fff463fd2ee4beecb39d0f6174d1e8fb72d0ee15216/projectdiscovery/uncover",
+    "title": "Quickly discover exposed hosts on the internet using multiple search engines.",
+    "tags": ["golang", "vulnerability"]
+  },
+  {
+    "name": "asnmap",
+    "url": "https://github.com/projectdiscovery/asnmap",
+    "image": "https://opengraph.githubassets.com/3f5b3eb5160e19f7ab371d969642e568882c0845e55f2cf7d85dbfb7876cadc7/projectdiscovery/asnmap",
+    "title": "Go CLI and Library for quickly mapping organization network ranges using ASN information.",
+    "tags": ["golang", "asn-mapping"]
+  },
+  {
+    "name": "cdncheck",
+    "url": "https://github.com/projectdiscovery/cdncheck",
+    "image": "https://opengraph.githubassets.com/eca2b7d5d5de77d9aee5688080319b6bba8e3991fabc6fe60b886f5911b6be69/projectdiscovery/cdncheck",
+    "title": "A utility to detect various technology for a given IP address.",
+    "tags": ["golang", "cdn"]
+  },
+  {
+    "name": "naabu",
+    "url": "https://github.com/projectdiscovery/naabu",
+    "image": "https://opengraph.githubassets.com/2f05242f528b1bf1313a282abeab4bd8a0b7696f229b53aaf2bdd35120243c48/projectdiscovery/naabu",
+    "title": "A fast port scanner written in go with a focus on reliability and simplicity. Designed to be used in combination with other tools for attack surface discovery in bug bounties and pentests",
+    "tags": ["golang", "portscanner"]
+  },
+  {
+    "name": "chaos-client",
+    "url": "https://github.com/projectdiscovery/chaos-client",
+    "image": "https://opengraph.githubassets.com/0c91f9287ffa4a8fe4cf208e7172e1fa8d8449ea61816ada5eabac56ab83d2bb/projectdiscovery/chaos-client",
+    "title": "Go client to communicate with Chaos DB API.",
+    "tags": ["golang", "subdomains"]
+  },
+  {
+    "name": "tldfinder",
+    "url": "https://github.com/projectdiscovery/tldfinder",
+    "image": "https://opengraph.githubassets.com/d59faea64851eadee8d9037cfc232c0be343c780d131bd9b4ea530a1e2de5631/projectdiscovery/tldfinder",
+    "title": "A streamlined tool for discovering private TLDs for security research.",
+    "tags": ["golang", "subdomains"]
+  },
+  {
+    "name": "katana",
+    "url": "https://github.com/projectdiscovery/katana",
+    "image": "https://opengraph.githubassets.com/9e1fc83a6fa6d2f09b3b8031f1456c037fe386c0eb1df25b410751a7b11f9b02/projectdiscovery/katana",
+    "title": "A next-generation crawling and spidering framework.",
+    "tags": ["golang", "crawler", "urls"]
+  },
+  {
+    "name": "cvemap",
+    "url": "https://github.com/projectdiscovery/cvemap",
+    "image": "https://opengraph.githubassets.com/695468d915727a22f44831cf330f13e851fd0cd1035496f4ba38e350b7b9f472/projectdiscovery/cvemap",
+    "title": "Navigate the CVE jungle with ease.",
+    "tags": ["golang", "cve"]
+  },
+  {
+    "name": "proxify",
+    "url": "https://github.com/projectdiscovery/proxify",
+    "image": "https://opengraph.githubassets.com/d3614568cccaa85bf8caf03ae6da6c5ed8d147a641a9b11398e0aa8e7e178b52/projectdiscovery/proxify",
+    "title": "A versatile and portable proxy for capturing, manipulating, and replaying HTTP/HTTPS traffic on the go.",
+    "tags": ["golang", "mitm"]
+  },
+  {
+    "name": "alterx",
+    "url": "https://github.com/projectdiscovery/alterx",
+    "image": "https://opengraph.githubassets.com/4f641f2d6dbe8d18181e5accc5dad7cacb5dd28362b10125a23b18cda3c30802/projectdiscovery/alterx",
+    "title": "Fast and customizable subdomain wordlist generator using DSL",
+    "tags": ["golang", "permutations", "alteration", "mutations", "subdomains"]
+  },
+  {
+    "name": "tlsx",
+    "url": "https://github.com/projectdiscovery/tlsx",
+    "image": "https://opengraph.githubassets.com/273883f07984f61bfd0c6655377faf2ce03e6212d13ecec21751f3475b86e702/projectdiscovery/tlsx",
+    "title": "Fast and configurable TLS grabber focused on TLS based data collection.",
+    "tags": ["golang", "tls", "subdomains"]
+  },
+  {
+    "name": "urlfinder",
+    "url": "https://github.com/projectdiscovery/urlfinder",
+    "image": "https://opengraph.githubassets.com/e7889bdbca021b915d5f86bced1e0491099aa2b4c32b1c76df618f698c1d147e/projectdiscovery/urlfinder",
+    "title": "A high-speed tool for passively gathering URLs, optimized for efficient and comprehensive web asset discovery without active scanning.",
+    "tags": ["golang", "crawler", "wayback", "alienvault", "commoncrawl", "urlscan", "urls"]
+  },
+  {
+    "name": "dnsx",
+    "url": "https://github.com/projectdiscovery/dnsx",
+    "image": "https://opengraph.githubassets.com/b5166ac92c38bccfc7f21bbbe144c125cfa77188124dfeb65a295d9ce7f7e887/projectdiscovery/dnsx",
+    "title": "dnsx is a fast and multi-purpose DNS toolkit allow to run multiple DNS queries of your choice with a list of user-supplied resolvers.",
+    "tags": ["golang", "dns", "resolving", "subdomains"]
+  },
+  {
+    "name": "interactsh",
+    "url": "https://github.com/projectdiscovery/interactsh",
+    "image": "https://opengraph.githubassets.com/3df1b8dc22b8dcb4163541dd42b6fcf6086a7d30385cb16394cf420c880d6dd0/projectdiscovery/interactsh",
+    "title": "An OOB interaction gathering server and client library",
+    "tags": ["golang", "dns"]
+  },
+  {
+    "name": "gron",
+    "url": "https://github.com/tomnomnom/gron",
+    "image": "https://opengraph.githubassets.com/a8be72dc4845f2074a3fcebf103a81902cd8e3d723080ecd55b4ef1f3f2c7691/tomnomnom/gron",
+    "title": "Make JSON greppable!",
+    "tags": ["golang", "json"]
+  },
+  {
+    "name": "waybackurls",
+    "url": "https://github.com/tomnomnom/waybackurls",
+    "image": "https://opengraph.githubassets.com/b5efc86c4bba6229a0f84166f2670ce9e06237415bf7a584c72a932632815af7/tomnomnom/waybackurls",
+    "title": "Fetch all the URLs that the Wayback Machine knows about for a domain",
+    "tags": ["golang", "crawler", "wayback", "urls"]
+  },
+  {
+    "name": "assetfinder",
+    "url": "https://github.com/tomnomnom/assetfinder",
+    "image": "https://opengraph.githubassets.com/14c2a38e21b524da05a0eb3130ea09a6f42671647f0f198d957256717f8d04da/tomnomnom/assetfinder",
+    "title": "Find domains and subdomains related to a given domain",
+    "tags": ["golang", "subdomains"]
+  },
+  {
+    "name": "httprobe",
+    "url": "https://github.com/tomnomnom/httprobe",
+    "image": "https://opengraph.githubassets.com/6c7211fc34474bb7395fd50dd9737191f09c1369479a64ea02537af7af4f1d58/tomnomnom/httprobe",
+    "title": "Take a list of domains and probe for working HTTP and HTTPS servers",
+    "tags": ["golang", "probes"]
+  },
+  {
+    "name": "gf",
+    "url": "https://github.com/tomnomnom/gf",
+    "image": "https://opengraph.githubassets.com/86ffa06ccfbeae2dff93f59a85b94c9b9cdf63072315e7a6e714fc20fd6b442a/tomnomnom/gf",
+    "title": "A wrapper around grep, to help you grep for things",
+    "tags": ["golang", "urls"]
+  },
+  {
+    "name": "meg",
+    "url": "https://github.com/tomnomnom/meg",
+    "image": "https://opengraph.githubassets.com/257e4c1f871da5021c24975c53761ed46acc6b2de8baec8e711b329e9be00ba6/tomnomnom/meg",
+    "title": "Fetch many paths for many hosts - without killing the hosts",
+    "tags": ["golang", "urls"]
+  },
+  {
+    "name": "anew",
+    "url": "https://github.com/tomnomnom/anew",
+    "image": "https://opengraph.githubassets.com/a35be5d3e20cf31511e0213761f6c82eaea7d7ae290ea312e242ad3dde2eebd1/tomnomnom/anew",
+    "title": "A tool for adding new lines to files, skipping duplicates",
+    "tags": ["golang", "duplicates"]
+  },
+  {
+    "name": "unfurl",
+    "url": "https://github.com/tomnomnom/unfurl",
+    "image": "https://opengraph.githubassets.com/67c180fa8baf0ff6d44ae4ad2242488c326cd19d7880624ae135a32d05e613c5/tomnomnom/unfurl",
+    "title": "Pull out bits of URLs provided on stdin",
+    "tags": ["golang", "urls", "wordlist-generator"]
+  },
+  {
+    "name": "qsreplace",
+    "url": "https://github.com/tomnomnom/qsreplace",
+    "image": "https://opengraph.githubassets.com/9af3e26ea097b505c5d86492389c023a7d5363b0f17772f50893cbb22451a20a/tomnomnom/qsreplace",
+    "title": "Accept URLs on stdin, replace all query string values with a user-supplied value",
+    "tags": ["golang", "query-replace"]
+  },
+  {
+    "name": "fff",
+    "url": "https://github.com/tomnomnom/fff",
+    "image": "https://opengraph.githubassets.com/b1bcbbab0278fef17c650744fb89c85b3f3c1b3c5da59eb3e55f6626fe5e88f4/tomnomnom/fff",
+    "title": "The Fairly Fast Fetcher. Requests a bunch of URLs provided on stdin fairly quickly.",
+    "tags": ["golang"]
+  },
+  {
+    "name": "ffuf",
+    "url": "https://github.com/ffuf/ffuf",
+    "image": "https://opengraph.githubassets.com/ea4a53ca4e8205079b07a35f2c1de0303d18dfa4a87585e1ac35afad289beeec/ffuf/ffuf",
+    "title": "Fast web fuzzer written in Go",
+    "tags": ["golang", "fuzzing"]
+  },
+  {
+    "name": "amass",
+    "url": "https://github.com/owasp-amass/amass",
+    "image": "https://repository-images.githubusercontent.com/140457254/1a5a3880-df66-11ea-9bd6-1ff72d6702d4",
+    "title": "In-depth attack surface mapping and asset discovery",
+    "tags": ["golang", "subdomains"]
+  },
+  {
+    "name": "Findomain",
+    "url": "https://github.com/Findomain/Findomain",
+    "image": "https://repository-images.githubusercontent.com/181352945/19c56080-a11d-11e9-870f-7659aeafd01b",
+    "title": "The fastest and complete solution for domain recognition. Supports screenshoting, port scan, HTTP check, data import from other tools, subdomain monitoring, alerts via Discord, Slack and Telegram, multiple API Keys for sources and much more.",
+    "tags": ["rust", "subdomains"]
+  },
+  {
+    "name": "github-subdomains",
+    "url": "https://github.com/gwen001/github-subdomains",
+    "image": "https://opengraph.githubassets.com/695f9e69d92a9ff9bf95a9894e4c9b4af6ec8f323f2efb94c98d004fb15edebf/gwen001/github-subdomains",
+    "title": "Find subdomains on GitHub.",
+    "tags": ["golang", "subdomains"]
+  },
+  {
+    "name": "gitlab-subdomains",
+    "url": "https://github.com/gwen001/gitlab-subdomains",
+    "image": "https://opengraph.githubassets.com/611e4523c85462102b2a6847c1d7dc694ab7fe3fcd4557aa619f222cccacf19e/gwen001/gitlab-subdomains",
+    "title": "Find subdomains on GitLab.",
+    "tags": ["golang", "subdomains"]
+  },
+  {
+    "name": "bbot",
+    "url": "https://github.com/blacklanternsecurity/bbot",
+    "image": "https://opengraph.githubassets.com/ace1bfc0ed7caa2e6a2fc1712ad2fb634cfad9a643f46674298ddc752546ec19/blacklanternsecurity/bbot",
+    "title": "The recursive internet scanner for hackers. 🧡",
+    "tags": ["python", "subdomains", "framework"]
+  },
+  {
+    "name": "OneForAll",
+    "url": "https://github.com/shmilylty/OneForAll",
+    "image": "https://repository-images.githubusercontent.com/161151882/e500b200-beef-11e9-8ece-6c9a16686ac8",
+    "title": "OneForAll is a powerful subdomain collection tool",
+    "tags": ["python", "subdomains", "framework"]
+  },
+  {
+    "name": "shosubgo",
+    "url": "https://github.com/incogbyte/shosubgo",
+    "image": "https://opengraph.githubassets.com/526185d9f0e19b1ad8184c41af9eaf0db181716de46febb9cc0969f82c2ae961/incogbyte/shosubgo",
+    "title": "Small tool to Grab subdomains using Shodan api.",
+    "tags": ["golang", "subdomains"]
+  },
+  {
+    "name": "SubDomainizer",
+    "url": "https://github.com/nsonaniya2010/SubDomainizer",
+    "image": "https://repository-images.githubusercontent.com/158257351/10d80c80-ec98-11ea-8e7b-be3946367f2a",
+    "title": "A tool to find subdomains and interesting things hidden inside, external Javascript files of page, folder, and Github.",
+    "tags": ["python", "subdomains"]
+  },
+  {
+    "name": "hakrawler",
+    "url": "https://github.com/hakluke/hakrawler",
+    "image": "https://repository-images.githubusercontent.com/228192593/0a308f00-ddac-11eb-893d-37990c1643ca",
+    "title": "Simple, fast web crawler designed for easy, quick discovery of endpoints and assets within a web application",
+    "tags": ["golang", "crawler", "urls"]
+  },
+  {
+    "name": "hakrevdns",
+    "url": "https://github.com/hakluke/hakrevdns",
+    "image": "https://opengraph.githubassets.com/329ab60612ea9f4240373fbd852c3b299744de382afd02a8fd5f67c77edbecf3/hakluke/hakrevdns",
+    "title": "Small, fast tool for performing reverse DNS lookups en masse.",
+    "tags": ["golang", "reverse-dns", "dns-lookup"]
+  },
+  {
+    "name": "hakoriginfinder",
+    "url": "https://github.com/hakluke/hakoriginfinder",
+    "image": "https://opengraph.githubassets.com/319b21901e9d3db83b5dcd9c21d16300fa19ae7468ee739d55fd3fee31e704f8/hakluke/hakoriginfinder",
+    "title": "Tool for discovering the origin host behind a reverse proxy. Useful for bypassing cloud WAFs!",
+    "tags": ["golang", "origin-ip"]
+  },
+  {
+    "name": "haktrails",
+    "url": "https://github.com/hakluke/haktrails",
+    "image": "https://repository-images.githubusercontent.com/346959038/15bc6380-8785-11eb-8422-53c13a070573",
+    "title": "Golang client for querying SecurityTrails API data",
+    "tags": ["golang", "subdomains"]
+  },
+  {
+    "name": "hakip2host",
+    "url": "https://github.com/hakluke/hakip2host",
+    "image": "https://opengraph.githubassets.com/60cf9fbe72b359fd37e31a870f170649f40bade47ef7225dbb45d7d80d926cdd/hakluke/hakip2host",
+    "title": "hakip2host takes a list of IP addresses via stdin, then does a series of checks to return associated domain names.",
+    "tags": ["golang", "dns", "ptr", "ssl", "subdomains"]
+  },
+  {
+    "name": "hakcheckurl",
+    "url": "https://github.com/hakluke/hakcheckurl",
+    "image": "https://opengraph.githubassets.com/dbc667b853cd4e880189e7c78fcfb927c6b344653f9a0b3cf6cce2b196c74801/hakluke/hakcheckurl",
+    "title": "Takes a list of URLs and returns their HTTP response codes",
+    "tags": ["golang", "probes"]
+  },
+  {
+    "name": "haklistgen",
+    "url": "https://github.com/hakluke/haklistgen",
+    "image": "https://opengraph.githubassets.com/1da9521783f8755eee5720aa52229a648b4fa2eec8f6e90a7e8c8b9992f7bcb6/hakluke/haklistgen",
+    "title": "Turns any junk text into a usable wordlist for brute-forcing.",
+    "tags": ["golang", "wordlist-generator"]
+  },
+  {
+    "name": "haktldextract",
+    "url": "https://github.com/hakluke/haktldextract",
+    "image": "https://opengraph.githubassets.com/3fa8d321c33154cbf3b6e7ad3b03ab16aba3d8b7de495506073e3e13ef2c7f70/hakluke/haktldextract",
+    "title": "Extract domains/subdomains from URLs en masse",
+    "tags": ["golang", "subdomains"]
+  },
+  {
+    "name": "hakfindinternaldomains",
+    "url": "https://github.com/hakluke/hakfindinternaldomains",
+    "image": "https://opengraph.githubassets.com/e5121d2bce7944d634798341ea0af17495430e0cb4511b242492744458f7ee1e/hakluke/hakfindinternaldomains",
+    "title": "Feed it a list of subdomains, it will resolve them and tell you which ones are internal",
+    "tags": ["golang", "subdomains"]
+  },
+  {
+    "name": "cero",
+    "url": "https://github.com/glebarez/cero",
+    "image": "https://opengraph.githubassets.com/ccab4c21fcb2d8c200f68d9a3b432f19efccabd97c18c2b7697da128aeb3ed5a/glebarez/cero",
+    "title": "Scrape domain names from SSL certificates of arbitrary hosts",
+    "tags": ["golang", "ssl", "tls", "subdomains"]
+  },
+  {
+    "name": "csprecon",
+    "url": "https://github.com/edoardottt/csprecon",
+    "image": "https://opengraph.githubassets.com/e0053c4f3d5e0e9943b1301c156f755f8926caa86b0c19598a05f40099f54ac0/edoardottt/csprecon",
+    "title": "Discover new target domains using Content Security Policy",
+    "tags": ["golang", "content-security-policy", "subdomains"]
+  },
+  {
+    "name": "puredns",
+    "url": "https://github.com/d3mondev/puredns",
+    "image": "https://repository-images.githubusercontent.com/283619347/8d3281d5-79b0-4ba7-8ac0-5a86de28a63c",
+    "title": "Puredns is a fast domain resolver and subdomain bruteforcing tool that can accurately filter out wildcard subdomains and DNS poisoned entries.",
+    "tags": ["golang", "bruteforcing", "resolving", "subdomains"]
+  },
+  {
+    "name": "gotator",
+    "url": "https://github.com/Josue87/gotator",
+    "image": "https://opengraph.githubassets.com/89f4189c07c481bcd036eedc8531d4fa6f7110ff8f9e439a0bdd854d45e77bdc/Josue87/gotator",
+    "title": "Gotator is a tool to generate DNS wordlists through permutations.",
+    "tags": ["golang", "permutations", "alteration", "mutations", "subdomain"]
+  },
+  {
+    "name": "dnsgen",
+    "url": "https://github.com/AlephNullSK/dnsgen",
+    "image": "https://opengraph.githubassets.com/bf82c74113fabd98d6888bb7424363d817f999e4d9ba3f29c0bcfeed1f9bcd11/AlephNullSK/dnsgen",
+    "title": "Generates combination of domain names from the provided input.",
+    "tags": ["python", "permutations", "alteration", "mutations", "subdomain"]
+  },
+  {
+    "name": "ripgen",
+    "url": "https://github.com/resyncgg/ripgen",
+    "image": "https://opengraph.githubassets.com/91b8db4496c1ad50ca07bb1d50825e475d11073a4314963dde4cacc03360ac78/resyncgg/ripgen",
+    "title": "Rust-based high performance domain permutation generator.",
+    "tags": ["rust", "permutations", "alteration", "mutations", "subdomain"]
+  },
+  {
+    "name": "DNSCewl",
+    "url": "https://github.com/codingo/DNSCewl",
+    "image": "https://opengraph.githubassets.com/990b1db66d078aae6e54c36499dd749026a3f4d7372ddd661c76509295842c45/codingo/DNSCewl",
+    "title": "A DNS Bruteforcing Wordlist Generator",
+    "tags": ["c++", "permutations", "alteration", "mutations", "subdomain"]
+  },
+  {
+    "name": "massdns",
+    "url": "https://github.com/blechschmidt/massdns",
+    "image": "https://repository-images.githubusercontent.com/61796725/a3872730-bcc5-4906-958d-6913af515347",
+    "title": "A high-performance DNS stub resolver for bulk lookups and reconnaissance (subdomain enumeration)",
+    "tags": ["c", "resolving", "subdomains"]
+  },
+  {
+    "name": "masscan",
+    "url": "https://github.com/robertdavidgraham/masscan",
+    "image": "https://opengraph.githubassets.com/05591a8262fb93d88455461d22d278ecbd3445e66fc986b4f6edfe78e17d3354/robertdavidgraham/masscan",
+    "title": "TCP port scanner, spews SYN packets asynchronously, scanning entire Internet in under 5 minutes.",
+    "tags": ["c", "portscanner"]
+  },
+  {
+    "name": "RustScan",
+    "url": "https://github.com/RustScan/RustScan",
+    "image": "https://repository-images.githubusercontent.com/278933035/8389af00-ebe8-11ea-8c69-439b2883097a",
+    "title": "The Modern Port Scanner",
+    "tags": ["rust", "portscanner"]
+  },
+  {
+    "name": "nmap",
+    "url": "https://github.com/nmap/nmap",
+    "image": "https://opengraph.githubassets.com/194a137b4a9bbe2d50baac3c1e181d662dc323bbc9b78e6613bd7997f0c3de23/nmap/nmap",
+    "title": "Nmap - the Network Mapper. Github mirror of official SVN repository.",
+    "tags": ["c", "portscanner"]
+  },
+  {
+    "name": "cariddi",
+    "url": "https://github.com/edoardottt/cariddi",
+    "image": "https://opengraph.githubassets.com/967db4e93289175b37cb5a9a22834d4bcbc096be80289c501908e777ca6fcbe3/edoardottt/cariddi",
+    "title": "Take a list of domains, crawl urls and scan for endpoints, secrets, api keys, file extensions, tokens and more",
+    "tags": ["golang", "crawler", "urls"]
+  },
+  {
+    "name": "favirecon",
+    "url": "https://github.com/edoardottt/favirecon",
+    "image": "https://opengraph.githubassets.com/056bd65f272630aaa34a0f7f37bc94be78fd8224d7767f3661d83632f3a97597/edoardottt/favirecon",
+    "title": "Use favicon.ico to improve your target recon phase. Quickly detect technologies, WAF, exposed panels, known services.",
+    "tags": ["golang", "favicon"]
+  },
+  {
+    "name": "gowitness",
+    "url": "https://github.com/sensepost/gowitness",
+    "image": "https://opengraph.githubassets.com/0b520a9f10b8da6ece083d6fd8f935031f1c44dd3c870c17ae0c5d219819b53f/sensepost/gowitness",
+    "title": "gowitness - a golang, web screenshot utility using Chrome Headless",
+    "tags": ["golang", "screenshot"]
+  },
+  {
+    "name": "aquatone",
+    "url": "https://github.com/michenriksen/aquatone",
+    "image": "https://repository-images.githubusercontent.com/46488106/7e6e6e80-68d5-11e9-8eb6-76a42f87cc0f",
+    "title": "A Tool for Domain Flyovers",
+    "tags": ["golang", "screenshot"]
+  },
+  {
+    "name": "EyeWitness",
+    "url": "https://github.com/RedSiege/EyeWitness",
+    "image": "https://opengraph.githubassets.com/1468183dac48fd34eb39eb9ff5d9859258fd4073de501f860ca93866ae85efdf/RedSiege/EyeWitness",
+    "title": "EyeWitness is designed to take screenshots of websites, provide some server header info, and identify default credentials if possible.",
+    "tags": ["python", "screenshot"]
+  },
+  {
+    "name": "Interlace",
+    "url": "https://github.com/codingo/Interlace",
+    "image": "https://opengraph.githubassets.com/54f3ca5e85648693cdd05f141274d7213f3ac875047d96f61d9b980816accd06/codingo/Interlace",
+    "title": "Easily turn single threaded command line applications into a fast, multi-threaded application with CIDR and glob support.",
+    "tags": ["python", "multithreading"]
+  },
+  {
+    "name": "VHostScan",
+    "url": "https://github.com/codingo/VHostScan",
+    "image": "https://opengraph.githubassets.com/5fbd6ac483bcd36469c09e9420e6ea5043af5621298cb4d05cec87706e69dcc3/codingo/VHostScan",
+    "title": "A virtual host scanner that performs reverse lookups, can be used with pivot tools, detect catch-all scenarios, work around wildcards, aliases and dynamic default pages.",
+    "tags": ["python", "vhost", "subdomains"]
+  },
+  {
+    "name": "dirsearch",
+    "url": "https://github.com/maurosoria/dirsearch",
+    "image": "https://opengraph.githubassets.com/3aece4e1c76e564517610471a43611e1942d4f4de5ed549cff467a627397c957/maurosoria/dirsearch",
+    "title": "Web path scanner",
+    "tags": ["python", "content-discovery", "fuzzing"]
+  },
+  {
+    "name": "feroxbuster",
+    "url": "https://github.com/epi052/feroxbuster",
+    "image": "https://repository-images.githubusercontent.com/289516116/e4e2cc00-0560-11eb-888b-42dbdfc1c72c",
+    "title": "A fast, simple, recursive content discovery tool written in Rust.",
+    "tags": ["rust", "content-discovery", "fuzzing"]
+  },
+  {
+    "name": "wfuzz",
+    "url": "https://github.com/xmendez/wfuzz",
+    "image": "https://opengraph.githubassets.com/8351d1abd11ccb24b67158d5d1379ada1ab2292f128ccc3b8fdcd82b57785a53/xmendez/wfuzz",
+    "title": "Web application fuzzer",
+    "tags": ["python", "content-discovery", "fuzzing"]
+  },
+  {
+    "name": "gau",
+    "url": "https://github.com/lc/gau",
+    "image": "https://opengraph.githubassets.com/4212c4b2577d41e523fa75628a92e3d537236ff95b086be3fc7fdf1f617c493e/lc/gau",
+    "title": "Fetch known URLs from AlienVault's Open Threat Exchange, the Wayback Machine, and Common Crawl.",
+    "tags": ["golang", "crawler", "urls"]
+  },
+  {
+    "name": "subjs",
+    "url": "https://github.com/lc/subjs",
+    "image": "https://opengraph.githubassets.com/a37310c00e92e9bdb27db244d14f8dc8d7511e1b4f914a94f452e43c1ee047e0/lc/subjs",
+    "title": "Fetches javascript file from a list of URLS or subdomains.",
+    "tags": ["golang", "urls"]
+  },
+  {
+    "name": "gospider",
+    "url": "https://github.com/jaeles-project/gospider",
+    "image": "https://opengraph.githubassets.com/570c99fd2ef5397d1f306b438056e19ca6dd3c2ec8fe9a12520957f59f1eead0/jaeles-project/gospider",
+    "title": "Gospider - Fast web spider written in Go",
+    "tags": ["golang", "urls"]
+  },
+  {
+    "name": "github-endpoints",
+    "url": "https://github.com/gwen001/github-endpoints",
+    "image": "https://opengraph.githubassets.com/34d9de1dfa875a67020b5f15aaec2f4a9170f85932e3e33ca4af2fd7ba3ffd90/gwen001/github-endpoints",
+    "title": "Find endpoints on GitHub.",
+    "tags": ["golang", "urls"]
+  },
+  {
+    "name": "xurlfind3r",
+    "url": "https://github.com/hueristiq/xurlfind3r",
+    "image": "https://opengraph.githubassets.com/ed798a239d8e5feb3dcbf7d4dfb0014cc0b047e7af8df8f1d51b3f4ab73b89d3/hueristiq/xurlfind3r",
+    "title": "A command-line utility designed to discover URLs for a given domain in a simple, efficient way. It works by gathering information from a variety of passive sources, meaning it doesn't interact directly with the target but instead gathers data that is already publicly available.",
+    "tags": ["golang", "urls"]
+  },
+  {
+    "name": "xcrawl3r",
+    "url": "https://github.com/hueristiq/xcrawl3r",
+    "image": "https://opengraph.githubassets.com/2fc97cc0141f26d74dd7f8439d6790318432fc1c15605c982f99e9c71b18aba8/hueristiq/xcrawl3r",
+    "title": "A command-line interface (CLI) based utility to recursively crawl webpages. It is designed to systematically browse webpages' URLs and follow links to discover linked webpages' URLs.",
+    "tags": ["golang", "urls"]
+  },
+  {
+    "name": "crawley",
+    "url": "https://github.com/s0rg/crawley",
+    "image": "https://opengraph.githubassets.com/98744fa6553d23f80f5a9809c9c57e63d1e2174e05029c202e043c0c056915e5/s0rg/crawley",
+    "title": "The unix-way web crawler",
+    "tags": ["golang", "urls"]
+  },
+  {
+    "name": "galer",
+    "url": "https://github.com/dwisiswant0/galer",
+    "image": "https://repository-images.githubusercontent.com/316116251/45778200-349a-11eb-9339-a1c7d7dbf86d",
+    "title": "A fast tool to fetch URLs from HTML attributes by crawl-in.",
+    "tags": ["golang", "urls"]
+  },
+  {
+    "name": "crlfuzz",
+    "url": "https://github.com/dwisiswant0/crlfuzz",
+    "image": "https://repository-images.githubusercontent.com/287130193/28f0f600-dd94-11ea-8131-d277807a2fa8",
+    "title": "A fast tool to scan CRLF vulnerability written in Go",
+    "tags": ["golang", "vulnerability"]
+  },
+  {
+    "name": "unew",
+    "url": "https://github.com/dwisiswant0/unew",
+    "image": "https://opengraph.githubassets.com/61ea86727204b8e889d8747f1ee5aaf57e81fcbe94f41d29d1a1cef0c0a2a0dd/dwisiswant0/unew",
+    "title": "A tool for append URLs, skipping duplicates/paths & combine parameters.",
+    "tags": ["golang", "duplicates"]
+  },
+  {
+    "name": "tlder",
+    "url": "https://github.com/dwisiswant0/tlder",
+    "image": "https://opengraph.githubassets.com/a1b12ba298833d61147b16d3f963d61ec302a2c08d90beedaec1cb2c54271312/dwisiswant0/tlder",
+    "title": "TLDs finder — check domain name availability across all valid top-level domains.",
+    "tags": ["golang", "tld"]
+  },
+  {
+    "name": "pathfinder",
+    "url": "https://github.com/Print3M/pathfinder",
+    "image": "https://opengraph.githubassets.com/41fb423e1677b1d525f8e3e726c77d22dbdf3b83f2f778924ae5c13e9a7bab22/Print3M/pathfinder",
+    "title": "The ultimate crawler designed for lightning-fast recursive URL scraping.",
+    "tags": ["golang", "urls"]
+  },
+  {
+    "name": "roboxtractor",
+    "url": "https://github.com/Josue87/roboxtractor",
+    "image": "https://opengraph.githubassets.com/acce83dfb65be7466dc778afed0e74f33b836ad046af99f0776cd6d9d335cdb5/Josue87/roboxtractor",
+    "title": "Extract endpoints marked as disallow in robots files to generate wordlists.",
+    "tags": ["golang", "urls"]
+  },
+  {
+    "name": "AnalyticsRelationships",
+    "url": "https://github.com/Josue87/AnalyticsRelationships",
+    "image": "https://opengraph.githubassets.com/ccc3ef2df33b548a332fe41aaf1c4b81068768a6bb3cb7402006e2c732a2357c/Josue87/AnalyticsRelationships",
+    "title": "Get related domains / subdomains by looking at Google Analytics IDs",
+    "tags": ["golang", "subdomains"]
+  },
+  {
+    "name": "EmailFinder",
+    "url": "https://github.com/Josue87/EmailFinder",
+    "image": "https://opengraph.githubassets.com/c5a0febd53598647555564b7d7720a96e0848de84407aa36ee044b7a778c709f/Josue87/EmailFinder",
+    "title": "Search emails from a domain through search engines",
+    "tags": ["python", "email"]
+  },
+  {
+    "name": "OneListForAll",
+    "url": "https://github.com/six2dez/OneListForAll",
+    "image": "https://opengraph.githubassets.com/00081e3cc501cc8b38bd3fc791c424f400fd40ac40d7d7aa2bbcfa19aed52f96/six2dez/OneListForAll",
+    "title": "Rockyou for web fuzzing",
+    "tags": ["wordlist"]
+  },
+  {
+    "name": "getJS",
+    "url": "https://github.com/003random/getJS",
+    "image": "https://opengraph.githubassets.com/78c2642ce3ba3343cc2745c060cb7b935fe170e9c96f1e660419785c1b5d4518/003random/getJS",
+    "title": "A tool to fastly get all javascript sources/files",
+    "tags": ["golang", "urls"]
+  },
+  {
+    "name": "jsfinder",
+    "url": "https://github.com/kacakb/jsfinder",
+    "image": "https://repository-images.githubusercontent.com/604778365/81830311-ebab-4b3d-9af0-752b7599294d",
+    "title": "Fetches JavaScript files quickly and comprehensively.",
+    "tags": ["golang", "urls"]
+  },
+  {
+    "name": "javascript-deobfuscator",
+    "url": "https://github.com/ben-sb/javascript-deobfuscator",
+    "image": "https://opengraph.githubassets.com/eaddfe37eef1973f81c16807c319400affb3083403007cb259eae970e74437f3/ben-sb/javascript-deobfuscator",
+    "title": "General purpose JavaScript deobfuscator",
+    "tags": ["typescript", "javascript-deobfuscator", "urls"]
+  },
+  {
+    "name": "LinkFinder",
+    "url": "https://github.com/GerbenJavado/LinkFinder",
+    "image": "https://opengraph.githubassets.com/9e51871a1a22b022bde6b0597ef1b5641324e5ea5dc954feef10638eb19130aa/GerbenJavado/LinkFinder",
+    "title": "A python script that finds endpoints in JavaScript files",
+    "tags": ["python", "urls"]
+  },
+  {
+    "name": "sourcemapper",
+    "url": "https://github.com/denandz/sourcemapper",
+    "image": "https://opengraph.githubassets.com/4cd8fcd68f11540eefab932fe1025766ba1497a88a6b0d9f231209daeeb9c250/denandz/sourcemapper",
+    "title": "Extract JavaScript source trees from Sourcemap files",
+    "tags": ["golang", "urls"]
+  },
+  {
+    "name": "jsmap",
+    "url": "https://github.com/zerodaywolf/jsmap",
+    "image": "https://opengraph.githubassets.com/2ee38386cc7e69cbf1a5ebe7b0f2bd270454b5fc8cacaafd3b54d9052b5ae11e/zerodaywolf/jsmap",
+    "title": "Fetch Javascript sourcemaps, bounty hunter style",
+    "tags": ["golang", "urls"]
+  },
+  {
+    "name": "linx",
+    "url": "https://github.com/riza/linx",
+    "image": "https://opengraph.githubassets.com/2d7bffc4552e77ad1abb8219e44cae187d8468159501367b389dd81aedc76b35/riza/linx",
+    "title": "Reveals invisible links within JavaScript files",
+    "tags": ["golang", "urls"]
+  },
+  {
+    "name": "jsluice",
+    "url": "https://github.com/BishopFox/jsluice",
+    "image": "https://opengraph.githubassets.com/28d2d8b105836deeb52ec3c42c8b6fdad0c96d311fbc42b11a933d1b07f6c01d/BishopFox/jsluice",
+    "title": "Extract URLs, paths, secrets, and other interesting bits from JavaScript",
+    "tags": ["golang", "urls"]
+  },
+  {
+    "name": "x8",
+    "url": "https://github.com/Sh1Yo/x8",
+    "image": "https://opengraph.githubassets.com/a97f8a209802b18850c5e6998c0fed8ca4bfefa742526c2cfe8a48889d959df9/Sh1Yo/x8",
+    "title": "Hidden parameters discovery suite",
+    "tags": ["rust", "parameters", "hidden-parameter", "parameter-discovery", "urls"]
+  },
+  {
+    "name": "Arjun",
+    "url": "https://github.com/s0md3v/Arjun",
+    "image": "https://opengraph.githubassets.com/e194a6ad01d42c22ba485a4ab014ebe5af813fbb5eb1a44fcc7c416d87ff7ae9/s0md3v/Arjun",
+    "title": "HTTP parameter discovery suite.",
+    "tags": ["python", "parameters", "hidden-parameter", "parameter-discovery", "urls"]
+  },
+  {
+    "name": "CeWL",
+    "url": "https://github.com/digininja/CeWL",
+    "image": "https://opengraph.githubassets.com/0488d9b8bc9d77b4b5e93400eeb1443dc8f038fc8bab2096dfc2006c9a553ef1/digininja/CeWL",
+    "title": "CeWL is a Custom Word List Generator",
+    "tags": ["ruby", "wordlist-generator"]
+  },
+  {
+    "name": "cook",
+    "url": "https://github.com/glitchedgitz/cook",
+    "image": "https://opengraph.githubassets.com/82982d634909e44330a2bd2a90d13c6ecf118c4060838e00b4d04b65997ad76a/glitchedgitz/cook",
+    "title": "A wordlist framework to fullfill your kinks with your wordlists. For security researchers, bug bounty and hackers.",
+    "tags": ["golang", "wordlist-generator"]
+  },
+  {
+    "name": "pydictor",
+    "url": "https://github.com/LandGrey/pydictor",
+    "image": "https://opengraph.githubassets.com/440bbd7ec48c26d68f83ecc316d840c166d8bc96416de244b85f53830038309c/LandGrey/pydictor",
+    "title": "A powerful and useful hacker dictionary builder for a brute-force attack",
+    "tags": ["golang", "wordlist-generator"]
+  },
+  {
+    "name": "subzy",
+    "url": "https://github.com/PentestPad/subzy",
+    "image": "https://opengraph.githubassets.com/06a29e25cce56c3e5179a15225b4422b9cd29aefc3fa84d28a70ae975e75f741/PentestPad/subzy",
+    "title": "Subdomain takeover vulnerability checker",
+    "tags": ["golang", "subdomain-takeover", "vulnerability"]
+  },
+  {
+    "name": "mx-takeover",
+    "url": "https://github.com/musana/mx-takeover",
+    "image": "https://opengraph.githubassets.com/e209cae244d83552e7df4718f306b5c74921722f8076e4128630005a01f9e8e4/musana/mx-takeover",
+    "title": "mx-takeover focuses DNS MX records and detects misconfigured MX records.",
+    "tags": ["golang", "mx-takeover", "vulnerability"]
+  },
+  {
+    "name": "dnstake",
+    "url": "https://github.com/pwnesia/dnstake",
+    "image": "https://repository-images.githubusercontent.com/399437818/78908450-90b4-432b-8f13-2c30ad9fd7e2",
+    "title": "DNSTake — A fast tool to check missing hosted DNS zones that can lead to subdomain takeover",
+    "tags": ["golang", "subdomain-takeover", "vulnerability"]
+  },
+  {
+    "name": "ssb",
+    "url": "https://github.com/pwnesia/ssb",
+    "image": "https://repository-images.githubusercontent.com/318397674/84b85200-44df-11eb-9611-2f84316742cd",
+    "title": "Secure Shell Bruteforcer — A faster & simpler way to bruteforce SSH server",
+    "tags": ["golang", "ssh", "vulnerability"]
+  },
+  {
+    "name": "4-Zero-3",
+    "url": "https://github.com/Dheerajmadhukar/4-ZERO-3",
+    "image": "https://opengraph.githubassets.com/e575f6fb7404ec2e7c5c723950fb97c418d6bec1f22771feb8cdb284d880e30e/Dheerajmadhukar/4-ZERO-3",
+    "title": "403/401 Bypass Methods",
+    "tags": ["bypass", "fuzzing"]
+  }
+]
