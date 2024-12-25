@@ -7,6 +7,12 @@ A vast collection of security tools for ethical hackers and security researchers
 ## View in Markdown:
 | NAME                  | DESCRIPTION           |
 |-----------------------|-----------------------|
+| [SecLists](https://github.com/danielmiessler/SecLists) | SecLists is the security tester's companion. It's a collection of multiple types of lists used during security assessments, collected in one place. |
+| [assetnote-wordlists](https://wordlists.assetnote.io) | Automated & Manual Wordlists provided by Assetnote |
+| [scope](https://github.com/rix4uni/scope) | This repo maintain's in-scope and out-of-scope |
+| [targets-filter](https://github.com/rix4uni/targets-filter) | Converting trickest and chaos bbp targets in json, updates every 12 hour |
+| [bugbounty-targets](https://github.com/Osb0rn3/bugbounty-targets) | An automated GitHub Actions-based crawler that fetches and updates public scopes from popular bug bounty platforms. |
+| [bounty-targets-data](https://github.com/arkadiyt/bounty-targets-data) | This repo contains hourly-updated data dumps of bug bounty platform scopes (like Hackerone/Bugcrowd/Intigriti/etc) that are eligible for reports |
 | [theHarvester](https://github.com/laramies/theHarvester) | E-mails, subdomains and names Harvester - OSINT |
 | [subwiz](https://github.com/hadriansecurity/subwiz) | A recon tool that uses ML to predict subdomains. Then returns those that resolve. |
 | [portmap](https://github.com/rix4uni/portmap) | portmap is a fast portscan tool, uses shodan public data for port scan used internetdb.shodan.io and api.shodan.io/shodan/host |
