@@ -22,7 +22,7 @@ jobs:
     - name: Generating README.md with New Tools
       run: |
         sed -i '/## View in Markdown:/q' README.md
-        sed -i "/## View in Markdown:/a $(curl -s 'https://pentestingtools.netlify.app/tools.json' | go run markdown-generator.go | sed 's/[&/\]/\\&/g' | tr '\n' '\0' | sed 's/\x0/\\n/g')" README.md
+        sed -i "/## View in Markdown:/a $(cat tools.json | go run markdown-generator.go | sed 's/[&/\]/\\&/g' | tr '\n' '\0' | sed 's/\x0/\\n/g')" README.md
 
     - name: Commit and push changes if there are any
       run: |
