@@ -9,8 +9,8 @@
   {
     "name": "assetnote-wordlists",
     "url": "https://wordlists.assetnote.io",
-    "image": "",
-    "title": "Automated & Manual Wordlists provided by Assetnote",
+    "image": "https://wordlists.assetnote.io/assets/assetnote.png",
+    "title": "Wordlists that are up to date and effective against the most popular technologies on the internet.",
     "tags": ["assetnote", "wordlist", "fuzzing"]
   },
   {
