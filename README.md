@@ -7,6 +7,7 @@ A vast collection of security tools for ethical hackers and security researchers
 ## View in Markdown:
 | NAME                  | DESCRIPTION           |
 |-----------------------|-----------------------|
+| [theHarvester](https://github.com/laramies/theHarvester) | E-mails, subdomains and names Harvester - OSINT |
 | [subwiz](https://github.com/hadriansecurity/subwiz) | A recon tool that uses ML to predict subdomains. Then returns those that resolve. |
 | [portmap](https://github.com/rix4uni/portmap) | portmap is a fast portscan tool, uses shodan public data for port scan used internetdb.shodan.io and api.shodan.io/shodan/host |
 | [Smap](https://github.com/s0md3v/Smap) | a drop-in replacement for Nmap powered by shodan.io |
