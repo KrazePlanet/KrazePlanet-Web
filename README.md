@@ -8,7 +8,7 @@ A vast collection of security tools for ethical hackers and security researchers
 | NAME                  | DESCRIPTION           |
 |-----------------------|-----------------------|
 | [SecLists](https://github.com/danielmiessler/SecLists) | SecLists is the security tester's companion. It's a collection of multiple types of lists used during security assessments, collected in one place. |
-| [assetnote-wordlists](https://wordlists.assetnote.io) | Automated & Manual Wordlists provided by Assetnote |
+| [assetnote-wordlists](https://wordlists.assetnote.io) | Wordlists that are up to date and effective against the most popular technologies on the internet. |
 | [scope](https://github.com/rix4uni/scope) | This repo maintain's in-scope and out-of-scope |
 | [targets-filter](https://github.com/rix4uni/targets-filter) | Converting trickest and chaos bbp targets in json, updates every 12 hour |
 | [bugbounty-targets](https://github.com/Osb0rn3/bugbounty-targets) | An automated GitHub Actions-based crawler that fetches and updates public scopes from popular bug bounty platforms. |
