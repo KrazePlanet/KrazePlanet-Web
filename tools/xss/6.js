@@ -1,0 +1,1 @@
+prompt(document.domain)

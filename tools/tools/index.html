@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KrazePlanet Tools Collection</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+  <div class="container my-5">
+    <h1 class="text-center mb-4"><i class="fa-solid fa-toolbox me-2"></i>KrazePlanet Tools Collection</h1>
+    <p class="text-center mb-4">A vast collection of security tools for ethical hackers and security researchers</p>
+    
+    <!-- Search Bar -->
+    <div class="search-bar-container">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search for tools..."
+        onkeyup="handleSearch()"
+        class="search-input"
+      />
+      <span class="search-icon">&#x1F50D;</span>
+    </div>
+
+    <!-- Loader -->
+    <div id="loader" class="text-center my-5">
+      <div class="spinner-border text-warning" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+    
+    <!-- Tool Container -->
+    <div id="tool-container" class="row g-4 d-none"></div>
+
+    <!-- Pagination Controls -->
+    <nav>
+      <ul class="pagination justify-content-center mt-4" id="pagination"></ul>
+    </nav>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+eval("(alert)(1)&&alert(2)&&al\u0065rt(3)");

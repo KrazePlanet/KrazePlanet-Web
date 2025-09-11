@@ -1,7 +1,7 @@
-# pentestingtools
+# KrazePlanet Tools Collection
 A vast collection of security tools for ethical hackers and security researchers
 
-## View in GUI: https://pentestingtools.netlify.app
+## View in GUI: https://tools.krazeplanet.com
 ![image](https://github.com/user-attachments/assets/e3679418-b254-42b1-89e7-884bf0bb6349)
 
 ## View in Markdown:
