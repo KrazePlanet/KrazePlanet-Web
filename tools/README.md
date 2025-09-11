@@ -2,7 +2,8 @@
 A vast collection of security tools for ethical hackers and security researchers
 
 ## View in GUI: https://tools.krazeplanet.com
-![image](https://github.com/user-attachments/assets/e3679418-b254-42b1-89e7-884bf0bb6349)
+<img width="1639" height="924" alt="image" src="https://github.com/user-attachments/assets/f96dd4a1-6804-4fa3-8f9b-4bcc1d61d7ee" />
+
 
 ## View in Markdown:
 | NAME                  | DESCRIPTION           |
