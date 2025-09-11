@@ -1,0 +1,269 @@
+<html>
+
+<head>
+  <meta content="text/html; charset=utf-8">
+  <title>Shodan Dorks</title>
+  <meta name="author" content="Koanti" />
+  <meta name="referrer" content="never">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="icon" href="../images/hacker.png"/>
+  <link href="https://fonts.googleapis.com/css?family=Merienda+One" rel="stylesheet" type="text/css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  <style>
+    body {
+      background-color: black;
+      font-size: 16pt;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .column {
+      float: left;
+      width: 33%;
+      padding: 10px;
+    }
+
+    @media screen and (max-width: 600px) {
+      .column {
+        width: 100%;
+      }
+    }
+
+    .row {
+      padding: 30px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    }
+
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    canvas {
+      height: 100vh;
+      z-index: -10;
+      position: fixed;
+      top: 0px;
+    }
+
+    a {
+      color: rgb(255, 255, 255);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #d04834;
+    }
+
+    hr {
+      border: 2;
+      width: 50%;
+    }
+
+    input {
+      overflow: hidden;
+      color: #FFF;
+      background: transparent;
+      border-radius: 5px;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      border: 1px solid;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      height: 32px;
+      padding: 4px 16px;
+    }
+
+    #nav-item{
+      margin-top: -15px;
+    }
+
+    #navbarSupportedContent{
+      margin: 2px 0px -12px;
+    }
+
+    .form-control{
+      padding: 18px 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-md navbar-dark"
+    style="background-color: rgb(58, 63, 68); --darkreader-inline-bgcolor:#2f3335;" data-darkreader-inline-bgcolor="">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="nav-item">
+          <li class="nav-item" style="margin-top: -4px;">
+            <a class="nav-link active" aria-current="page" style="color: rgb(107, 189, 69); font-size: 25px;"
+              href="/">KrazePlanetDorks</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="../about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="../shodan/shodan.html">Shodan</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="../github/github.html">Github</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" id="target" name="target" placeholder='org:"google"' autofocus="" aria-label="Search">
+        </form>
+      </div>
+    </div>
+  </nav>
+
+
+  <script>
+    function check_submit(e) {
+      if (e && e.keyCode == 13 && e.target.type != 'textarea') {
+        e.preventDefault();
+        e.defaultPrevented = true;
+
+        if ($('#tool-form').valid() == true) {
+          if ($('#security-check').is(':visible') == true) {
+            document.getElementById('tool-form').submit();
+          }
+        }
+      }
+    }
+  </script>
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-100953906-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+  <div id="particles-js">
+    <div onkeypress="check_submit(event)">
+
+      <form novalidate="novalidate" onsubmit="return false" id="tool-form" role="form" method="GET" action="/"
+        target="response-frame">
+        <input name="p" value="tool" type="hidden">
+        <input name="t" value="10" type="hidden">
+        <input name="act" value="exec" type="hidden">
+        <script>
+          document.getElementById('tool-form').setAttribute('onsubmit', 'return false');
+          check_submit = function (event) { };
+        </script>
+
+        <div class="row">
+          <div class="column">
+            <div style="text-align: center;">
+              <div style="display: inline-block; text-align: left;">
+                &#128269; <a href="#" onclick="shodan_it(1)">Prodect mysql found</a><br />
+                &#128269; <a href="#" onclick="shodan_it(2)">MongoDB</a><br />
+                &#128269; <a href="#" onclick="shodan_it(3)">defult password</a><br />
+                &#128269; <a href="#" onclick="shodan_it(4)">guest login</a><br />
+                &#128269; <a href="#" onclick="shodan_it(5)">Jenkins Unrestricted Dashboard</a><br />
+                &#128269; <a href="#" onclick="shodan_it(6)">wp config</a><br />
+                &#128269; <a href="#" onclick="shodan_it(7)">root session</a><br />
+                &#128269; <a href="#" onclick="shodan_it(8)">defult wireless password</a><br />
+                &#128269; <a href="#" onclick="shodan_it(9)">Auth desabled</a><br />
+                &#128269; <a href="#" onclick="shodan_it(10)">dashboard</a><br />
+                &#128269; <a href="#" onclick="shodan_it(11)">control panal</a><br />
+                &#128269; <a href="#" onclick="shodan_it(12)">phpmyadmin</a><br />
+                &#128269; <a href="#" onclick="shodan_it(13)">CouchDB</a><br />
+                &#128269; <a href="#" onclick="shodan_it(14)">kibana</a><br />
+                &#128269; <a href="#" onclick="shodan_it(15)">CVE-2021-26855-CVE-2021-31206 Microsoft RCE</a><br />
+                &#128269; <a href="#" onclick="shodan_it(16)">CVE-2022-29464 WSO2 RCE</a><br />
+                &#128269; <a href="#" onclick="shodan_it(17)">CVE-2022-29464.WSO2 RCE</a><br />
+                &#128269; <a href="#" onclick="shodan_it(17.1)">Cisco ASA CVE-2020-3452</a><br />
+                &#128269; <a href="#" onclick="shodan_it(18)">Windows SMB exposures</a> <br />
+                &#128269; <a href="#" onclick="shodan_it(19)">CVE-2022-22954 in VMWare Workspace ONE</a><br />
+              </div>
+            </div>
+          </div>
+
+          <div class="column">
+            <div style="text-align: center;">
+              <div style="display: inline-block; text-align: left;">
+                &#128269; <a href="#" onclick="shodan_it(20)">Find secret API keys publicly exposed #2</a><br />
+                &#128269; <a href="#" onclick="shodan_it(21)">Find all jenkins server</a><br />
+                &#128269; <a href="#" onclick="shodan_it(22)">Find all grafana dashboards</a><br />
+                &#128269; <a href="#" onclick="shodan_it(23)">CVE-2022-24255 Main & Admin Portals: Authentication
+                  Bypass</a><br />
+                &#128269; <a href="#" onclick="shodan_it(24)">Horde webmail A takeover</a><br />
+                &#128269; <a href="#" onclick="shodan_it(25)">CVE-2022-24348:path traversal</a><br />
+                &#128269; <a href="#" onclick="shodan_it(26)">tomcat may log4j</a><br />
+                &#128269; <a href="#" onclick="shodan_it(27)">NO password required for telnet</a><br />
+                &#128269; <a href="#" onclick="shodan_it(28)">Windows RDP Password:</a><br />
+                &#128269; <a href="#" onclick="shodan_it(29)">proftpd port:21</a><br />
+                &#128269; <a href="#" onclick="shodan_it(30)">"authentication disabled" "RFB 003.008"</a><br />
+                &#128269; <a href="#" onclick="shodan_it(31)">CVE CVE-2019-11510</a><br />
+                &#128269; <a href="#" onclick="shodan_it(32)">F5 BIG-IP using CVE-2020-5902</a><br />
+                &#128269; <a href="#" onclick="shodan_it(33)">unauthorized</a><br />
+                &#128269; <a href="#" onclick="shodan_it(34)">Mongo Express Web GUI</a><br>
+                &#128269; <a href="#" onclick="shodan_it(35)">Jenkins CI</a><br />
+                &#128269; <a href="#" onclick="shodan_it(36)">Intel Active Management CVE-2017-5689</a><br />
+                &#128269; <a href="#" onclick="shodan_it(37)">Apache Directory Listings</a><br />
+                &#128269; <a href="#" onclick="shodan_it(37)">HP Printers</a><br />
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div style="text-align: center;">
+              <div style="display: inline-block; text-align: left;">
+                &#128269; <a href="#" onclick="shodan_it(20)">Find secret API keys publicly exposed #2</a><br />
+                &#128269; <a href="#" onclick="shodan_it(21)">Find all jenkins server</a><br />
+                &#128269; <a href="#" onclick="shodan_it(22)">Find all grafana dashboards</a><br />
+                &#128269; <a href="#" onclick="shodan_it(23)">CVE-2022-24255 Main & Admin Portals: Authentication
+                  Bypass</a><br />
+                &#128269; <a href="#" onclick="shodan_it(24)">Horde webmail A takeover</a><br />
+                &#128269; <a href="#" onclick="shodan_it(25)">CVE-2022-24348:path traversal</a><br />
+                &#128269; <a href="#" onclick="shodan_it(26)">tomcat may log4j</a><br />
+                &#128269; <a href="#" onclick="shodan_it(27)">NO password required for telnet</a><br />
+                &#128269; <a href="#" onclick="shodan_it(28)">Windows RDP Password:</a><br />
+                &#128269; <a href="#" onclick="shodan_it(29)">proftpd port:21</a><br />
+                &#128269; <a href="#" onclick="shodan_it(30)">"authentication disabled" "RFB 003.008"</a><br />
+                &#128269; <a href="#" onclick="shodan_it(31)">CVE CVE-2019-11510</a><br />
+                &#128269; <a href="#" onclick="shodan_it(32)">F5 BIG-IP using CVE-2020-5902</a><br />
+                &#128269; <a href="#" onclick="shodan_it(33)">unauthorized</a><br />
+                &#128269; <a href="#" onclick="shodan_it(34)">Mongo Express Web GUI</a><br>
+                &#128269; <a href="#" onclick="shodan_it(35)">Jenkins CI</a><br />
+                &#128269; <a href="#" onclick="shodan_it(36)">Intel Active Management CVE-2017-5689</a><br />
+                &#128269; <a href="#" onclick="shodan_it(37)">Apache Directory Listings</a><br />
+                &#128269; <a href="#" onclick="shodan_it(37)">HP Printers</a><br />
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+  </div>
+  </form>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js'></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+    integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+    integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+    crossorigin="anonymous"></script>
+
+</body>
+<script src="shodan.js"></script>
+</html>

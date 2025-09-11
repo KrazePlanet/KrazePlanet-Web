@@ -1,0 +1,210 @@
+{
+  "scan1": [
+    {
+      "files": 36,
+      "type": "domain",
+      "total": 66745534,
+      "new": 66745534,
+      "size": "361MB",
+      "last_updated": "2025-06-27T06:30:45Z"
+    },
+    {
+      "files": 1012,
+      "type": "tld",
+      "total": 66745403,
+      "new": 66745403,
+      "size": "363MB",
+      "last_updated": "2025-06-27T07:00:20Z"
+    }
+  ],
+  "scan10": [
+    {
+      "files": 36,
+      "type": "domain",
+      "total": 1521349236,
+      "new": 795239273,
+      "size": "4GB",
+      "last_updated": "2025-07-22T06:37:17Z"
+    },
+    {
+      "files": 1257,
+      "type": "tld",
+      "total": 360552524,
+      "new": 29969760,
+      "size": "1GB",
+      "last_updated": "2025-07-15T09:52:09Z"
+    }
+  ],
+  "scan11": [
+    {
+      "files": 36,
+      "type": "domain",
+      "total": 1639598852,
+      "new": 118249616,
+      "size": "5GB",
+      "last_updated": "2025-07-25T12:58:01Z"
+    },
+    {
+      "files": 1257,
+      "type": "tld",
+      "total": 360552524,
+      "new": 0,
+      "size": "1GB",
+      "last_updated": "2025-07-15T09:52:09Z"
+    }
+  ],
+  "scan12": [
+    {
+      "files": 36,
+      "type": "domain",
+      "total": 1764405421,
+      "new": 124806569,
+      "size": "6GB",
+      "last_updated": "2025-07-30T13:59:37Z"
+    }
+  ],
+  "scan2": [
+    {
+      "files": 36,
+      "type": "domain",
+      "total": 80519945,
+      "new": 13774411,
+      "size": "454MB",
+      "last_updated": "2025-06-29T07:58:50Z"
+    },
+    {
+      "files": 1267,
+      "type": "tld",
+      "total": 14582701,
+      "new": 614294,
+      "size": "92MB",
+      "last_updated": "2025-06-29T09:35:47Z"
+    }
+  ],
+  "scan3": [
+    {
+      "files": 36,
+      "type": "domain",
+      "total": 80519945,
+      "new": 0,
+      "size": "454MB",
+      "last_updated": "2025-06-29T07:58:50Z"
+    },
+    {
+      "files": 1267,
+      "type": "tld",
+      "total": 80508969,
+      "new": 65926280,
+      "size": "443MB",
+      "last_updated": "2025-06-30T07:17:20Z"
+    }
+  ],
+  "scan4": [
+    {
+      "files": 36,
+      "type": "domain",
+      "total": 98401066,
+      "new": 17881121,
+      "size": "547MB",
+      "last_updated": "2025-06-30T09:31:23Z"
+    },
+    {
+      "files": 1267,
+      "type": "tld",
+      "total": 98390095,
+      "new": 17881126,
+      "size": "537MB",
+      "last_updated": "2025-06-30T11:12:17Z"
+    }
+  ],
+  "scan5": [
+    {
+      "files": 36,
+      "type": "domain",
+      "total": 523904041,
+      "new": 425502975,
+      "size": "1GB",
+      "last_updated": "2025-07-05T10:56:11Z"
+    },
+    {
+      "files": 1280,
+      "type": "tld",
+      "total": 523423394,
+      "new": 425033299,
+      "size": "2GB",
+      "last_updated": "2025-07-05T15:11:41Z"
+    }
+  ],
+  "scan6": [
+    {
+      "files": 36,
+      "type": "domain",
+      "total": 580420111,
+      "new": 56516070,
+      "size": "1GB",
+      "last_updated": "2025-07-05T16:25:44Z"
+    },
+    {
+      "files": 1280,
+      "type": "tld",
+      "total": 579905349,
+      "new": 56481955,
+      "size": "2GB",
+      "last_updated": "2025-07-05T18:30:16Z"
+    }
+  ],
+  "scan7": [
+    {
+      "files": 36,
+      "type": "domain",
+      "total": 637015799,
+      "new": 56595688,
+      "size": "1GB",
+      "last_updated": "2025-07-05T20:22:51Z"
+    },
+    {
+      "files": 1282,
+      "type": "tld",
+      "total": 636465414,
+      "new": 56560065,
+      "size": "2GB",
+      "last_updated": "2025-07-05T22:28:26Z"
+    }
+  ],
+  "scan8": [
+    {
+      "files": 36,
+      "type": "domain",
+      "total": 693491497,
+      "new": 56475698,
+      "size": "1GB",
+      "last_updated": "2025-07-06T00:25:30Z"
+    },
+    {
+      "files": 1282,
+      "type": "tld",
+      "total": 692903571,
+      "new": 56438157,
+      "size": "3GB",
+      "last_updated": "2025-07-06T02:33:17Z"
+    }
+  ],
+  "scan9": [
+    {
+      "files": 36,
+      "type": "domain",
+      "total": 726109963,
+      "new": 32618466,
+      "size": "1GB",
+      "last_updated": "2025-07-07T18:36:22Z"
+    },
+    {
+      "files": 1282,
+      "type": "tld",
+      "total": 725481681,
+      "new": 32578110,
+      "size": "3GB",
+      "last_updated": "2025-07-07T21:13:28Z"
+    }
+  ]
+}

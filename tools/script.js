@@ -7,7 +7,7 @@ async function loadTools() {
   const loader = document.getElementById('loader');
 
   try {
-    const response = await fetch('https://raw.githubusercontent.com/KrazePlanet/KrazePlanet-Web/refs/heads/main/tools/tools.json');
+    const response = await fetch('tools.json');
     tools = await response.json();
     displayTools();
   } catch (error) {

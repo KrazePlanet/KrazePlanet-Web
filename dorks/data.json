@@ -1,0 +1,428 @@
+{
+    "0":{
+        "img":"images/redirect.png",
+        "name":"Open Redirect",
+        "link":"https://www.google.com/search?q=site:domainname inurl:redir | inurl:url | inurl:redirect | inurl:return | inurl:src=http | inurl:r=http"
+    },
+    "1":{
+        "img":"images/robot.png",
+        "name":"Robot.txt Files",
+        "link":"https://www.google.com/search?q=domainname robots.txt",
+        "link2":"https://www.google.com/search?q=domainname link2.txt"
+    },
+    "2":{
+        "img":"images/password.png",
+        "name":"Password files",
+        "link":"https://www.google.com/search?q=site:domainname 'password' filetype:doc | filetype:pdf | filetype:docx | filetype:xls | filetype:dat | filetype:log"
+    },
+    "3":{
+        "img":"images/directory.png",
+        "name":"Directory Listing",
+        "link":"https://www.google.com/search?q=site:domainname intext:'index of /' | intitle:index.of | 'parent directory'"
+    },
+    "4":{
+        "img":"images/database.png",
+        "name":"Database related",
+        "link":"https://www.google.com/search?q=site:domainname intext:'sql syntax near' | intext:'syntax error has occurred' | intext:'incorrect syntax near' | intext:'unexpected end of SQL command' | intext:'Warning: mysql_connect()' | intext:'Warning: mysql_query() | intext:'Warning: pg_connect()' | filetype:sql | ext:sql | ext:dbf | ext:mdb"
+    },
+    "5":{
+        "img":"images/config.png",
+        "name":"Config and log files",
+        "link":"https://www.google.com/search?q=site:domainname ext:xml | ext:conf | ext:cnf | ext:reg | ext:inf | ext:rdp | ext:cfg | ext:txt | ext:ora | ext:ini | ext:log"
+    },
+    "6":{
+        "img":"images/backup.png",
+        "name":"Backup and old files",
+        "link":"https://www.google.com/search?q=site:domainname ext:bkf | ext:bkp | ext:bak | ext:old | ext:backup"
+    },
+    "7":{
+        "img":"images/login.png",
+        "name":"Login and Signup",
+        "link":"https://www.google.com/search?q=site:domainname inurl:login | inurl:signin | intitle:Login | intext: login | intitle: signin | inurl:auth | inurl:portal | inurl:register | inurl:signup | intitle:Signup"
+    },
+    "8":{
+        "img":"images/php.png",
+        "name":"phpinfo()",
+        "link":"https://google.com/search?q=site:domainname ext:php intitle:phpinfo 'published by the PHP Group'"
+    },
+    "9":{
+        "img":"images/gitlab.png",
+        "name":"Gitlab and Github",
+        "link":"https://www.google.com/search?q=site:github.com | site:gitlab.com 'domainname'"
+    },
+    "10":{
+        "img":"images/subdomain.png",
+        "name":"Subdomains",
+        "link":"https://google.com/search?q=site:*.domainname"
+    },
+    "11":{
+        "img":"images/subdomain.png",
+        "name":"Sub-Subdomains",
+        "link":"https://google.com/search?q=site:*.*.domainname"
+    },
+    "12":{
+        "img":"images/crt.sh.png",
+        "name":"Search in crt.sh",
+        "link":"https://crt.sh/?q=domainname"
+    },
+    "13":{
+        "img":"images/Amazon-S3.png",
+        "name":"S3 Bucket",
+        "link":"https://www.google.com/search?q=site:amazonaws.com 'domainname'"
+    },
+    "14":{
+        "img":"images/stackoverflow.png",
+        "name":"Search in StackOverflow",
+        "link":"https://google.com/search?q=site:stackoverflow.com 'domainname'"
+    },
+    "15":{
+        "img":"images/third-party.png",
+        "name":"Search in 3rd Party Vendors",
+        "link":"https://google.com/search?q=site:pastebin.com | site:paste2.org | site:pastehtml.com | site:slexy.org | site:snipplr.com | site:snipt.net | site:textsnip.com | site:bitpaste.app | site:justpaste.it | site:heypasteit.com | site:hastebin.com | site:dpaste.org | site:dpaste.com | site:codepad.org | site:jsitor.com | site:codepen.io | site:jsfiddle.net | site:dotnetfiddle.net | site:phpfiddle.org | site:ide.geeksforgeeks.org | site:repl.it | site:ideone.com | site:paste.debian.net | site:paste.org | site:paste.org.ru | site:codebeautify.org  | site:codeshare.io | site:trello.com 'domainname'"
+    },
+    "16":{
+        "img":"images/cms.png",
+        "name":"What CMS?",
+        "link":"https://whatcms.org/?s=domainname"
+    },
+    "17":{
+        "img":"images/wordpress.png",
+        "name":"WordPress",
+        "link":"https://google.com/search?q=site:domainname inurl:wp- | inurl:wp-content | inurl:wp-admin | inurl:wp-includes | inurl:plugins | inurl:uploads | inurl:themes | inurl:download"
+    },
+    "18":{
+        "img":"images/ssl.png",
+        "name":"SSL Server Test",
+        "link":"https://www.ssllabs.com/ssltest/analyze.html?d=domainname"
+    },
+    "19":{
+        "img":"images/wayback-machine.png",
+        "name":"Search in Wayback Machine",
+        "link":"https://web.archive.org/web/*/domainname/*"
+    },
+    "20":{
+        "img":"images/shodan.jpg",
+        "name":"Search in Shodan",
+        "link":"https://www.shodan.io/search?query=domainname"
+    },
+    "21":{
+        "img":"images/grep.app.png",
+        "name":"Search in grep.app",
+        "link":"https://grep.app/search?q=domainname"
+    },
+    "22":{
+        "img":"images/securityheaders.png",
+        "name":"Check Security Headers",
+        "link":"https://securityheaders.com/?q=domainname&followRedirects=on"
+    },
+    "23":{
+        "img":"images/documents.png",
+        "name":"Publicly Exposed Documents",
+        "link":"https://www.google.com/search?q=site:domainname ext:doc | ext:docx | ext:odt | ext:pdf | ext:rtf | ext:sxw | ext:psw | ext:ppt | ext:pptx | ext:pps | ext:csv"
+    },
+    "24":{
+        "img":"images/third-party.png",
+        "name":"Search in 3rd Party Vendors #2",
+        "link":"https://google.com/search?q=site:scribd.com | site:npmjs.com | site:npm.runkit.com | site:libraries.io | site:coggle.it | site:papaly.com | site:prezi.com | site:jsdelivr.net | site:gitter.im 'domainname'"
+    },
+    "25":{
+        "img":"images/sql.png",
+        "name":"SQL errors",
+        "link":"https://www.google.com/search?q=site:domainname intext:'sql syntax near' | intext:'syntax error has occurred' | intext:'incorrect syntax near' | intext:'unexpected end of SQL command' | intext:'Warning: mysql_connect()' | intext:'Warning: mysql_query()' | intext:'Warning: pg_connect()'"
+    },
+    "26":{
+        "img":"images/php.png",
+        "name":"PHP errors / warning",
+        "link":"https://www.google.com/search?q=site:domainname 'PHP Parse error' | 'PHP Warning' | 'PHP Error'"
+    },
+    "27":{
+        "img":"images/important.png",
+        "name":"Important Dorks",
+        "link":"https://www.google.com/search?q=site:domainname filetype:txt | inurl:.php.txt | ext:txt"
+    }, 
+    "28":{
+        "img":"images/error_log.png",
+        "name":"Error Log Source Code",
+        "link":"https://www.google.com/search?q='index of' error_log intext:domainname"
+    },
+    "29":{
+        "img":"images/shodan.jpg",
+        "name":"Shodan Api",
+        "link":"https://www.google.com/search?q=inurl:pastebin 'SHODAN_API_KEY'"
+    },
+    "30":{
+        "img":"images/openbugbounty.png",
+        "name":"Search in OpenBugBounty",
+        "link":"https://www.openbugbounty.org/search/?search=domainname"
+    },
+    "31":{
+        "img":"images/censys.jpg",
+        "name":"Search in Censys Hosts",
+        "link":"https://search.censys.io/search?resource=hosts&sort=RELEVANCE&per_page=100&virtual_hosts=EXCLUDE&q=domainname"
+    },
+    "32":{
+        "img":"images/censys.jpg",
+        "name":"Search in Censys Certificates",
+        "link":"https://search.censys.io/certificates?q=domainname"
+    },
+    "33":{
+        "img":"images/linkedin.png",
+        "name":"Linkedin Employees",
+        "link":"https://search.censys.io/certificates?q=domainname"
+    },
+    "34":{
+        "img":"images/ip.png",
+        "name":"Reverse ip lookup",
+        "link":"https://viewdns.info/reverseip/?host=domainname&t=1"
+    },
+    "35":{
+        "img":"images/bgp.png",
+        "name":"Search in bgp ASN",
+        "link":"https://bgp.he.net/search?search%5Bsearch%5D=domainname&commit=Search"
+    },
+    "36":{
+        "img":"images/subdomainfinder.png",
+        "name":"Search in Subdomainfinder Subdomain",
+        "link":"https://www.google.com/search?q=site:subdomainfinder.c99.nl inurl:domainname"
+    },
+    "37":{
+        "img":"images/httpstatus.png",
+        "name":"Search in httpstatus",
+        "link":"https://httpstatus.io"
+    },
+    "38":{
+        "img":"images/asnlookup.png",
+        "name":"Search in asnlookup ASN",
+        "link":"https://asnlookup.com/organization/domainname"
+    },
+    "39":{
+        "img":"images/apache.png",
+        "name":"Apache Config Files",
+        "link":"https://www.google.com/search?q=site:domainname filetype:config 'apache'"
+    },
+    "40":{
+        "img":"images/domaineye.png",
+        "name":"Search in DomainEye",
+        "link":"https://domaineye.com/similar/domainname"
+    },
+    "41":{
+        "img":"images/apache-struts.png",
+        "name":"Apache Struts RCE",
+        "link":"https://www.google.com/search?q=site:domainname ext:action | ext:struts | ext:do"
+    },
+    "42":{
+        "img":"images/bucket.png",
+        "name":"Search in Bitbucket and Atlassian",
+        "link":"https://www.google.com/search?q=site:bitbucket.org | site:atlassian.net 'domainname'"
+    },
+    "43":{
+        "img":"images/xml.png",
+        "name":"Test CrossDomain",
+        "link":"https://www.google.com/search?q=domainname/crossdomain.xml"
+    },
+    "44":{
+        "img":"images/git.png",
+        "name":".git folder",
+        "link":"https://www.google.com/search?q=inurl:'/.git 'domainname -github"
+    },
+    "45":{
+        "img":"images/digitalocean.png",
+        "name":"Digital Ocean Spaces",
+        "link":"https://www.google.com/search?q=site:digitaloceanspaces.com 'domainname'"
+    },
+    "46":{
+        "img":"images/cloud.png",
+        "name":"Cloud Storage and Buckets",
+        "link":"https://cse.google.com/cse?cx=002972716746423218710:veac6ui3rio#gsc.tab=0&gsc.q=domainname"
+    },
+    "47":{
+        "img":"images/github-gist.png",
+        "name":"Search in Github Gist",
+        "link":"https://gist.github.com/search?q=*.'domainname'"
+    },
+    "48":{
+        "img":"images/rapiddns.png",
+        "name":"Search in Rapiddns Subdomain",
+        "link":"https://rapiddns.io/subdomain/domainname?full=1#result"
+    },
+    "49":{
+        "img":"images/virustotal.png",
+        "name":"Search in Virustotal Subdomain",
+        "link":"https://www.virustotal.com/gui/domain/domainname/relations"
+    },
+    "50":{
+        "img":"images/iis.png",
+        "name":"IIS Windows Server",
+        "link":"https://www.google.com/search?q=intitle:'IIS Windows Server' 'domainname'"
+    },
+    "51":{
+        "img":"images/html.png",
+        "name":"Find HTML Files",
+        "link":"https://www.google.com/search?q=intext:'index of' '.html' inurl:domainname"
+    },
+    "52":{
+        "img":"images/repository.png",
+        "name":"Find Repository",
+        "link":"https://www.google.com/search?q=intext:'index of' 'repository' inurl:domainname"
+    },
+    "53":{
+        "img":"images/github.png",
+        "name":"Find Github password",
+        "link":"https://github.com/search?q=%22domainname%22+password&type=Code"
+    },
+    "54":{
+        "img":"images/github.png",
+        "name":"Find Github npmrc _auth",
+        "link":"https://github.com/search?q=%22domainname%22+npmrc%20_auth&type=Code"
+    },
+    "55":{
+        "img":"images/github.png",
+        "name":"Find Github dockercfg",
+        "link":"https://github.com/search?q=%22domainname%22+dockercfg&type=Code"
+    },
+    "56":{
+        "img":"images/github.png",
+        "name":"Find Github pem private",
+        "link":"https://github.com/search?q=%22domainname%22+pem%20private&type=Code"
+    },
+    "57":{
+        "img":"images/github.png",
+        "name":"Find Github id_rsa",
+        "link":"https://github.com/search?q=%22domainname%22+id_rsa&type=Code"
+    },
+    "58":{
+        "img":"images/github.png",
+        "name":"Find Github aws_access_key _id",
+        "link":"https://github.com/search?q=%22domainname%22+aws_access_key_id&type=Code"
+    },
+    "59":{
+        "img":"images/github.png",
+        "name":"Find Github s3cfg",
+        "link":"https://github.com/search?q=%22domainname%22+s3cfg&type=Code"
+    },
+    "60":{
+        "img":"images/github.png",
+        "name":"Find Github htpasswd",
+        "link":"https://github.com/search?q=%22domainname%22+htpasswd&type=Code"
+    },
+    "61":{
+        "img":"images/github.png",
+        "name":"Find Github git-credentials",
+        "link":"https://github.com/search?q=%22domainname%22+git-credentials&type=Code"
+    },
+    "62":{
+        "img":"images/github.png",
+        "name":"Find Github bashrc password",
+        "link":"https://github.com/search?q=%22domainname%22+bashrc%20password&type=Code"
+    },
+    "63":{
+        "img":"images/github.png",
+        "name":"Find Github sshd_config",
+        "link":"https://github.com/search?q=%22domainname%22+sshd_config&type=Code"
+    },
+    "64":{
+        "img":"images/github.png",
+        "name":"Find Github xoxp OR xoxb OR xoxa",
+        "link":"https://github.com/search?q=%22domainname%22+xoxp%20OR%20xoxb%20OR%20xoxa&type=Code"
+    },
+    "65":{
+        "img":"images/github.png",
+        "name":"Find Github SECRET_KEY",
+        "link":"https://github.com/search?q=%22domainname%22+SECRET_KEY&type=Code"
+    },
+    "66":{
+        "img":"images/github.png",
+        "name":"Find Github client_secret",
+        "link":"https://github.com/search?q=%22domainname%22+client_secret&type=Code"
+    },
+    "67":{
+        "img":"images/github.png",
+        "name":"Find Github sshd_config",
+        "link":"https://github.com/search?q=%22domainname%22+sshd_config&type=Code"
+    },
+    "68":{
+        "img":"images/github.png",
+        "name":"Find Github github_token",
+        "link":"https://github.com/search?q=%22domainname%22+github_token&type=Code"
+    },
+    "69":{
+        "img":"images/github.png",
+        "name":"Find Github api_key",
+        "link":"https://github.com/search?q=%22domainname%22+api_key&type=Code"
+    },
+    "70":{
+        "img":"images/github.png",
+        "name":"Find Github FTP",
+        "link":"https://github.com/search?q=%22domainname%22+FTP&type=Code"
+    },
+    "71":{
+        "img":"images/github.png",
+        "name":"Find Github app_secret",
+        "link":"https://github.com/search?q=%22domainname%22+app_secret&type=Code"
+    },
+    "72":{
+        "img":"images/github.png",
+        "name":"Find Github passwd",
+        "link":"https://github.com/search?q=%22domainname%22+passwd&type=Code"
+    },
+    "73":{
+        "img":"images/github.png",
+        "name":"Find Github s3.yml",
+        "link":"https://github.com/search?q=%22domainname%22+.env&type=Code"
+    },
+    "74":{
+        "img":"images/github.png",
+        "name":"Find Github .exs",
+        "link":"https://github.com/search?q=%22domainname%22+.exs&type=Code"
+    },
+    "75":{
+        "img":"images/github.png",
+        "name":"Find Github beanstalkd.yml",
+        "link":"https://github.com/search?q=%22domainname%22+beanstalkd.yml&type=Code"
+    },
+    "76":{
+        "img":"images/github.png",
+        "name":"Find Github deploy.rake",
+        "link":"https://github.com/search?q=%22domainname%22+deploy.rake&type=Code"
+    },
+    "77":{
+        "img":"images/github.png",
+        "name":"Find Github mysql",
+        "link":"https://github.com/search?q=%22domainname%22+mysql&type=Code"
+    },
+    "78":{
+        "img":"images/github.png",
+        "name":"Find Github credentials",
+        "link":"https://github.com/search?q=%22domainname%22+credentials&type=Code"
+    },
+    "79":{
+        "img":"images/github.png",
+        "name":"Find Github PWD",
+        "link":"https://github.com/search?q=%22domainname%22+PWD&type=Code"
+    },
+    "80":{
+        "img":"images/github.png",
+        "name":"Find Github deploy.rake",
+        "link":"https://github.com/search?q=%22domainname%22+deploy.rake&type=Code"
+    },
+    "81":{
+        "img":"images/github.png",
+        "name":"Find Github .bash_history",
+        "link":"https://github.com/search?q=%22domainname%22+.bash_history&type=Code"
+    },
+    "82":{
+        "img":"images/github.png",
+        "name":"Find Github .sls",
+        "link":"https://github.com/search?q=%22domainname%22+.sls&type=Code"
+    },
+    "83":{
+        "img":"images/github.png",
+        "name":"Find Github secrets",
+        "link":"https://github.com/search?q=%22domainname%22+secrets&type=Code"
+    },
+    "84":{
+        "img":"images/github.png",
+        "name":"Find Github composer.json",
+        "link":"https://github.com/search?q=%22domainname%22+composer.json&type=Code"
+    }
+}

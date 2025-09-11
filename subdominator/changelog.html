@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KrazePlanet - SubDominator Changelog</title>
+  <link rel="icon" href="favicon.ico" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f0f0f;
+      color: #f0f0f0;
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #ff9500;
+    }
+
+    .scan-section {
+      margin-bottom: 3rem;
+      border: 1px solid #333;
+      border-radius: 10px;
+      padding: 1rem;
+      background: #1c1c1c;
+    }
+
+    h2 {
+      color: #ff9500;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    th, td {
+      border: 1px solid #444;
+      padding: 0.75rem;
+      text-align: left;
+    }
+
+    th {
+      background-color: #222;
+      color: #ffcc00;
+    }
+
+    tr:nth-child(even) {
+      background-color: #2a2a2a;
+    }
+
+    @media screen and (max-width: 768px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+
+      th {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+      }
+
+      td {
+        position: relative;
+        padding-left: 50%;
+        border: none;
+        border-bottom: 1px solid #444;
+      }
+
+      td::before {
+        position: absolute;
+        top: 0;
+        left: 1rem;
+        width: 45%;
+        white-space: nowrap;
+        font-weight: bold;
+        color: #ccc;
+      }
+
+      td:nth-of-type(1)::before { content: "Files"; }
+      td:nth-of-type(2)::before { content: "Type"; }
+      td:nth-of-type(3)::before { content: "Total"; }
+      td:nth-of-type(4)::before { content: "New"; }
+      td:nth-of-type(5)::before { content: "Size"; }
+      td:nth-of-type(6)::before { content: "Last Updated"; }
+    }
+  </style>
+</head>
+<body>
+  <h1>📈 KrazePlanet SubDomain Datacenter Changelog</h1>
+  <div id="changelog-container"></div>
+
+  <script>
+    async function loadChangelog() {
+      try {
+        const res = await fetch('stats-changelog.json');
+        const changelog = await res.json();
+
+        const container = document.getElementById('changelog-container');
+
+        const sortedScans = Object.keys(changelog).sort((a, b) => {
+          const numA = parseInt(a.replace('scan', ''), 10);
+          const numB = parseInt(b.replace('scan', ''), 10);
+          return numB - numA; // descending
+        });
+
+        sortedScans.forEach(scanKey => {
+          const scanData = changelog[scanKey];
+
+          const section = document.createElement('div');
+          section.className = 'scan-section';
+
+          const title = document.createElement('h2');
+          title.textContent = `${scanKey.toUpperCase()}`;
+          section.appendChild(title);
+
+          const table = document.createElement('table');
+          const thead = document.createElement('thead');
+          thead.innerHTML = `
+            <tr>
+              <th>Files</th>
+              <th>Type</th>
+              <th>Total</th>
+              <th>New</th>
+              <th>Size</th>
+              <th>Last Updated</th>
+            </tr>
+          `;
+          table.appendChild(thead);
+
+          const tbody = document.createElement('tbody');
+          scanData.forEach(entry => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+              <td>${entry.files}</td>
+              <td>${entry.type}</td>
+              <td>${entry.total.toLocaleString()}</td>
+              <td>${entry.new.toLocaleString()}</td>
+              <td>${entry.size}</td>
+              <td>${new Date(entry.last_updated).toLocaleString()}</td>
+            `;
+            tbody.appendChild(row);
+          });
+
+          table.appendChild(tbody);
+          section.appendChild(table);
+          container.appendChild(section);
+        });
+
+      } catch (error) {
+        document.getElementById('changelog-container').innerHTML = '<p style="color: red;">Failed to load stats-changelog.json</p>';
+        console.error('Error loading changelog:', error);
+      }
+    }
+
+    loadChangelog();
+  </script>
+</body>
+</html>

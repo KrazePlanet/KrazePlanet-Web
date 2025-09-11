@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Generate Crunchbase Queries</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #1f1f1f;
+            color: #e0e0e0;
+        }
+        input, select, button {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #444;
+            background-color: #333;
+            color: #e0e0e0;
+        }
+        input:focus, select:focus, button:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        .results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Generate Crunchbase Queries</h1>
+    <label for="company">Company:</label>
+    <input type="text" id="company" value="X (formerly Twitter)">
+    <br>
+    <label for="start-year">Start Year:</label>
+    <select id="start-year"></select>
+    <br>
+    <label for="query-type">Query Type:</label>
+    <select id="query-type">
+        <option value="acquired">"acquired by"</option>
+        <option value="acquires">"acquires"</option>
+    </select>
+    <br>
+    <button onclick="generateQueries()">Generate Queries</button>
+    <div class="results" id="results"></div>
+
+    <script>
+        const currentYear = new Date().getFullYear();
+        const startYearSelect = document.getElementById('start-year');
+
+        // Populate the start year dropdown with options from current year to 1990
+        for (let year = currentYear; year >= 1990; year--) {
+            const option = document.createElement('option');
+            option.value = year;
+            option.textContent = year;
+            startYearSelect.appendChild(option);
+        }
+
+        function generateQueries() {
+            const company = document.getElementById('company').value;
+            const startYear = parseInt(document.getElementById('start-year').value);
+            const queryType = document.getElementById('query-type').value;
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';  // Clear previous results
+
+            let baseQuery;
+            if (queryType === "acquired") {
+                baseQuery = `site:crunchbase.com "acquired by ${company}"`;
+            } else {
+                baseQuery = `site:crunchbase.com "${company} acquires"`;
+            }
+
+            // Add the base query without the intitle part
+            const baseQueryElement = document.createElement('div');
+            baseQueryElement.textContent = baseQuery;
+            resultsDiv.appendChild(baseQueryElement);
+
+            // Add queries for each year
+            for (let year = currentYear; year >= startYear; year--) {
+                const queryElement = document.createElement('div');
+                queryElement.textContent = `${baseQuery} intitle:"${year}"`;
+                resultsDiv.appendChild(queryElement);
+            }
+        }
+    </script>
+</body>
+</html>

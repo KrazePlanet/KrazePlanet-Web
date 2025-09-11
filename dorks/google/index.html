@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Dorks for Bug Bounty</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #1f1f1f, #3a3a3a);
+            color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            font-size: 2.8em;
+            margin-bottom: 20px;
+            color: #00d4ff;
+            text-align: center;
+        }
+        .input-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap; /* Enable wrapping for smaller screens */
+        }
+        .input-container input,
+        .input-container select,
+        .input-container button {
+            flex: 1; /* Make items take equal space on smaller screens */
+            min-width: 255px; /* Prevent items from shrinking too much */
+        }
+        input, select {
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            font-size: 1em;
+            outline: none;
+            background: #2b2b2b;
+            color: #e0e0e0;
+        }
+        button {
+            padding: 12px 18px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            cursor: pointer;
+            background: linear-gradient(135deg, #00d4ff, #0083ff);
+            color: white;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: linear-gradient(135deg, #00a9ff, #0066cc);
+        }
+        .view-toggle-container {
+            text-align: center; /* Center the button */
+            margin-bottom: 20px;
+        }
+        .dork-list {
+            width: 100%;
+            max-width: 900px; /* Default max-width for list view */
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            transition: all 0.3s ease;
+        }
+        .grid-view {
+            max-width: none; /* Disable max-width for grid view */
+        }
+        .dork-card {
+            background: #292929;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+        .dork-card.clicked {
+            background-color: #005b96; /* Change background for clicked cards */
+        }
+        .dork-card:hover {
+            transform: scale(1.03);
+            background: #383838;
+        }
+        .dork-card h3 {
+            font-size: 1.2em;
+            color: #00d4ff;
+            margin-bottom: 10px;
+        }
+        .dork-card p {
+            margin: 0;
+            color: #69f0ae;
+        }
+    </style>
+</head>
+<body>
+    <h1>Google Dorks for Bug Bounty</h1>
+    <div class="input-container">
+        <input type="text" id="domainInput" placeholder="Enter a domain (e.g., example.com)">
+        <select id="searchEngine">
+            <option value="google" selected>Google</option>
+            <option value="bing">Bing</option>
+            <option value="duckduckgo">DuckDuckGo</option>
+        </select>
+        <button id="updateDomainButton">Update</button>
+    </div>
+    <div class="view-toggle-container">
+        <button id="toggleViewButton">Grid View</button>
+    </div>
+    <div id="dorkList" class="dork-list"></div>
+    <script>
+        const originalDorks = new Set();
+
+        async function fetchDorks() {
+            const url = "README.md";
+            const response = await fetch(url);
+            const text = await response.text();
+
+            const dorkList = document.getElementById("dorkList");
+            const regex = /(?:^### (.+)|^> (.+))/gm;
+            let match;
+            let title = '';
+
+            while ((match = regex.exec(text)) !== null) {
+                if (match[1]) {
+                    title = match[1];
+                } else if (match[2]) {
+                    const dork = match[2];
+                    if (!originalDorks.has(dork)) { // Prevent duplicates
+                        originalDorks.add(dork);
+                        const card = createDorkCard(dork, title);
+                        dorkList.appendChild(card);
+                    }
+                }
+            }
+        }
+
+        function createDorkCard(dork, title) {
+            const searchEngine = document.getElementById("searchEngine").value;
+            const baseUrls = {
+                google: "https://www.google.com/search?q=",
+                bing: "https://www.bing.com/search?q=",
+                duckduckgo: "https://duckduckgo.com/?q="
+            };
+            const searchLink = `${baseUrls[searchEngine]}${encodeURIComponent(dork)}&num=100`;
+
+            const card = document.createElement("a");
+            card.classList.add("dork-card");
+            card.href = searchLink;
+            card.target = "_blank";
+            card.dataset.dork = dork; // Store dork for updates
+
+            // Highlight on click
+            card.addEventListener("click", () => {
+                card.classList.add("clicked");
+            });
+
+            if (title) {
+                const titleElem = document.createElement("h3");
+                titleElem.textContent = title;
+                card.appendChild(titleElem);
+            }
+
+            const dorkElem = document.createElement("p");
+            dorkElem.textContent = dork;
+            card.appendChild(dorkElem);
+
+            return card;
+        }
+
+        function updateDomain() {
+            // Clear clicked state on all dork-cards
+            document.querySelectorAll(".dork-card.clicked").forEach(card => {
+                card.classList.remove("clicked");
+            });
+
+            const domainInput = document.getElementById("domainInput");
+            const domains = domainInput.value.split(",").map(domain => domain.trim());
+            const searchEngine = document.getElementById("searchEngine").value;
+
+            const baseUrls = {
+                google: "https://www.google.com/search?q=",
+                bing: "https://www.bing.com/search?q=",
+                duckduckgo: "https://duckduckgo.com/?q="
+            };
+
+            const dorkCards = document.querySelectorAll(".dork-card");
+            dorkCards.forEach((card) => {
+                const originalDork = card.dataset.dork;
+                let updatedDork = originalDork;
+
+                if (/site:"?example\.com"?/i.test(updatedDork)) {
+                    const joinedDomains = domains.map(d => `site:${d}`).join(" | ");
+                    updatedDork = updatedDork.replace(/site:"?example\.com"?/gi, joinedDomains);
+                } else if (/["']example\[?\.\]?com["']/i.test(updatedDork)) {
+                    const joinedDomains = domains.map(d => `"${d}"`).join(" | ");
+                    updatedDork = updatedDork.replace(/["']example\[?\.\]?com["']/gi, joinedDomains);
+                } else if (updatedDork.includes('intext:"example.com"')) {
+                    const joinedDomains = domains.map(d => `intext:"${d}"`).join(" | ");
+                    updatedDork = updatedDork.replace(/intext:"example\.com"/gi, joinedDomains);
+                }
+
+                const searchLink = `${baseUrls[searchEngine]}${encodeURIComponent(updatedDork)}&num=100`;
+                card.href = searchLink;
+
+                const dorkElem = card.querySelector("p");
+                dorkElem.textContent = updatedDork; // Update visible text
+            });
+        }
+
+        function toggleView() {
+            const dorkList = document.getElementById("dorkList");
+            const toggleViewButton = document.getElementById("toggleViewButton");
+
+            if (dorkList.classList.contains("grid-view")) {
+                dorkList.classList.remove("grid-view");
+                toggleViewButton.textContent = "Grid View";
+            } else {
+                dorkList.classList.add("grid-view");
+                toggleViewButton.textContent = "List View";
+            }
+        }
+
+        document.getElementById("updateDomainButton").addEventListener("click", updateDomain);
+        document.getElementById("toggleViewButton").addEventListener("click", toggleView);
+        document.getElementById("domainInput").addEventListener("keypress", (event) => {
+            if (event.key === "Enter") {
+                updateDomain();
+            }
+        });
+
+        fetchDorks();
+    </script>
+</body>
+</html>
