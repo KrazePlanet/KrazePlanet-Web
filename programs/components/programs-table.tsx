@@ -2,6 +2,8 @@
 
 import Image from "next/image"
 import Link from "next/link"
+
+import { useSearchParams, useRouter, usePathname } from "next/navigation"
 import { useMemo, useState, useEffect } from "react"
 import { ExternalLink, Check, Search, Grid3x3, List, ChevronDown, Filter } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -103,10 +105,24 @@ function getPlatformDataValue(displayName: string): string {
 // All available platforms for display (using display names)
 const ALL_PLATFORMS = PLATFORM_DATA_VALUES.map(getPlatformDisplayName)
 
+
+
 export default function ProgramsTable({ programs }: Props) {
+  const searchParams = useSearchParams()
+  const router = useRouter()
+  const pathname = usePathname()
+
   const [sortOption, setSortOption] = useState<string>("date-newest")
   const [query, setQuery] = useState<string>("")
-  const [page, setPage] = useState<number>(1)
+
+  const page = Number(searchParams.get("page")) || 1
+
+  const updatePage = (newPage: number) => {
+    const params = new URLSearchParams(searchParams.toString())
+    params.set("page", String(newPage))
+    router.push(`${pathname}?${params.toString()}`)
+  }
+
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
   const [selectedPlatforms, setSelectedPlatforms] = useState<string[]>([])
   const [platformSearch, setPlatformSearch] = useState<string>("")
@@ -176,6 +192,9 @@ export default function ProgramsTable({ programs }: Props) {
 
   const total = sorted.length
   const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE))
+
+
+
   const currentPage = Math.min(page, totalPages)
   const start = (currentPage - 1) * PAGE_SIZE
   const end = Math.min(start + PAGE_SIZE, total)
@@ -190,7 +209,7 @@ export default function ProgramsTable({ programs }: Props) {
     setSelectedPlatforms((prev) =>
       prev.includes(dataValue) ? prev.filter((p) => p !== dataValue) : [...prev, dataValue]
     )
-    setPage(1)
+    updatePage(1)
   }
 
   return (
@@ -205,7 +224,7 @@ export default function ProgramsTable({ programs }: Props) {
               value={query}
               onChange={(e) => {
                 setQuery(e.target.value)
-                setPage(1)
+                updatePage(1)
               }}
               placeholder="Search for bug bounty programs..."
               aria-label="Search programs by name"
@@ -520,7 +539,7 @@ export default function ProgramsTable({ programs }: Props) {
             <Button
               variant="outline"
               size="sm"
-              onClick={() => setPage((p) => Math.max(1, p - 1))}
+              onClick={() => updatePage(Math.max(1, currentPage - 1))}
               disabled={currentPage <= 1}
               className="rounded-xl border-border/50 bg-background/50 hover:bg-primary/10 hover:border-primary/50 disabled:opacity-40 transition-all duration-300"
             >
@@ -529,7 +548,7 @@ export default function ProgramsTable({ programs }: Props) {
             <Button
               variant="outline"
               size="sm"
-              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              onClick={() => updatePage(Math.min(totalPages, currentPage + 1))}
               disabled={currentPage >= totalPages}
               className="rounded-xl border-border/50 bg-background/50 hover:bg-primary/10 hover:border-primary/50 disabled:opacity-40 transition-all duration-300"
             >

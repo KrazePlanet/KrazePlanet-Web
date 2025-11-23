@@ -1,6 +1,12 @@
 import ProgramsTable from "@/components/programs-table"
+import { Suspense } from "react"
 import Navbar from "@/components/navbar"
 
+import programsData from "../programs.json"
+
+
+
+// Force dynamic rendering to ensure searchParams are available on the server
 // Keep types local to the server component for simplicity
 type Program = {
   name: string
@@ -14,12 +20,9 @@ type Program = {
   is_new?: boolean
 }
 
-export default async function Page() {
-  // Load data on the server and pass to client component
-  const response = await fetch("https://raw.githubusercontent.com/KrazePlanet/KrazePlanetPrograms/refs/heads/main/programs.json", {
-    next: { revalidate: 3600 }
-  })
-  const programs = (await response.json()) as Program[]
+export default function Page() {
+  // Use local data
+  const programs = programsData as Program[]
 
   return (
     <div className="orb-bg min-h-screen">
@@ -37,7 +40,9 @@ export default async function Page() {
           </p>
         </header>
 
-        <ProgramsTable programs={programs} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <ProgramsTable programs={programs} />
+        </Suspense>
       </main>
     </div>
   )
