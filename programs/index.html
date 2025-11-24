@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KrazePlanet Programs - Bug Bounty Programs</title>
+    <meta name="description"
+        content="SelfHosted - Bug Bounty Programs - Discover new and fresh bug bounty programs across platforms. Updated frequently to always display the newest public programs.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.png" type="image/png">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="navbar-container">
+            <a href="/" class="logo-link">
+                <div class="logo-wrapper">
+                    <img src="favicon.png" alt="Site logo" class="logo-img">
+                    <div class="logo-glow"></div>
+                </div>
+                <span class="logo-text gradient-text">KrazePlanetPrograms</span>
+            </a>
+
+            <nav class="nav-links">
+                <a href="https://github.com/KrazePlanet/KrazePlanetPrograms" target="_blank" rel="noopener noreferrer"
+                    aria-label="GitHub" class="nav-icon-link github-link">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                    </svg>
+                    <div class="icon-glow github-glow"></div>
+                </a>
+
+                <a href="https://x.com/rix4uni" target="_blank" rel="noopener noreferrer" aria-label="X"
+                    class="nav-icon-link twitter-link">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
+                    </svg>
+                    <div class="icon-glow twitter-glow"></div>
+                </a>
+
+                <a href="https://krazeplanet.com" target="_blank" rel="noopener noreferrer" aria-label="Website"
+                    class="nav-icon-link website-link">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                    </svg>
+                    <div class="icon-glow website-glow"></div>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="orb-bg min-h-screen">
+        <main class="main-container">
+            <!-- Header -->
+            <header class="page-header">
+                <h1 class="page-title gradient-text animate-fade-in">
+                    SelfHosted - Bug Bounty Programs
+                </h1>
+                <p class="page-description">
+                    Discover new and fresh bug bounty programs across platforms. Updated frequently to always display
+                    the newest public programs.
+                </p>
+            </header>
+
+            <!-- Controls Bar -->
+            <div class="controls-bar glass">
+                <div class="controls-top">
+                    <!-- Search -->
+                    <div class="search-wrapper">
+                        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8" />
+                            <path d="m21 21-4.35-4.35" />
+                        </svg>
+                        <input type="text" id="searchInput" class="search-input"
+                            placeholder="Search for bug bounty programs..." aria-label="Search programs by name">
+                    </div>
+
+                    <!-- Right Controls -->
+                    <div class="right-controls">
+                        <!-- Platform Filter -->
+                        <div class="platform-filter-wrapper">
+                            <button id="platformFilterBtn" class="filter-btn">
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+                                </svg>
+                                <span>Platforms</span>
+                                <span id="platformCount" class="filter-count hidden">0</span>
+                                <svg class="icon chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9" />
+                                </svg>
+                            </button>
+
+                            <!-- Platform Dropdown -->
+                            <div id="platformDropdown" class="platform-dropdown hidden">
+                                <div class="platform-search-wrapper">
+                                    <svg class="platform-search-icon" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2">
+                                        <circle cx="11" cy="11" r="8" />
+                                        <path d="m21 21-4.35-4.35" />
+                                    </svg>
+                                    <input type="text" id="platformSearch" class="platform-search-input"
+                                        placeholder="Search platforms">
+                                </div>
+                                <div id="platformList" class="platform-list">
+                                    <!-- Platform checkboxes will be populated by JS -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sort Dropdown -->
+                        <div class="sort-filter-wrapper">
+                            <button id="sortFilterBtn" class="filter-btn">
+                                <span id="currentSortLabel">Date (Newest)</span>
+                                <svg class="icon chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9" />
+                                </svg>
+                            </button>
+
+                            <div id="sortDropdown" class="sort-dropdown hidden">
+                                <div class="sort-list">
+                                    <div class="sort-item active" data-value="date-newest">Date (Newest)</div>
+                                    <div class="sort-item" data-value="date-oldest">Date (Oldest)</div>
+                                    <div class="sort-item" data-value="name-az">Name (A-Z)</div>
+                                    <div class="sort-item" data-value="name-za">Name (Z-A)</div>
+                                    <div class="sort-item" data-value="bounty-high">Max Bounty (High-Low)</div>
+                                    <div class="sort-item" data-value="bounty-low">Max Bounty (Low-High)</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- View Toggle -->
+                        <div class="view-toggle">
+                            <button id="gridViewBtn" class="view-btn active" aria-label="Grid view">
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <rect x="3" y="3" width="7" height="7" />
+                                    <rect x="14" y="3" width="7" height="7" />
+                                    <rect x="14" y="14" width="7" height="7" />
+                                    <rect x="3" y="14" width="7" height="7" />
+                                </svg>
+                            </button>
+                            <button id="listViewBtn" class="view-btn" aria-label="List view">
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <line x1="8" y1="6" x2="21" y2="6" />
+                                    <line x1="8" y1="12" x2="21" y2="12" />
+                                    <line x1="8" y1="18" x2="21" y2="18" />
+                                    <line x1="3" y1="6" x2="3.01" y2="6" />
+                                    <line x1="3" y1="12" x2="3.01" y2="12" />
+                                    <line x1="3" y1="18" x2="3.01" y2="18" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats -->
+                <div class="stats-text">
+                    Showing <span id="rangeStart" class="stat-highlight">0</span>-<span id="rangeEnd"
+                        class="stat-highlight">0</span> of
+                    <span id="totalCount" class="stat-highlight">0</span>
+                </div>
+            </div>
+
+            <!-- Grid View -->
+            <div id="gridView" class="grid-view">
+                <!-- Grid cards will be populated by JS -->
+            </div>
+
+            <!-- List View -->
+            <div id="listView" class="list-view hidden">
+                <div class="table-wrapper glass">
+                    <table class="programs-table">
+                        <thead>
+                            <tr>
+                                <th class="th-date">DATE</th>
+                                <th class="th-name">NAME</th>
+                                <th class="th-new">NEW</th>
+                                <th class="th-platform">PLATFORM</th>
+                                <th class="th-scamhit">SCAMHIT</th>
+                                <th class="th-reward">REWARD</th>
+                                <th class="th-link">LINK</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <!-- Table rows will be populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination-bar glass">
+                <div class="pagination-info">
+                    Page <span id="currentPage" class="stat-highlight">1</span> of
+                    <span id="totalPages" class="stat-highlight">1</span>
+                </div>
+                <div class="pagination-controls">
+                    <button id="prevBtn" class="pagination-btn" disabled>Previous</button>
+                    <button id="nextBtn" class="pagination-btn">Next</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
