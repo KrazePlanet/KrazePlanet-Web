@@ -95,6 +95,22 @@
         .pin-button:hover svg {
             stroke: var(--primary);
         }
+        /* Drag and Drop Styles */
+        .dork-card.pinned[draggable="true"] {
+            cursor: grab;
+        }
+        .dork-card.pinned[draggable="true"]:active {
+            cursor: grabbing;
+        }
+        .dork-card.dragging {
+            opacity: 0.5;
+            transform: scale(0.95);
+        }
+        .dork-card.drag-over {
+            border-color: var(--primary);
+            background: rgba(168, 118, 255, 0.2);
+            transform: scale(1.05);
+        }
         .input-container {
             display: flex;
             align-items: center;
@@ -522,15 +538,110 @@
             cards.sort((a, b) => {
                 const aDork = a.dataset.dork;
                 const bDork = b.dataset.dork;
-                const aPinned = pinned.includes(aDork);
-                const bPinned = pinned.includes(bDork);
+                const aPinnedIndex = pinned.indexOf(aDork);
+                const bPinnedIndex = pinned.indexOf(bDork);
+                const aPinned = aPinnedIndex !== -1;
+                const bPinned = bPinnedIndex !== -1;
                 
                 if (aPinned && !bPinned) return -1;
                 if (!aPinned && bPinned) return 1;
-                return 0; // maintain original order within groups
+                if (aPinned && bPinned) {
+                    // Maintain custom order for pinned cards
+                    return aPinnedIndex - bPinnedIndex;
+                }
+                return 0; // maintain original order for unpinned cards
             });
             
             cards.forEach(card => dorkList.appendChild(card));
+        }
+
+        // Drag and Drop Handlers
+        let draggedCard = null;
+        let draggedDork = null;
+
+        function setupDragHandlers(card) {
+            card.addEventListener("dragstart", handleDragStart);
+            card.addEventListener("dragover", handleDragOver);
+            card.addEventListener("drop", handleDrop);
+            card.addEventListener("dragend", handleDragEnd);
+            card.addEventListener("dragenter", handleDragEnter);
+            card.addEventListener("dragleave", handleDragLeave);
+        }
+
+        function handleDragStart(e) {
+            draggedCard = this;
+            draggedDork = this.dataset.dork;
+            this.classList.add("dragging");
+            e.dataTransfer.effectAllowed = "move";
+            e.dataTransfer.setData("text/html", this.outerHTML);
+        }
+
+        function handleDragOver(e) {
+            if (e.preventDefault) {
+                e.preventDefault();
+            }
+            e.dataTransfer.dropEffect = "move";
+            
+            const pinned = getPinnedDorks();
+            const targetDork = this.dataset.dork;
+            
+            // Only allow dropping on other pinned cards
+            if (pinned.includes(targetDork) && this !== draggedCard) {
+                return false;
+            }
+            return false;
+        }
+
+        function handleDragEnter(e) {
+            const pinned = getPinnedDorks();
+            const targetDork = this.dataset.dork;
+            
+            if (pinned.includes(targetDork) && this !== draggedCard) {
+                this.classList.add("drag-over");
+            }
+        }
+
+        function handleDragLeave(e) {
+            this.classList.remove("drag-over");
+        }
+
+        function handleDrop(e) {
+            if (e.stopPropagation) {
+                e.stopPropagation();
+            }
+
+            const pinned = getPinnedDorks();
+            const targetDork = this.dataset.dork;
+            
+            // Only allow dropping on other pinned cards
+            if (!pinned.includes(targetDork) || this === draggedCard) {
+                return false;
+            }
+
+            const draggedIndex = pinned.indexOf(draggedDork);
+            const targetIndex = pinned.indexOf(targetDork);
+
+            // Reorder the pinned array
+            pinned.splice(draggedIndex, 1);
+            pinned.splice(targetIndex, 0, draggedDork);
+
+            // Save the new order
+            savePinnedDorks(pinned);
+
+            // Re-sort cards
+            sortDorkCards();
+
+            this.classList.remove("drag-over");
+            return false;
+        }
+
+        function handleDragEnd(e) {
+            this.classList.remove("dragging");
+            document.querySelectorAll(".dork-card").forEach(card => {
+                card.classList.remove("drag-over");
+            });
+            draggedCard = null;
+            draggedDork = null;
         }
 
         async function fetchDorks() {
@@ -583,11 +694,12 @@
             const pinned = getPinnedDorks();
             if (pinned.includes(dork)) {
                 card.classList.add("pinned");
+                card.setAttribute("draggable", "true");
             }
 
             card.addEventListener("click", (e) => {
-                // Don't navigate if clicking pin button
-                if (e.target.closest('.pin-button')) {
+                // Don't navigate if clicking pin button or during drag
+                if (e.target.closest('.pin-button') || card.classList.contains('dragging')) {
                     e.preventDefault();
                     return;
                 }
@@ -625,6 +737,8 @@
                 const isPinned = togglePin(dork);
                 if (isPinned) {
                     card.classList.add("pinned");
+                    card.setAttribute("draggable", "true");
+                    setupDragHandlers(card);
                     pinButton.classList.add("pinned");
                     pinButton.setAttribute("aria-label", "Unpin dork");
                     pinButton.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
@@ -632,6 +746,13 @@
                        </svg>`;
                 } else {
                     card.classList.remove("pinned");
+                    card.removeAttribute("draggable");
+                    card.removeEventListener("dragstart", handleDragStart);
+                    card.removeEventListener("dragover", handleDragOver);
+                    card.removeEventListener("drop", handleDrop);
+                    card.removeEventListener("dragend", handleDragEnd);
+                    card.removeEventListener("dragenter", handleDragEnter);
+                    card.removeEventListener("dragleave", handleDragLeave);
                     pinButton.classList.remove("pinned");
                     pinButton.setAttribute("aria-label", "Pin dork");
                     pinButton.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -642,6 +763,11 @@
             });
             
             card.appendChild(pinButton);
+
+            // Setup drag handlers if card is pinned
+            if (pinned.includes(dork)) {
+                setupDragHandlers(card);
+            }
 
             return card;
         }
