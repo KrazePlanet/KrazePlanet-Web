@@ -470,6 +470,7 @@
                                 </div>
                             </div>
                         </div>
+                        <button id="openBookmarks" onclick="openAll()" class="filter-btn">Open Bookmark Links</button>
                         <button id="updateDomainButton" class="filter-btn">Update</button>
                     </div>
 
@@ -943,7 +944,16 @@
                 toolsDropdown.classList.remove("show");
             }
         });
-
+        function openAll(){
+          let pinnedSelector = document.querySelectorAll('.dork-card.pinned')
+          if(pinnedSelector.length > 0){
+            pinnedSelector.forEach((eleObj) => {
+              open(eleObj.href)
+            })
+          } else {
+            alert("No URLs in your bookmarks")
+          }
+        }
         fetchDorks();
     </script>
 </body>
