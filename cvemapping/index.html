@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CVE Mapping - GitHub CVE Exploits Directory</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>CVE Mapping</h1>
+            <p class="subtitle">GitHub CVE Exploits Directory (1999-2026)</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="trendingSection" class="trending-section" style="display: none;">
+            <h2 class="trending-title">Top 3 Trending CVEs on Github</h2>
+            <div class="trending-periods">
+                <div class="trending-period">
+                    <h3 class="period-title">Past 24 hrs</h3>
+                    <div id="trending24h" class="trending-list"></div>
+                </div>
+                <div class="trending-period">
+                    <h3 class="period-title">Past 7 days</h3>
+                    <div id="trending7d" class="trending-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search by CVE ID, repository name, or description...">
+            </div>
+            <div class="filters">
+                <select id="yearFilter">
+                    <option value="all">All Years (1999-2026)</option>
+                </select>
+                <select id="sortBy">
+                    <option value="updated">Sort by: Latest Updated</option>
+                    <option value="stars">Sort by: Most Stars</option>
+                    <option value="forks">Sort by: Most Forks</option>
+                    <option value="repos">Sort by: Repository Count</option>
+                    <option value="cve">Sort by: CVE ID</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="loading" class="loading">Loading CVE data...</div>
+        <div id="error" class="error" style="display: none;"></div>
+        <div id="stats" class="stats" style="display: none;"></div>
+        <div id="cveList" class="cve-list"></div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 CVE Mapping - Aggregating GitHub CVE Exploits</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
