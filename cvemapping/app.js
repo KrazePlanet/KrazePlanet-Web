@@ -6,6 +6,7 @@ class CVEMapper {
         this.currentYear = 'all';
         this.sortBy = 'updated';
         this.searchQuery = '';
+        this.cveListEl = null;
         
         this.init();
     }
@@ -21,6 +22,8 @@ class CVEMapper {
         const searchInput = document.getElementById('searchInput');
         const yearFilter = document.getElementById('yearFilter');
         const sortBy = document.getElementById('sortBy');
+        const copyButton = document.getElementById('copyButton');
+        this.cveListEl = document.getElementById('cveList');
 
         searchInput.addEventListener('input', (e) => {
             this.searchQuery = e.target.value.toLowerCase();
@@ -36,6 +39,14 @@ class CVEMapper {
             this.sortBy = e.target.value;
             this.applyFilters();
         });
+
+        if (copyButton) {
+            copyButton.addEventListener('click', () => this.copyVisibleCVEs());
+        }
+
+        if (this.cveListEl) {
+            this.cveListEl.addEventListener('click', (e) => this.handleCveToggle(e));
+        }
     }
 
     populateYearFilter() {
@@ -204,7 +215,7 @@ class CVEMapper {
     }
 
     render() {
-        const container = document.getElementById('cveList');
+        const container = this.cveListEl || document.getElementById('cveList');
         const stats = document.getElementById('stats');
         
         if (this.filteredData.length === 0) {
@@ -219,11 +230,15 @@ class CVEMapper {
     }
 
     renderCVE(cve) {
+        const safeId = this.getSafeId(cve.cve_id);
         const repositories = cve.repositories.map(repo => this.renderRepository(repo)).join('');
         
         return `
-            <div class="cve-card">
+            <div class="cve-card" data-cve-id="${cve.cve_id}">
                 <div class="cve-header">
+                    <button class="cve-toggle" aria-expanded="false" aria-controls="repos-${safeId}" title="Expand repositories">
+                        <span class="chevron"></span>
+                    </button>
                     <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=${cve.cve_id}" 
                        target="_blank" 
                        class="cve-title">
@@ -233,7 +248,7 @@ class CVEMapper {
                         <span>${cve.repositories.length} ${cve.repositories.length === 1 ? 'repository' : 'repositories'}</span>
                     </div>
                 </div>
-                <div class="repositories">
+                <div class="repositories is-collapsed" id="repos-${safeId}">
                     ${repositories}
                 </div>
             </div>
@@ -277,6 +292,80 @@ class CVEMapper {
             month: 'short', 
             day: 'numeric' 
         });
+    }
+
+    getSafeId(value) {
+        return value.replace(/[^a-zA-Z0-9_-]/g, '_');
+    }
+
+    handleCveToggle(event) {
+        const toggleBtn = event.target.closest('.cve-toggle');
+        if (!toggleBtn) return;
+
+        const card = toggleBtn.closest('.cve-card');
+        if (!card) return;
+
+        const repos = card.querySelector('.repositories');
+        if (!repos) return;
+
+        const isOpen = card.classList.toggle('is-open');
+        repos.classList.toggle('is-collapsed', !isOpen);
+        toggleBtn.setAttribute('aria-expanded', String(isOpen));
+    }
+
+    async copyVisibleCVEs() {
+        if (this.filteredData.length === 0) {
+            return;
+        }
+
+        const lines = this.filteredData.map(cve => {
+            const repoCount = cve.repositories.length;
+            const repoText = repoCount === 1 ? 'repository' : 'repositories';
+            return `${cve.cve_id}: ${repoCount} ${repoText}`;
+        });
+
+        const textToCopy = lines.join('\n');
+
+        try {
+            await navigator.clipboard.writeText(textToCopy);
+            this.showCopyFeedback();
+        } catch (err) {
+            console.error('Failed to copy text:', err);
+            // Fallback for older browsers
+            const textArea = document.createElement('textarea');
+            textArea.value = textToCopy;
+            textArea.style.position = 'fixed';
+            textArea.style.opacity = '0';
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                this.showCopyFeedback();
+            } catch (fallbackErr) {
+                console.error('Fallback copy failed:', fallbackErr);
+            }
+            document.body.removeChild(textArea);
+        }
+    }
+
+    showCopyFeedback() {
+        const copyButton = document.getElementById('copyButton');
+        if (!copyButton) return;
+
+        const copyText = copyButton.querySelector('.copy-text');
+        const originalText = copyText ? copyText.textContent : 'Copy';
+        
+        if (copyText) {
+            copyText.textContent = 'Copied!';
+            copyButton.classList.add('copied');
+        }
+
+        setTimeout(() => {
+            if (copyText) {
+                copyText.textContent = originalText;
+            }
+            copyButton.classList.remove('copied');
+        }, 2000);
     }
 
     escapeHtml(text) {
