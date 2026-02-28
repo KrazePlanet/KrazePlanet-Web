@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bhagirath Saxena | Portfolio</title>
+  <link rel="icon" type="image/png" href="assets/favicon.ico" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <div class="scroll-progress" aria-hidden="true"><span id="scrollBar"></span></div>
+
+  <header class="nav">
+    <div class="container nav__inner">
+      <div class="brand">Bhagirath Saxena</div>
+      <nav class="nav__links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#certs">Certifications</a>
+        <a href="#projects">Projects</a>
+        <a href="Bhagirath_Resume.html" rel="noreferrer" class="nav__link--resume nav__link--resume-desktop"
+          style="display: inline-flex; align-items: center; gap: 6px;">
+          Resume
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+        </a>
+      </nav>
+      <div class="nav__actions">
+        <a href="Bhagirath_Resume.html" rel="noreferrer" class="nav__link--resume nav__link--resume-mobile"
+          style="display: inline-flex; align-items: center; gap: 6px;">
+          Resume
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+        </a>
+        <button class="btn btn--ghost" id="themeToggle" aria-label="Toggle theme">☾</button>
+        <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+          <span class="nav__toggle-line"></span>
+          <span class="nav__toggle-line"></span>
+          <span class="nav__toggle-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <nav class="nav__mobile" id="navMobile" aria-hidden="true">
+    <div class="nav__mobile-inner">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="#certs">Certifications</a>
+      <a href="#projects">Projects</a>
+      <a href="Bhagirath_Resume.html" rel="noreferrer" class="nav__link--resume"
+        style="display: inline-flex; align-items: center; gap: 8px;">
+        Resume
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+      </a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero reveal" id="about">
+      <div class="hero__backdrop" aria-hidden="true">
+        <div class="orb orb--purple"></div>
+        <div class="orb orb--blue"></div>
+        <div class="gridlines"></div>
+      </div>
+      <div class="container hero__grid">
+        <div class="hero__text">
+          <p class="pill">Security Researcher · Open-Source Tool Developer</p>
+          <h1 id="heroTitle" class="typewriter" data-prefix="Hey, I'm " data-name="Bhagirath Saxena."></h1>
+          <p class="lede">Security Researcher specializing in web application penetration testing and vulnerability
+            discovery. Creator of 149+ open-source security tools and founder of the KrazePlanet offensive security
+            platform. Acknowledged by NASA, Dell, PayPal, and others for responsible vulnerability disclosures.</p>
+          <div class="hero__badges">
+            <span class="badge">150+ Valid Reports</span>
+            <span class="badge">149+ Open-Source Tools</span>
+            <span class="badge">Founder @ KrazePlanet</span>
+          </div>
+          <div class="hero__actions">
+            <a class="btn btn--linkedin" href="https://in.linkedin.com/in/rix4uni" target="_blank"
+              rel="noreferrer">LinkedIn</a>
+            <a class="btn btn--twitter" href="https://x.com/rix4uni" target="_blank" rel="noreferrer">Twitter</a>
+            <a class="btn btn--youtube" href="https://www.youtube.com/@KrazePlanetSecurity" target="_blank"
+              rel="noreferrer">YouTube</a>
+          </div>
+          <div class="meta meta--contact">
+            <a href="mailto:rix4uni@gmail.com" class="meta__link">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" class="meta__icon">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+              </svg>
+              rix4uni@gmail.com
+            </a>
+            <a href="tel:+918527310670" class="meta__link meta__link--muted">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" class="meta__icon">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-2.896-1.596-5.539-4.239-7.135-7.135l1.293-.97c.362-.271.527-.733.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+              </svg>
+              +91 8527310670
+            </a>
+            <a href="https://krazeplanet.com" target="_blank" rel="noreferrer" class="meta__link meta__link--muted">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" class="meta__icon">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+              </svg>
+              krazeplanet.com
+            </a>
+          </div>
+        </div>
+        <div class="hero__card hero__card--profiles">
+          <img class="hero__avatar hero__avatar--image" src="assets/profile.png" alt="Hacker profile illustration" />
+          <div class="profile-links">
+            <a class="btn btn--outline full" href="https://hackerone.com/rix4uni?type=user" target="_blank"
+              rel="noreferrer">HackerOne Profile</a>
+            <a class="btn btn--outline full" href="https://bugcrowd.com/h/rix4uni" target="_blank"
+              rel="noreferrer">Bugcrowd Profile</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="experience">
+      <div class="container">
+        <div class="section__header">
+          <h2>Experience</h2>
+          <p>Offensive security, vulnerability research, and secure SDLC collaboration.</p>
+        </div>
+        <div class="timeline">
+          <article class="card timeline__item">
+            <div class="card__top">
+              <div>
+                <h3>Founder & Security Researcher</h3>
+                <p class="sub">KrazePlanet</p>
+              </div>
+              <span class="tag">2025 – Present</span>
+            </div>
+            <ul>
+              <li>Designed, built, and deployed a fullstack offensive security platform with 8+ web services.</li>
+              <li>Developed 91+ interactive web security labs and a CTF platform covering XSS, SQLi, LFI, and RCE.</li>
+              <li>Built a CVE exploit aggregation platform mapping 1999–2026.</li>
+              <li>Created a bug bounty programs aggregator and multi-engine Google Dorking tool.</li>
+              <li>Maintained additional infrastructure including a VulneraXSS Store, Piracy Scanner, and Subdominator
+                tool.</li>
+            </ul>
+
+            <div class="subdomain-grid">
+              <!-- 1. store -->
+              <a href="https://store.krazeplanet.com/VulneraXSS" target="_blank" rel="noreferrer"
+                class="subdomain-card">
+                <span class="subdomain-name">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                  </svg>
+                  store.krazeplanet.com
+                </span>
+                <span class="subdomain-desc">VulneraXSS Store and premium tool distribution.</span>
+              </a>
+
+              <!-- 2. labs -->
+              <a href="https://labs.krazeplanet.com" target="_blank" rel="noreferrer" class="subdomain-card">
+                <span class="subdomain-name">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  labs.krazeplanet.com
+                </span>
+                <span class="subdomain-desc">Interactive web security and vulnerability labs.</span>
+              </a>
+
+              <!-- 3. programs -->
+              <a href="https://programs.krazeplanet.com" target="_blank" rel="noreferrer" class="subdomain-card">
+                <span class="subdomain-name">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                  </svg>
+                  programs.krazeplanet.com
+                </span>
+                <span class="subdomain-desc">Aggregated bug bounty programs listing.</span>
+              </a>
+
+              <!-- 4. dorks -->
+              <a href="https://dorks.krazeplanet.com" target="_blank" rel="noreferrer" class="subdomain-card">
+                <span class="subdomain-name">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                  dorks.krazeplanet.com
+                </span>
+                <span class="subdomain-desc">Multi-engine Google Dorking recon tool.</span>
+              </a>
+
+              <!-- 5. cvemapping -->
+              <a href="https://cvemapping.krazeplanet.com" target="_blank" rel="noreferrer" class="subdomain-card">
+                <span class="subdomain-name">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                  </svg>
+                  cvemapping.krazeplanet.com
+                </span>
+                <span class="subdomain-desc">Database of CVE exploit PoCs (1999-2026).</span>
+              </a>
+
+              <!-- 6. stoppiracy -->
+              <a href="https://stoppiracy.krazeplanet.com" target="_blank" rel="noreferrer" class="subdomain-card">
+                <span class="subdomain-name">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  </svg>
+                  stoppiracy.krazeplanet.com
+                </span>
+                <span class="subdomain-desc">Automated keyword reconnaissance platform.</span>
+              </a>
+
+              <!-- 7. subdominator -->
+              <a href="https://subdominator.krazeplanet.com" target="_blank" rel="noreferrer" class="subdomain-card">
+                <span class="subdomain-name">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                  subdominator.krazeplanet.com
+                </span>
+                <span class="subdomain-desc">Robust subdomain enumeration and monitoring.</span>
+              </a>
+
+              <!-- 8. tools -->
+              <a href="https://tools.krazeplanet.com" target="_blank" rel="noreferrer" class="subdomain-card">
+                <span class="subdomain-name">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                    <polyline points="2 17 12 22 22 17"></polyline>
+                    <polyline points="2 12 12 17 22 12"></polyline>
+                  </svg>
+                  tools.krazeplanet.com
+                </span>
+                <span class="subdomain-desc">Utility hub with 8+ custom web applications.</span>
+              </a>
+
+              <!-- 9. ctf -->
+              <a href="https://ctf.krazeplanet.com" target="_blank" rel="noreferrer" class="subdomain-card">
+                <span class="subdomain-name">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="14 2 18 6 7 17 3 17 3 13 14 2"></polygon>
+                    <line x1="3" y1="22" x2="21" y2="22"></line>
+                  </svg>
+                  ctf.krazeplanet.com
+                </span>
+                <span class="subdomain-desc">Offensive security CTF challenges and training.</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="card timeline__item">
+            <div class="card__top">
+              <div>
+                <h3>Bug Bounty Hunter</h3>
+                <p class="sub">HackerOne & Bugcrowd</p>
+              </div>
+              <span class="tag">Aug 2022 – Present</span>
+            </div>
+            <ul>
+              <li>Submitted 150+ valid reports across private and public programs.</li>
+              <li>Acknowledged by NASA, Shopify, Dell, PayPal, US Government, and Arrow Electronics.</li>
+              <li>Discovered and reported critical issues such as IDOR, RCE, Blind/Reflected XSS, CSRF, and Broken Auth.
+              </li>
+              <li>Leveraged industry tools (Burp Suite, Nuclei) and custom automation (GarudRecon).</li>
+            </ul>
+          </article>
+
+          <article class="card timeline__item">
+            <div class="card__top">
+              <div>
+                <h3>CTF Player</h3>
+                <p class="sub">TryHackMe & Hack The Box</p>
+              </div>
+              <span class="tag">Nov 2021 – Present</span>
+            </div>
+            <ul>
+              <li>Completed practical learning modules including Linux/Windows Fundamentals, Networking, DVWA.</li>
+              <li>Regularly solve machines focusing on web exploitation, privilege escalation, and network security.
+              </li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="education">
+      <div class="container">
+        <div class="section__header">
+          <h2>Education</h2>
+          <p>Information Security and Computer Science foundations.</p>
+        </div>
+        <div class="grid education__grid">
+          <article class="card">
+            <div class="card__top">
+              <h3>Intermediate Education (12th)</h3>
+              <span class="tag">2019 – 2020</span>
+            </div>
+            <p class="sub">National Institute of Open Schooling (NIOS)</p>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>Intermediate Education (10th)</h3>
+              <span class="tag">2016 – 2017</span>
+            </div>
+            <p class="sub">Gyan Deep Public School</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="skills">
+      <div class="container">
+        <div class="section__header">
+          <h2>Skills & Tooling</h2>
+          <p>Focused on offensive security, recon, and automation.</p>
+        </div>
+        <div class="grid skills__grid">
+          <article class="card">
+            <h3>Languages</h3>
+            <div class="chips">
+              <span class="chip">Go (Golang)</span>
+              <span class="chip">Python</span>
+              <span class="chip">Bash/Shell</span>
+              <span class="chip">JavaScript</span>
+              <span class="chip">PHP</span>
+            </div>
+          </article>
+          <article class="card">
+            <h3>Security Tools</h3>
+            <div class="chips">
+              <span class="chip">Burp Suite</span>
+              <span class="chip">Nmap</span>
+              <span class="chip">Metasploit</span>
+              <span class="chip">SQLMap</span>
+              <span class="chip">Nuclei</span>
+              <span class="chip">Subfinder</span>
+              <span class="chip">Shodan</span>
+              <span class="chip">Amass</span>
+              <span class="chip">httpx</span>
+              <span class="chip">ffuf</span>
+            </div>
+          </article>
+          <article class="card">
+            <h3>Methodologies</h3>
+            <div class="chips">
+              <span class="chip">OWASP Top 10</span>
+              <span class="chip">VAPT</span>
+              <span class="chip">Web App Pen Testing</span>
+              <span class="chip">Network Pen Testing</span>
+            </div>
+          </article>
+          <article class="card">
+            <h3>Infrastructure</h3>
+            <div class="chips">
+              <span class="chip">Linux</span>
+              <span class="chip">Windows</span>
+              <span class="chip">AWS</span>
+              <span class="chip">DigitalOcean</span>
+              <span class="chip">Google Cloud</span>
+              <span class="chip">Docker</span>
+              <span class="chip">GitHub Actions</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="certs">
+      <div class="container">
+        <div class="section__header">
+          <h2>Certifications</h2>
+          <p>Professional certifications from Coursera, Cisco, and IBM.</p>
+        </div>
+        <div class="grid education__grid">
+          <article class="card">
+            <div class="card__top">
+              <h3>Programming for Everybody (Getting Started with Python)</h3>
+              <span class="tag">Nov 2021</span>
+            </div>
+            <p class="sub"><a href="https://www.coursera.org/account/accomplishments/certificate/EVVK9HC6PARF"
+                target="_blank" rel="noreferrer">University of Michigan</a></p>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>Introduction to Cybersecurity</h3>
+              <span class="tag">Aug 2021</span>
+            </div>
+            <p class="sub"><a href="https://1drv.ms/b/s!AhFPjceg1CDWhFu3gBTALFAyoLX2" target="_blank"
+                rel="noreferrer">Cisco Networking Academy</a></p>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>Data Analysis Using Python</h3>
+              <span class="tag">Nov 2021</span>
+            </div>
+            <p class="sub"><a href="https://www.credly.com/badges/06e05a7c-67d2-4816-98a8-30d64ad78b24" target="_blank"
+                rel="noreferrer">IBM</a></p>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>Introduction to Packet Tracer</h3>
+              <span class="tag">Nov 2021</span>
+            </div>
+            <p class="sub"><a href="https://www.credly.com/badges/4ba05ede-586d-480c-bed4-91cdddb8bc17" target="_blank"
+                rel="noreferrer">Cisco</a></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="projects">
+      <div class="container">
+        <div class="section__header">
+          <h2>Open-Source Security Tools</h2>
+          <p>A selection of my public security tools (149+ mostly in Go, Python, and Shell).</p>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <div class="card__top">
+              <h3>GarudRecon</h3>
+              <span class="tag">Shell</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/GarudRecon" target="_blank"
+                rel="noreferrer">github.com/rix4uni/GarudRecon</a></p>
+            <ul>
+              <li>Automates domain reconnaissance by integrating top open-source security tools in a single workflow.
+              </li>
+              <li>Identifies assets and detects critical vulnerabilities including XSS, SQLi, LFI, and RCE.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>VulneraXSS</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/VulneraXSS" target="_blank"
+                rel="noreferrer">github.com/rix4uni/VulneraXSS</a></p>
+            <ul>
+              <li>High-speed reflected XSS scanner powered by a database of 37,000+ specialized payloads.</li>
+              <li>Features context-aware detection logic to eliminate false positives and ensure accurate reporting.
+              </li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>gitxpose</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/gitxpose" target="_blank"
+                rel="noreferrer">github.com/rix4uni/gitxpose</a></p>
+            <ul>
+              <li>Discovers hidden GitHub repositories and hunts for leaked credentials and sensitive secrets.</li>
+              <li>Streamlines the analysis of public code for organizational exposure and security risks.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>stoppiracy</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/stoppiracy" target="_blank"
+                rel="noreferrer">github.com/rix4uni/stoppiracy</a></p>
+            <ul>
+              <li>Unified security tool combining `nsfwdetector`, `favinfo`, and `emailextractor` capabilities.</li>
+              <li>Processes domains with a single HTTP request to collect keywords, favicons, and emails concurrently.
+              </li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>originiphunter</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/originiphunter" target="_blank"
+                rel="noreferrer">github.com/rix4uni/originiphunter</a></p>
+            <ul>
+              <li>Finds origin IPs by querying Favicon hashes, SSL certificates, and Shodan queries.</li>
+              <li>Automatically validates results using a built-in HTTP client to ensure accuracy.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>subdog</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/subdog" target="_blank"
+                rel="noreferrer">github.com/rix4uni/subdog</a></p>
+            <ul>
+              <li>Aggregates subdomain data from 16+ different sources in parallel for maximum coverage.</li>
+              <li>Features automatic deduplication and a clean summary table showing findings per source.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>uforall</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/uforall" target="_blank"
+                rel="noreferrer">github.com/rix4uni/uforall</a></p>
+            <ul>
+              <li>Rapidly crawls historical and active URLs from AlienVault, Wayback Machine, and urlscan.io.</li>
+              <li>Essential for mapping an organization's web footprint and discovering forgotten endpoints.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>cvemapping</h3>
+              <span class="tag">Python</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/cvemapping" target="_blank"
+                rel="noreferrer">github.com/rix4uni/cvemapping</a></p>
+            <ul>
+              <li>Curates a chronological database of publicly available CVE exploits (1999–Present).</li>
+              <li>Provides an efficient reference for security researchers and vulnerability analysis.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>haktrailsfree</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/haktrailsfree" target="_blank"
+                rel="noreferrer">github.com/rix4uni/haktrailsfree</a></p>
+            <ul>
+              <li>Fetches up to 10,000 subdomains from SecurityTrails, bypassing the standard 2,000 free limit.</li>
+              <li>Utilizes session-based extraction to provide data otherwise restricted on free accounts.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>emailextractor</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/emailextractor" target="_blank"
+                rel="noreferrer">github.com/rix4uni/emailextractor</a></p>
+            <ul>
+              <li>Concurrent Go scraper that crawls sites and internal links to discover contact emails.</li>
+              <li>Uses ChromeDP to effectively extract data from JavaScript-heavy and dynamic pages.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>tldscan</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/tldscan" target="_blank"
+                rel="noreferrer">github.com/rix4uni/tldscan</a></p>
+            <ul>
+              <li>Discovers active digital assets by scanning a base domain name across a vast array of TLDs.</li>
+              <li>Helps identify related infrastructure and shadow IT during initial reconnaissance.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>subhijack</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/subhijack" target="_blank"
+                rel="noreferrer">github.com/rix4uni/subhijack</a></p>
+            <ul>
+              <li>Detects subdomain takeover vulnerabilities by matching HTTP responses against service fingerprints.
+              </li>
+              <li>Offers cross-platform concurrent processing and supports colorful terminal or JSON outputs.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>gosqli</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/gosqli" target="_blank"
+                rel="noreferrer">github.com/rix4uni/gosqli</a></p>
+            <ul>
+              <li>Specialized scanner for high-precision detection of time-based blind SQL injection.</li>
+              <li>Processes single targets or bulk lists and supports custom payloads via raw HTTP files.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>socialfinder</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/socialfinder" target="_blank"
+                rel="noreferrer">github.com/rix4uni/socialfinder</a></p>
+            <ul>
+              <li>Enumerates social media accounts by username across dozens of platforms in parallel.</li>
+              <li>Features real-time results streaming and a clean, color-coded terminal interface.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>vulntechfinder</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/vulntechfinder" target="_blank"
+                rel="noreferrer">github.com/rix4uni/vulntechfinder</a></p>
+            <ul>
+              <li>Detects technology stacks and automatically executes targeted Nuclei templates.</li>
+              <li>Utilizes smart filtering and parallel processing to optimize scan efficiency.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>ipfinder</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/ipfinder" target="_blank"
+                rel="noreferrer">github.com/rix4uni/ipfinder</a></p>
+            <ul>
+              <li>CLI utility for extracting IP addresses and metadata from Shodan search results at scale.</li>
+              <li>Supports advanced query syntax for streamlined analysis and integration.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>waybackurlsx</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/waybackurlsx" target="_blank"
+                rel="noreferrer">github.com/rix4uni/waybackurlsx</a></p>
+            <ul>
+              <li>Extracts archived URLs from the Wayback Machine with built-in sensitivity filtering.</li>
+              <li>Implements adaptive rate limiting and exponential backoff for reliable API handling.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>certinfo</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/certinfo" target="_blank"
+                rel="noreferrer">github.com/rix4uni/certinfo</a></p>
+            <ul>
+              <li>SSL/TLS certificate scraper that extracts domains from Subject Alternative Names (SANs).</li>
+              <li>Performs multi-threaded recursive enumeration to uncover hidden infrastructure.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>paramfinder</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/paramfinder" target="_blank"
+                rel="noreferrer">github.com/rix4uni/paramfinder</a></p>
+            <ul>
+              <li>Parses HTML documents to extract parameters from input and textarea elements.</li>
+              <li>Crucial for mapping attack surfaces and identifying hidden entry points.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>portmap</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/portmap" target="_blank"
+                rel="noreferrer">github.com/rix4uni/portmap</a></p>
+            <ul>
+              <li>Fast port scanner using Shodan's InternetDB and host APIs for zero-interaction discovery.</li>
+              <li>Minimizes digital noise and bypasses many IDS/WAF systems during reconnaissance.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>emailfinder</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/emailfinder" target="_blank"
+                rel="noreferrer">github.com/rix4uni/emailfinder</a></p>
+            <ul>
+              <li>Scrapes Addresses from major search engines (Google, Bing, Yandex) and GitHub.</li>
+              <li>Streamlines contact identification and organizational mapping during OSINT.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>cspfinder</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/cspfinder" target="_blank"
+                rel="noreferrer">github.com/rix4uni/cspfinder</a></p>
+            <ul>
+              <li>Discovers new subdomains and assets by parsing Content Security Policy (CSP) headers.</li>
+              <li>Identifies 'hidden' infrastructure explicitly trusted by the application's configuration.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>ftpx</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/ftpx" target="_blank"
+                rel="noreferrer">github.com/rix4uni/ftpx</a></p>
+            <ul>
+              <li>Fast FTP brute-forcer designed for testing credential strength at scale.</li>
+              <li>Supports flexible inputs including individual wordlists or user:pass credential files.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>linkinspector</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/linkinspector" target="_blank"
+                rel="noreferrer">github.com/rix4uni/linkinspector</a></p>
+            <ul>
+              <li>Rapid URL validator that extracts HTTP status, content-type, and length metadata.</li>
+              <li>Highly customizable filtering optimized for processing massive URL lists via pipes.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>sqlifinder</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/sqlifinder" target="_blank"
+                rel="noreferrer">github.com/rix4uni/sqlifinder</a></p>
+            <ul>
+              <li>Automates SQL injection testing across 20+ database error patterns concurrently.</li>
+              <li>Systematically replaces parameter values with specialized payloads for robust detection.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>org2asn</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/org2asn" target="_blank"
+                rel="noreferrer">github.com/rix4uni/org2asn</a></p>
+            <ul>
+              <li>Maps organizational infrastructure by extracting ASN and IP ranges from bgp.he.net.</li>
+              <li>Simplifies the definition of network boundaries for large-scale security assessments.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>querygen</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/querygen" target="_blank"
+                rel="noreferrer">github.com/rix4uni/querygen</a></p>
+            <ul>
+              <li>Converts Nuclei templates into queries for Shodan, Censys, FOFA, and other search engines.</li>
+              <li>Facilitates the discovery of vulnerable assets by bridging exploit templates with scanners.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>techfinder</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/techfinder" target="_blank"
+                rel="noreferrer">github.com/rix4uni/techfinder</a></p>
+            <ul>
+              <li>High-performance tech detection that identifies hundreds of web technologies and frameworks.</li>
+              <li>Supports multi-threaded scanning and real-time notifications to Discord.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>whoxysubs</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/whoxysubs" target="_blank"
+                rel="noreferrer">github.com/rix4uni/whoxysubs</a></p>
+            <ul>
+              <li>Retrieves subdomain information from the Whoxy database without requiring an API key.</li>
+              <li>Provides a cost-effective way to gather additional targets for reconnaissance.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>goswagger</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/goswagger" target="_blank"
+                rel="noreferrer">github.com/rix4uni/goswagger</a></p>
+            <ul>
+              <li>Identifies exposed Swagger UI endpoints by testing common paths across web servers.</li>
+              <li>Maintains updated endpoint wordlists to uncover sensitive API documentation.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>jsmanager</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/jsmanager" target="_blank"
+                rel="noreferrer">github.com/rix4uni/jsmanager</a></p>
+            <ul>
+              <li>Powerful aggregator for discovering and extracting JavaScript files while performing HTTP validation.
+              </li>
+              <li>Features high-concurrency processing, deduplication, and intelligent file-type filtering.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>commoncrawlscans</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/commoncrawlscans" target="_blank"
+                rel="noreferrer">github.com/rix4uni/commoncrawlscans</a></p>
+            <ul>
+              <li>Scans massive CommonCrawl index files to extract and filter URLs by file extension.</li>
+              <li>Supports resumeable scans and automatic categorization for 37+ different file types.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>dlevel</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/dlevel" target="_blank"
+                rel="noreferrer">github.com/rix4uni/dlevel</a></p>
+            <ul>
+              <li>Categorizes subdomains based on their structural depth/level (e.g., 2nd-level vs 3rd-level).</li>
+              <li>Helps organize complex recon data to focus on specific tiers of a target's infrastructure.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>dotgitfinder</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/dotgitfinder" target="_blank"
+                rel="noreferrer">github.com/rix4uni/dotgitfinder</a></p>
+            <ul>
+              <li>Detects exposed .git/config files to prevent leaks of repository history and secrets.</li>
+              <li>Features concurrent scanning with protocol fallback and clear color-coded terminal results.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>ip2org</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/ip2org" target="_blank"
+                rel="noreferrer">github.com/rix4uni/ip2org</a></p>
+            <ul>
+              <li>Quickly identifies the organization name associated with any given IP address.</li>
+              <li>Essential for rapid attribution and ownership verification during large-scale research.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>jscrawler</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/jscrawler" target="_blank"
+                rel="noreferrer">github.com/rix4uni/jscrawler</a></p>
+            <ul>
+              <li>High-concurrency tool for rapidly extracting JavaScript file locations from subdomain lists.</li>
+              <li>Streamlines discovery for sensitive info gathering and vulnerability research.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>redirectfinder</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/redirectfinder" target="_blank"
+                rel="noreferrer">github.com/rix4uni/redirectfinder</a></p>
+            <ul>
+              <li>Efficient scanner that automates testing for open redirects using specialized payloads.</li>
+              <li>Features real-time color-coded results and parallel execution for scanning large target lists.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>tldinfo</h3>
+              <span class="tag">Python</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/tldinfo" target="_blank"
+                rel="noreferrer">github.com/rix4uni/tldinfo</a></p>
+            <ul>
+              <li>URL parser that accurately separates subdomains and domains using the Public Suffix List.</li>
+              <li>Optimized for speed and memory efficiency when processing massive datasets.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>dirless</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/dirless" target="_blank"
+                rel="noreferrer">github.com/rix4uni/dirless</a></p>
+            <ul>
+              <li>Matches and categorizes URLs using configurable regex patterns in a JSON configuration.</li>
+              <li>Provides a powerful way to filter recon results for high-interest endpoints or patterns.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>favinfo</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/favinfo" target="_blank"
+                rel="noreferrer">github.com/rix4uni/favinfo</a></p>
+            <ul>
+              <li>Scrapes favicons from HTML and generates Shodan/Censys search queries from hashes.</li>
+              <li>Identifies underlying platforms and technology fingerprints through favicon OSINT.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>lfifinder</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/lfifinder" target="_blank"
+                rel="noreferrer">github.com/rix4uni/lfifinder</a></p>
+            <ul>
+              <li>Rapid scanner for identifying Local File Inclusion (LFI) vulnerabilities with curated payloads.</li>
+              <li>Automatically manages wordlists and features intelligent filtering for high-risk parameters.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>SSHBruteForce</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/SSHBruteForce" target="_blank"
+                rel="noreferrer">github.com/rix4uni/SSHBruteForce</a></p>
+            <ul>
+              <li>Simplified and high-speed SSH credential tester for identifying weak server logins.</li>
+              <li>Includes companion scripts for generating targeted passwords based on naming conventions.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>timelimitx</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/timelimitx" target="_blank"
+                rel="noreferrer">github.com/rix4uni/timelimitx</a></p>
+            <ul>
+              <li>Robust alternative to the standard 'timeout' command, tuned for long-running security scans.</li>
+              <li>Ensures automated processes do not hang indefinitely by enforcing strict execution limits.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>waybackzips</h3>
+              <span class="tag">Shell</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/waybackzips" target="_blank"
+                rel="noreferrer">github.com/rix4uni/waybackzips</a></p>
+            <ul>
+              <li>Uncovers archived backup files and sensitive data dumps indexed by the Wayback Machine.</li>
+              <li>Leverages httpx to verify current live availability of discovered archives.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>builtwithsubs</h3>
+              <span class="tag">Python</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/builtwithsubs" target="_blank"
+                rel="noreferrer">github.com/rix4uni/builtwithsubs</a></p>
+            <ul>
+              <li>Identifies technology relationships and subdomains using the BuiltWith database.</li>
+              <li>Operates efficiently without the need for API keys or session cookies.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>robotxt</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/robotxt" target="_blank"
+                rel="noreferrer">github.com/rix4uni/robotxt</a></p>
+            <ul>
+              <li>Extracts and organizes 'Allow' and 'Disallow' directives from robots.txt files.</li>
+              <li>Identifies hidden directories and sensitive paths intentionally excluded from search engines.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>wordgen</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/wordgen" target="_blank"
+                rel="noreferrer">github.com/rix4uni/wordgen</a></p>
+            <ul>
+              <li>Generates targeted wordlists based on common backup and archive naming conventions.</li>
+              <li>Designed to simplify the discovery of exposed sensitive files during web fuzzing.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>wppdm</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/wppdm" target="_blank"
+                rel="noreferrer">github.com/rix4uni/wppdm</a></p>
+            <ul>
+              <li>Management tool for searching, scraping, and downloading WordPress plugins at scale.</li>
+              <li>Enables bulk code reviews and vulnerability research across thousands of plugins.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>arinrange</h3>
+              <span class="tag">Python</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/arinrange" target="_blank"
+                rel="noreferrer">github.com/rix4uni/arinrange</a></p>
+            <ul>
+              <li>Scrapes network range information directly from whois.arin.net for given organizations.</li>
+              <li>Facilitates precise identification of organizational IP blocks during reconnaissance.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>pathcrawler</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/pathcrawler" target="_blank"
+                rel="noreferrer">github.com/rix4uni/pathcrawler</a></p>
+            <ul>
+              <li>Rapidly extracts web paths and endpoints from HTML content to map application structures.</li>
+              <li>Provides quick overviews of accessible web resources and entry points.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>subdomainfuzz</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/subdomainfuzz" target="_blank"
+                rel="noreferrer">github.com/rix4uni/subdomainfuzz</a></p>
+            <ul>
+              <li>Generates mutated domain lists by inserting custom payloads into URL subdomains.</li>
+              <li>Streamlines preparation for advanced fuzzing to discover hidden development environments.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>pdfhunter</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/pdfhunter" target="_blank"
+                rel="noreferrer">github.com/rix4uni/pdfhunter</a></p>
+            <ul>
+              <li>Automated scanner that discovers and downloads PDF documents from target domains.</li>
+              <li>Features keyword matching to identify and flag PDFs containing sensitive information.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>sftpsender</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/sftpsender" target="_blank"
+                rel="noreferrer">github.com/rix4uni/sftpsender</a></p>
+            <ul>
+              <li>Transfer files/directories over SFTP using optimized concurrent operations.</li>
+              <li>Supports secure credential management through YAML for automated deployments.</li>
+            </ul>
+          </article>
+        </div>
+        <div class="projects__footer">
+          <a href="https://github.com/rix4uni?tab=repositories" target="_blank" rel="noreferrer" class="btn--see-all">
+            See all projects on GitHub
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+              </path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contact">
+    <div class="footer__bottom">
+      <span>© 2026 KrazePlanet. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <button id="backToTop" class="back-to-top" aria-label="Back to top">
+    <svg class="progress-ring" width="48" height="48">
+      <circle class="progress-ring__circle" stroke="var(--accent)" stroke-width="3" fill="transparent" r="21" cx="24"
+        cy="24" />
+    </svg>
+    <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

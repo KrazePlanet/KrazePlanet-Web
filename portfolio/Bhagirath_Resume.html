@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhagirath_Resume</title>
+    <link rel="icon" type="image/png" href="assets/favicon.ico" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+            color: #222;
+            background: #e8e8e8;
+            font-size: 10pt;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 20px auto;
+            background: #fff;
+            padding: 30px 36px;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        @media print {
+            body {
+                background: #fff;
+                margin: 0;
+                font-size: 9.5pt;
+            }
+
+            .page {
+                margin: 0;
+                padding: 16px 20px;
+                box-shadow: none;
+                width: 100%;
+                min-height: auto;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            a {
+                color: #222 !important;
+                text-decoration: none !important;
+            }
+        }
+
+        @page {
+            size: A4;
+            margin: 8mm;
+        }
+
+        /* ── HEADER ── */
+        .header {
+            padding-bottom: 14px;
+            border-bottom: 2px solid #2c3e50;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: 22pt;
+            font-weight: 700;
+            color: #2c3e50;
+            letter-spacing: 1px;
+            margin-bottom: 3px;
+        }
+
+        .header .subtitle {
+            font-size: 10.5pt;
+            color: #555;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .contact-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px 18px;
+            font-size: 9pt;
+            color: #444;
+        }
+
+        .contact-bar a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-bar .sep {
+            color: #bbb;
+        }
+
+        /* ── SUMMARY ── */
+        .summary {
+            margin-bottom: 16px;
+            font-size: 9.5pt;
+            color: #333;
+            line-height: 1.6;
+            border-left: 3px solid #2c3e50;
+            padding-left: 12px;
+        }
+
+        /* ── SECTIONS ── */
+        .section {
+            margin-top: 22px;
+            margin-bottom: 14px;
+        }
+
+        .section-title {
+            font-size: 11.5pt;
+            font-weight: 700;
+            color: #2c3e50;
+            text-transform: uppercase;
+            letter-spacing: 1.8px;
+            border-bottom: 1.5px solid #ddd;
+            padding-bottom: 4px;
+            margin-bottom: 12px;
+        }
+
+        /* ── ENTRIES ── */
+        .entry {
+            margin-bottom: 10px;
+        }
+
+        .entry-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .entry-title {
+            font-size: 10pt;
+            font-weight: 600;
+            color: #222;
+        }
+
+        .entry-org {
+            font-weight: 400;
+            color: #555;
+        }
+
+        .entry-date {
+            font-size: 8.5pt;
+            color: #888;
+            white-space: nowrap;
+        }
+
+        .entry ul {
+            margin: 3px 0 0 16px;
+        }
+
+        .entry ul li {
+            font-size: 9.2pt;
+            color: #333;
+            margin-bottom: 2.5px;
+            list-style-type: "–  ";
+        }
+
+        .entry ul li strong {
+            color: #222;
+            font-weight: 600;
+        }
+
+        /* ── PROJECTS ── */
+        .proj-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 24px;
+        }
+
+        .proj-item {
+            margin-bottom: 4px;
+        }
+
+        .proj-name {
+            font-weight: 600;
+            font-size: 9.5pt;
+            color: #222;
+        }
+
+        .proj-lang {
+            font-size: 8pt;
+            color: #888;
+            font-weight: 500;
+        }
+
+        .proj-desc {
+            font-size: 8.8pt;
+            color: #555;
+            margin-top: 1px;
+        }
+
+        /* ── SKILLS ── */
+        .skills-table {
+            width: 100%;
+        }
+
+        .skills-table td {
+            font-size: 9.2pt;
+            padding: 2px 0;
+            vertical-align: top;
+        }
+
+        .skills-table .label {
+            font-weight: 600;
+            color: #2c3e50;
+            width: 110px;
+            padding-right: 10px;
+        }
+
+        .skills-table .value {
+            color: #333;
+        }
+
+        /* ── TWO-COL LAYOUT ── */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 30px;
+        }
+
+        .sub-section-title {
+            font-size: 9pt;
+            font-weight: 700;
+            color: #2c3e50;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .edu-entry {
+            margin-bottom: 6px;
+        }
+
+        .edu-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .edu-degree {
+            font-weight: 600;
+            font-size: 9.5pt;
+            color: #222;
+        }
+
+        .edu-school {
+            font-size: 8.8pt;
+            color: #666;
+        }
+
+        .edu-year {
+            font-size: 8.5pt;
+            color: #888;
+            white-space: nowrap;
+        }
+
+        /* ── RECOGNITION LIST ── */
+        .recog-list {
+            columns: 2;
+            column-gap: 24px;
+        }
+
+        .recog-list li {
+            font-size: 9.2pt;
+            color: #333;
+            margin-bottom: 2px;
+            list-style: none;
+            padding-left: 12px;
+            position: relative;
+            break-inside: avoid;
+        }
+
+        .recog-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #2c3e50;
+            font-weight: 700;
+        }
+
+        /* ── PRINT BTN ── */
+        .print-btn {
+            display: block;
+            width: 210mm;
+            margin: 12px auto 30px;
+            padding: 14px;
+            background: #2c3e50;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 13pt;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .print-btn:hover {
+            background: #34495e;
+        }
+
+        .print-btn small {
+            font-weight: 400;
+            font-size: 9.5pt;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="page">
+
+        <!-- HEADER -->
+        <div class="header">
+            <h1>Bhagirath</h1>
+            <div class="subtitle">Security Researcher &nbsp;&bull;&nbsp;
+                Open-Source Tool Developer</div>
+            <div class="contact-bar">
+                <span><a href="mailto:rix4uni@gmail.com">rix4uni@gmail.com</a></span>
+                <span>+918527310670</span>
+                <span><a href="https://linkedin.com/in/rix4uni">linkedin.com/in/rix4uni</a></span>
+                <span><a href="https://github.com/rix4uni">github.com/rix4uni</a></span>
+                <span><a href="https://krazeplanet.com">krazeplanet.com</a></span>
+            </div>
+        </div>
+
+        <!-- SUMMARY -->
+        <div class="summary">
+            Security Researcher specializing in web application penetration testing and vulnerability discovery. Creator
+            of 149+ open-source security tools and founder of the KrazePlanet offensive security platform. Acknowledged
+            by NASA, Dell, PayPal, and others for responsible vulnerability disclosures.
+        </div>
+
+        <!-- EXPERIENCE -->
+        <div class="section">
+            <div class="section-title">Experience</div>
+
+            <div class="entry">
+                <div class="entry-row">
+                    <div class="entry-title">Founder &amp; Security Researcher <span class="entry-org">—
+                            KrazePlanet</span></div>
+                    <div class="entry-date">2025 – Present</div>
+                </div>
+                <ul>
+                    <li>Designed, built, and deployed a fullstack offensive security platform with 8+ web services,
+                        serving as a one stop resource for bug bounty hunters and penetration testers.</li>
+                    <li>Developed <strong>91+ interactive web security labs</strong> covering XSS, SQL Injection, LFI,
+                        and RCE — enabling hands-on vulnerability practice in a safe environment.</li>
+                    <li>Built a <strong>CVE exploit aggregation platform</strong> that indexes and categorizes CVE
+                        proof-of-concepts from GitHub, covering 1999–2026, helping researchers quickly locate relevant
+                        exploits.</li>
+                    <li>Created a <strong>bug bounty programs aggregator</strong>, a <strong>multi-engine Google Dorking
+                            tool</strong>, and a <strong>subdomain datacenter</strong> — reducing manual recon effort
+                        for security researchers.</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <div class="entry-row">
+                    <div class="entry-title">BugBounty Hunter <span class="entry-org">— HackerOne &amp; Bugcrowd</span>
+                    </div>
+                    <div class="entry-date">Aug 2022 – Present</div>
+                </div>
+                <ul>
+                    <li><strong>Report Submissions:</strong> Submitted 150+ valid security vulnerability reports across
+                        multiple private and public self-hosted programs.</li>
+                    <li><strong>Hall of Fame &amp; Industry Recognition:</strong> Acknowledged by major organizations
+                        including NASA, Shopify, Dell, PayPal, the US Government, and Arrow Electronics for responsible
+                        disclosure.</li>
+                    <li><strong>High Impact Findings:</strong> Discovered and reported critical issues such as IDOR,
+                        RCE, Blind/Reflected XSS, CSRF, and Broken Authentication affecting production web applications.
+                    </li>
+                    <li><strong>Tool Proficiency:</strong> Leveraged industry standard tools (Burp Suite, Nuclei) and
+                        custom automation (GarudRecon) for extensive reconnaissance and vulnerability validation.</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <div class="entry-row">
+                    <div class="entry-title">CTF Player <span class="entry-org">— TryHackMe &amp; Hack The Box</span>
+                    </div>
+                    <div class="entry-date">Nov 2021 – Present</div>
+                </div>
+                <ul>
+                    <li><strong>TryHackMe:</strong> Completed practical learning modules including Linux Fundamentals
+                        (Part 1, 2, 3), Windows Fundamentals 1, Introductory Networking, DVWA, and Starting Out In Cyber
+                        Sec.</li>
+                    <li><strong>Hack The Box:</strong> Regularly solve machines focusing on web exploitation, privilege
+                        escalation, and network security to sharpen practical offensive skills.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- EDUCATION -->
+        <div class="section">
+            <div class="section-title">Education</div>
+            <div>
+                <div class="edu-entry">
+                    <div class="edu-row">
+                        <div class="edu-degree">Intermediate Education (12th)</div>
+                        <div class="edu-year">2019 – 2020</div>
+                    </div>
+                    <div class="edu-school">National Institute of Open Schooling (NIOS)</div>
+                </div>
+                <div class="edu-entry">
+                    <div class="edu-row">
+                        <div class="edu-degree">Intermediate Education (10th)</div>
+                        <div class="edu-year">2016 – 2017</div>
+                    </div>
+                    <div class="edu-school">Gyan Deep Public School</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROJECTS -->
+        <div class="section">
+            <div class="section-title">Open-Source Security Tools</div>
+
+            <div class="proj-grid">
+                <div class="proj-item">
+                    <span class="proj-name">GarudRecon</span> <span class="proj-lang">Shell</span>
+                    <div class="proj-desc">Automated domain recon framework integrating open-source tools for asset
+                        discovery, subdomain enumeration, and vulnerability detection (XSS, SQLi, LFI, RCE, Open
+                        Redirect, .git exposure).</div>
+                </div>
+                <div class="proj-item">
+                    <span class="proj-name">VulneraXSS</span> <span class="proj-lang">Go</span>
+                    <div class="proj-desc">The fastest and most accurate reflected XSS scanner featuring 37,000+
+                        ultimate payloads, context-aware detection, and zero false positives.</div>
+                </div>
+                <div class="proj-item">
+                    <span class="proj-name">gitxpose</span> <span class="proj-lang">Go</span>
+                    <div class="proj-desc">Automated GitHub reconnaissance tool that discovers repositories, clones
+                        projects, and scans commits for leaked credentials using parallel analysis and efficient secret
+                        detection.</div>
+                </div>
+                <div class="proj-item">
+                    <span class="proj-name">stoppiracy</span> <span class="proj-lang">Go</span>
+                    <div class="proj-desc">Automated keyword-based reconnaissance tool that scans domains to discover
+                        bug bounty programs, vulnerable software, brand mentions, APIs, and intelligence using
+                        customizable wordlists.</div>
+                </div>
+                <div class="proj-item">
+                    <span class="proj-name">originiphunter</span> <span class="proj-lang">Go</span>
+                    <div class="proj-desc">Discovers origin IPs behind CDNs by querying multiple security APIs and
+                        validating results with HTTP probing.</div>
+                </div>
+                <div class="proj-item">
+                    <span class="proj-name">SubDog</span> <span class="proj-lang">Go</span>
+                    <div class="proj-desc">Subdomain enumeration tool that collects data from multiple passive sources
+                        to build comprehensive root subdomain lists.</div>
+                </div>
+                <div class="proj-item">
+                    <span class="proj-name">UForAll</span> <span class="proj-lang">Go</span>
+                    <div class="proj-desc">High performance URL crawler aggregating endpoints from AlienVault,
+                        WayBackMachine, urlscan, and CommonCrawl for recon workflows.</div>
+                </div>
+                <div class="proj-item">
+                    <span class="proj-name">cvemapping</span> <span class="proj-lang">Python</span>
+                    <div class="proj-desc">Aggregates CVE proof-of-concept exploits from GitHub, organized by year
+                        (1999–2026), with 719+ commits of continuously updated data.</div>
+                </div>
+            </div>
+
+            <div style="margin-top:6px; font-size:8.8pt; color:#555;">
+                <strong style="color:#222;">Other tools:</strong>
+                haktrailsfree (SecurityTrails subdomain extractor),
+                certinfo (SSL cert scraping &amp; SAN enumeration),
+                tldscan (TLD domain scanner),
+                nucleihub (Nuclei template organizer),
+                gf-patterns (security grep patterns),
+                Bug-Bounty-Tampermonkey-Scripts (browser automation),
+                WebPentestingLabs (vulnerable PHP labs for XSS/SQLi/LFI/RCE training).
+                <strong style="color:#222;">149+ public repositories</strong> on GitHub — primarily written in Go,
+                Python, and Shell.
+            </div>
+        </div>
+
+        <!-- SKILLS -->
+        <div class="section">
+            <div class="section-title">Technical Skills</div>
+            <table class="skills-table">
+                <tr>
+                    <td class="label">Languages</td>
+                    <td class="value">Go (Golang), Python, Bash/Shell, JavaScript, PHP</td>
+                </tr>
+                <tr>
+                    <td class="label">Security Tools</td>
+                    <td class="value">Burp Suite, Nmap, Metasploit, SQLMap, Nuclei, Subfinder, Shodan, Amass, httpx,
+                        ffuf</td>
+                </tr>
+                <tr>
+                    <td class="label">Methodologies</td>
+                    <td class="value">OWASP Top 10, VAPT, Web Application Penetration Testing, Network Penetration
+                        Testing, Manual &amp; Automated Testing</td>
+                </tr>
+                <tr>
+                    <td class="label">Infrastructure</td>
+                    <td class="value">Linux, Windows, AWS, DigitalOcean, Google Cloud, Docker, GitHub Actions (CI/CD)
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- CERTIFICATIONS -->
+        <div class="section">
+            <div class="section-title">Certifications</div>
+            <div>
+                <div class="edu-entry">
+                    <div class="edu-row">
+                        <div class="edu-degree">Programming for Everybody</div>
+                        <div class="edu-year">Nov 2021</div>
+                    </div>
+                    <div class="edu-school">Getting Started with Python — University of Michigan (Coursera)</div>
+                </div>
+                <div class="edu-entry">
+                    <div class="edu-row">
+                        <div class="edu-degree">Introduction to Cybersecurity</div>
+                        <div class="edu-year">Aug 2021</div>
+                    </div>
+                    <div class="edu-school">Cybersecurity Fundamentals</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- PRINT BUTTON -->
+    <button class="print-btn no-print" onclick="window.print()">
+        Save as PDF<br>
+        <small>Click here, then set Printer to "Save as PDF" and Margins to "None"</small>
+    </button>
+
+</body>
+
+</html>
