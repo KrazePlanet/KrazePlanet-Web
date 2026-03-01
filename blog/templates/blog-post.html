@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>KrazePlanet Security Blog</title>
+    <link rel="icon" type="image/png" href="favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="../css/blog.css">
+</head>
+<body class="has-sidebar">
+    <header class="nav">
+        <div class="container nav__inner">
+            <a href="../index.html" class="brand">KrazePlanet Blog</a>
+            <nav class="nav__links">
+                <a href="../index.html">All Posts</a>
+                <a href="../../portfolio/index.html">Portfolio</a>
+                <a href="https://krazeplanet.com" target="_blank">Platform</a>
+            </nav>
+            <div class="nav__actions">
+                <button class="btn btn--ghost" id="themeToggle" aria-label="Toggle theme">☾</button>
+                <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav__mobile" id="navMobile" aria-hidden="true">
+        <div class="nav__mobile-inner">
+            <a href="../index.html">All Posts</a>
+            <a href="../../portfolio/index.html">Portfolio</a>
+            <a href="https://krazeplanet.com" target="_blank">Platform</a>
+        </div>
+    </nav>
+
+    <div class="docs-layout">
+        <!-- Left Sidebar TOC -->
+        <aside class="docs-sidebar" id="docsSidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-filter">
+                    <input type="text" id="tocFilter" placeholder="Filter sections...">
+                </div>
+            </div>
+            <nav class="sidebar-nav" id="sidebarNav">
+                <!-- TOC sections generated dynamically -->
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="docs-content">
+            <!-- Sidebar Toggle for Mobile -->
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">☰</button>
+            
+            <div class="content-wrapper">
+                <header class="post-header" id="postHeader">
+                    <!-- Content loaded dynamically -->
+                </header>
+
+                <article class="markdown-content" id="markdownContent">
+                    <!-- Markdown content rendered here -->
+                </article>
+
+                <div class="content-tags" id="contentTags">
+                    <!-- Tags loaded dynamically -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 KrazePlanet. All rights reserved.</p>
+            <div class="footer__links">
+                <a href="https://github.com/rix4uni" target="_blank">GitHub</a>
+                <a href="https://x.com/rix4uni" target="_blank">Twitter</a>
+                <a href="https://in.linkedin.com/in/rix4uni" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.0/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="post-renderer.js"></script>
+</body>
+</html>

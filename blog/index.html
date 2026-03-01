@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KrazePlanet Security Blog</title>
+    <link rel="icon" type="image/png" href="favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="css/blog.css">
+</head>
+<body>
+    <header class="nav">
+        <div class="container nav__inner">
+            <a href="index.html" class="brand">KrazePlanet Blog</a>
+            <nav class="nav__links">
+                <a href="index.html">All Posts</a>
+                <a href="https://portfolio.krazeplanet.com">Portfolio</a>
+                <a href="https://krazeplanet.com" target="_blank">Platform</a>
+            </nav>
+            <div class="nav__actions">
+                <button class="btn btn--ghost" id="themeToggle" aria-label="Toggle theme">☾</button>
+                <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav__mobile" id="navMobile" aria-hidden="true">
+        <div class="nav__mobile-inner">
+            <a href="index.html">All Posts</a>
+            <a href="https://portfolio.krazeplanet.com">Portfolio</a>
+            <a href="https://krazeplanet.com" target="_blank">Platform</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Security Research Blog</h1>
+                <p class="hero__desc">Comprehensive vulnerability guides. One topic, complete coverage. Written by security researchers for bug bounty hunters and developers.</p>
+                
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search vulnerability guides...">
+                    <div class="filter-tags" id="filterTags">
+                        <button class="tag active" data-filter="all">All</button>
+                        <button class="tag" data-filter="web-security">Web Security</button>
+                        <button class="tag" data-filter="network">Network</button>
+                        <button class="tag" data-filter="api">API</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="blog-grid" id="blogGrid">
+            <div class="container">
+                <div class="posts-grid" id="postsGrid">
+                    <!-- Posts will be dynamically loaded here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 KrazePlanet. All rights reserved.</p>
+            <div class="footer__links">
+                <a href="https://github.com/rix4uni" target="_blank">GitHub</a>
+                <a href="https://x.com/rix4uni" target="_blank">Twitter</a>
+                <a href="https://in.linkedin.com/in/rix4uni" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.0/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="js/blog-main.js"></script>
+</body>
+</html>
