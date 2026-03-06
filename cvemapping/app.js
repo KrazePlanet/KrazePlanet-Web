@@ -7,6 +7,7 @@ class CVEMapper {
         this.sortBy = 'updated';
         this.searchQuery = '';
         this.cveListEl = null;
+        this.allExpanded = true;
         
         this.init();
     }
@@ -15,6 +16,7 @@ class CVEMapper {
         this.setupEventListeners();
         await this.loadAllData();
         this.populateYearFilter();
+        this.initCustomSelects();
         this.applyFilters();
     }
 
@@ -23,6 +25,9 @@ class CVEMapper {
         const yearFilter = document.getElementById('yearFilter');
         const sortBy = document.getElementById('sortBy');
         const copyButton = document.getElementById('copyButton');
+        const expandCollapseButton = document.getElementById('expandCollapseButton');
+        const navToggle = document.getElementById('navToggle');
+        const navMobile = document.getElementById('navMobile');
         this.cveListEl = document.getElementById('cveList');
 
         searchInput.addEventListener('input', (e) => {
@@ -44,8 +49,31 @@ class CVEMapper {
             copyButton.addEventListener('click', () => this.copyVisibleCVEs());
         }
 
+        if (expandCollapseButton) {
+            expandCollapseButton.addEventListener('click', () => this.toggleAllCVEs());
+        }
+
         if (this.cveListEl) {
             this.cveListEl.addEventListener('click', (e) => this.handleCveToggle(e));
+        }
+
+        // Mobile navbar toggle
+        if (navToggle && navMobile) {
+            navToggle.addEventListener('click', () => {
+                const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+                navToggle.setAttribute('aria-expanded', !isExpanded);
+                navMobile.setAttribute('aria-hidden', isExpanded);
+                document.body.classList.toggle('menu-open', !isExpanded);
+            });
+
+            // Close menu when clicking a link
+            navMobile.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    navMobile.setAttribute('aria-hidden', 'true');
+                    document.body.classList.remove('menu-open');
+                });
+            });
         }
     }
 
@@ -72,6 +100,98 @@ class CVEMapper {
             }
             yearFilter.appendChild(option);
         });
+    }
+
+    initCustomSelects() {
+        const selects = document.querySelectorAll('.filters select');
+        
+        selects.forEach(select => {
+            this.createCustomSelect(select);
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.custom-select')) {
+                document.querySelectorAll('.custom-select').forEach(custom => {
+                    custom.classList.remove('open');
+                });
+            }
+        });
+    }
+
+    createCustomSelect(originalSelect) {
+        // Create custom select wrapper
+        const customSelect = document.createElement('div');
+        customSelect.className = 'custom-select';
+        customSelect.dataset.selectId = originalSelect.id;
+
+        // Create trigger
+        const trigger = document.createElement('div');
+        trigger.className = 'custom-select-trigger';
+        trigger.textContent = originalSelect.options[originalSelect.selectedIndex].textContent;
+
+        // Create options container
+        const optionsContainer = document.createElement('div');
+        optionsContainer.className = 'custom-select-options';
+
+        // Create options
+        Array.from(originalSelect.options).forEach((option, index) => {
+            const customOption = document.createElement('div');
+            customOption.className = 'custom-option';
+            customOption.textContent = option.textContent;
+            customOption.dataset.value = option.value;
+            customOption.dataset.index = index;
+
+            if (option.selected) {
+                customOption.classList.add('selected');
+            }
+
+            customOption.addEventListener('click', () => {
+                // Update original select
+                originalSelect.selectedIndex = index;
+                originalSelect.value = option.value;
+
+                // Trigger change event on original select
+                const event = new Event('change', { bubbles: true });
+                originalSelect.dispatchEvent(event);
+
+                // Update trigger text
+                trigger.textContent = option.textContent;
+
+                // Update selected state
+                optionsContainer.querySelectorAll('.custom-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                customOption.classList.add('selected');
+
+                // Close dropdown
+                customSelect.classList.remove('open');
+            });
+
+            optionsContainer.appendChild(customOption);
+        });
+
+        // Toggle dropdown on trigger click
+        trigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = customSelect.classList.contains('open');
+            
+            // Close all other dropdowns
+            document.querySelectorAll('.custom-select').forEach(custom => {
+                custom.classList.remove('open');
+            });
+
+            // Toggle current
+            if (!isOpen) {
+                customSelect.classList.add('open');
+            }
+        });
+
+        customSelect.appendChild(trigger);
+        customSelect.appendChild(optionsContainer);
+
+        // Insert custom select after original and hide original
+        originalSelect.parentNode.insertBefore(customSelect, originalSelect.nextSibling);
     }
 
     async loadAllData() {
@@ -134,11 +254,23 @@ class CVEMapper {
 
     updateStats() {
         const stats = document.getElementById('stats');
+        const totalCVEsEl = document.getElementById('totalCVEs');
+        const totalReposEl = document.getElementById('totalRepos');
         const totalCVEs = this.allData.length;
         const totalRepos = this.allData.reduce((sum, cve) => sum + cve.repositories.length, 0);
         
-        stats.style.display = 'block';
-        stats.textContent = `Showing ${totalCVEs.toLocaleString()} CVEs with ${totalRepos.toLocaleString()} repositories`;
+        if (stats) {
+            stats.style.display = 'block';
+            stats.textContent = `Showing ${totalCVEs.toLocaleString()} of ${this.allData.length.toLocaleString()} CVEs`;
+        }
+        
+        // Update hero stats pills
+        if (totalCVEsEl) {
+            totalCVEsEl.textContent = `📊 ${totalCVEs.toLocaleString()} CVEs`;
+        }
+        if (totalReposEl) {
+            totalReposEl.textContent = `📦 ${totalRepos.toLocaleString()} Repos`;
+        }
     }
 
     applyFilters() {
@@ -169,6 +301,7 @@ class CVEMapper {
         this.sortData();
 
         this.render();
+        this.updateTrendingCVEs();
     }
 
     sortData() {
@@ -234,9 +367,9 @@ class CVEMapper {
         const repositories = cve.repositories.map(repo => this.renderRepository(repo)).join('');
         
         return `
-            <div class="cve-card" data-cve-id="${cve.cve_id}">
+            <div class="cve-card ${this.allExpanded ? 'is-open' : ''}" data-cve-id="${cve.cve_id}">
                 <div class="cve-header">
-                    <button class="cve-toggle" aria-expanded="false" aria-controls="repos-${safeId}" title="Expand repositories">
+                    <button class="cve-toggle" aria-expanded="${this.allExpanded}" aria-controls="repos-${safeId}" title="${this.allExpanded ? 'Collapse' : 'Expand'} repositories">
                         <span class="chevron"></span>
                     </button>
                     <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=${cve.cve_id}" 
@@ -248,7 +381,7 @@ class CVEMapper {
                         <span>${cve.repositories.length} ${cve.repositories.length === 1 ? 'repository' : 'repositories'}</span>
                     </div>
                 </div>
-                <div class="repositories is-collapsed" id="repos-${safeId}">
+                <div class="repositories ${this.allExpanded ? '' : 'is-collapsed'}" id="repos-${safeId}">
                     ${repositories}
                 </div>
             </div>
@@ -313,6 +446,49 @@ class CVEMapper {
         toggleBtn.setAttribute('aria-expanded', String(isOpen));
     }
 
+    toggleAllCVEs() {
+        this.allExpanded = !this.allExpanded;
+        
+        const cards = this.cveListEl.querySelectorAll('.cve-card');
+        cards.forEach(card => {
+            const toggleBtn = card.querySelector('.cve-toggle');
+            const repos = card.querySelector('.repositories');
+            
+            if (this.allExpanded) {
+                card.classList.add('is-open');
+                repos.classList.remove('is-collapsed');
+            } else {
+                card.classList.remove('is-open');
+                repos.classList.add('is-collapsed');
+            }
+            
+            if (toggleBtn) {
+                toggleBtn.setAttribute('aria-expanded', String(this.allExpanded));
+                toggleBtn.setAttribute('title', `${this.allExpanded ? 'Collapse' : 'Expand'} repositories`);
+            }
+        });
+        
+        this.updateExpandCollapseButton();
+    }
+
+    updateExpandCollapseButton() {
+        const button = document.getElementById('expandCollapseButton');
+        if (!button) return;
+        
+        const icon = button.querySelector('.expand-collapse-icon');
+        const text = button.querySelector('.expand-collapse-text');
+        
+        if (this.allExpanded) {
+            if (icon) icon.textContent = '📂';
+            if (text) text.textContent = 'Collapse All';
+            button.setAttribute('title', 'Collapse all CVEs');
+        } else {
+            if (icon) icon.textContent = '📁';
+            if (text) text.textContent = 'Expand All';
+            button.setAttribute('title', 'Expand all CVEs');
+        }
+    }
+
     async copyVisibleCVEs() {
         if (this.filteredData.length === 0) {
             return;
@@ -374,22 +550,31 @@ class CVEMapper {
         return div.innerHTML;
     }
 
-    calculateTrendingCVEs() {
+    calculateTrendingCVEs(yearFilter = 'all') {
         const now = new Date();
         const hours24 = new Date(now.getTime() - 24 * 60 * 60 * 1000);
         const days7 = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
 
-        const trending24h = this.calculateTrendingForPeriod(hours24, now);
-        const trending7d = this.calculateTrendingForPeriod(days7, now);
+        const trending24h = this.calculateTrendingForPeriod(hours24, now, yearFilter);
+        const trending7d = this.calculateTrendingForPeriod(days7, now, yearFilter);
 
         return { trending24h, trending7d };
     }
 
-    calculateTrendingForPeriod(startDate, endDate) {
+    calculateTrendingForPeriod(startDate, endDate, yearFilter = 'all') {
         const cveActivity = {};
 
-        // Iterate through all CVEs
-        this.allData.forEach(cve => {
+        // Filter CVEs by year if specified
+        let filteredData = this.allData;
+        if (yearFilter !== 'all') {
+            filteredData = this.allData.filter(cve => {
+                const match = cve.cve_id.match(/CVE-(\d{4})-/);
+                return match && match[1] === yearFilter;
+            });
+        }
+
+        // Iterate through filtered CVEs
+        filteredData.forEach(cve => {
             let newRepos = 0;
             let updatedRepos = 0;
             let totalStars = 0;
@@ -434,21 +619,70 @@ class CVEMapper {
     }
 
     updateTrendingCVEs() {
-        const { trending24h, trending7d } = this.calculateTrendingCVEs();
-        const trendingSection = document.getElementById('trendingSection');
+        const { trending24h, trending7d } = this.calculateTrendingCVEs(this.currentYear);
+        const trendingSection = document.getElementById('trending');
+        const trending24hGrid = document.getElementById('trending24h');
+        const trending7dGrid = document.getElementById('trending7d');
 
-        if (trending24h.length === 0 && trending7d.length === 0) {
-            trendingSection.style.display = 'none';
+        const has24h = trending24h.length > 0;
+        const has7d = trending7d.length > 0;
+
+        if (!has24h && !has7d) {
+            if (trendingSection) trendingSection.style.display = 'none';
             return;
         }
 
-        trendingSection.style.display = 'block';
-        this.renderTrendingCVEs('trending24h', trending24h);
-        this.renderTrendingCVEs('trending7d', trending7d);
+        if (trendingSection) trendingSection.style.display = 'block';
+
+        // Render 24hr trending
+        if (trending24hGrid) {
+            if (has24h) {
+                trending24hGrid.innerHTML = trending24h.map((item, index) => this.renderTrendingCard(item, index)).join('');
+            } else {
+                trending24hGrid.innerHTML = '<div class="trending-empty">No trending CVEs in the past 24 hours</div>';
+            }
+        }
+
+        // Render 7d trending
+        if (trending7dGrid) {
+            if (has7d) {
+                trending7dGrid.innerHTML = trending7d.map((item, index) => this.renderTrendingCard(item, index)).join('');
+            } else {
+                trending7dGrid.innerHTML = '<div class="trending-empty">No trending CVEs in the past 7 days</div>';
+            }
+        }
+    }
+
+    renderTrendingCard(item, index) {
+        const cve = item.cve;
+        const rankClass = index === 0 ? 'rank-gold' : index === 1 ? 'rank-silver' : index === 2 ? 'rank-bronze' : 'rank-default';
+        const rankNum = index + 1;
+
+        return `
+            <div class="trending-card">
+                <div class="trending-rank ${rankClass}">${rankNum}</div>
+                <div class="trending-content">
+                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=${cve.cve_id}" 
+                       target="_blank" 
+                       class="trending-cve-id">
+                        ${cve.cve_id}
+                    </a>
+                    <div class="trending-metrics">
+                        ${item.newRepos > 0 ? `<span class="metric new">🆕 ${item.newRepos} new</span>` : ''}
+                        ${item.updatedRepos > 0 ? `<span class="metric updated">🔄 ${item.updatedRepos} updated</span>` : ''}
+                        ${item.totalStars > 0 ? `<span class="metric stars">⭐ ${item.totalStars.toLocaleString()}</span>` : ''}
+                        ${item.totalForks > 0 ? `<span class="metric forks">🍴 ${item.totalForks.toLocaleString()}</span>` : ''}
+                        <span class="metric total">📦 ${cve.repositories.length} repos</span>
+                    </div>
+                </div>
+            </div>
+        `;
     }
 
     renderTrendingCVEs(containerId, trendingData) {
+        // Legacy method - now handled in updateTrendingCVEs
         const container = document.getElementById(containerId);
+        if (!container) return;
         
         if (trendingData.length === 0) {
             container.innerHTML = '<div class="trending-empty">No trending CVEs in this period</div>';

@@ -4,62 +4,140 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CVE Mapping - GitHub CVE Exploits Directory</title>
+    <link rel="icon" type="image/png" href="favicon.ico" />
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>CVE Mapping</h1>
-            <p class="subtitle">GitHub CVE Exploits Directory (1999-2026)</p>
-        </div>
-    </header>
-
-    <main class="container">
-        <div id="trendingSection" class="trending-section" style="display: none;">
-            <h2 class="trending-title">Top 3 Trending CVEs on Github</h2>
-            <div class="trending-periods">
-                <div class="trending-period">
-                    <h3 class="period-title">Past 24 hrs</h3>
-                    <div id="trending24h" class="trending-list"></div>
-                </div>
-                <div class="trending-period">
-                    <h3 class="period-title">Past 7 days</h3>
-                    <div id="trending7d" class="trending-list"></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="controls">
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Search by CVE ID, repository name, or description...">
-            </div>
-            <div class="filters">
-                <select id="yearFilter">
-                    <option value="all">All Years (1999-2026)</option>
-                </select>
-                <select id="sortBy">
-                    <option value="updated">Sort by: Latest Updated</option>
-                    <option value="stars">Sort by: Most Stars</option>
-                    <option value="forks">Sort by: Most Forks</option>
-                    <option value="repos">Sort by: Repository Count</option>
-                    <option value="cve">Sort by: CVE ID</option>
-                </select>
-                <button id="copyButton" class="copy-button" title="Copy visible CVEs">
-                    <span class="copy-icon">📋</span>
-                    <span class="copy-text">Copy</span>
+    <!-- Navbar -->
+    <header class="nav">
+        <div class="container nav__inner">
+            <div class="brand">CVE Mapping</div>
+            <nav class="nav__links">
+                <a href="#home">Home</a>
+                <a href="#trending">Trending</a>
+                <a href="https://krazeplanet.com" target="_blank" rel="noreferrer">KrazePlanet</a>
+                <a href="https://github.com/rix4uni/cvemapping" target="_blank" rel="noreferrer">GitHub</a>
+            </nav>
+            <div class="nav__actions">
+                <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <span class="nav__toggle-line"></span>
+                    <span class="nav__toggle-line"></span>
+                    <span class="nav__toggle-line"></span>
                 </button>
             </div>
         </div>
+    </header>
 
-        <div id="loading" class="loading">Loading CVE data...</div>
-        <div id="error" class="error" style="display: none;"></div>
-        <div id="stats" class="stats" style="display: none;"></div>
-        <div id="cveList" class="cve-list"></div>
+    <!-- Mobile Menu -->
+    <nav class="nav__mobile" id="navMobile" aria-hidden="true">
+        <div class="nav__mobile-inner">
+            <a href="#home">Home</a>
+            <a href="#trending">Trending</a>
+            <a href="https://krazeplanet.com" target="_blank" rel="noreferrer">KrazePlanet</a>
+            <a href="https://github.com/rix4uni/cvemapping" target="_blank" rel="noreferrer">GitHub</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero__backdrop">
+                <div class="orb orb--emerald"></div>
+                <div class="orb orb--teal"></div>
+            </div>
+            <div class="container hero__content">
+                <h1 class="hero__title">CVE Exploit Database</h1>
+                <p class="hero__subtitle">GitHub CVE Exploits Directory (1999-2026) — Curated repository of publicly available CVE exploits for security researchers.</p>
+                <div class="hero__stats">
+                    <div class="stat-pill" id="totalCVEs">📊 Loading CVEs...</div>
+                    <div class="stat-pill" id="totalRepos">📦 Loading repos...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="container">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search by CVE ID, repository name, or description...">
+                </div>
+            </div>
+        </section>
+
+        <!-- Controls -->
+        <section class="controls">
+            <div class="container">
+                <div class="control-group filters">
+                    <select id="yearFilter">
+                        <option value="all">All Years (1999-2026)</option>
+                    </select>
+                    <select id="sortBy">
+                        <option value="updated">Sort by: Latest Updated</option>
+                        <option value="stars">Sort by: Most Stars</option>
+                        <option value="forks">Sort by: Most Forks</option>
+                        <option value="repos">Sort by: Repository Count</option>
+                        <option value="cve">Sort by: CVE ID</option>
+                    </select>
+                    <button id="expandCollapseButton" class="btn btn--ghost" title="Expand/Collapse all CVEs">
+                        <span class="expand-collapse-icon">📂</span>
+                        <span class="expand-collapse-text">Collapse All</span>
+                    </button>
+                    <button id="copyButton" class="btn btn--outline" title="Copy visible CVEs">
+                        <span class="copy-icon">📋</span>
+                        <span class="copy-text">Copy</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trending Section -->
+        <section class="trending-section" id="trending" style="display: none;">
+            <div class="container">
+                <h2 class="trending-title">🔥 Trending CVEs</h2>
+                <div class="trending-columns">
+                    <div class="trending-column">
+                        <h3 class="trending-column-title">Past 24 hrs</h3>
+                        <div class="trending-grid" id="trending24h">
+                            <!-- 24hr trending content will be loaded here -->
+                        </div>
+                    </div>
+                    <div class="trending-column">
+                        <h3 class="trending-column-title">Past 7 days</h3>
+                        <div class="trending-grid" id="trending7d">
+                            <!-- 7day trending content will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loading State -->
+        <div id="loading" class="loading">
+            <div class="container">Loading CVE data...</div>
+        </div>
+
+        <!-- Error State -->
+        <div id="error" class="error" style="display: none;">
+            <div class="container"></div>
+        </div>
+
+        <!-- Stats -->
+        <div id="stats" class="stats" style="display: none;">
+            <div class="container"></div>
+        </div>
+
+        <!-- CVE List -->
+        <section class="cve-list-section">
+            <div class="container">
+                <div id="cveList" class="cve-list"></div>
+            </div>
+        </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 CVE Mapping - Aggregating GitHub CVE Exploits</p>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container" style="margin-top: 16px; color: var(--muted); font-size: 14px;">
+            © 2026 KrazePlanet. All rights reserved.
         </div>
     </footer>
 
