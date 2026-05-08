@@ -20,6 +20,20 @@ const PLATFORMS = [
     'SelfHosted'
 ];
 
+// Reward Type data
+const REWARD_TYPES = [
+    'VDP',
+    'BBP',
+    'Swags',
+    'Gift',
+    'Certificate',
+    'Hall Of Fame'
+];
+
+// Global State for Reward Types
+let selectedRewardTypes = [];
+let showBookmarksOnly = false;
+
 // DOM Elements
 const searchInput = document.getElementById('searchInput');
 const platformFilterBtn = document.getElementById('platformFilterBtn');
@@ -27,6 +41,11 @@ const platformDropdown = document.getElementById('platformDropdown');
 const platformSearch = document.getElementById('platformSearch');
 const platformList = document.getElementById('platformList');
 const platformCount = document.getElementById('platformCount');
+const rewardFilterBtn = document.getElementById('rewardFilterBtn');
+const rewardDropdown = document.getElementById('rewardDropdown');
+const rewardList = document.getElementById('rewardList');
+const rewardCount = document.getElementById('rewardCount');
+const bookmarksToggle = document.getElementById('bookmarksToggle');
 const sortFilterBtn = document.getElementById('sortFilterBtn');
 const sortDropdown = document.getElementById('sortDropdown');
 const currentSortLabel = document.getElementById('currentSortLabel');
@@ -65,6 +84,44 @@ function rewardToNumber(reward) {
     return Math.max(...nums);
 }
 
+// LocalStorage Helpers for Bookmarks
+function getBookmarkedPrograms() {
+    try {
+        return JSON.parse(localStorage.getItem('krazeplanet_bookmarks') || '[]');
+    } catch {
+        return [];
+    }
+}
+
+function setBookmarkedPrograms(bookmarks) {
+    localStorage.setItem('krazeplanet_bookmarks', JSON.stringify(bookmarks));
+}
+
+function isBookmarked(programName) {
+    return getBookmarkedPrograms().includes(programName);
+}
+
+function toggleBookmark(programName) {
+    const bookmarks = getBookmarkedPrograms();
+    const idx = bookmarks.indexOf(programName);
+    if (idx === -1) {
+        bookmarks.push(programName);
+    } else {
+        bookmarks.splice(idx, 1);
+    }
+    setBookmarkedPrograms(bookmarks);
+    return idx === -1; // returns true if added
+}
+
+// Check if program is new (added within last 7 days)
+function isNewProgram(lastUpdated) {
+    const programDate = new Date(lastUpdated);
+    const today = new Date();
+    const diffTime = today - programDate;
+    const diffDays = diffTime / (1000 * 60 * 60 * 24);
+    return diffDays <= 7;
+}
+
 // Initialize Platform Filter
 function initPlatformFilter() {
     platformList.innerHTML = '';
@@ -94,6 +151,47 @@ function initPlatformFilter() {
     console.log('Platform filter initialized with', PLATFORMS.length, 'platforms');
 }
 
+// Get reward category from program reward field
+function getRewardCategory(reward) {
+    if (!reward || reward === '-') return 'VDP';
+    const lower = reward.toLowerCase();
+    if (lower === 'swags') return 'Swags';
+    if (lower === 'gift') return 'Gift';
+    if (lower === 'certificate') return 'Certificate';
+    if (lower === 'halloffame') return 'Hall Of Fame';
+    // BBP: contains currency symbols or numbers
+    if (/[$€£\d]/.test(reward)) return 'BBP';
+    return 'VDP';
+}
+
+// Initialize Reward Type Filter
+function initRewardTypeFilter() {
+    rewardList.innerHTML = '';
+    REWARD_TYPES.forEach(rewardType => {
+        const item = document.createElement('div');
+        item.className = 'reward-item';
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = `reward-${rewardType.replace(/\s+/g, '-')}`;
+        checkbox.value = rewardType;
+        checkbox.addEventListener('change', handleRewardTypeChange);
+
+        const label = document.createElement('label');
+        label.htmlFor = `reward-${rewardType.replace(/\s+/g, '-')}`;
+        label.textContent = rewardType;
+        label.addEventListener('click', (e) => {
+            e.preventDefault();
+            checkbox.checked = !checkbox.checked;
+            checkbox.dispatchEvent(new Event('change'));
+        });
+
+        item.appendChild(checkbox);
+        item.appendChild(label);
+        rewardList.appendChild(item);
+    });
+    console.log('Reward type filter initialized with', REWARD_TYPES.length, 'types');
+}
 
 // Filter Programs
 function filterPrograms() {
@@ -113,6 +211,17 @@ function filterPrograms() {
     // Filter by selected platforms
     if (selectedPlatforms.length > 0) {
         result = result.filter(p => selectedPlatforms.includes(p.platform));
+    }
+
+    // Filter by selected reward types
+    if (selectedRewardTypes.length > 0) {
+        result = result.filter(p => selectedRewardTypes.includes(getRewardCategory(p.reward)));
+    }
+
+    // Filter by bookmarks only
+    if (showBookmarksOnly) {
+        const bookmarks = getBookmarkedPrograms();
+        result = result.filter(p => bookmarks.includes(p.name));
     }
 
     filteredPrograms = result;
@@ -166,7 +275,6 @@ function getPaginatedPrograms() {
 
 // Render Grid View
 function renderGridView(programs) {
-    const today = getTodayDate();
     gridView.innerHTML = '';
 
     if (programs.length === 0) {
@@ -181,7 +289,8 @@ function renderGridView(programs) {
     }
 
     programs.forEach((program, idx) => {
-        const isNew = program.last_updated === today;
+        const isNew = isNewProgram(program.last_updated);
+        const bookmarked = isBookmarked(program.name);
 
         const card = document.createElement('div');
         card.className = 'program-card';
@@ -194,56 +303,71 @@ function renderGridView(programs) {
                 </time>
                 <div class="header-badges">
                     ${isNew ? '<span class="new-badge">New</span>' : ''}
-                    ${program.scamhit ? `<span class="scamhit-badge">Scam Hit: ${program.scamhit}</span>` : ''}
+                    ${program.scamhit ? `<span class="scamhit-badge">⚠️ Scam</span>` : ''}
+                    <button class="bookmark-btn ${bookmarked ? 'bookmarked' : ''}" data-name="${program.name}" aria-label="${bookmarked ? 'Remove bookmark' : 'Add bookmark'}">
+                        <svg class="icon" viewBox="0 0 24 24" fill="${bookmarked ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </button>
                 </div>
             </div>
-            
+
             <div class="card-logo-name">
                 <div class="card-logo-wrapper">
-                    <img src="${program.logo || 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'48\' height=\'48\'%3E%3Crect width=\'48\' height=\'48\' fill=\'%23333\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23999\' font-size=\'20\'%3E?%3C/text%3E%3C/svg%3E'}" 
-                         alt="${program.name} logo" 
+                    <img src="${program.logo || 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'48\' height=\'48\'%3E%3Crect width=\'48\' height=\'48\' fill=\'%23333\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23999\' font-size=\'20\'%3E?%3C/text%3E%3C/svg%3E'}"
+                         alt="${program.name} logo"
                          class="card-logo"
-                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'48\\' height=\\'48\\'%3E%3Crect width=\\'48\\' height=\\'48\\' fill=\\'%23333\\'/%3E%3Ctext x=\\'50%25\\' y=\\'50%25\\' dominant-baseline=\\'middle\\' text-anchor=\\'middle\\' fill=\\'%23999\\' font-size=\\'20\\'%3E?%3C/text%3E%3C/svg%3E'">
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'48\' height=\'48\'%3E%3Crect width=\'48\' height=\'48\' fill=\'%23333\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23999\' font-size=\'20\'%3E?%3C/text%3E%3C/svg%3E'">
                 </div>
                 <h3 class="card-name">${program.name}</h3>
             </div>
-            
+
             <div class="card-platform">
                 <span class="platform-badge">${program.platform}</span>
             </div>
-            
+
             <div class="card-reward">
                 <div class="reward-label">Reward Range</div>
                 <div class="reward-amount">${program.reward}</div>
             </div>
             
-            <a href="${program.program_url}" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               class="card-link"
-               aria-label="Visit ${program.name}">
-                <span>Visit Program</span>
-                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                    <polyline points="15 3 21 3 21 9"/>
-                    <line x1="10" y1="14" x2="21" y2="3"/>
-                </svg>
-            </a>
+            <div class="card-buttons">
+                <a href="programs.html?name=${encodeURIComponent(program.name)}" 
+                   class="card-btn card-btn-info"
+                   aria-label="View info for ${program.name}">
+                    <span>View Info</span>
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="12" y1="16" x2="12" y2="12"/>
+                        <line x1="12" y1="8" x2="12.01" y2="8"/>
+                    </svg>
+                </a>
+                <a href="${program.program_url}" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="card-btn card-btn-visit"
+                   aria-label="Visit ${program.name}">
+                    <span>Visit Program</span>
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                        <polyline points="15 3 21 3 21 9"/>
+                        <line x1="10" y1="14" x2="21" y2="3"/>
+                    </svg>
+                </a>
+            </div>
         `;
 
         gridView.appendChild(card);
     });
 }
 
-// Render List View
 function renderListView(programs) {
-    const today = getTodayDate();
     tableBody.innerHTML = '';
 
     if (programs.length === 0) {
         tableBody.innerHTML = `
             <tr>
-                <td colspan="6">
+                <td colspan="7">
                     <div class="empty-state">
                         <div class="empty-icon">🔍</div>
                         <p class="empty-title">No programs found.</p>
@@ -256,12 +380,20 @@ function renderListView(programs) {
     }
 
     programs.forEach((program, idx) => {
-        const isNew = program.last_updated === today;
+        const isNew = isNewProgram(program.last_updated);
+        const bookmarked = isBookmarked(program.name);
 
         const row = document.createElement('tr');
         row.style.animationDelay = `${idx * 30}ms`;
 
         row.innerHTML = `
+            <td>
+                <button class="table-bookmark-btn ${bookmarked ? 'bookmarked' : ''}" data-name="${program.name}" aria-label="${bookmarked ? 'Remove bookmark' : 'Add bookmark'}">
+                    <svg class="icon" viewBox="0 0 24 24" fill="${bookmarked ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </td>
             <td>
                 <time datetime="${program.last_updated}" class="table-date">
                     ${formatDate(program.last_updated)}
@@ -270,44 +402,47 @@ function renderListView(programs) {
             <td>
                 <div class="table-name-wrapper">
                     <div class="table-logo-wrapper">
-                        <img src="${program.logo || 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\'%3E%3Crect width=\'32\' height=\'32\' fill=\'%23333\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23999\' font-size=\'14\'%3E?%3C/text%3E%3C/svg%3E'}" 
-                             alt="${program.name} logo" 
+                        <img src="${program.logo || 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\'%3E%3Crect width=\'32\' height=\'32\' fill=\'%23333\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23999\' font-size=\'14\'%3E?%3C/text%3E%3C/svg%3E'}"
+                             alt="${program.name} logo"
                              class="table-logo"
-                             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'32\\' height=\\'32\\'%3E%3Crect width=\\'32\\' height=\\'32\\' fill=\\'%23333\\'/%3E%3Ctext x=\\'50%25\\' y=\\'50%25\\' dominant-baseline=\\'middle\\' text-anchor=\\'middle\\' fill=\\'%23999\\' font-size=\\'14\\'%3E?%3C/text%3E%3C/svg%3E'">
+                             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\'%3E%3Crect width=\'32\' height=\'32\' fill=\'%23333\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23999\' font-size=\'14\'%3E?%3C/text%3E%3C/svg%3E'">
                     </div>
                     <span class="table-name">${program.name}</span>
+                    ${isNew ? '<span class="table-new-badge-inline">New</span>' : ''}
                 </div>
-            </td>
-            <td class="table-new-cell">
-                ${isNew ? `
-                    <span class="table-new-badge">
-                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="20 6 9 17 4 12"/>
-                        </svg>
-                        <span>New</span>
-                    </span>
-                ` : '<span style="color: var(--muted-foreground);">—</span>'}
             </td>
             <td>
                 <span class="platform-badge">${program.platform}</span>
             </td>
             <td>
-                ${program.scamhit ? `<span class="scamhit-badge">Scam Hit: ${program.scamhit}</span>` : '<span style="color: var(--muted-foreground);">-</span>'}
+                ${program.scamhit ? `<span class="scamhit-badge">⚠️ Scam</span>` : '<span style="color: var(--muted-foreground);">-</span>'}
             </td>
             <td class="table-reward">${program.reward}</td>
             <td class="table-link-cell">
-                <a href="${program.program_url}" 
-                   target="_blank" 
-                   rel="noopener noreferrer" 
-                   class="table-link"
-                   aria-label="Visit ${program.name}">
-                    <span>Visit</span>
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                        <polyline points="15 3 21 3 21 9"/>
-                        <line x1="10" y1="14" x2="21" y2="3"/>
-                    </svg>
-                </a>
+                <div class="table-actions">
+                    <a href="programs.html?name=${encodeURIComponent(program.name)}"
+                       class="table-link table-link-info"
+                       aria-label="View info for ${program.name}">
+                        <span>Info</span>
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="12" y1="16" x2="12" y2="12"/>
+                            <line x1="12" y1="8" x2="12.01" y2="8"/>
+                        </svg>
+                    </a>
+                    <a href="${program.program_url}"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="table-link"
+                       aria-label="Visit ${program.name}">
+                        <span>Visit</span>
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                            <polyline points="15 3 21 3 21 9"/>
+                            <line x1="10" y1="14" x2="21" y2="3"/>
+                        </svg>
+                    </a>
+                </div>
             </td>
         `;
 
@@ -345,6 +480,41 @@ function updateUI() {
     params.set('page', currentPage);
     const newUrl = `${window.location.pathname}?${params.toString()}`;
     window.history.replaceState({}, '', newUrl);
+
+    // Attach bookmark event listeners after render
+    attachBookmarkListeners();
+}
+
+// Attach bookmark button event listeners
+function attachBookmarkListeners() {
+    const bookmarkBtns = document.querySelectorAll('.bookmark-btn, .table-bookmark-btn');
+    bookmarkBtns.forEach(btn => {
+        btn.addEventListener('click', handleBookmarkClick);
+    });
+}
+
+// Handle bookmark button click
+function handleBookmarkClick(e) {
+    e.stopPropagation();
+    const btn = e.currentTarget;
+    const programName = btn.dataset.name;
+    const isNowBookmarked = toggleBookmark(programName);
+
+    // Update button appearance
+    btn.classList.toggle('bookmarked', isNowBookmarked);
+    btn.setAttribute('aria-label', isNowBookmarked ? 'Remove bookmark' : 'Add bookmark');
+
+    // Update SVG fill
+    const svg = btn.querySelector('svg');
+    if (svg) {
+        svg.setAttribute('fill', isNowBookmarked ? 'currentColor' : 'none');
+    }
+
+    // If My Bookmarks filter is active and we're removing a bookmark,
+    // refresh the UI to remove the program from the list
+    if (showBookmarksOnly && !isNowBookmarked) {
+        updateUI();
+    }
 }
 
 // Event Handlers
@@ -368,6 +538,26 @@ function handlePlatformChange(e) {
         platformCount.classList.remove('hidden');
     } else {
         platformCount.classList.add('hidden');
+    }
+
+    currentPage = 1;
+    updateUI();
+}
+
+function handleRewardTypeChange(e) {
+    const rewardType = e.target.value;
+    if (e.target.checked) {
+        selectedRewardTypes.push(rewardType);
+    } else {
+        selectedRewardTypes = selectedRewardTypes.filter(r => r !== rewardType);
+    }
+
+    // Update reward count badge
+    if (selectedRewardTypes.length > 0) {
+        rewardCount.textContent = selectedRewardTypes.length;
+        rewardCount.classList.remove('hidden');
+    } else {
+        rewardCount.classList.add('hidden');
     }
 
     currentPage = 1;
@@ -456,10 +646,18 @@ function toggleSortDropdown() {
     sortDropdown.classList.toggle('hidden');
 }
 
+// Toggle reward type dropdown
+function toggleRewardDropdown() {
+    rewardDropdown.classList.toggle('hidden');
+}
+
 // Close dropdown when clicking outside
 document.addEventListener('click', (e) => {
     if (!platformFilterBtn.contains(e.target) && !platformDropdown.contains(e.target)) {
         platformDropdown.classList.add('hidden');
+    }
+    if (!rewardFilterBtn.contains(e.target) && !rewardDropdown.contains(e.target)) {
+        rewardDropdown.classList.add('hidden');
     }
     if (!sortFilterBtn.contains(e.target) && !sortDropdown.contains(e.target)) {
         sortDropdown.classList.add('hidden');
@@ -472,6 +670,9 @@ platformFilterBtn.addEventListener('click', (e) => {
     togglePlatformDropdown();
 });
 platformSearch.addEventListener('input', handlePlatformSearch);
+rewardFilterBtn.addEventListener('click', (e) => {
+    toggleRewardDropdown();
+});
 sortFilterBtn.addEventListener('click', (e) => {
     toggleSortDropdown();
 });
@@ -482,26 +683,49 @@ gridViewBtn.addEventListener('click', () => toggleViewMode('grid'));
 listViewBtn.addEventListener('click', () => toggleViewMode('list'));
 prevBtn.addEventListener('click', handlePrevPage);
 nextBtn.addEventListener('click', handleNextPage);
+bookmarksToggle.addEventListener('click', handleBookmarksToggle);
+
+// Handle bookmarks toggle
+function handleBookmarksToggle() {
+    showBookmarksOnly = !showBookmarksOnly;
+    bookmarksToggle.classList.toggle('active', showBookmarksOnly);
+    currentPage = 1;
+    updateUI();
+}
 
 // Load Programs
 async function loadPrograms() {
     try {
-        const response = await fetch('https://raw.githubusercontent.com/KrazePlanet/KrazePlanetPrograms/refs/heads/main/programs.json');
+        const response = await fetch('https://raw.githubusercontent.com/rix4uni/scope/refs/heads/main/programs.json');
         if (!response.ok) {
             throw new Error('Failed to load programs');
         }
         allPrograms = await response.json();
         filteredPrograms = allPrograms;
 
-        // Get page from URL
+        // Get URL params
         const params = new URLSearchParams(window.location.search);
         const pageParam = params.get('page');
+        const platformParam = params.get('platform');
+        
+        // Handle platform filter from URL
+        if (platformParam) {
+            selectedPlatforms = [platformParam];
+            // Update checkbox in dropdown if it exists
+            const checkbox = document.getElementById(`platform-${platformParam.replace(/\s+/g, '-')}`);
+            if (checkbox) checkbox.checked = true;
+            // Update platform count badge
+            platformCount.textContent = '1';
+            platformCount.classList.remove('hidden');
+        }
+        
         if (pageParam) {
             currentPage = parseInt(pageParam, 10) || 1;
         }
 
         // Initialize and render
         initPlatformFilter();
+        initRewardTypeFilter();
         updateUI();
     } catch (error) {
         console.error('Error loading programs:', error);

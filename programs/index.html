@@ -115,6 +115,30 @@
                             </div>
                         </div>
 
+                        <!-- Reward Type Filter -->
+                        <div class="reward-filter-wrapper">
+                            <button id="rewardFilterBtn" class="filter-btn">
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <circle cx="12" cy="8" r="7" />
+                                    <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+                                </svg>
+                                <span>Reward Type</span>
+                                <span id="rewardCount" class="filter-count hidden">0</span>
+                                <svg class="icon chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9" />
+                                </svg>
+                            </button>
+
+                            <!-- Reward Dropdown -->
+                            <div id="rewardDropdown" class="reward-dropdown hidden">
+                                <div id="rewardList" class="reward-list">
+                                    <!-- Reward type checkboxes will be populated by JS -->
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Sort Dropdown -->
                         <div class="sort-filter-wrapper">
                             <button id="sortFilterBtn" class="filter-btn">
@@ -136,6 +160,14 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- My Bookmarks Toggle -->
+                        <button id="bookmarksToggle" class="bookmarks-toggle" aria-label="Show my bookmarks">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                            </svg>
+                            <span>My Bookmarks</span>
+                        </button>
 
                         <!-- View Toggle -->
                         <div class="view-toggle">
@@ -182,9 +214,9 @@
                     <table class="programs-table">
                         <thead>
                             <tr>
+                                <th class="th-bookmark"></th>
                                 <th class="th-date">DATE</th>
                                 <th class="th-name">NAME</th>
-                                <th class="th-new">NEW</th>
                                 <th class="th-platform">PLATFORM</th>
                                 <th class="th-scamhit">SCAMHIT</th>
                                 <th class="th-reward">REWARD</th>
@@ -210,6 +242,28 @@
                 </div>
             </div>
         </main>
+
+        <!-- Footer -->
+        <footer class="detail-footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">Bug Bounty Platforms</h3>
+                    <div class="footer-links">
+                        <a href="index.html?platform=HackerOne" class="footer-link">HackerOne</a>
+                        <a href="index.html?platform=Bugcrowd" class="footer-link">Bugcrowd</a>
+                        <a href="index.html?platform=Intigriti" class="footer-link">Intigriti</a>
+                        <a href="index.html?platform=YesWeHack" class="footer-link">YesWeHack</a>
+                        <a href="index.html?platform=HackenProof" class="footer-link">HackenProof</a>
+                        <a href="index.html?platform=BugBounty+Switzerland" class="footer-link">BugBounty Switzerland</a>
+                        <a href="index.html?platform=OpenBugBounty" class="footer-link">OpenBugBounty</a>
+                        <a href="index.html?platform=SelfHosted" class="footer-link">SelfHosted</a>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>© 2026 KrazePlanet. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
     </div>
 
     <script src="app.js"></script>
