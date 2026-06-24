@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Community-powered bug bounty checklist platform. Find checklists for technologies, vulnerabilities, methodologies, and more." />
+  <title>KrazePlanet | Bug Bounty Checklists</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>" />
+</head>
+<body>
+
+  <!-- ═══════════════════════ NAVBAR ═══════════════════════ -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="#" class="nav-logo" aria-label="Home">
+        <span class="logo-icon">🎯</span>
+        <span class="logo-text">KrazePlanet<span class="logo-accent">Checklist</span></span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks" role="menubar">
+        <li role="none"><a href="#" class="nav-link active" data-filter="all" role="menuitem">All</a></li>
+        <li role="none"><a href="#" class="nav-link" data-filter="scopes" role="menuitem">🎯 Scopes</a></li>
+        <li role="none"><a href="#" class="nav-link" data-filter="subdomains" role="menuitem">🌐 Subdomains</a></li>
+        <li role="none"><a href="#" class="nav-link" data-filter="technologies" role="menuitem">🛠️ Tech</a></li>
+        <li role="none"><a href="#" class="nav-link" data-filter="methodologies" role="menuitem">📋 Methods</a></li>
+        <li role="none"><a href="#" class="nav-link" data-filter="vulnerabilities" role="menuitem">💥 Vulns</a></li>
+        <li role="none">
+          <a href="https://github.com/KrazePlanet/BugBountyChecklist" target="_blank" rel="noopener" class="nav-link nav-github" role="menuitem">
+            <svg class="github-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+            GitHub
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════ HERO ═══════════════════════ -->
+  <header class="hero" id="hero">
+    <div class="hero-bg-glow"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">
+        Bug Bounty
+        <span class="hero-accent">Checklist Hub</span>
+      </h1>
+      <p class="hero-subtitle">
+        A community-driven collection of bug bounty checklists for technologies,
+        vulnerabilities, reconnaissance methodologies, and more.
+        <strong>Test smarter, find more.</strong>
+      </p>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════ SEARCH + CONTROLS ═══════════════════════ -->
+  <section class="search-section" id="searchSection">
+    <div class="search-container">
+
+      <!-- TOP CONTROLS ROW: progress | severity | session -->
+      <div class="top-controls">
+        <div class="top-controls-progress">
+          <div class="donut-wrap">
+            <svg viewBox="0 0 100 100" width="90" height="90">
+              <circle class="donut-bg" cx="50" cy="50" r="44"/>
+              <circle class="donut-fg" id="donutFg" cx="50" cy="50" r="44" stroke-dasharray="276.46" stroke-dashoffset="276.46"/>
+            </svg>
+            <div class="donut-center">
+              <span class="donut-pct" id="donutPct">0%</span>
+              <span class="donut-frac" id="donutFrac">0/—</span>
+            </div>
+          </div>
+          <div class="prog-divider"></div>
+          <div class="prog-stats">
+            <div class="prog-stat">
+              <span class="prog-stat-num" id="totalChecks">—</span>
+              <small class="prog-stat-label">CHECKS</small>
+            </div>
+            <div class="prog-stat prog-stat-accent">
+              <span class="prog-stat-num" id="doneCount">0</span>
+              <small class="prog-stat-label">DONE</small>
+            </div>
+          </div>
+          <button class="reset-panel-btn" id="resetProgressPanel" title="Reset all progress">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+            Reset progress
+          </button>
+        </div>
+        <div class="top-controls-sep"></div>
+        <div class="severity-pills" id="filterBar">
+          <span class="filter-label">Severity:</span>
+          <button class="severity-pill sev-all active" data-severity="all">All</button>
+          <button class="severity-pill sev-critical" data-severity="critical">Critical</button>
+          <button class="severity-pill sev-high" data-severity="high">High</button>
+          <button class="severity-pill sev-medium" data-severity="medium">Medium</button>
+          <button class="severity-pill sev-low" data-severity="low">Low</button>
+          <button class="severity-pill sev-info" data-severity="info">Info</button>
+        </div>
+        <div class="top-controls-sep"></div>
+        <div class="session-bar">
+          <span class="filter-label">Session:</span>
+          <input type="text" id="targetInput" class="target-input" value="default" placeholder="target-name" />
+          <button class="session-new-btn" id="newSession" title="Create new session">+ New</button>
+          <div class="session-tabs" id="sessionTabs"></div>
+        </div>
+      </div>
+
+      <div class="search-wrapper">
+        <svg class="search-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input
+          type="text"
+          class="search-input"
+          id="searchInput"
+          placeholder="Search checklists..."
+          autocomplete="off"
+          aria-label="Search checklists"
+        />
+        <button class="search-clear" id="searchClear" aria-label="Clear search">✕</button>
+      </div>
+
+      <div class="stats-actions-row">
+        <div class="search-stats" id="searchStats">
+          <span id="resultsCount">Showing all categories</span>
+        </div>
+        <div class="filter-actions">
+          <button class="filter-action-btn" id="uncheckedOnly" title="Show unchecked items only">☐ Unchecked only</button>
+          <button class="filter-action-btn" id="collapseAll" title="Expand or collapse all items">↕ Expand all</button>
+          <button class="filter-action-btn export-btn" id="exportReport" title="Export checked items as Markdown report">📄 Export</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ DASHBOARD GRID ═══════════════════════ -->
+  <main class="dashboard" id="dashboard">
+    <div class="dashboard-grid" id="dashboardGrid">
+      <!-- Skeleton loading placeholders -->
+      <div class="skeleton-card"><div class="skeleton-shimmer"></div><div class="skeleton-h"></div><div class="skeleton-b"></div></div>
+      <div class="skeleton-card"><div class="skeleton-shimmer"></div><div class="skeleton-h"></div><div class="skeleton-b"></div></div>
+      <div class="skeleton-card"><div class="skeleton-shimmer"></div><div class="skeleton-h"></div><div class="skeleton-b"></div></div>
+      <div class="skeleton-card"><div class="skeleton-shimmer"></div><div class="skeleton-h"></div><div class="skeleton-b"></div></div>
+      <div class="skeleton-card"><div class="skeleton-shimmer"></div><div class="skeleton-h"></div><div class="skeleton-b"></div></div>
+      <div class="skeleton-card"><div class="skeleton-shimmer"></div><div class="skeleton-h"></div><div class="skeleton-b"></div></div>
+    </div>
+    <!-- No results state -->
+    <div class="no-results" id="noResults" style="display:none">
+      <span class="no-results-icon">🔍</span>
+      <h3>No matching checklists found</h3>
+      <p>Try adjusting your search query, severity filter, or category.</p>
+    </div>
+  </main>
+
+  <!-- Scroll-to-top button -->
+  <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+  </button>
+
+  <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>🎯 KrazePlanet Checklist</h3>
+        <p>Community-powered bug bounty checklists. Contributions welcome!</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="https://github.com/KrazePlanet/BugBountyChecklist" target="_blank" rel="noopener">GitHub Repository</a></li>
+          <li><a href="https://github.com/KrazePlanet/BugBountyChecklist/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Contribution Guide</a></li>
+          <li><a href="https://github.com/KrazePlanet/BugBountyChecklist/issues" target="_blank" rel="noopener">Submit Checklist</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Company</h3>
+        <ul id="footerSiteLinks"></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 KrazePlanet. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════ SCRIPTS ═══════════════════════ -->
+  <script src="js/renderer.js"></script>
+  <script src="js/parser.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

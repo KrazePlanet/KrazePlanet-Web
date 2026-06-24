@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KrazePlanet Labs — We've Moved</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg:          #0d1117;
+      --bg-card:     #161b22;
+      --bg-card-alt: #1c2333;
+      --border:      #30363d;
+      --border-glow: #f97316;
+      --text-primary:   #e6edf3;
+      --text-secondary: #8b949e;
+      --text-muted:     #484f58;
+      --accent-orange: #f97316;
+      --accent-teal:   #2dd4bf;
+      --accent-blue:   #58a6ff;
+      --accent-green:  #3fb950;
+      --badge-bg:      #21262d;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.25rem;
+      overflow-x: hidden;
+    }
+
+    /* ── Background grid ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(249,115,22,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(249,115,22,.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Radial glow ── */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -30%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 600px;
+      background: radial-gradient(ellipse at center, rgba(249,115,22,.10) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 780px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.5rem;
+      text-align: center;
+    }
+
+    /* ── Brand ── */
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: .55rem;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -.3px;
+    }
+
+    .brand-icon {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    @keyframes flicker {
+      0%, 100% { transform: skewX(0deg)   scaleY(1);    }
+      20%       { transform: skewX(-2deg)  scaleY(1.03); }
+      40%       { transform: skewX(1.5deg) scaleY(.98);  }
+      60%       { transform: skewX(-1deg)  scaleY(1.02); }
+      80%       { transform: skewX(2deg)   scaleY(.99);  }
+    }
+
+    .brand-icon svg {
+      width: 26px;
+      height: 26px;
+      filter: drop-shadow(0 0 5px rgba(249,115,22,.8));
+      transition: filter .25s;
+      animation: flicker 2.8s ease-in-out infinite;
+      transform-origin: 50% 90%;
+    }
+
+    .brand:hover .brand-icon svg {
+      filter: drop-shadow(0 0 10px rgba(251,191,36,1)) drop-shadow(0 0 20px rgba(249,115,22,.6));
+    }
+
+    .brand-name {
+      color: var(--text-primary);
+    }
+
+    .brand-name span {
+      color: var(--accent-orange);
+    }
+
+    /* ── Badge ── */
+    .moved-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      background: rgba(249,115,22,.12);
+      border: 1px solid rgba(249,115,22,.35);
+      color: var(--accent-orange);
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .35rem .9rem;
+      border-radius: 100px;
+    }
+
+    .moved-badge::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-orange);
+      box-shadow: 0 0 6px 2px rgba(249,115,22,.6);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1;   box-shadow: 0 0 6px 2px rgba(249,115,22,.6); }
+      50%       { opacity: .7; box-shadow: 0 0 12px 4px rgba(249,115,22,.3); }
+    }
+
+    /* ── Headline ── */
+    .headline-block {
+      display: flex;
+      flex-direction: column;
+      gap: .9rem;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 5.5vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -.5px;
+      background: linear-gradient(135deg, #f97316 0%, #fb923c 40%, #fbbf24 80%, #facc15 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* ── Info card ── */
+    .info-card {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .info-card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: .85rem;
+      text-align: left;
+    }
+
+    .info-icon {
+      font-size: 1.5rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: .1rem;
+    }
+
+    .info-card-header h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: .3rem;
+    }
+
+    .info-card-header p {
+      font-size: .9rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    .info-card-header p strong {
+      color: var(--accent-teal);
+      font-weight: 600;
+    }
+
+    /* ── Domain cards ── */
+    .domains-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      width: 100%;
+    }
+
+    @media (max-width: 500px) {
+      .domains-grid { grid-template-columns: 1fr; }
+    }
+
+    .domain-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+      padding: 1.6rem 1.25rem;
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      text-decoration: none;
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+      overflow: hidden;
+    }
+
+    .domain-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(249,115,22,.08) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity .2s;
+    }
+
+    .domain-card:hover {
+      border-color: var(--accent-orange);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(249,115,22,.18);
+    }
+
+    .domain-card:hover::before {
+      opacity: 1;
+    }
+
+    .domain-card:focus-visible {
+      outline: 2px solid var(--accent-orange);
+      outline-offset: 3px;
+    }
+
+    .domain-number {
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      background: var(--badge-bg);
+      border: 1px solid var(--border);
+      padding: .2rem .6rem;
+      border-radius: 100px;
+    }
+
+    .domain-url {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--accent-orange);
+      letter-spacing: -.3px;
+    }
+
+    .domain-arrow {
+      font-size: .85rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: .3rem;
+      transition: color .2s, gap .2s;
+    }
+
+    .domain-card:hover .domain-arrow {
+      color: var(--accent-orange);
+      gap: .55rem;
+    }
+
+    /* ── Redundancy note ── */
+    .redundancy-note {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .55rem;
+      font-size: .83rem;
+      color: var(--text-muted);
+      padding: .75rem 1.25rem;
+      background: var(--bg-card);
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+      width: 100%;
+    }
+
+    .redundancy-note svg {
+      flex-shrink: 0;
+      color: var(--accent-green);
+    }
+
+    .redundancy-note span {
+      line-height: 1.5;
+    }
+
+    .redundancy-note strong {
+      color: var(--accent-green);
+      font-weight: 600;
+    }
+
+    /* ── Footer ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      margin-top: 3.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .65rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .footer-links a {
+      font-size: .83rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color .15s;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-orange);
+    }
+
+    .footer-copy {
+      font-size: .78rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Discord button ── */
+    .discord-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: #5865f2;
+      color: #fff;
+      font-size: .85rem;
+      font-weight: 600;
+      padding: .55rem 1.2rem;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: background .15s, transform .15s;
+    }
+
+    .discord-btn:hover {
+      background: #4752c4;
+      transform: translateY(-1px);
+    }
+
+    .discord-btn svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    /* ── Contact section ── */
+    .contact-section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-section-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -.3px;
+      padding-bottom: .6rem;
+      border-bottom: 2px solid var(--accent-teal);
+      display: inline-block;
+      align-self: flex-start;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    @media (max-width: 600px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+
+    .contact-main {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+
+    .contact-main p {
+      font-size: .9rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      gap: .65rem;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: .85rem;
+      padding: .75rem 1rem;
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      text-decoration: none;
+      transition: border-color .2s, transform .15s;
+    }
+
+    .social-link:hover {
+      border-color: var(--accent-teal);
+      transform: translateX(3px);
+    }
+
+    .social-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--badge-bg);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .social-icon svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .social-info {
+      display: flex;
+      flex-direction: column;
+      gap: .15rem;
+    }
+
+    .social-name {
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .social-url {
+      font-size: .78rem;
+      color: var(--accent-teal);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .contact-side {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-side-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+
+    .contact-side-card h3 {
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--accent-teal);
+    }
+
+    .contact-side-card p {
+      font-size: .85rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    .contact-side-card a {
+      font-size: .82rem;
+      color: var(--accent-teal);
+      font-family: 'JetBrains Mono', monospace;
+      word-break: break-all;
+      text-decoration: none;
+    }
+
+    .contact-side-card a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-side-card .repo-icon {
+      font-size: 2rem;
+      line-height: 1;
+      text-align: center;
+      margin-bottom: .25rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Brand -->
+    <div class="brand">
+      <span class="brand-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="fg" x1="12" y1="3" x2="12" y2="21" gradientUnits="userSpaceOnUse">
+              <stop offset="0%"   stop-color="#fde047"/>
+              <stop offset="45%"  stop-color="#f97316"/>
+              <stop offset="100%" stop-color="#dc2626"/>
+            </linearGradient>
+            <linearGradient id="fg2" x1="12" y1="10" x2="12" y2="21" gradientUnits="userSpaceOnUse">
+              <stop offset="0%"   stop-color="#fff7ed"/>
+              <stop offset="100%" stop-color="#fdba74"/>
+            </linearGradient>
+          </defs>
+          <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" fill="url(#fg)"/>
+          <path d="M12 17.5c-.966 0-1.75-.784-1.75-1.75 0-.698.4-1.3.98-1.6-.08.28-.13.58-.13.85a1.75 1.75 0 0 0 2.72 1.455A1.746 1.746 0 0 1 12 17.5z" fill="url(#fg2)" opacity=".9"/>
+        </svg>
+      </span>
+      <span class="brand-name">Kraze<span>Planet</span>Labs</span>
+    </div>
+
+    <!-- Badge -->
+    <div class="moved-badge">Platform Moved</div>
+
+    <!-- Headline -->
+    <div class="headline-block">
+      <h1>We've Moved!</h1>
+      <p class="subtitle">
+        As KrazePlanetLabs keeps growing, some labs — like Remote Code Execution — are too dangerous to host here. We've migrated to dedicated domains built for safer, isolated lab environments.
+      </p>
+    </div>
+
+    <!-- Info card -->
+    <div class="info-card">
+      <div class="info-card-header">
+        <div class="info-icon">🚀</div>
+        <div>
+          <h2>Continue on our new dedicated domains</h2>
+          <p>
+            All 217+ labs — including <strong>XSS, SQLi, SSRF, RCE, LFI, IDOR</strong> and more — are available on both domains below. Same labs, same content, fully hands-on.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Domain cards -->
+    <div class="domains-grid">
+      <a class="domain-card" href="https://kzlabs.in" target="_blank" rel="noopener noreferrer">
+        <span class="domain-number">Primary</span>
+        <span class="domain-url">kzlabs.in</span>
+        <span class="domain-arrow">
+          Visit now
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a class="domain-card" href="https://kzlabs.store" target="_blank" rel="noopener noreferrer">
+        <span class="domain-number">Mirror</span>
+        <span class="domain-url">kzlabs.store</span>
+        <span class="domain-arrow">
+          Visit now
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+    </div>
+
+    <!-- Redundancy note -->
+    <div class="redundancy-note">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <span><strong>Both domains host identical labs.</strong> If one goes down, switch to the other — your training never stops.</span>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="contact-section">
+      <h2 class="contact-section-title">Contact Me</h2>
+      <p style="font-size:.9rem;color:var(--text-secondary);line-height:1.6;text-align:left">
+        Have questions, suggestions, or want to collaborate? Reach out through any of these channels.
+      </p>
+      <div class="contact-grid">
+        <!-- Left: social links -->
+        <div class="contact-main">
+          <p>If you have any questions, suggestions, or want to collaborate on security research, feel free to reach out. I'm always interested in discussing web security, bug bounty hunting, and improving this platform.</p>
+          <div class="social-links">
+            <a class="social-link" href="https://github.com/rix4uni" target="_blank" rel="noopener noreferrer">
+              <div class="social-icon">
+                <svg viewBox="0 0 24 24" fill="var(--text-primary)" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              </div>
+              <div class="social-info">
+                <span class="social-name">GitHub</span>
+                <span class="social-url">github.com/rix4uni</span>
+              </div>
+            </a>
+            <a class="social-link" href="https://twitter.com/rix4uni" target="_blank" rel="noopener noreferrer">
+              <div class="social-icon">
+                <svg viewBox="0 0 24 24" fill="var(--text-primary)" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.849L1.254 2.25H8.08l4.259 5.63L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              </div>
+              <div class="social-info">
+                <span class="social-name">Twitter / X</span>
+                <span class="social-url">twitter.com/rix4uni</span>
+              </div>
+            </a>
+            <a class="social-link" href="https://linkedin.com/in/rix4uni" target="_blank" rel="noopener noreferrer">
+              <div class="social-icon">
+                <svg viewBox="0 0 24 24" fill="var(--text-primary)" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </div>
+              <div class="social-info">
+                <span class="social-name">LinkedIn</span>
+                <span class="social-url">linkedin.com/in/rix4uni</span>
+              </div>
+            </a>
+          </div>
+        </div>
+        <!-- Right: repo + info cards -->
+        <div class="contact-side">
+          <div class="contact-side-card">
+            <div class="repo-icon">🐙</div>
+            <h3>Project Repository</h3>
+            <p>You can also open issues or discussions directly in the GitHub project repository:</p>
+            <a href="https://github.com/KrazePlanet/KrazePlanetLabs" target="_blank" rel="noopener noreferrer">github.com/KrazePlanet/KrazePlanetLabs</a>
+          </div>
+          <div class="contact-side-card">
+            <h3>Response Time</h3>
+            <p>I typically respond within <strong style="color:var(--accent-teal)">12 hours</strong>. For urgent matters related to security vulnerabilities, please use GitHub issues with appropriate labels.</p>
+          </div>
+          <div class="contact-side-card">
+            <h3>Contributions Welcome</h3>
+            <p>If you'd like to contribute to KrazePlanetLabs by adding new labs, improving existing ones, or enhancing documentation, feel free to submit a pull request on GitHub.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Discord -->
+    <a class="discord-btn" href="https://discord.gg/Ujg69RM6qd" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+      Join our Discord
+    </a>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p class="footer-copy">© 2026 KrazePlanet. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

