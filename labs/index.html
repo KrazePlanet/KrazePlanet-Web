@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+  <link rel="icon" href="favicon.png" type="image/png">
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -188,7 +189,7 @@
 
     /* ── Info card ── */
     .info-card {
-      width: 100%;
+      width: 180%;
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 16px;
@@ -233,12 +234,20 @@
     /* ── Domain cards ── */
     .domains-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(4, 1fr);
       gap: 1rem;
-      width: 100%;
+      width: 180%;
     }
 
-    @media (max-width: 500px) {
+    @media (max-width: 900px) {
+      .domains-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .domains-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 400px) {
       .domains-grid { grid-template-columns: 1fr; }
     }
 
@@ -255,7 +264,7 @@
       border-radius: 14px;
       text-decoration: none;
       transition: border-color .2s, transform .2s, box-shadow .2s;
-      overflow: hidden;
+      /* overflow: hidden; */
     }
 
     .domain-card::before {
@@ -619,6 +628,186 @@
       <a class="domain-card" href="https://kzlabs.store" target="_blank" rel="noopener noreferrer">
         <span class="domain-number">Mirror</span>
         <span class="domain-url">kzlabs.store</span>
+        <span class="domain-arrow">
+          Visit now
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a class="domain-card" href="https://vulnuniversity.online" target="_blank" rel="noopener noreferrer">
+        <span class="domain-number">Mirror</span>
+        <span class="domain-url">vulnuniversity.online</span>
+        <span class="domain-arrow">
+          Visit now
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a class="domain-card" href="https://securityarena.site" target="_blank" rel="noopener noreferrer">
+        <span class="domain-number">Mirror</span>
+        <span class="domain-url">securityarena.site</span>
+        <span class="domain-arrow">
+          Visit now
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a class="domain-card" href="https://hackpractice.xyz" target="_blank" rel="noopener noreferrer">
+        <span class="domain-number">Mirror</span>
+        <span class="domain-url">hackpractice.xyz</span>
+        <span class="domain-arrow">
+          Visit now
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a class="domain-card" href="https://bugdojo.store" target="_blank" rel="noopener noreferrer">
+        <span class="domain-number">Mirror</span>
+        <span class="domain-url">bugdojo.store</span>
+        <span class="domain-arrow">
+          Visit now
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a class="domain-card" href="https://webhacklab.online" target="_blank" rel="noopener noreferrer">
+        <span class="domain-number">Mirror</span>
+        <span class="domain-url">webhacklab.online</span>
+        <span class="domain-arrow">
+          Visit now
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a class="domain-card" href="https://exploitcamp.site" target="_blank" rel="noopener noreferrer">
+        <span class="domain-number">Mirror</span>
+        <span class="domain-url">exploitcamp.site</span>
+        <span class="domain-arrow">
+          Visit now
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a class="domain-card" href="https://vulnplayground.xyz" target="_blank" rel="noopener noreferrer">
+        <span class="domain-number">Mirror</span>
+        <span class="domain-url">vulnplayground.xyz</span>
+        <span class="domain-arrow">
+          Visit now
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a class="domain-card" href="https://bugacademy.online" target="_blank" rel="noopener noreferrer">
+        <span class="domain-number">Mirror</span>
+        <span class="domain-url">bugacademy.online</span>
+        <span class="domain-arrow">
+          Visit now
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a class="domain-card" href="https://hackarena.site" target="_blank" rel="noopener noreferrer">
+        <span class="domain-number">Mirror</span>
+        <span class="domain-url">hackarena.site</span>
+        <span class="domain-arrow">
+          Visit now
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a class="domain-card" href="https://vulnforge.xyz" target="_blank" rel="noopener noreferrer">
+        <span class="domain-number">Mirror</span>
+        <span class="domain-url">vulnforge.xyz</span>
+        <span class="domain-arrow">
+          Visit now
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a class="domain-card" href="https://pwnedbox.site" target="_blank" rel="noopener noreferrer">
+        <span class="domain-number">Mirror</span>
+        <span class="domain-url">pwnedbox.site</span>
+        <span class="domain-arrow">
+          Visit now
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a class="domain-card" href="https://threatbench.xyz" target="_blank" rel="noopener noreferrer">
+        <span class="domain-number">Mirror</span>
+        <span class="domain-url">threatbench.xyz</span>
+        <span class="domain-arrow">
+          Visit now
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a class="domain-card" href="https://cyberdrill.space" target="_blank" rel="noopener noreferrer">
+        <span class="domain-number">Mirror</span>
+        <span class="domain-url">cyberdrill.space</span>
+        <span class="domain-arrow">
+          Visit now
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a class="domain-card" href="https://patchsec.site" target="_blank" rel="noopener noreferrer">
+        <span class="domain-number">Mirror</span>
+        <span class="domain-url">patchsec.site</span>
+        <span class="domain-arrow">
+          Visit now
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a class="domain-card" href="https://exploitry.online" target="_blank" rel="noopener noreferrer">
+        <span class="domain-number">Mirror</span>
+        <span class="domain-url">exploitry.online</span>
+        <span class="domain-arrow">
+          Visit now
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a class="domain-card" href="https://vulnera.xyz" target="_blank" rel="noopener noreferrer">
+        <span class="domain-number">Mirror</span>
+        <span class="domain-url">vulnera.xyz</span>
+        <span class="domain-arrow">
+          Visit now
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a class="domain-card" href="https://pwnedlabs.site" target="_blank" rel="noopener noreferrer">
+        <span class="domain-number">Mirror</span>
+        <span class="domain-url">pwnedlabs.site</span>
+        <span class="domain-arrow">
+          Visit now
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a class="domain-card" href="https://shellcamp.store" target="_blank" rel="noopener noreferrer">
+        <span class="domain-number">Mirror</span>
+        <span class="domain-url">shellcamp.store</span>
+        <span class="domain-arrow">
+          Visit now
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a class="domain-card" href="https://secpathways.space" target="_blank" rel="noopener noreferrer">
+        <span class="domain-number">Mirror</span>
+        <span class="domain-url">secpathways.space</span>
+        <span class="domain-arrow">
+          Visit now
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a class="domain-card" href="https://buglabhub.xyz" target="_blank" rel="noopener noreferrer">
+        <span class="domain-number">Mirror</span>
+        <span class="domain-url">buglabhub.xyz</span>
         <span class="domain-arrow">
           Visit now
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
