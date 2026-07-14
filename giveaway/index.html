@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucky Draw - Giveaway Winner Picker</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Canvas for Confetti -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Ambient Glow effects -->
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo-area">
+                <span class="logo-v">Lucky</span><span class="logo-x">Draw</span>
+                <span class="badge">WINNER PICKER</span>
+            </div>
+            <p class="subtitle">Select random winners from comments or lists with fully customizable places, tiers, and prizes.</p>
+        </header>
+
+        <!-- Main Dashboard Layout -->
+        <div class="dashboard-grid">
+            
+            <!-- Left Side: Inputs & Setup -->
+            <aside class="sidebar card-panel">
+                <div class="panel-header">
+                    <span class="step-num">01</span>
+                    <h2>Participants & Setup</h2>
+                </div>
+
+                <!-- Input area -->
+                <div class="form-group">
+                    <div class="label-wrapper">
+                        <label for="participants-input">Participants (one per line)</label>
+                        <span class="count-badge" id="raw-count">0 loaded</span>
+                    </div>
+                    <textarea 
+                        id="participants-input" 
+                        placeholder="Paste list of names or profile URLs here...&#10;e.g.&#10;John Doe&#10;Jane Smith&#10;@alexcommenter" 
+                        spellcheck="false"
+                    ></textarea>
+                </div>
+
+                <div class="button-group-row">
+                    <button type="button" class="btn btn-secondary btn-sm" id="btn-clean" title="Remove duplicates, empty lines, and whitespace">
+                        <svg class="icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                            <path d="M19.36 2.72L20.78 4.14L15.06 9.86L13.64 8.44L19.36 2.72M5.93 17.57C3.92 19.58 3.92 22.84 5.93 24.85C7.94 26.86 11.2 26.86 13.21 24.85C15.22 22.84 15.22 19.58 13.21 17.57C11.2 15.56 7.94 15.56 5.93 17.57M16.47 11.27L17.88 12.69L11.5 19.07L10.09 17.66L16.47 11.27Z"/>
+                        </svg>
+                        Clean List
+                    </button>
+                    <button type="button" class="btn btn-outline btn-sm" id="btn-clear">
+                        Clear
+                    </button>
+                </div>
+
+                <!-- Prize Customizer -->
+                <div class="prize-section">
+                    <div class="label-wrapper">
+                        <label>Configure Places & Prizes</label>
+                        <button type="button" class="btn-text" id="btn-reset-prizes">Reset to Default</button>
+                    </div>
+                    <div class="prizes-list" id="prizes-container">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                    <button type="button" class="btn btn-outline btn-sm btn-block" id="btn-add-prize">
+                        + Add Winner Slot
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Center Panel: The Draw Stage -->
+            <main class="main-stage card-panel">
+                <div class="panel-header header-center">
+                    <span class="step-num">02</span>
+                    <h2>Lucky Draw Terminal</h2>
+                </div>
+
+                <!-- Draw Monitor Screen -->
+                <div class="draw-monitor" id="draw-monitor">
+                    <div class="monitor-header">
+                        <div class="monitor-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <div class="monitor-title font-mono">lucky_draw_terminal.sh</div>
+                    </div>
+                    <div class="monitor-grid"></div>
+                    <div class="monitor-glow"></div>
+                    
+                    <div class="monitor-content">
+                        <!-- Idle State -->
+                        <div id="state-idle" class="monitor-state active">
+                            <div class="radar-scan"></div>
+                            <div class="cyber-shield-icon">
+                                <svg viewBox="0 0 24 24" class="pulse-icon">
+                                    <path fill="currentColor" d="M18 2H6C4.9 2 4 2.9 4 4V10C4 14.42 7.58 18 12 18C16.42 18 20 14.42 20 10V4C20 2.9 19.1 2 18 2M18 10C18 13.31 15.31 16 12 16C8.69 16 6 13.31 6 10V4H18V10M12 20C10.9 20 10 20.9 10 22H14C14 20.9 13.1 20 12 20Z"/>
+                                </svg>
+                            </div>
+                            <h3 class="cyber-heading">Lucky Draw Engine</h3>
+                            <p class="status-msg">STATUS: <span class="status-active-badge font-mono">READY</span></p>
+                            <p class="instruction-msg">Load participants and configure prizes, then click "Initiate Draw Sequence" to launch.</p>
+                        </div>
+
+                        <!-- Active Drawing/Shuffling State -->
+                        <div id="state-drawing" class="monitor-state">
+                            <div class="current-draw-title">
+                                DRAWING WINNER FOR:
+                                <h4 id="drawing-prize-title" class="glow-text-cyan font-mono">1st Place Prize</h4>
+                            </div>
+                            <div class="scrambler-wrapper">
+                                <div id="scrambler-name" class="font-mono text-cyan">A_N_O_N_Y_M_O_U_S</div>
+                            </div>
+                            <div class="scrambler-sub">
+                                <span class="decrypt-label font-mono">SELECTING WINNER...</span>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar-fill" id="draw-progress"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Winner Reveal State (Temp splash) -->
+                        <div id="state-reveal" class="monitor-state">
+                            <div class="reveal-badge font-mono">WINNER SELECTED</div>
+                            <h3 class="prize-revealed-title" id="reveal-prize">1st Winner</h3>
+                            <div class="winner-reveal-card" id="reveal-winner-card">
+                                <span id="reveal-winner-name">John Doe</span>
+                            </div>
+                            <p class="reveal-footer font-mono">CONGRATULATIONS!</p>
+                        </div>
+
+                        <!-- Completed State -->
+                        <div id="state-completed" class="monitor-state">
+                            <div class="success-icon-box">
+                                <svg viewBox="0 0 24 24" class="success-icon">
+                                    <path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z"/>
+                                </svg>
+                            </div>
+                            <h3 class="cyber-heading">Draw Sequence Complete</h3>
+                            <p class="status-msg"><span class="status-active-badge font-mono" style="background: rgba(99, 102, 241, 0.08); color: var(--clr-purple); border-color: rgba(99, 102, 241, 0.15);">ALL WINNERS LOGGED</span></p>
+                            <p class="instruction-msg">Check the board below for the full list of winners. Copy your results to share on social media.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="draw-controls">
+                    <div class="controls-row">
+                        <button type="button" class="btn btn-primary btn-lg" id="btn-start-draw">
+                            <svg class="icon" viewBox="0 0 24 24" id="draw-btn-icon" width="20" height="20" fill="currentColor"><path d="M12,6V9L16,5L12,1V4A8,8 0 0,0 4,12C4,13.43 4.38,14.77 5.03,15.93L6.5,14.47C6.18,13.73 6,12.89 6,12A6,6 0 0,1 12,6M18.97,8.07L17.5,9.53C17.82,10.27 18,11.11 18,12A6,6 0 0,1 12,18V15L8,19L12,23V20A8,8 0 0,0 20,12C20,10.57 19.62,9.23 18.97,8.07Z"/></svg>
+                            <span id="draw-btn-text">Initiate Draw Sequence</span>
+                        </button>
+                    </div>
+                    
+                    <div class="options-flex">
+                        <label class="custom-toggle">
+                            <input type="checkbox" id="opt-confetti" checked>
+                            <span class="slider"></span>
+                            <span class="label-text">Confetti Celebration</span>
+                        </label>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Section 3: Winners Table & Export -->
+        <section class="results-section card-panel" id="results-panel">
+            <div class="panel-header header-between">
+                <div class="flex-title">
+                    <span class="step-num">03</span>
+                    <h2>Winners Board</h2>
+                </div>
+                <div class="results-actions" id="results-actions-bar" style="display: none;">
+                    <button type="button" class="btn btn-outline" id="btn-reset-draw">
+                        Reset Draw
+                    </button>
+                    <button type="button" class="btn btn-accent" id="btn-copy-linkedin">
+                        <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"/></svg>
+                        Copy Results
+                    </button>
+                </div>
+            </div>
+
+            <!-- Table or Empty state -->
+            <div class="winners-table-container">
+                <table class="winners-table" id="winners-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 150px;">Place / Rank</th>
+                            <th>Prize</th>
+                            <th>Winner Username</th>
+                            <th style="width: 140px; text-align: right;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="winners-tbody">
+                        <!-- Dynamic content. Initial empty rows showing placeholders -->
+                        <tr class="empty-row">
+                            <td colspan="4" class="text-center font-mono">No winners drawn yet. Initiate the draw sequence above.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>&copy; 2026 Lucky Draw Winner Picker. Run giveaways fairly, transparently, and easily.</p>
+        </footer>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast">Copied to clipboard!</div>
+
+    <script src="app.js"></script>
+</body>
+</html>
