@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KrazePlanet - Security Writeups & Vulnerability Explorer</title>
+  <link rel="icon" href="https://krazeplanet.com/favicon.ico" type="image/png">
+  <meta name="description"
+    content="Explore, filter, and search cybersecurity, bug bounty, and pentesting writeups from Medium with tag filtering, real-time date filters, status badges, bookmarks, and analytics.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="header-container">
+
+      <a href="/" class="logo">
+        <img src="https://krazeplanet.com/favicon.png" alt="KrazePlanet Logo"
+          style="height: 32px; width: 32px; object-fit: contain;">
+        <span style="color: #ffffff; font-weight: 700; font-size: 1.4rem; letter-spacing: -0.5px;">KrazePlanet</span>
+      </a>
+
+      <div class="header-right">
+        <!-- Reading Progress Widget -->
+        <div class="reading-progress-box" title="Today's Reading Completion">
+          <div class="progress-label">
+            <span>Today's Read</span>
+            <span id="progress-percent">0%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div id="progress-bar-fill" class="progress-bar-fill"></div>
+          </div>
+        </div>
+
+        <div class="header-stats">
+          <div class="stat-pill" title="Total Writeups">
+            <i class="fas fa-book-bookmark" style="color: var(--accent-cyan);"></i>
+            <span>Total: <strong id="stat-total">0</strong></span>
+          </div>
+          <div class="stat-pill stat-new" title="New Writeups">
+            <i class="fas fa-bolt"></i>
+            <span>New: <strong id="stat-new">0</strong></span>
+          </div>
+          <div class="stat-pill stat-today" title="Today's Writeups">
+            <i class="fas fa-calendar-day"></i>
+            <span>Today: <strong id="stat-today">0</strong></span>
+          </div>
+          <div class="stat-pill stat-bookmarks" title="Click to view Bookmarked Writeups">
+            <i class="fas fa-star" style="color: #fde047;"></i>
+            <span>Saved: <strong id="stat-bookmarks">0</strong></span>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <button id="toggle-analytics-btn" class="header-btn" title="Toggle Vulnerability Trends Analytics">
+            <i class="fas fa-chart-pie"></i> Analytics
+          </button>
+          <button id="export-btn" class="header-btn" title="Export Writeups to Markdown / JSON / CSV">
+            <i class="fas fa-file-export"></i> Export
+          </button>
+          <button id="shortcuts-btn" class="header-btn" title="Keyboard Shortcuts (?)">
+            <i class="fas fa-keyboard"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Application Wrapper -->
+  <main class="main-wrapper">
+
+    <!-- Collapsible Analytics & Trends Section -->
+    <section id="analytics-drawer" class="analytics-drawer">
+      <div class="analytics-header">
+        <span><i class="fas fa-chart-line" style="color:var(--accent-cyan);"></i> Vulnerability Insights & Trends</span>
+        <button id="close-analytics-btn" class="modal-close">&times;</button>
+      </div>
+
+      <div class="analytics-grid">
+        <div class="analytics-card">
+          <div class="analytics-title">Top 5 Writeup Categories</div>
+          <div id="top-tags-chart" class="chart-bars"></div>
+        </div>
+
+        <div class="analytics-card">
+          <div class="analytics-title">Extracted Vulnerability Types</div>
+          <div id="vuln-types-chart" class="chart-bars"></div>
+        </div>
+
+        <div class="analytics-card">
+          <div class="analytics-title">Total Digest Reading Time</div>
+          <div style="font-size: 1.5rem; font-weight: 700; color: var(--accent-cyan); margin-top: 0.5rem;"
+            id="total-reading-time">
+            0 hours
+          </div>
+          <p style="font-size:0.8rem; color:var(--text-muted); margin-top:0.25rem;">
+            Estimated time required to read all writeups in database.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Controls & Filters Toolbar -->
+    <section class="toolbar-section">
+
+      <!-- Primary Filter Controls -->
+      <div class="toolbar-primary">
+
+        <!-- Instant Search Box -->
+        <div class="search-box">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" id="search-input" class="search-input"
+            placeholder="Search writeups, titles, tags, CVEs, bounties... (Press '/' to focus)" id="writeup-search">
+          <button id="search-clear" class="search-clear" title="Clear Search"><i class="fas fa-times"></i></button>
+        </div>
+
+        <!-- Controls Group -->
+        <div class="controls-group">
+
+          <!-- Time Range Dropdown (Matching Screenshot UI) -->
+          <div class="time-dropdown-container">
+            <button id="time-dropdown-btn" class="time-dropdown-btn">
+              <span id="time-dropdown-label">Any time</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+
+            <div id="time-dropdown-menu" class="time-dropdown-menu">
+              <div class="time-option selected" data-value="any">
+                <span>Any time</span>
+                <i class="fas fa-check check-icon"></i>
+              </div>
+              <div class="time-option" data-value="1h">
+                <span>Past hour</span>
+                <i class="fas fa-check check-icon"></i>
+              </div>
+              <div class="time-option" data-value="24h">
+                <span>Past 24 hours</span>
+                <i class="fas fa-check check-icon"></i>
+              </div>
+              <div class="time-option" data-value="7d">
+                <span>Past week</span>
+                <i class="fas fa-check check-icon"></i>
+              </div>
+              <div class="time-option" data-value="30d">
+                <span>Past month</span>
+                <i class="fas fa-check check-icon"></i>
+              </div>
+              <div class="time-option" data-value="365d">
+                <span>Past year</span>
+                <i class="fas fa-check check-icon"></i>
+              </div>
+              <div class="time-option" data-value="custom">
+                <span>Custom range...</span>
+                <i class="fas fa-check check-icon"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Status Toggles (IsNew, IsToday, Bookmarks, Unread) -->
+          <button id="toggle-new-btn" class="toggle-btn toggle-new" title="Show only writeups marked IsNew">
+            <i class="fas fa-bolt"></i> IsNew
+          </button>
+          <button id="toggle-today-btn" class="toggle-btn toggle-today" title="Show writeups from today">
+            <i class="fas fa-calendar-day"></i> IsToday
+          </button>
+          <button id="toggle-bookmarks-btn" class="toggle-btn toggle-bookmarks" title="Show bookmarked writeups">
+            <i class="fas fa-star"></i> Bookmarks
+          </button>
+          <button id="toggle-unread-btn" class="toggle-btn toggle-unread" title="Show unread writeups only">
+            <i class="fas fa-eye-slash"></i> Unread
+          </button>
+
+          <!-- Sorting -->
+          <select id="sort-select" class="select-input" title="Sort Order">
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+            <option value="title">Title (A-Z)</option>
+          </select>
+
+          <!-- View Toggle -->
+          <div class="view-toggle">
+            <button id="view-grid-btn" class="view-btn active" title="Grid Card View">
+              <i class="fas fa-th-large"></i>
+            </button>
+            <button id="view-list-btn" class="view-btn" title="Compact List View">
+              <i class="fas fa-list"></i>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Tag Cloud & Tag Filter Drawer -->
+      <div class="tags-wrapper">
+        <div class="tags-header">
+          <span><i class="fas fa-tags" style="color:var(--accent-cyan);"></i> Filter by Tags</span>
+          <button id="clear-all-tags" class="clear-all-btn" style="display:none;">Clear Tag Filters</button>
+        </div>
+        <div id="tag-pills-container" class="tag-pills">
+          <!-- Dynamically populated tags -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Active Filter Summary Banner -->
+    <div id="active-filter-summary" class="active-filters-bar" style="display: none;"></div>
+
+    <!-- Results Status Bar -->
+    <div class="results-info">
+      <span id="results-count">Loading writeups...</span>
+    </div>
+
+    <!-- Main Writeups Container -->
+    <section id="writeups-container" class="writeups-grid">
+      <!-- Writeup cards will be dynamically rendered here -->
+    </section>
+
+    <!-- Pagination Controls -->
+    <nav class="pagination-container" id="pagination-container" style="display: none;">
+      <button id="prev-page-btn" class="page-btn" disabled><i class="fas fa-chevron-left"></i> Previous</button>
+      <span id="page-info" class="page-info">Page 1 of 1</span>
+      <button id="next-page-btn" class="page-btn">Next <i class="fas fa-chevron-right"></i></button>
+    </nav>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p>© 2026 KrazePlanet. All rights reserved.</p>
+  </footer>
+
+  <!-- Custom Date Range Modal -->
+  <div id="custom-range-modal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Select Custom Date Range</h3>
+        <button id="modal-close-btn" class="modal-close">&times;</button>
+      </div>
+      <div class="date-range-form">
+        <div class="form-group">
+          <label for="start-date-input">Start Date</label>
+          <input type="date" id="start-date-input">
+        </div>
+        <div class="form-group">
+          <label for="end-date-input">End Date</label>
+          <input type="date" id="end-date-input">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="cancel-custom-range" class="btn-secondary">Cancel</button>
+        <button id="apply-custom-range" class="btn-primary">Apply Filter</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Built-in In-App Reader Modal -->
+  <div id="reader-modal" class="modal-overlay">
+    <div class="modal-content reader-modal-content">
+      <div class="reader-toolbar">
+        <div class="reader-title-info">
+          <i class="fas fa-book-open" style="color:var(--accent-purple);"></i>
+          <h4 id="reader-title">Reading Article</h4>
+        </div>
+        <div class="reader-actions">
+          <button id="reader-theme-dark" class="reader-btn-icon" title="Dark Reader Theme"><i
+              class="fas fa-moon"></i></button>
+          <button id="reader-theme-sepia" class="reader-btn-icon" title="Sepia Reader Theme"><i
+              class="fas fa-sun"></i></button>
+          <a id="open-external-link" href="#" target="_blank" rel="noopener noreferrer" class="reader-btn-icon"
+            title="Open in New Tab">
+            <i class="fas fa-external-link-alt"></i>
+          </a>
+          <button id="close-reader-btn" class="modal-close"
+            style="font-size:1.5rem; margin-left:0.5rem;">&times;</button>
+        </div>
+      </div>
+      <div class="reader-iframe-container">
+        <iframe id="reader-iframe" src="about:blank" title="Article Reader"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Export Options Modal -->
+  <div id="export-modal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3><i class="fas fa-file-export" style="color:var(--accent-cyan);"></i> Export Writeups</h3>
+        <button id="close-export-btn" class="modal-close">&times;</button>
+      </div>
+      <p style="font-size:0.85rem; color:var(--text-muted);">
+        Export your currently filtered list of writeups to clipboard or download file.
+      </p>
+      <div class="export-options-list">
+        <button id="export-markdown-btn" class="export-opt-btn">
+          <i class="fab fa-markdown" style="font-size:1.25rem; color:var(--accent-cyan);"></i>
+          <div>
+            <strong>Copy as Markdown List</strong>
+            <div style="font-size:0.75rem; color:var(--text-muted);">Formatted list of [Title](URL) links</div>
+          </div>
+        </button>
+
+        <button id="export-discord-btn" class="export-opt-btn">
+          <i class="fab fa-discord" style="font-size:1.25rem; color:#5865F2;"></i>
+          <div>
+            <strong>Copy for Discord / Slack</strong>
+            <div style="font-size:0.75rem; color:var(--text-muted);">Bold titles with unrolled link previews</div>
+          </div>
+        </button>
+
+        <button id="export-json-btn" class="export-opt-btn">
+          <i class="fas fa-code" style="font-size:1.25rem; color:var(--accent-emerald);"></i>
+          <div>
+            <strong>Download JSON Data</strong>
+            <div style="font-size:0.75rem; color:var(--text-muted);">Full JSON array export (.json)</div>
+          </div>
+        </button>
+
+        <button id="export-csv-btn" class="export-opt-btn">
+          <i class="fas fa-file-csv" style="font-size:1.25rem; color:var(--accent-amber);"></i>
+          <div>
+            <strong>Download CSV Spreadsheet</strong>
+            <div style="font-size:0.75rem; color:var(--text-muted);">Tabular spreadsheet data (.csv)</div>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Keyboard Shortcuts Helper Modal -->
+  <div id="shortcuts-modal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3><i class="fas fa-keyboard" style="color:var(--accent-cyan);"></i> Keyboard Shortcuts</h3>
+        <button id="close-shortcuts-btn" class="modal-close">&times;</button>
+      </div>
+      <div class="kbd-shortcuts-grid">
+        <div class="kbd-item"><span>Focus Search</span> <kbd>/</kbd></div>
+        <div class="kbd-item"><span>Next Card</span> <kbd>J</kbd> or <kbd>↓</kbd></div>
+        <div class="kbd-item"><span>Prev Card</span> <kbd>K</kbd> or <kbd>↑</kbd></div>
+        <div class="kbd-item"><span>Bookmark Selected</span> <kbd>B</kbd></div>
+        <div class="kbd-item"><span>Toggle Read Status</span> <kbd>R</kbd></div>
+        <div class="kbd-item"><span>Open Article Modal</span> <kbd>O</kbd> / <kbd>Enter</kbd></div>
+        <div class="kbd-item"><span>Close Modals</span> <kbd>Esc</kbd></div>
+        <div class="kbd-item"><span>Shortcuts Help</span> <kbd>?</kbd></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Application Logic -->
+  <script src="script.js"></script>
+</body>
+
+</html>
