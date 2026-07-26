@@ -294,3 +294,396 @@ window.addEventListener('resize', () => {
     closeMobileMenu();
   }
 });
+
+// Open-Source Security Tools Search & Filter System
+const toolSearchInput = document.getElementById('toolSearchInput');
+const clearSearchBtn = document.getElementById('clearSearchBtn');
+const filterBtns = document.querySelectorAll('.filter-btn');
+const projectsSection = document.getElementById('projects');
+
+if (projectsSection) {
+  const projectGrid = projectsSection.querySelector('.grid');
+  const toolCards = projectGrid ? projectGrid.querySelectorAll('.card') : [];
+  const searchResultsMeta = document.getElementById('searchResultsMeta');
+  const visibleToolsCount = document.getElementById('visibleToolsCount');
+  const totalToolsCount = document.getElementById('totalToolsCount');
+
+  // Count tools per language dynamically
+  let countGo = 0;
+  let countPython = 0;
+  let countShell = 0;
+  let totalCount = toolCards.length;
+
+  toolCards.forEach(card => {
+    const tag = card.querySelector('.tag');
+    if (tag) {
+      const text = tag.textContent.trim().toLowerCase();
+      if (text.includes('go')) countGo++;
+      else if (text.includes('python')) countPython++;
+      else if (text.includes('shell')) countShell++;
+    }
+  });
+
+  // Update pill counts dynamically
+  const elAll = document.getElementById('countAll');
+  const elGo = document.getElementById('countGo');
+  const elPy = document.getElementById('countPython');
+  const elSh = document.getElementById('countShell');
+
+  if (elAll) elAll.textContent = `${totalCount}`;
+  if (elGo) elGo.textContent = `${countGo}`;
+  if (elPy) elPy.textContent = `${countPython}`;
+  if (elSh) elSh.textContent = `${countShell}`;
+  if (totalToolsCount) totalToolsCount.textContent = `${totalCount}`;
+
+  let currentCategory = 'all';
+  let currentSearchQuery = '';
+
+  function filterTools() {
+    let visibleCount = 0;
+
+    toolCards.forEach(card => {
+      const title = card.querySelector('h3') ? card.querySelector('h3').textContent.toLowerCase() : '';
+      const desc = card.querySelector('ul') ? card.querySelector('ul').textContent.toLowerCase() : '';
+      const sub = card.querySelector('.sub') ? card.querySelector('.sub').textContent.toLowerCase() : '';
+      const tag = card.querySelector('.tag') ? card.querySelector('.tag').textContent.trim().toLowerCase() : '';
+
+      const matchesSearch = !currentSearchQuery || 
+        title.includes(currentSearchQuery) || 
+        desc.includes(currentSearchQuery) || 
+        sub.includes(currentSearchQuery);
+
+      const matchesCategory = currentCategory === 'all' || tag.includes(currentCategory);
+
+      if (matchesSearch && matchesCategory) {
+        card.style.display = '';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    // Update meta feedback
+    if (currentSearchQuery || currentCategory !== 'all') {
+      if (searchResultsMeta) {
+        searchResultsMeta.style.display = 'block';
+        if (visibleToolsCount) visibleToolsCount.textContent = visibleCount;
+      }
+    } else {
+      if (searchResultsMeta) searchResultsMeta.style.display = 'none';
+    }
+  }
+
+  // Search Input Event
+  if (toolSearchInput) {
+    toolSearchInput.addEventListener('input', (e) => {
+      currentSearchQuery = e.target.value.trim().toLowerCase();
+      if (clearSearchBtn) {
+        clearSearchBtn.style.display = currentSearchQuery ? 'block' : 'none';
+      }
+      filterTools();
+    });
+  }
+
+  // Clear Search Button Event
+  if (clearSearchBtn) {
+    clearSearchBtn.addEventListener('click', () => {
+      toolSearchInput.value = '';
+      currentSearchQuery = '';
+      clearSearchBtn.style.display = 'none';
+      filterTools();
+      toolSearchInput.focus();
+    });
+  }
+
+  // Category Filter Buttons Event
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentCategory = btn.getAttribute('data-filter') || 'all';
+      filterTools();
+    });
+  });
+}
+
+// Interactive Cyber Terminal CLI Shell (kraze-cli)
+const cliTerminalToggle = document.getElementById('cliTerminalToggle');
+const cliModal = document.getElementById('cliModal');
+const cliOverlay = document.getElementById('cliOverlay');
+const closeCliBtn = document.getElementById('closeCliBtn');
+const closeCliDot = document.getElementById('closeCliDot');
+const cliInput = document.getElementById('cliInput');
+const cliOutput = document.getElementById('cliOutput');
+
+if (cliModal && cliInput && cliOutput) {
+  function openCli() {
+    cliModal.classList.add('open');
+    cliModal.setAttribute('aria-hidden', 'false');
+    setTimeout(() => cliInput.focus(), 100);
+  }
+
+  function closeCli() {
+    cliModal.classList.remove('open');
+    cliModal.setAttribute('aria-hidden', 'true');
+  }
+
+  if (cliTerminalToggle) cliTerminalToggle.addEventListener('click', openCli);
+  if (closeCliBtn) closeCliBtn.addEventListener('click', closeCli);
+  if (closeCliDot) closeCliDot.addEventListener('click', closeCli);
+  if (cliOverlay) cliOverlay.addEventListener('click', closeCli);
+
+  // Keyboard shortcut: Press `~` or Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '`' || e.key === '~') {
+      e.preventDefault();
+      if (cliModal.classList.contains('open')) {
+        closeCli();
+      } else {
+        openCli();
+      }
+    } else if (e.key === 'Escape' && cliModal.classList.contains('open')) {
+      closeCli();
+    }
+  });
+
+  // Command Commands Dictionary
+  const cliCommands = {
+    help: `
+<span class="cli-text-cyan">Available Security Commands:</span>
+-------------------------------------------------------------
+<span class="cmd-highlight">whoami</span>       - Display researcher profile & bio summary
+<span class="cmd-highlight">skills</span>       - View security tools, languages & methodologies
+<span class="cmd-highlight">tools</span>        - List top open-source security tools (149+)
+<span class="cmd-highlight">services</span>     - List KrazePlanet web platform subdomains
+<span class="cmd-highlight">certs</span>        - View verified security certifications
+<span class="cmd-highlight">halloffame</span>   - View Bugcrowd & company Hall of Fame features
+<span class="cmd-highlight">contact</span>      - Display email, phone, and social profile links
+<span class="cmd-highlight">clear</span> / <span class="cmd-highlight">cls</span>  - Clear terminal screen
+<span class="cmd-highlight">exit</span> / <span class="cmd-highlight">quit</span>  - Close CLI shell
+`,
+    whoami: `
+<span class="cli-text-success">BHAGIRATH SAXENA (@rix4uni)</span>
+Founder & Security Researcher @ KrazePlanet
+-------------------------------------------------------------
+• 150+ Valid Bug Bounty Reports (NASA, Dell, PayPal, Shopify)
+• Founder of KrazePlanet (13+ Web Security Services & CTF Platform)
+• Author of 149+ Open-Source Security Tools
+• Specialized in Offensive Security, Web VAPT & Recon Automation
+`,
+    skills: `
+<span class="cli-text-cyan">SECURITY EXPERTISE & TOOLING:</span>
+-------------------------------------------------------------
+<span class="cli-text-accent">Languages:</span>     Go (Golang), Python, Bash/Shell, JavaScript, PHP
+<span class="cli-text-accent">Security Tools:</span> Burp Suite, Nmap, Metasploit, SQLMap, Nuclei, Subfinder, Shodan, ffuf, httpx
+<span class="cli-text-accent">Methodologies:</span>  OWASP Top 10, VAPT, Web App Pen Testing, Network Pen Testing
+<span class="cli-text-accent">Infrastructure:</span> Linux, AWS, DigitalOcean, Docker, GitHub Actions
+`,
+    tools: `
+<span class="cli-text-success">TOP OPEN-SOURCE SECURITY TOOLS (149+ Repos):</span>
+-------------------------------------------------------------
+1. <span class="cli-text-cyan">GarudRecon</span>     [Shell]  - Automated domain recon & vulnerability scanner
+2. <span class="cli-text-cyan">VulneraXSS</span>     [Go]     - High-speed XSS scanner (37,000+ payloads)
+3. <span class="cli-text-cyan">gitxpose</span>       [Go]     - Secret leak & hidden repo hunter
+4. <span class="cli-text-cyan">stoppiracy</span>     [Go]     - Unified keyword recon & email extractor
+5. <span class="cli-text-cyan">originiphunter</span> [Go]     - Origin IP hunter via Favicon hash & Shodan
+6. <span class="cli-text-cyan">cvemapping</span>     [Python] - CVE exploit PoC aggregator (1999-2026)
+... Explore all 149+ repositories at <a href="https://github.com/rix4uni" target="_blank" style="color:#38bdf8;text-decoration:underline;">github.com/rix4uni</a>
+`,
+    projects: `
+<span class="cli-text-success">TOP OPEN-SOURCE SECURITY TOOLS (149+ Repos):</span>
+-------------------------------------------------------------
+1. <span class="cli-text-cyan">GarudRecon</span>     [Shell]  - Automated domain recon & vulnerability scanner
+2. <span class="cli-text-cyan">VulneraXSS</span>     [Go]     - High-speed XSS scanner (37,000+ payloads)
+3. <span class="cli-text-cyan">gitxpose</span>       [Go]     - Secret leak & hidden repo hunter
+4. <span class="cli-text-cyan">stoppiracy</span>     [Go]     - Unified keyword recon & email extractor
+5. <span class="cli-text-cyan">originiphunter</span> [Go]     - Origin IP hunter via Favicon hash & Shodan
+6. <span class="cli-text-cyan">cvemapping</span>     [Python] - CVE exploit PoC aggregator (1999-2026)
+... Explore all 149+ repositories at <a href="https://github.com/rix4uni" target="_blank" style="color:#38bdf8;text-decoration:underline;">github.com/rix4uni</a>
+`,
+    services: `
+<span class="cli-text-cyan">KRAZEPLANET PLATFORM SERVICES (13+ Web Services):</span>
+-------------------------------------------------------------
+• https://krazeplanet.com          - Main VAPT & Security Company
+• https://academy.krazeplanet.com  - Cybersecurity Training Academy
+• https://store.krazeplanet.com    - VulneraXSS Store
+• https://labs.krazeplanet.com     - Interactive Web Security Labs
+• https://programs.krazeplanet.com - Bug Bounty Programs Aggregator
+• https://dorks.krazeplanet.com    - Multi-engine Google Dorking
+• https://cvemapping.krazeplanet.com - CVE Exploit Mapping
+• https://subdominator.krazeplanet.com - Subdomain Enumeration
+• https://blog.krazeplanet.com     - Cybersecurity Blogs
+• https://csrf.krazeplanet.com     - Burp Pro CSRF Generator
+• https://ctf.krazeplanet.com      - Security CTF Platform
+• https://checklist.krazeplanet.com  - Bug Bounty Methodology
+• https://stoppiracy.krazeplanet.com - Piracy Scanner
+• https://tools.krazeplanet.com    - Web Utility Hub
+`,
+    subdomains: `
+<span class="cli-text-cyan">KRAZEPLANET PLATFORM SERVICES (13+ Web Services):</span>
+-------------------------------------------------------------
+• https://krazeplanet.com          - Main VAPT & Security Company
+• https://academy.krazeplanet.com  - Cybersecurity Training Academy
+• https://store.krazeplanet.com    - VulneraXSS Store
+• https://labs.krazeplanet.com     - Interactive Web Security Labs
+• https://programs.krazeplanet.com - Bug Bounty Programs Aggregator
+• https://dorks.krazeplanet.com    - Multi-engine Google Dorking
+• https://cvemapping.krazeplanet.com - CVE Exploit Mapping
+• https://subdominator.krazeplanet.com - Subdomain Enumeration
+• https://blog.krazeplanet.com     - Cybersecurity Blogs
+• https://csrf.krazeplanet.com     - Burp Pro CSRF Generator
+• https://ctf.krazeplanet.com      - Security CTF Platform
+• https://checklist.krazeplanet.com  - Bug Bounty Methodology
+• https://stoppiracy.krazeplanet.com - Piracy Scanner
+• https://tools.krazeplanet.com    - Web Utility Hub
+`,
+    certs: `
+<span class="cli-text-success">VERIFIED CERTIFICATIONS:</span>
+-------------------------------------------------------------
+1. Programming for Everybody (Python) - University of Michigan
+2. Introduction to Cybersecurity     - Cisco Networking Academy
+3. Data Analysis Using Python        - IBM
+4. Introduction to Packet Tracer       - Cisco
+5. HTML Workshop & Front-End         - GeeksforGeeks
+6. Oracle Cloud Infrastructure 2021  - Oracle
+`,
+    halloffame: `
+<span class="cli-text-warn">HALL OF FAME ACKNOWLEDGMENTS:</span>
+-------------------------------------------------------------
+• NASA (National Aeronautics and Space Administration)
+• Gap Inc. Bug Bounty Program
+• Arrow Electronics Vulnerability Disclosure
+• Web.com Security Hall of Fame
+• Bluehost India VDP
+• Kingfisher Security VDP
+• Skybriz Security Hall of Fame
+`,
+    contact: `
+<span class="cli-text-cyan">CONTACT & SOCIAL PROFILES:</span>
+-------------------------------------------------------------
+Email:     <a href="mailto:rix4uni@gmail.com" style="color:#38bdf8;">rix4uni@gmail.com</a>
+Phone:     +91 8527310670
+Website:   <a href="https://krazeplanet.com" target="_blank" style="color:#38bdf8;">https://krazeplanet.com</a>
+GitHub:    <a href="https://github.com/rix4uni" target="_blank" style="color:#38bdf8;">https://github.com/rix4uni</a>
+LinkedIn:  <a href="https://in.linkedin.com/in/rix4uni" target="_blank" style="color:#38bdf8;">https://in.linkedin.com/in/rix4uni</a>
+Twitter:   <a href="https://x.com/rix4uni" target="_blank" style="color:#38bdf8;">https://x.com/rix4uni</a>
+HackerOne: <a href="https://hackerone.com/rix4uni?type=user" target="_blank" style="color:#ff4d4d;">https://hackerone.com/rix4uni</a>
+Bugcrowd:  <a href="https://bugcrowd.com/h/rix4uni" target="_blank" style="color:#ff8c42;">https://bugcrowd.com/h/rix4uni</a>
+`
+  };
+
+  cliInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const rawCmd = cliInput.value.trim();
+      const cmd = rawCmd.toLowerCase();
+      cliInput.value = '';
+
+      if (!cmd) return;
+
+      const outputBlock = document.createElement('div');
+      outputBlock.className = 'cli-output-block';
+
+      const cmdHeader = document.createElement('div');
+      cmdHeader.className = 'cli-output-cmd';
+      cmdHeader.innerHTML = `<span class="cli-prompt"><span class="user">rix4uni</span><span class="at">@</span><span class="host">krazeplanet</span>:<span class="path">~</span>$</span> ${escapeHTML(rawCmd)}`;
+      outputBlock.appendChild(cmdHeader);
+
+      const content = document.createElement('div');
+      content.className = 'cli-output-content';
+
+      if (cmd === 'clear' || cmd === 'cls') {
+        cliOutput.innerHTML = '';
+        return;
+      } else if (cmd === 'exit' || cmd === 'quit') {
+        closeCli();
+        return;
+      } else if (cliCommands[cmd]) {
+        content.innerHTML = cliCommands[cmd];
+      } else {
+        content.innerHTML = `<span class="cli-text-warn">Command not found: '${escapeHTML(rawCmd)}'.</span> Type <span class="cmd-highlight">help</span> to view available security commands.`;
+      }
+
+      outputBlock.appendChild(content);
+      cliOutput.appendChild(outputBlock);
+      cliOutput.scrollTop = cliOutput.scrollHeight;
+    }
+  });
+
+  function escapeHTML(str) {
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+}
+
+// KrazePlanet Ecosystem Hub Category Filtering
+const ecoFilterBtns = document.querySelectorAll('.eco-filter-btn');
+const ecoCards = document.querySelectorAll('.eco-card');
+
+if (ecoFilterBtns.length > 0 && ecoCards.length > 0) {
+  ecoFilterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      ecoFilterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.getAttribute('data-eco-filter');
+
+      ecoCards.forEach(card => {
+        const cardCat = card.getAttribute('data-eco-cat');
+        if (cat === 'all' || cardCat === cat) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+}
+
+// Animated Counter for Impact Metrics Dashboard
+const impactNumbers = document.querySelectorAll('.impact-number');
+
+if (impactNumbers.length > 0) {
+  let animated = false;
+
+  function animateCounters() {
+    impactNumbers.forEach(numEl => {
+      const target = parseInt(numEl.getAttribute('data-target'), 10) || 0;
+      const suffix = numEl.getAttribute('data-suffix') || '';
+      const duration = 1500; // ms
+      const startTime = performance.now();
+
+      function update(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        // Easing function (easeOutExpo)
+        const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+        const currentVal = Math.floor(easeProgress * target);
+
+        numEl.textContent = `${currentVal}${suffix}`;
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          numEl.textContent = `${target}${suffix}`;
+        }
+      }
+
+      requestAnimationFrame(update);
+    });
+  }
+
+  const impactSection = document.getElementById('impact');
+  if (impactSection) {
+    const impactObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !animated) {
+          animated = true;
+          animateCounters();
+          impactObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    impactObserver.observe(impactSection);
+  } else {
+    animateCounters();
+  }
+}

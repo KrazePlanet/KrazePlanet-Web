@@ -19,20 +19,29 @@
 
   <header class="nav">
     <div class="container nav__inner">
-      <div class="brand">Bhagirath Saxena</div>
+      <a href="#about" class="brand">
+        <span class="brand-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+        </span>
+        <span class="brand-text">Bhagirath Saxena</span>
+      </a>
       <nav class="nav__links">
         <a href="#about">About</a>
         <a href="#experience">Experience</a>
+        <a href="#ecosystem">Ecosystem</a>
         <a href="#education">Education</a>
         <a href="#skills">Skills</a>
         <a href="#certs">Certifications</a>
         <a href="#halloffame">Hall of Fame</a>
         <a href="#projects">Projects</a>
-        <a href="Bhagirath_Resume.html" rel="noreferrer" class="nav__link--resume nav__link--resume-desktop"
+        <a href="Bhagirath_Resume.html" target="_blank" rel="noreferrer" class="nav__link--resume nav__link--resume-desktop"
           style="display: inline-flex; align-items: center; gap: 6px;">
           Resume
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
             <polyline points="7 10 12 15 17 10"></polyline>
             <line x1="12" y1="15" x2="12" y2="3"></line>
@@ -40,6 +49,13 @@
         </a>
       </nav>
       <div class="nav__actions">
+        <button id="cliTerminalToggle" class="cli-toggle-btn" aria-label="Open Interactive CLI Terminal" title="Open Interactive CLI Terminal (Press ~)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="4 17 10 11 4 5"></polyline>
+            <line x1="12" y1="19" x2="20" y2="19"></line>
+          </svg>
+          <span class="cli-btn-text">CLI</span>
+        </button>
         <a href="Bhagirath_Resume.html" rel="noreferrer" class="nav__link--resume nav__link--resume-mobile"
           style="display: inline-flex; align-items: center; gap: 6px;">
           Resume
@@ -90,22 +106,81 @@
       </div>
       <div class="container hero__grid">
         <div class="hero__text">
-          <p class="pill">Security Researcher · Open-Source Tool Developer</p>
+          <p class="pill">
+            <span class="pill-dot"></span>
+            Security Researcher • Developer • Content Creator
+          </p>
           <h1 id="heroTitle" class="typewriter" data-prefix="Hey, I'm " data-name="Bhagirath Saxena."></h1>
           <p class="lede">Security Researcher specializing in web application penetration testing and vulnerability
             discovery. Creator of 149+ open-source security tools and founder of the KrazePlanet offensive security
             platform. Acknowledged by NASA, Dell, PayPal, and others for responsible vulnerability disclosures.</p>
           <div class="hero__badges">
-            <span class="badge">150+ Valid Reports</span>
-            <span class="badge">149+ Open-Source Tools</span>
-            <span class="badge">Founder @ KrazePlanet</span>
+            <span class="badge">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              150+ Valid Reports
+            </span>
+            <span class="badge">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+              149+ Open-Source Tools
+            </span>
+            <span class="badge">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z">
+                </path>
+                <path
+                  d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-3.05 11a22.35 22.35 0 0 1-3.95 2z">
+                </path>
+              </svg>
+              Founder of KrazePlanet
+            </span>
           </div>
           <div class="hero__actions">
-            <a class="btn btn--linkedin" href="https://in.linkedin.com/in/rix4uni" target="_blank"
-              rel="noreferrer">LinkedIn</a>
-            <a class="btn btn--twitter" href="https://x.com/rix4uni" target="_blank" rel="noreferrer">Twitter</a>
+            <a class="btn btn--github" href="https://github.com/rix4uni" target="_blank" rel="noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                </path>
+              </svg>
+              GitHub
+            </a>
+            <a class="btn btn--linkedin" href="https://in.linkedin.com/in/rix4uni" target="_blank" rel="noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+              LinkedIn
+            </a>
+            <a class="btn btn--twitter" href="https://x.com/rix4uni" target="_blank" rel="noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+                </path>
+              </svg>
+              Twitter
+            </a>
             <a class="btn btn--youtube" href="https://www.youtube.com/@KrazePlanetSecurity" target="_blank"
-              rel="noreferrer">YouTube</a>
+              rel="noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z">
+                </path>
+                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+              </svg>
+              YouTube
+            </a>
           </div>
           <div class="meta meta--contact">
             <a href="mailto:rix4uni@gmail.com" class="meta__link">
@@ -134,13 +209,125 @@
             </a>
           </div>
         </div>
-        <div class="hero__card hero__card--profiles">
-          <img class="hero__avatar hero__avatar--image" src="assets/profile.png" alt="Hacker profile illustration" />
+        <div class="hero__card hero__card--profiles profile-id-card">
+          <!-- Card Header Bar -->
+          <div class="card-id-header">
+            <span class="status-badge">
+              <span class="status-badge__dot"></span> Available for VAPT
+            </span>
+            <span class="id-tag">SECURITY ID</span>
+          </div>
+
+          <!-- Avatar with Glowing Aura Ring -->
+          <div class="profile-avatar-container">
+            <div class="avatar-glow-ring"></div>
+            <img class="profile-avatar-img" src="assets/profile2.jpeg" alt="Bhagirath Saxena" />
+          </div>
+
+          <!-- Name & Handle Info -->
+          <div class="profile-card-info">
+            <h3 class="profile-card-name">Bhagirath Saxena</h3>
+            <p class="profile-card-handle">@rix4uni &bull; KrazePlanet Founder</p>
+          </div>
+
+          <!-- Mini Stat Counter -->
+          <div class="profile-mini-stats">
+            <div class="mini-stat">
+              <span class="mini-stat__val">150+</span>
+              <span class="mini-stat__lbl">Valid Bugs</span>
+            </div>
+            <div class="mini-stat__divider"></div>
+            <div class="mini-stat">
+              <span class="mini-stat__val">149+</span>
+              <span class="mini-stat__lbl">Open Tools</span>
+            </div>
+          </div>
+
+          <!-- Profile Links -->
           <div class="profile-links">
-            <a class="btn btn--outline full" href="https://hackerone.com/rix4uni?type=user" target="_blank"
-              rel="noreferrer">HackerOne Profile</a>
-            <a class="btn btn--outline full" href="https://bugcrowd.com/h/rix4uni" target="_blank"
-              rel="noreferrer">Bugcrowd Profile</a>
+            <a class="btn btn--hackerone full" href="https://hackerone.com/rix4uni?type=user" target="_blank"
+              rel="noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              HackerOne Profile
+            </a>
+            <a class="btn btn--bugcrowd full" href="https://bugcrowd.com/h/rix4uni" target="_blank" rel="noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 8v8m-4-4h8"></path>
+              </svg>
+              Bugcrowd Profile
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Animated Impact Metrics Dashboard -->
+    <section class="impact-section reveal" id="impact">
+      <div class="container">
+        <div class="impact-dashboard">
+          <!-- Metric 1: Valid Bugs -->
+          <div class="impact-card">
+            <div class="impact-icon impact-icon--red">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <div class="impact-info">
+              <span class="impact-number" data-target="150" data-suffix="+">0</span>
+              <span class="impact-label">Valid Bug Reports</span>
+              <span class="impact-sub">NASA, Dell, Shopify, PayPal</span>
+            </div>
+          </div>
+
+          <!-- Metric 2: Open Tools -->
+          <div class="impact-card">
+            <div class="impact-icon impact-icon--cyan">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+            </div>
+            <div class="impact-info">
+              <span class="impact-number" data-target="149" data-suffix="+">0</span>
+              <span class="impact-label">Open Security Tools</span>
+              <span class="impact-sub">Go, Python, & Shell Repos</span>
+            </div>
+          </div>
+
+          <!-- Metric 3: Live Services -->
+          <div class="impact-card">
+            <div class="impact-icon impact-icon--amber">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+            </div>
+            <div class="impact-info">
+              <span class="impact-number" data-target="14" data-suffix="+">0</span>
+              <span class="impact-label">Cloud Web Services</span>
+              <span class="impact-sub">KrazePlanet Ecosystem</span>
+            </div>
+          </div>
+
+          <!-- Metric 4: Web Security Labs -->
+          <div class="impact-card">
+            <div class="impact-icon impact-icon--emerald">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              </svg>
+            </div>
+            <div class="impact-info">
+              <span class="impact-number" data-target="91" data-suffix="+">0</span>
+              <span class="impact-label">Web Security Labs</span>
+              <span class="impact-sub">XSS, SQLi, LFI, RCE CTFs</span>
+            </div>
           </div>
         </div>
       </div>
@@ -149,6 +336,10 @@
     <section class="section reveal" id="experience">
       <div class="container">
         <div class="section__header">
+          <span class="section-pill">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+            Career & Infrastructure
+          </span>
           <h2>Experience</h2>
           <p>Offensive security, vulnerability research, and secure SDLC collaboration.</p>
         </div>
@@ -162,135 +353,16 @@
               <span class="tag">2025 – Present</span>
             </div>
             <ul>
-              <li>Designed, built, and deployed a fullstack offensive security platform with 8+ web services.</li>
+              <li>Designed, built, and deployed a fullstack offensive security platform with 13+ web services.</li>
               <li>Developed 91+ interactive web security labs and a CTF platform covering XSS, SQLi, LFI, and RCE.</li>
               <li>Built a CVE exploit aggregation platform mapping 1999–2026.</li>
               <li>Created a bug bounty programs aggregator and multi-engine Google Dorking tool.</li>
               <li>Maintained additional infrastructure including a VulneraXSS Store, Piracy Scanner, and Subdominator
                 tool.</li>
             </ul>
-
-            <div class="subdomain-grid">
-              <!-- 1. store -->
-              <a href="https://store.krazeplanet.com/VulneraXSS" target="_blank" rel="noreferrer"
-                class="subdomain-card">
-                <span class="subdomain-name">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="9" cy="21" r="1"></circle>
-                    <circle cx="20" cy="21" r="1"></circle>
-                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                  </svg>
-                  store.krazeplanet.com
-                </span>
-                <span class="subdomain-desc">VulneraXSS Store and premium tool distribution.</span>
-              </a>
-
-              <!-- 2. labs -->
-              <a href="https://labs.krazeplanet.com" target="_blank" rel="noreferrer" class="subdomain-card">
-                <span class="subdomain-name">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-                  </svg>
-                  labs.krazeplanet.com
-                </span>
-                <span class="subdomain-desc">Interactive web security and vulnerability labs.</span>
-              </a>
-
-              <!-- 3. programs -->
-              <a href="https://programs.krazeplanet.com" target="_blank" rel="noreferrer" class="subdomain-card">
-                <span class="subdomain-name">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                    <polyline points="14 2 14 8 20 8"></polyline>
-                    <line x1="16" y1="13" x2="8" y2="13"></line>
-                    <line x1="16" y1="17" x2="8" y2="17"></line>
-                    <polyline points="10 9 9 9 8 9"></polyline>
-                  </svg>
-                  programs.krazeplanet.com
-                </span>
-                <span class="subdomain-desc">Aggregated bug bounty programs listing.</span>
-              </a>
-
-              <!-- 4. dorks -->
-              <a href="https://dorks.krazeplanet.com" target="_blank" rel="noreferrer" class="subdomain-card">
-                <span class="subdomain-name">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                  </svg>
-                  dorks.krazeplanet.com
-                </span>
-                <span class="subdomain-desc">Multi-engine Google Dorking recon tool.</span>
-              </a>
-
-              <!-- 5. cvemapping -->
-              <a href="https://cvemapping.krazeplanet.com" target="_blank" rel="noreferrer" class="subdomain-card">
-                <span class="subdomain-name">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                  </svg>
-                  cvemapping.krazeplanet.com
-                </span>
-                <span class="subdomain-desc">Database of CVE exploit PoCs (1999-2026).</span>
-              </a>
-
-              <!-- 6. stoppiracy -->
-              <a href="https://stoppiracy.krazeplanet.com" target="_blank" rel="noreferrer" class="subdomain-card">
-                <span class="subdomain-name">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                  </svg>
-                  stoppiracy.krazeplanet.com
-                </span>
-                <span class="subdomain-desc">Automated keyword reconnaissance platform.</span>
-              </a>
-
-              <!-- 7. subdominator -->
-              <a href="https://subdominator.krazeplanet.com" target="_blank" rel="noreferrer" class="subdomain-card">
-                <span class="subdomain-name">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                    <polyline points="22,6 12,13 2,6"></polyline>
-                  </svg>
-                  subdominator.krazeplanet.com
-                </span>
-                <span class="subdomain-desc">Robust subdomain enumeration and monitoring.</span>
-              </a>
-
-              <!-- 8. tools -->
-              <a href="https://tools.krazeplanet.com" target="_blank" rel="noreferrer" class="subdomain-card">
-                <span class="subdomain-name">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                    <polyline points="2 17 12 22 22 17"></polyline>
-                    <polyline points="2 12 12 17 22 12"></polyline>
-                  </svg>
-                  tools.krazeplanet.com
-                </span>
-                <span class="subdomain-desc">Utility hub with 8+ custom web applications.</span>
-              </a>
-
-              <!-- 9. ctf -->
-              <a href="https://ctf.krazeplanet.com" target="_blank" rel="noreferrer" class="subdomain-card">
-                <span class="subdomain-name">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="14 2 18 6 7 17 3 17 3 13 14 2"></polygon>
-                    <line x1="3" y1="22" x2="21" y2="22"></line>
-                  </svg>
-                  ctf.krazeplanet.com
-                </span>
-                <span class="subdomain-desc">Offensive security CTF challenges and training.</span>
+            <div style="margin-top: 18px;">
+              <a href="#ecosystem" class="btn btn--ghost" style="display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; padding: 8px 16px; border-radius: 999px;">
+                Explore KrazePlanet Ecosystem (14+ Platforms & Labs) &rarr;
               </a>
             </div>
           </article>
@@ -330,9 +402,283 @@
       </div>
     </section>
 
+    <!-- KrazePlanet Ecosystem Hub Section -->
+    <section class="section reveal" id="ecosystem">
+      <div class="container">
+        <div class="section__header">
+          <span class="section-pill">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            14+ Live Web Services & Labs
+          </span>
+          <h2>KrazePlanet Ecosystem Hub</h2>
+          <p>Explore 14+ live security platforms, interactive labs, CTFs, recon tools, and intelligence hubs.</p>
+        </div>
+
+        <!-- Ecosystem Category Filters -->
+        <div class="ecosystem-filter-bar">
+          <div class="filter-pills" id="ecosystemFilterPills">
+            <button class="eco-filter-btn active" data-eco-filter="all">All Services <span class="filter-count">14</span></button>
+            <button class="eco-filter-btn" data-eco-filter="labs">🎓 Labs & CTFs <span class="filter-count">3</span></button>
+            <button class="eco-filter-btn" data-eco-filter="recon">🔍 Recon & Intel <span class="filter-count">4</span></button>
+            <button class="eco-filter-btn" data-eco-filter="tools">🛠️ Tools & Store <span class="filter-count">4</span></button>
+            <button class="eco-filter-btn" data-eco-filter="blogs">📚 Blogs & Methodology <span class="filter-count">3</span></button>
+          </div>
+        </div>
+
+        <div class="subdomain-grid ecosystem-grid">
+          <!-- 1. krazeplanet (main) -->
+          <a href="https://krazeplanet.com" target="_blank" rel="noreferrer" class="subdomain-card eco-card" data-eco-cat="tools">
+            <div class="eco-card-top">
+              <span class="eco-badge eco-badge--company">Company Main</span>
+              <span class="status-live-dot" title="Live Service"></span>
+            </div>
+            <span class="subdomain-name">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+              krazeplanet.com
+            </span>
+            <span class="subdomain-desc">Main website for company VAPT & security services.</span>
+            <span class="eco-launch">Launch Platform &rarr;</span>
+          </a>
+
+          <!-- 2. academy -->
+          <a href="https://academy.krazeplanet.com" target="_blank" rel="noreferrer" class="subdomain-card eco-card" data-eco-cat="labs">
+            <div class="eco-card-top">
+              <span class="eco-badge eco-badge--labs">Academy</span>
+              <span class="status-live-dot"></span>
+            </div>
+            <span class="subdomain-name">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              </svg>
+              academy.krazeplanet.com
+            </span>
+            <span class="subdomain-desc">Bug bounty hunter & cybersecurity training academy.</span>
+            <span class="eco-launch">Launch Platform &rarr;</span>
+          </a>
+
+          <!-- 3. store -->
+          <a href="https://store.krazeplanet.com" target="_blank" rel="noreferrer" class="subdomain-card eco-card" data-eco-cat="tools">
+            <div class="eco-card-top">
+              <span class="eco-badge eco-badge--tools">Store</span>
+              <span class="status-live-dot"></span>
+            </div>
+            <span class="subdomain-name">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              store.krazeplanet.com
+            </span>
+            <span class="subdomain-desc">VulneraXSS Store and premium tool distribution.</span>
+            <span class="eco-launch">Launch Platform &rarr;</span>
+          </a>
+
+          <!-- 4. labs -->
+          <a href="https://labs.krazeplanet.com" target="_blank" rel="noreferrer" class="subdomain-card eco-card" data-eco-cat="labs">
+            <div class="eco-card-top">
+              <span class="eco-badge eco-badge--labs">Security Labs</span>
+              <span class="status-live-dot"></span>
+            </div>
+            <span class="subdomain-name">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+              </svg>
+              labs.krazeplanet.com
+            </span>
+            <span class="subdomain-desc">Interactive web security and vulnerability labs (91+ labs).</span>
+            <span class="eco-launch">Launch Platform &rarr;</span>
+          </a>
+
+          <!-- 5. programs -->
+          <a href="https://programs.krazeplanet.com" target="_blank" rel="noreferrer" class="subdomain-card eco-card" data-eco-cat="blogs">
+            <div class="eco-card-top">
+              <span class="eco-badge eco-badge--blogs">Bounty Listing</span>
+              <span class="status-live-dot"></span>
+            </div>
+            <span class="subdomain-name">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+              programs.krazeplanet.com
+            </span>
+            <span class="subdomain-desc">Aggregated bug bounty programs listing.</span>
+            <span class="eco-launch">Launch Platform &rarr;</span>
+          </a>
+
+          <!-- 6. dorks -->
+          <a href="https://dorks.krazeplanet.com" target="_blank" rel="noreferrer" class="subdomain-card eco-card" data-eco-cat="recon">
+            <div class="eco-card-top">
+              <span class="eco-badge eco-badge--recon">Recon Dorker</span>
+              <span class="status-live-dot"></span>
+            </div>
+            <span class="subdomain-name">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              dorks.krazeplanet.com
+            </span>
+            <span class="subdomain-desc">Multi-engine Google Dorking recon tool.</span>
+            <span class="eco-launch">Launch Platform &rarr;</span>
+          </a>
+
+          <!-- 7. cvemapping -->
+          <a href="https://cvemapping.krazeplanet.com" target="_blank" rel="noreferrer" class="subdomain-card eco-card" data-eco-cat="recon">
+            <div class="eco-card-top">
+              <span class="eco-badge eco-badge--recon">CVE Database</span>
+              <span class="status-live-dot"></span>
+            </div>
+            <span class="subdomain-name">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              cvemapping.krazeplanet.com
+            </span>
+            <span class="subdomain-desc">Database of CVE exploit PoCs (1999-2026).</span>
+            <span class="eco-launch">Launch Platform &rarr;</span>
+          </a>
+
+          <!-- 8. subdominator -->
+          <a href="https://subdominator.krazeplanet.com" target="_blank" rel="noreferrer" class="subdomain-card eco-card" data-eco-cat="recon">
+            <div class="eco-card-top">
+              <span class="eco-badge eco-badge--recon">Recon Enum</span>
+              <span class="status-live-dot"></span>
+            </div>
+            <span class="subdomain-name">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              subdominator.krazeplanet.com
+            </span>
+            <span class="subdomain-desc">Robust subdomain enumeration and monitoring.</span>
+            <span class="eco-launch">Launch Platform &rarr;</span>
+          </a>
+
+          <!-- 9. blog -->
+          <a href="https://blog.krazeplanet.com" target="_blank" rel="noreferrer" class="subdomain-card eco-card" data-eco-cat="blogs">
+            <div class="eco-card-top">
+              <span class="eco-badge eco-badge--blogs">Blog</span>
+              <span class="status-live-dot"></span>
+            </div>
+            <span class="subdomain-name">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+              blog.krazeplanet.com
+            </span>
+            <span class="subdomain-desc">Bug bounty & cybersecurity technical blogs.</span>
+            <span class="eco-launch">Launch Platform &rarr;</span>
+          </a>
+
+          <!-- 10. csrf -->
+          <a href="https://csrf.krazeplanet.com" target="_blank" rel="noreferrer" class="subdomain-card eco-card" data-eco-cat="tools">
+            <div class="eco-card-top">
+              <span class="eco-badge eco-badge--tools">Burp Feature</span>
+              <span class="status-live-dot"></span>
+            </div>
+            <span class="subdomain-name">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+              csrf.krazeplanet.com
+            </span>
+            <span class="subdomain-desc">Free Burp Suite Pro CSRF PoC generator features.</span>
+            <span class="eco-launch">Launch Platform &rarr;</span>
+          </a>
+
+          <!-- 11. ctf -->
+          <a href="https://ctf.krazeplanet.com" target="_blank" rel="noreferrer" class="subdomain-card eco-card" data-eco-cat="labs">
+            <div class="eco-card-top">
+              <span class="eco-badge eco-badge--labs">CTF Platform</span>
+              <span class="status-live-dot"></span>
+            </div>
+            <span class="subdomain-name">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="14 2 18 6 7 17 3 17 3 13 14 2"></polygon>
+                <line x1="3" y1="22" x2="21" y2="22"></line>
+              </svg>
+              ctf.krazeplanet.com
+            </span>
+            <span class="subdomain-desc">Offensive security CTF challenges and training.</span>
+            <span class="eco-launch">Launch Platform &rarr;</span>
+          </a>
+
+          <!-- 12. checklist -->
+          <a href="https://checklist.krazeplanet.com" target="_blank" rel="noreferrer" class="subdomain-card eco-card" data-eco-cat="blogs">
+            <div class="eco-card-top">
+              <span class="eco-badge eco-badge--blogs">Methodology</span>
+              <span class="status-live-dot"></span>
+            </div>
+            <span class="subdomain-name">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 11 12 14 22 4"></polyline>
+                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+              </svg>
+              checklist.krazeplanet.com
+            </span>
+            <span class="subdomain-desc">Bug bounty methodology & security checklists.</span>
+            <span class="eco-launch">Launch Platform &rarr;</span>
+          </a>
+
+          <!-- 13. stoppiracy -->
+          <a href="https://stoppiracy.krazeplanet.com" target="_blank" rel="noreferrer" class="subdomain-card eco-card" data-eco-cat="recon">
+            <div class="eco-card-top">
+              <span class="eco-badge eco-badge--recon">Scanner</span>
+              <span class="status-live-dot"></span>
+            </div>
+            <span class="subdomain-name">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              stoppiracy.krazeplanet.com
+            </span>
+            <span class="subdomain-desc">Automated keyword reconnaissance platform.</span>
+            <span class="eco-launch">Launch Platform &rarr;</span>
+          </a>
+
+          <!-- 14. tools -->
+          <a href="https://tools.krazeplanet.com" target="_blank" rel="noreferrer" class="subdomain-card eco-card" data-eco-cat="tools">
+            <div class="eco-card-top">
+              <span class="eco-badge eco-badge--tools">Utility Hub</span>
+              <span class="status-live-dot"></span>
+            </div>
+            <span class="subdomain-name">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+              tools.krazeplanet.com
+            </span>
+            <span class="subdomain-desc">Utility hub with 8+ custom web applications.</span>
+            <span class="eco-launch">Launch Platform &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <section class="section reveal" id="education">
       <div class="container">
         <div class="section__header">
+          <span class="section-pill">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+            Academic Foundation
+          </span>
           <h2>Education</h2>
           <p>Information Security and Computer Science foundations.</p>
         </div>
@@ -358,6 +704,10 @@
     <section class="section reveal" id="skills">
       <div class="container">
         <div class="section__header">
+          <span class="section-pill">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+            Technical Expertise
+          </span>
           <h2>Skills & Tooling</h2>
           <p>Focused on offensive security, recon, and automation.</p>
         </div>
@@ -415,6 +765,10 @@
     <section class="section reveal" id="certs">
       <div class="container">
         <div class="section__header">
+          <span class="section-pill">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15l-2 5l9-9l-9-9l2 5l-7 4z"></path></svg>
+            Verified Credentials
+          </span>
           <h2>Certifications</h2>
           <p>Professional certifications from Coursera, Cisco, and IBM.</p>
         </div>
@@ -456,24 +810,23 @@
               <h3>HTML Workshop</h3>
               <span class="tag">Nov 2021</span>
             </div>
-            <p class="sub"><a href="https://www.geeksforgeeks.org/certificate/a462c57a651f1d4f882b2df21772806a" target="_blank"
-                rel="noreferrer">GeeksforGeeks</a></p>
+            <p class="sub"><a href="https://www.geeksforgeeks.org/certificate/a462c57a651f1d4f882b2df21772806a"
+                target="_blank" rel="noreferrer">GeeksforGeeks</a></p>
           </article>
           <article class="card">
             <div class="card__top">
               <h3>Front End Development - Self Paced</h3>
               <span class="tag">Jan 2022</span>
             </div>
-            <p class="sub"><a href="https://www.geeksforgeeks.org/certificate/72f070b54a88e1b6f97877b31a1610a9" target="_blank"
-                rel="noreferrer">GeeksforGeeks</a></p>
+            <p class="sub"><a href="https://www.geeksforgeeks.org/certificate/72f070b54a88e1b6f97877b31a1610a9"
+                target="_blank" rel="noreferrer">GeeksforGeeks</a></p>
           </article>
           <article class="card">
             <div class="card__top">
               <h3>Oracle Cloud Infrastructure Foundations 2021 Certified Associate</h3>
               <span class="tag">Jan 2022</span>
             </div>
-            <p class="sub"><a href="eCertificate.pdf" target="_blank"
-                rel="noreferrer">Oracle</a></p>
+            <p class="sub"><a href="eCertificate.pdf" target="_blank" rel="noreferrer">Oracle</a></p>
           </article>
         </div>
       </div>
@@ -482,57 +835,76 @@
     <section class="section reveal" id="halloffame">
       <div class="container">
         <div class="section__header">
+          <span class="section-pill">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"></path></svg>
+            Vulnerability Disclosure & Recognition
+          </span>
           <h2>Hall of Fame</h2>
-          <p>Recognized on Bugcrowd hall of fame pages for responsible vulnerability disclosures.</p>
+          <p>Recognized on security hall of fame pages for responsible vulnerability disclosures.</p>
         </div>
         <div class="grid education__grid">
           <article class="card">
             <div class="card__top">
               <h3>NASA</h3>
-              <span class="tag">Bugcrowd</span>
+              <span class="tag tag--bugcrowd">Bugcrowd</span>
             </div>
             <p class="sub">National Aeronautics and Space Administration &mdash; Vulnerability Disclosure Program</p>
-            <p class="sub"><a href="https://bugcrowd.com/engagements/nasa-vdp/hall_of_fames" target="_blank" rel="noreferrer">View Hall of Fame</a></p>
+            <p class="sub"><a href="https://bugcrowd.com/engagements/nasa-vdp/hall_of_fames" target="_blank"
+                rel="noreferrer">View Hall of Fame</a></p>
           </article>
           <article class="card">
             <div class="card__top">
               <h3>Gap Inc.</h3>
-              <span class="tag">Bugcrowd</span>
+              <span class="tag tag--bugcrowd">Bugcrowd</span>
             </div>
             <p class="sub">Gap Inc. Bug Bounty Program</p>
-            <p class="sub"><a href="https://bugcrowd.com/engagements/gapinc/hall_of_fames" target="_blank" rel="noreferrer">View Hall of Fame</a></p>
+            <p class="sub"><a href="https://bugcrowd.com/engagements/gapinc/hall_of_fames" target="_blank"
+                rel="noreferrer">View Hall of Fame</a></p>
           </article>
           <article class="card">
             <div class="card__top">
               <h3>Arrow Electronics</h3>
-              <span class="tag">Bugcrowd</span>
+              <span class="tag tag--bugcrowd">Bugcrowd</span>
             </div>
             <p class="sub">Arrow Electronics &mdash; Vulnerability Disclosure Program</p>
-            <p class="sub"><a href="https://bugcrowd.com/engagements/arrow-electronics-vdp/hall_of_fames" target="_blank" rel="noreferrer">View Hall of Fame</a></p>
+            <p class="sub"><a href="https://bugcrowd.com/engagements/arrow-electronics-vdp/hall_of_fames"
+                target="_blank" rel="noreferrer">View Hall of Fame</a></p>
           </article>
           <article class="card">
             <div class="card__top">
               <h3>Web.com</h3>
-              <span class="tag">Bugcrowd</span>
+              <span class="tag tag--bugcrowd">Bugcrowd</span>
             </div>
             <p class="sub">Web.com &mdash; Vulnerability Disclosure Program</p>
-            <p class="sub"><a href="https://bugcrowd.com/engagements/webdotcom-vdp/hall_of_fames" target="_blank" rel="noreferrer">View Hall of Fame</a></p>
+            <p class="sub"><a href="https://bugcrowd.com/engagements/webdotcom-vdp/hall_of_fames" target="_blank"
+                rel="noreferrer">View Hall of Fame</a></p>
           </article>
           <article class="card">
             <div class="card__top">
               <h3>Bluehost</h3>
-              <span class="tag">Bugcrowd</span>
+              <span class="tag tag--bugcrowd">Bugcrowd</span>
             </div>
             <p class="sub">Bluehost India &mdash; Vulnerability Disclosure Program</p>
-            <p class="sub"><a href="https://bugcrowd.com/engagements/newfold-bluehostindia-vdp/hall_of_fames" target="_blank" rel="noreferrer">View Hall of Fame</a></p>
+            <p class="sub"><a href="https://bugcrowd.com/engagements/newfold-bluehostindia-vdp/hall_of_fames"
+                target="_blank" rel="noreferrer">View Hall of Fame</a></p>
           </article>
           <article class="card">
             <div class="card__top">
               <h3>Kingfisher</h3>
-              <span class="tag">Bugcrowd</span>
+              <span class="tag tag--bugcrowd">Bugcrowd</span>
             </div>
             <p class="sub">Kingfisher &mdash; Vulnerability Disclosure Program</p>
-            <p class="sub"><a href="https://bugcrowd.com/engagements/ce650ebc-0d28-48ad-8a82-8353a924bfcc" target="_blank" rel="noreferrer">View Hall of Fame</a></p>
+            <p class="sub"><a href="https://bugcrowd.com/engagements/ce650ebc-0d28-48ad-8a82-8353a924bfcc"
+                target="_blank" rel="noreferrer">View Hall of Fame</a></p>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>Skybriz</h3>
+              <span class="tag tag--skybriz">Skybriz</span>
+            </div>
+            <p class="sub">Skybriz &mdash; Security Hall of Fame</p>
+            <p class="sub"><a href="https://www.skybriz.com/security-hall-of-fame/?pg=1&tier=recognition"
+                target="_blank" rel="noreferrer">View Hall of Fame</a></p>
           </article>
         </div>
       </div>
@@ -541,14 +913,40 @@
     <section class="section reveal" id="projects">
       <div class="container">
         <div class="section__header">
+          <span class="section-pill">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            149+ Open-Source Repositories
+          </span>
           <h2>Open-Source Security Tools</h2>
           <p>A selection of my public security tools (149+ mostly in Go, Python, and Shell).</p>
+        </div>
+
+        <!-- Projects Search & Language Filter Bar -->
+        <div class="projects-filter-bar">
+          <div class="search-input-wrapper">
+            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="toolSearchInput" placeholder="Search 149+ tools by name, keyword, or description..." autocomplete="off" />
+            <button id="clearSearchBtn" class="clear-search-btn" aria-label="Clear search" style="display: none;">&times;</button>
+          </div>
+          <div class="filter-pills" id="languageFilterPills">
+            <button class="filter-btn active" data-filter="all">All <span class="filter-count" id="countAll">149+</span></button>
+            <button class="filter-btn" data-filter="go">Go <span class="filter-count" id="countGo">90+</span></button>
+            <button class="filter-btn" data-filter="python">Python <span class="filter-count" id="countPython">20+</span></button>
+            <button class="filter-btn" data-filter="shell">Shell <span class="filter-count" id="countShell">25+</span></button>
+          </div>
+        </div>
+
+        <div class="search-results-meta" id="searchResultsMeta" style="display: none;">
+          Showing <span id="visibleToolsCount">0</span> of <span id="totalToolsCount">149</span> tools
         </div>
         <div class="grid">
           <article class="card">
             <div class="card__top">
               <h3>GarudRecon</h3>
-              <span class="tag">Shell</span>
+              <span class="tag tag--shell">Shell</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/GarudRecon" target="_blank"
                 rel="noreferrer">github.com/rix4uni/GarudRecon</a></p>
@@ -561,7 +959,7 @@
           <article class="card">
             <div class="card__top">
               <h3>VulneraXSS</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/VulneraXSS" target="_blank"
                 rel="noreferrer">github.com/rix4uni/VulneraXSS</a></p>
@@ -574,7 +972,7 @@
           <article class="card">
             <div class="card__top">
               <h3>gitxpose</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/gitxpose" target="_blank"
                 rel="noreferrer">github.com/rix4uni/gitxpose</a></p>
@@ -586,7 +984,7 @@
           <article class="card">
             <div class="card__top">
               <h3>stoppiracy</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/stoppiracy" target="_blank"
                 rel="noreferrer">github.com/rix4uni/stoppiracy</a></p>
@@ -599,7 +997,7 @@
           <article class="card">
             <div class="card__top">
               <h3>originiphunter</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/originiphunter" target="_blank"
                 rel="noreferrer">github.com/rix4uni/originiphunter</a></p>
@@ -611,7 +1009,7 @@
           <article class="card">
             <div class="card__top">
               <h3>subdog</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/subdog" target="_blank"
                 rel="noreferrer">github.com/rix4uni/subdog</a></p>
@@ -623,7 +1021,7 @@
           <article class="card">
             <div class="card__top">
               <h3>uforall</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/uforall" target="_blank"
                 rel="noreferrer">github.com/rix4uni/uforall</a></p>
@@ -635,7 +1033,7 @@
           <article class="card">
             <div class="card__top">
               <h3>cvemapping</h3>
-              <span class="tag">Python</span>
+              <span class="tag tag--python">Python</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/cvemapping" target="_blank"
                 rel="noreferrer">github.com/rix4uni/cvemapping</a></p>
@@ -647,7 +1045,7 @@
           <article class="card">
             <div class="card__top">
               <h3>haktrailsfree</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/haktrailsfree" target="_blank"
                 rel="noreferrer">github.com/rix4uni/haktrailsfree</a></p>
@@ -659,7 +1057,7 @@
           <article class="card">
             <div class="card__top">
               <h3>emailextractor</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/emailextractor" target="_blank"
                 rel="noreferrer">github.com/rix4uni/emailextractor</a></p>
@@ -671,7 +1069,7 @@
           <article class="card">
             <div class="card__top">
               <h3>tldscan</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/tldscan" target="_blank"
                 rel="noreferrer">github.com/rix4uni/tldscan</a></p>
@@ -683,7 +1081,7 @@
           <article class="card">
             <div class="card__top">
               <h3>subhijack</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/subhijack" target="_blank"
                 rel="noreferrer">github.com/rix4uni/subhijack</a></p>
@@ -696,7 +1094,7 @@
           <article class="card">
             <div class="card__top">
               <h3>gosqli</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/gosqli" target="_blank"
                 rel="noreferrer">github.com/rix4uni/gosqli</a></p>
@@ -708,7 +1106,7 @@
           <article class="card">
             <div class="card__top">
               <h3>socialfinder</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/socialfinder" target="_blank"
                 rel="noreferrer">github.com/rix4uni/socialfinder</a></p>
@@ -720,7 +1118,7 @@
           <article class="card">
             <div class="card__top">
               <h3>vulntechfinder</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/vulntechfinder" target="_blank"
                 rel="noreferrer">github.com/rix4uni/vulntechfinder</a></p>
@@ -732,7 +1130,7 @@
           <article class="card">
             <div class="card__top">
               <h3>ipfinder</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/ipfinder" target="_blank"
                 rel="noreferrer">github.com/rix4uni/ipfinder</a></p>
@@ -744,7 +1142,7 @@
           <article class="card">
             <div class="card__top">
               <h3>waybackurlsx</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/waybackurlsx" target="_blank"
                 rel="noreferrer">github.com/rix4uni/waybackurlsx</a></p>
@@ -756,7 +1154,7 @@
           <article class="card">
             <div class="card__top">
               <h3>certinfo</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/certinfo" target="_blank"
                 rel="noreferrer">github.com/rix4uni/certinfo</a></p>
@@ -768,7 +1166,7 @@
           <article class="card">
             <div class="card__top">
               <h3>paramfinder</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/paramfinder" target="_blank"
                 rel="noreferrer">github.com/rix4uni/paramfinder</a></p>
@@ -780,7 +1178,7 @@
           <article class="card">
             <div class="card__top">
               <h3>portmap</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/portmap" target="_blank"
                 rel="noreferrer">github.com/rix4uni/portmap</a></p>
@@ -792,7 +1190,7 @@
           <article class="card">
             <div class="card__top">
               <h3>emailfinder</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/emailfinder" target="_blank"
                 rel="noreferrer">github.com/rix4uni/emailfinder</a></p>
@@ -804,7 +1202,7 @@
           <article class="card">
             <div class="card__top">
               <h3>cspfinder</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/cspfinder" target="_blank"
                 rel="noreferrer">github.com/rix4uni/cspfinder</a></p>
@@ -816,7 +1214,7 @@
           <article class="card">
             <div class="card__top">
               <h3>ftpx</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/ftpx" target="_blank"
                 rel="noreferrer">github.com/rix4uni/ftpx</a></p>
@@ -828,7 +1226,7 @@
           <article class="card">
             <div class="card__top">
               <h3>linkinspector</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/linkinspector" target="_blank"
                 rel="noreferrer">github.com/rix4uni/linkinspector</a></p>
@@ -840,7 +1238,7 @@
           <article class="card">
             <div class="card__top">
               <h3>sqlifinder</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/sqlifinder" target="_blank"
                 rel="noreferrer">github.com/rix4uni/sqlifinder</a></p>
@@ -852,7 +1250,7 @@
           <article class="card">
             <div class="card__top">
               <h3>org2asn</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/org2asn" target="_blank"
                 rel="noreferrer">github.com/rix4uni/org2asn</a></p>
@@ -864,7 +1262,7 @@
           <article class="card">
             <div class="card__top">
               <h3>querygen</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/querygen" target="_blank"
                 rel="noreferrer">github.com/rix4uni/querygen</a></p>
@@ -876,7 +1274,7 @@
           <article class="card">
             <div class="card__top">
               <h3>techfinder</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/techfinder" target="_blank"
                 rel="noreferrer">github.com/rix4uni/techfinder</a></p>
@@ -888,7 +1286,7 @@
           <article class="card">
             <div class="card__top">
               <h3>whoxysubs</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/whoxysubs" target="_blank"
                 rel="noreferrer">github.com/rix4uni/whoxysubs</a></p>
@@ -900,7 +1298,7 @@
           <article class="card">
             <div class="card__top">
               <h3>goswagger</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/goswagger" target="_blank"
                 rel="noreferrer">github.com/rix4uni/goswagger</a></p>
@@ -912,7 +1310,7 @@
           <article class="card">
             <div class="card__top">
               <h3>jsmanager</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/jsmanager" target="_blank"
                 rel="noreferrer">github.com/rix4uni/jsmanager</a></p>
@@ -925,7 +1323,7 @@
           <article class="card">
             <div class="card__top">
               <h3>commoncrawlscans</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/commoncrawlscans" target="_blank"
                 rel="noreferrer">github.com/rix4uni/commoncrawlscans</a></p>
@@ -937,7 +1335,7 @@
           <article class="card">
             <div class="card__top">
               <h3>dlevel</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/dlevel" target="_blank"
                 rel="noreferrer">github.com/rix4uni/dlevel</a></p>
@@ -949,7 +1347,7 @@
           <article class="card">
             <div class="card__top">
               <h3>dotgitfinder</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/dotgitfinder" target="_blank"
                 rel="noreferrer">github.com/rix4uni/dotgitfinder</a></p>
@@ -961,7 +1359,7 @@
           <article class="card">
             <div class="card__top">
               <h3>ip2org</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/ip2org" target="_blank"
                 rel="noreferrer">github.com/rix4uni/ip2org</a></p>
@@ -973,7 +1371,7 @@
           <article class="card">
             <div class="card__top">
               <h3>jscrawler</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/jscrawler" target="_blank"
                 rel="noreferrer">github.com/rix4uni/jscrawler</a></p>
@@ -985,7 +1383,7 @@
           <article class="card">
             <div class="card__top">
               <h3>redirectfinder</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/redirectfinder" target="_blank"
                 rel="noreferrer">github.com/rix4uni/redirectfinder</a></p>
@@ -997,7 +1395,7 @@
           <article class="card">
             <div class="card__top">
               <h3>tldinfo</h3>
-              <span class="tag">Python</span>
+              <span class="tag tag--python">Python</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/tldinfo" target="_blank"
                 rel="noreferrer">github.com/rix4uni/tldinfo</a></p>
@@ -1009,7 +1407,7 @@
           <article class="card">
             <div class="card__top">
               <h3>dirless</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/dirless" target="_blank"
                 rel="noreferrer">github.com/rix4uni/dirless</a></p>
@@ -1021,7 +1419,7 @@
           <article class="card">
             <div class="card__top">
               <h3>favinfo</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/favinfo" target="_blank"
                 rel="noreferrer">github.com/rix4uni/favinfo</a></p>
@@ -1033,7 +1431,7 @@
           <article class="card">
             <div class="card__top">
               <h3>lfifinder</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/lfifinder" target="_blank"
                 rel="noreferrer">github.com/rix4uni/lfifinder</a></p>
@@ -1045,7 +1443,7 @@
           <article class="card">
             <div class="card__top">
               <h3>SSHBruteForce</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/SSHBruteForce" target="_blank"
                 rel="noreferrer">github.com/rix4uni/SSHBruteForce</a></p>
@@ -1057,7 +1455,7 @@
           <article class="card">
             <div class="card__top">
               <h3>timelimitx</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/timelimitx" target="_blank"
                 rel="noreferrer">github.com/rix4uni/timelimitx</a></p>
@@ -1069,7 +1467,7 @@
           <article class="card">
             <div class="card__top">
               <h3>waybackzips</h3>
-              <span class="tag">Shell</span>
+              <span class="tag tag--shell">Shell</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/waybackzips" target="_blank"
                 rel="noreferrer">github.com/rix4uni/waybackzips</a></p>
@@ -1081,7 +1479,7 @@
           <article class="card">
             <div class="card__top">
               <h3>builtwithsubs</h3>
-              <span class="tag">Python</span>
+              <span class="tag tag--python">Python</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/builtwithsubs" target="_blank"
                 rel="noreferrer">github.com/rix4uni/builtwithsubs</a></p>
@@ -1093,7 +1491,7 @@
           <article class="card">
             <div class="card__top">
               <h3>robotxt</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/robotxt" target="_blank"
                 rel="noreferrer">github.com/rix4uni/robotxt</a></p>
@@ -1105,7 +1503,7 @@
           <article class="card">
             <div class="card__top">
               <h3>wordgen</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/wordgen" target="_blank"
                 rel="noreferrer">github.com/rix4uni/wordgen</a></p>
@@ -1117,7 +1515,7 @@
           <article class="card">
             <div class="card__top">
               <h3>wppdm</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/wppdm" target="_blank"
                 rel="noreferrer">github.com/rix4uni/wppdm</a></p>
@@ -1129,7 +1527,7 @@
           <article class="card">
             <div class="card__top">
               <h3>arinrange</h3>
-              <span class="tag">Python</span>
+              <span class="tag tag--python">Python</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/arinrange" target="_blank"
                 rel="noreferrer">github.com/rix4uni/arinrange</a></p>
@@ -1141,7 +1539,7 @@
           <article class="card">
             <div class="card__top">
               <h3>pathcrawler</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/pathcrawler" target="_blank"
                 rel="noreferrer">github.com/rix4uni/pathcrawler</a></p>
@@ -1153,7 +1551,7 @@
           <article class="card">
             <div class="card__top">
               <h3>subdomainfuzz</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/subdomainfuzz" target="_blank"
                 rel="noreferrer">github.com/rix4uni/subdomainfuzz</a></p>
@@ -1165,7 +1563,7 @@
           <article class="card">
             <div class="card__top">
               <h3>pdfhunter</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/pdfhunter" target="_blank"
                 rel="noreferrer">github.com/rix4uni/pdfhunter</a></p>
@@ -1177,13 +1575,109 @@
           <article class="card">
             <div class="card__top">
               <h3>sftpsender</h3>
-              <span class="tag">Go</span>
+              <span class="tag tag--go">Go</span>
             </div>
             <p class="sub"><a href="https://github.com/rix4uni/sftpsender" target="_blank"
                 rel="noreferrer">github.com/rix4uni/sftpsender</a></p>
             <ul>
               <li>Transfer files/directories over SFTP using optimized concurrent operations.</li>
               <li>Supports secure credential management through YAML for automated deployments.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>gf</h3>
+              <span class="tag tag--go">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/gf" target="_blank"
+                rel="noreferrer">github.com/rix4uni/gf</a></p>
+            <ul>
+              <li>A wrapper for TomNomNom's gf tool that simplifies grep pattern matching for security auditing.</li>
+              <li>Streamlines searching for vulnerabilities like XSS, SQLi, and SSRF in URL datasets.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>indextree</h3>
+              <span class="tag tag--go">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/indextree" target="_blank"
+                rel="noreferrer">github.com/rix4uni/indextree</a></p>
+            <ul>
+              <li>High-speed directory structure visualizer generating tree-like maps of web endpoints.</li>
+              <li>Facilitates quick spatial understanding of target application path hierarchies during recon.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>urlflux</h3>
+              <span class="tag tag--go">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/urlflux" target="_blank"
+                rel="noreferrer">github.com/rix4uni/urlflux</a></p>
+            <ul>
+              <li>Fast URL extractor and normalizer designed for processing massive endpoint lists in streams.</li>
+              <li>Filters, formats, and prepares URLs efficiently for downstream security testing tools.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>x8scan</h3>
+              <span class="tag tag--go">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/x8scan" target="_blank"
+                rel="noreferrer">github.com/rix4uni/x8scan</a></p>
+            <ul>
+              <li>Automated hidden parameter discovery tool leveraging high-speed HTTP probing.</li>
+              <li>Uncovers unlinked parameters and hidden inputs across target web applications.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>nmapscan</h3>
+              <span class="tag tag--shell">Shell</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/nmapscan" target="_blank"
+                rel="noreferrer">github.com/rix4uni/nmapscan</a></p>
+            <ul>
+              <li>Automated Nmap wrapper for multi-threaded port scanning and service discovery across IP ranges.</li>
+              <li>Generates structured reports and integrates seamlessly into automated recon pipelines.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>oosexclude</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/oosexclude" target="_blank"
+                rel="noreferrer">github.com/rix4uni/oosexclude</a></p>
+            <ul>
+              <li>Filters out-of-scope domains and wildcard rules from target lists based on bug bounty scope.</li>
+              <li>Prevents accidental testing of restricted assets during automated reconnaissance.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>ffufscan</h3>
+              <span class="tag tag--shell">Shell</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/ffufscan" target="_blank"
+                rel="noreferrer">github.com/rix4uni/ffufscan</a></p>
+            <ul>
+              <li>Automated web directory and parameter fuzzing pipeline wrapping ffuf with smart filtering.</li>
+              <li>Speeds up discovery of hidden files, backup endpoints, and admin panels.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__top">
+              <h3>thorfinn</h3>
+              <span class="tag">Go</span>
+            </div>
+            <p class="sub"><a href="https://github.com/rix4uni/thorfinn" target="_blank"
+                rel="noreferrer">github.com/rix4uni/thorfinn</a></p>
+            <ul>
+              <li>High-performance security recon tool designed to aggregate and organize target assets.</li>
+              <li>Streamlines target enumeration and asset tracking for bug bounty workflows.</li>
             </ul>
           </article>
         </div>
@@ -1218,6 +1712,60 @@
       <polyline points="18 15 12 9 6 15"></polyline>
     </svg>
   </button>
+
+  <!-- Interactive Cyber Terminal CLI Modal -->
+  <div id="cliModal" class="cli-modal" aria-hidden="true">
+    <div class="cli-overlay" id="cliOverlay"></div>
+    <div class="cli-window">
+      <!-- Window Header Bar -->
+      <div class="cli-header">
+        <div class="cli-controls">
+          <span class="cli-dot cli-dot--red" id="closeCliDot"></span>
+          <span class="cli-dot cli-dot--yellow"></span>
+          <span class="cli-dot cli-dot--green"></span>
+        </div>
+        <div class="cli-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+          kraze-cli v1.0 &mdash; rix4uni@krazeplanet:~
+        </div>
+        <button class="cli-close-btn" id="closeCliBtn" aria-label="Close terminal">&times;</button>
+      </div>
+      <!-- Terminal Output Body -->
+      <div class="cli-body" id="cliOutput">
+        <div class="cli-banner">
+          <pre class="cli-ascii">
+ ____  _                   _           _   _       ____                                
+| __ )| |__   __ _  __ _  (_)_ __ __ _| |_| |__   / ___|  __ ___  _____ _ __   __ _    
+|  _ \| '_ \ / _` |/ _` | | | '__/ _` | __| '_ \  \___ \ / _` \ \/ / _ \ '_ \ / _` |   
+| |_) | | | | (_| | (_| | | | | | (_| | |_| | | |  ___) | (_| |>  <  __/ | | | (_| |   
+|____/|_| |_|\__,_|\__, | |_|_|  \__,_|\__|_| |_| |____/ \__,_/_/\_\___|_| |_|\__,_|   
+                   |___/                                                               
+          </pre>
+          <p class="cli-welcome-txt">Welcome to KrazePlanet Cyber Operations CLI Shell v1.0.</p>
+          <div class="cli-help-commands" style="margin-top: 12px; margin-bottom: 16px;">
+            <div class="cli-text-cyan" style="font-weight: 700; margin-bottom: 8px;">Supported Interactive Commands:</div>
+            <div class="cli-cmd-list" style="display: grid; gap: 5px; padding-left: 4px; font-size: 13px;">
+              <div><span class="cmd-highlight" style="display:inline-block; min-width: 170px;">help</span> <span style="color:#94a3b8;">&mdash; Lists all available commands.</span></div>
+              <div><span class="cmd-highlight" style="display:inline-block; min-width: 170px;">whoami</span> <span style="color:#94a3b8;">&mdash; Displays researcher bio, stats, and achievements.</span></div>
+              <div><span class="cmd-highlight" style="display:inline-block; min-width: 170px;">skills</span> <span style="color:#94a3b8;">&mdash; Shows security tools, languages, and methodologies.</span></div>
+              <div><span class="cmd-highlight" style="display:inline-block; min-width: 170px;">tools / projects</span> <span style="color:#94a3b8;">&mdash; Lists top open-source security tools (149+ repos).</span></div>
+              <div><span class="cmd-highlight" style="display:inline-block; min-width: 170px;">services / subdomains</span> <span style="color:#94a3b8;">&mdash; Lists KrazePlanet platform subdomains.</span></div>
+              <div><span class="cmd-highlight" style="display:inline-block; min-width: 170px;">certs</span> <span style="color:#94a3b8;">&mdash; Displays verified certifications (Cisco, IBM, Oracle, Coursera).</span></div>
+              <div><span class="cmd-highlight" style="display:inline-block; min-width: 170px;">halloffame</span> <span style="color:#94a3b8;">&mdash; Lists Hall of Fame acknowledgments (NASA, Gap, Skybriz).</span></div>
+              <div><span class="cmd-highlight" style="display:inline-block; min-width: 170px;">contact</span> <span style="color:#94a3b8;">&mdash; Shows direct email, phone, and social profile links.</span></div>
+              <div><span class="cmd-highlight" style="display:inline-block; min-width: 170px;">clear / cls</span> <span style="color:#94a3b8;">&mdash; Clears the terminal screen.</span></div>
+              <div><span class="cmd-highlight" style="display:inline-block; min-width: 170px;">exit / quit</span> <span style="color:#94a3b8;">&mdash; Closes the terminal modal.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Input Line -->
+      <div class="cli-input-line">
+        <span class="cli-prompt"><span class="user">rix4uni</span><span class="at">@</span><span class="host">krazeplanet</span>:<span class="path">~</span>$</span>
+        <input type="text" id="cliInput" placeholder="Type a command (e.g. help, whoami, tools, certs)..." autocomplete="off" spellcheck="false" />
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
