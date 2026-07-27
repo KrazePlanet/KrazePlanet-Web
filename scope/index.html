@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scope Explorer - Bug Bounty Target Search & Dataset Visualizer</title>
+    <meta name="description"
+        content="Search, filter, and inspect bug bounty program scopes, wildcards, domains, and repos across Bugcrowd, HackerOne, Intigriti, and YesWeHack.">
+    <link rel="icon" href="https://krazeplanet.com/favicon.ico" type="image/png">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Top Navigation Header -->
+    <header class="app-header">
+        <div class="header-container">
+            <a href="/" class="logo">
+                <img src="https://krazeplanet.com/favicon.png" alt="KrazePlanet Logo"
+                    style="height: 32px; width: 32px; object-fit: contain;">
+                <span
+                    style="color: #ffffff; font-weight: 700; font-size: 1.4rem; letter-spacing: -0.5px;">KrazePlanet</span>
+            </a>
+
+            <!-- Main Nav Tabs -->
+            <nav class="nav-tabs">
+                <button class="nav-tab active" data-tab="dashboard">
+                    <i class="fa-solid fa-chart-pie"></i> Dashboard
+                </button>
+                <button class="nav-tab" data-tab="search">
+                    <i class="fa-solid fa-magnifying-glass"></i> Target Search
+                </button>
+                <button class="nav-tab" data-tab="files">
+                    <i class="fa-solid fa-folder-tree"></i> File Browser
+                </button>
+            </nav>
+
+            <div class="header-actions">
+                <a href="https://github.com/rix4uni/scope" target="_blank" rel="noopener" class="btn btn-github">
+                    <i class="fa-brands fa-github"></i> GitHub Repo
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="app-main">
+
+        <!-- ==================== TAB 1: DASHBOARD ==================== -->
+        <section id="tab-dashboard" class="tab-content active">
+            <!-- Stats Bar -->
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-card">
+                    <div class="stat-icon cyan"><i class="fa-solid fa-shield-cat"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-label">Total Platform</span>
+                        <span class="stat-value" id="statPrograms">Loading...</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon emerald"><i class="fa-solid fa-bullseye"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-label">In-Scope Targets</span>
+                        <span class="stat-value" id="statInscope">Loading...</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon purple"><i class="fa-solid fa-asterisk"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-label">Wildcard Patterns</span>
+                        <span class="stat-value" id="statWildcards">Loading...</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon amber"><i class="fa-solid fa-globe"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-label">Scope File Datasets</span>
+                        <span class="stat-value" id="statFiles">18 Files</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category Cards Grid -->
+            <div class="section-title">
+                <h2>Browse Scope Datasets by Category</h2>
+                <p>Click any category to open and inspect the underlying target text files</p>
+            </div>
+
+            <div class="category-cards-grid">
+                <!-- Card 1: Wildcards -->
+                <div class="cat-card" onclick="app.openCategoryFile('Wildcards', 'inscope_wildcards.txt')">
+                    <div class="cat-card-header">
+                        <div class="cat-icon purple"><i class="fa-solid fa-asterisk"></i></div>
+                        <span class="badge badge-purple">Main Category</span>
+                    </div>
+                    <h3>Wildcard Scopes</h3>
+                    <p>Wildcard patterns matching all subdomains (e.g. <code>*.example.com</code>,
+                        <code>portalapi.*.domain.com</code>).
+                    </p>
+                    <div class="cat-card-footer">
+                        <span><i class="fa-solid fa-file"></i> 2 files</span>
+                        <span class="link-arrow">Inspect Files <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <!-- Card 2: Domains -->
+                <div class="cat-card" onclick="app.openCategoryFile('Domains', 'inscope_domains.txt')">
+                    <div class="cat-card-header">
+                        <div class="cat-icon cyan"><i class="fa-solid fa-globe"></i></div>
+                        <span class="badge badge-cyan">Main Category</span>
+                    </div>
+                    <h3>Full Domains</h3>
+                    <p>Explicit full hostnames and API domain endpoints (e.g. <code>api.example.com</code>,
+                        <code>auth.service.io</code>).
+                    </p>
+                    <div class="cat-card-footer">
+                        <span><i class="fa-solid fa-file"></i> 2 files</span>
+                        <span class="link-arrow">Inspect Files <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <!-- Card 3: Github Repos -->
+                <div class="cat-card" onclick="app.openCategoryFile('GithubRepo', 'inscope_github_repo.txt')">
+                    <div class="cat-card-header">
+                        <div class="cat-icon emerald"><i class="fa-brands fa-github"></i></div>
+                        <span class="badge badge-emerald">Code Scopes</span>
+                    </div>
+                    <h3>GitHub Repositories</h3>
+                    <p>Open-source repositories and org repos included in bug bounty engagements.</p>
+                    <div class="cat-card-footer">
+                        <span><i class="fa-solid fa-file"></i> 2 files</span>
+                        <span class="link-arrow">Inspect Files <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <!-- Card 4: New Data -->
+                <div class="cat-card" onclick="app.openCategoryFile('NewData', 'newdata_inscope_wildcards.txt')">
+                    <div class="cat-card-header">
+                        <div class="cat-icon amber"><i class="fa-solid fa-bolt"></i></div>
+                        <span class="badge badge-amber">Fresh Scopes</span>
+                    </div>
+                    <h3>New Scope Additions</h3>
+                    <p>Newly discovered in-scope targets fetched during the latest automated 10-minute dataset refresh.
+                    </p>
+                    <div class="cat-card-footer">
+                        <span><i class="fa-solid fa-file"></i> 3 files</span>
+                        <span class="link-arrow">Inspect Files <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <!-- Card 5: Platform Files -->
+                <div class="cat-card" onclick="app.openCategoryFile('Bugcrowd', 'bugcrowd_inscope.txt')">
+                    <div class="cat-card-header">
+                        <div class="cat-icon red"><i class="fa-solid fa-layer-group"></i></div>
+                        <span class="badge badge-red">Platforms</span>
+                    </div>
+                    <h3>Platform Datasets</h3>
+                    <p>Separated scope targets from Bugcrowd, HackerOne, Intigriti, and YesWeHack programs.</p>
+                    <div class="cat-card-footer">
+                        <span><i class="fa-solid fa-file"></i> 12 files</span>
+                        <span class="link-arrow">Inspect Files <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <!-- Card 6: All Combined Data -->
+                <div class="cat-card" onclick="app.openCategoryFile('AllData', 'inscope.txt')">
+                    <div class="cat-card-header">
+                        <div class="cat-icon blue"><i class="fa-solid fa-database"></i></div>
+                        <span class="badge badge-blue">Complete Dataset</span>
+                    </div>
+                    <h3>All Combined Scopes</h3>
+                    <p>Master aggregate files containing all in-scope and out-of-scope targets combined across all
+                        platforms.</p>
+                    <div class="cat-card-footer">
+                        <span><i class="fa-solid fa-file"></i> 2 files</span>
+                        <span class="link-arrow">Inspect Files <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==================== TAB 2: TARGET SEARCH ==================== -->
+        <section id="tab-search" class="tab-content">
+            <div class="search-header-box">
+                <h2>Search Bug Bounty Program Targets</h2>
+                <p>Type a domain, wildcard pattern, keyword, or company name to search across thousands of program
+                    scopes.</p>
+
+                <div class="search-bar-large">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="targetSearchInput"
+                        placeholder="Enter domain or target (e.g. *.tidal.com, paypal, api.github.com)..."
+                        autocomplete="off">
+                    <button class="btn btn-primary" id="btnExecuteSearch">
+                        <i class="fa-solid fa-magnifying-glass"></i> Search
+                    </button>
+                </div>
+
+                <div class="search-filters">
+                    <span class="filter-label">Filter Platform:</span>
+                    <button class="chip active" data-platform-filter="all">All Platforms</button>
+                    <button class="chip" data-platform-filter="Bugcrowd"><i class="fa-solid fa-bugs"></i>
+                        Bugcrowd</button>
+                    <button class="chip" data-platform-filter="HackerOne"><i class="fa-solid fa-user-ninja"></i>
+                        HackerOne</button>
+                    <button class="chip" data-platform-filter="Intigriti"><i class="fa-solid fa-shield"></i>
+                        Intigriti</button>
+                    <button class="chip" data-platform-filter="YesWeHack"><i class="fa-solid fa-flag"></i>
+                        YesWeHack</button>
+                </div>
+            </div>
+
+            <div class="search-results-summary" id="searchSummary">
+                <span>Type a query above to view matching bug bounty scopes</span>
+            </div>
+
+            <!-- Search Results Cards Container -->
+            <div class="search-results-list" id="searchResultsList">
+                <div class="empty-state">
+                    <i class="fa-solid fa-magnifying-glass-chart"></i>
+                    <h3>Ready to Search</h3>
+                    <p>Enter any domain name or program title in the search bar above.</p>
+                    <div class="example-chips">
+                        <span>Try:</span>
+                        <button class="chip-sm" onclick="app.setSearchQuery('*.tidal.com')">*.tidal.com</button>
+                        <button class="chip-sm" onclick="app.setSearchQuery('*.gov.sg')">*.gov.sg</button>
+                        <button class="chip-sm" onclick="app.setSearchQuery('afterpay')">afterpay</button>
+                        <button class="chip-sm" onclick="app.setSearchQuery('asana')">asana</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==================== TAB 3: FILE BROWSER ==================== -->
+        <section id="tab-files" class="tab-content">
+            <div class="file-browser-layout">
+                <!-- Sidebar File Navigation -->
+                <aside class="file-tree-sidebar">
+                    <div class="sidebar-header">
+                        <span><i class="fa-solid fa-folder-tree"></i> Scope Datasets</span>
+                        <span class="badge badge-sm" id="sidebarFileCount">18 Files</span>
+                    </div>
+
+                    <div class="file-tree-list" id="fileTreeList">
+                        <!-- File categories will be populated dynamically -->
+                    </div>
+                </aside>
+
+                <!-- File Content View Panel -->
+                <div class="file-content-panel">
+                    <div class="file-panel-header">
+                        <div class="file-info-header">
+                            <i class="fa-solid fa-file-code file-type-icon"></i>
+                            <div>
+                                <h3 id="currentFileName">Select a file from the sidebar</h3>
+                                <a href="https://github.com/rix4uni/scope" target="_blank" rel="noopener"
+                                    class="file-github-link" id="fileGithubLink" title="View file on GitHub">
+                                    <i class="fa-brands fa-github"></i> <span id="currentFilePath">data/</span> <i
+                                        class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="file-meta-badges">
+                            <span class="badge badge-emerald" id="fileScopeBadge">In-Scope</span>
+                            <span class="badge badge-blue" id="fileLineCountBadge"><i class="fa-solid fa-list-ol"></i> 0
+                                lines</span>
+                        </div>
+
+                        <div class="file-actions">
+                            <div class="input-with-icon-sm">
+                                <i class="fa-solid fa-filter"></i>
+                                <input type="text" id="fileContentFilter" placeholder="Filter lines in file...">
+                            </div>
+                            <button class="btn btn-secondary btn-sm" id="btnCopyFile" title="Copy all visible lines">
+                                <i class="fa-solid fa-copy"></i> Copy
+                            </button>
+                            <button class="btn btn-secondary btn-sm" id="btnDownloadFile" title="Download raw file">
+                                <i class="fa-solid fa-download"></i> Download
+                            </button>
+                            <a href="#" target="_blank" rel="noopener" class="btn btn-github btn-sm" id="btnGithubFile"
+                                title="Open file on GitHub">
+                                <i class="fa-brands fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- File Purpose & Explanation Banner -->
+                    <div class="file-purpose-card" id="filePurposeCard">
+                        <div class="purpose-header">
+                            <div class="purpose-title"><i class="fa-solid fa-circle-info text-cyan"></i> <strong>What is
+                                    this file for?</strong></div>
+                            <span class="badge badge-purple" id="fileCategoryBadge">Category</span>
+                        </div>
+                        <p class="purpose-text" id="filePurposeText">Select any scope dataset file from the left sidebar
+                            to inspect all its lines and view its detailed description.</p>
+                        <div class="purpose-examples" id="filePurposeExamples"></div>
+                    </div>
+
+                    <!-- File Line Viewer -->
+                    <div class="file-viewer-container">
+                        <div class="code-viewer" id="codeViewer">
+                            <div class="viewer-placeholder">
+                                <i class="fa-solid fa-hand-pointer"></i>
+                                <p>Select a scope dataset file from the left sidebar to view its raw contents</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Quick Toast Notification -->
+    <div class="toast" id="appToast">
+        <i class="fa-solid fa-check-circle"></i>
+        <span id="toastMessage">Copied to clipboard!</span>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
