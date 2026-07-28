@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Bold & Post Formatting Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+        
+        :root {
+            --primary: #0a66c2;
+            --primary-dark: #004182;
+            --primary-light: #e8f4fc;
+            --secondary: #6c757d;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --border: #dee2e6;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --radius: 12px;
+            --bg-gradient: linear-gradient(135deg, #f3f2ef 0%, #e8e7e3 100%);
+            --card-bg: #ffffff;
+            --input-bg: #ffffff;
+            --text-color: #212529;
+        }
+
+        [data-theme="dark"] {
+            --primary: #378fe9;
+            --primary-dark: #1b64b0;
+            --primary-light: #1b2734;
+            --secondary: #90a4ae;
+            --success: #2e7d32;
+            --warning: #f57f17;
+            --danger: #c62828;
+            --light: #16202c;
+            --dark: #f0f4f8;
+            --border: #2c3a47;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            --bg-gradient: linear-gradient(135deg, #0d131a 0%, #151d27 100%);
+            --card-bg: #1a2430;
+            --input-bg: #111822;
+            --text-color: #e1e9f0;
+        }
+        
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-color);
+            min-height: 100vh;
+            padding: 20px;
+            transition: background 0.3s, color 0.3s;
+        }
+        
+        .container {
+            max-width: 1600px;
+            width: 100%;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .header-title-group h1 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .header-title-group .subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .theme-toggle-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-toggle-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+        
+        .alert {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 14px 20px;
+            margin: 20px 25px 10px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .alert-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .draft-badge {
+            font-size: 0.85rem;
+            background: rgba(10, 102, 194, 0.15);
+            padding: 4px 10px;
+            border-radius: 12px;
+            display: none;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .reset-draft-btn {
+            background: transparent;
+            border: none;
+            color: var(--danger);
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: underline;
+            margin-left: 5px;
+        }
+        
+        /* Format Selection Cards */
+        .format-options {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 15px 25px;
+        }
+
+        @media (max-width: 1200px) {
+            .format-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .format-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        .format-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+            border-color: var(--primary);
+        }
+        
+        .format-card.selected {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+        
+        .format-card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .format-card input {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+        
+        .format-card label {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+        
+        .recommended-badge {
+            background: var(--success);
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 7px;
+            border-radius: 12px;
+            margin-left: 8px;
+        }
+        
+        .format-description {
+            color: var(--secondary);
+            font-size: 0.88rem;
+            line-height: 1.4;
+            margin-bottom: 6px;
+        }
+        
+        .format-example {
+            font-size: 0.85rem;
+            color: var(--secondary);
+            font-style: italic;
+        }
+
+        /* Toolbar & Controls */
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            background: var(--light);
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .tb-btn {
+            background: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .tb-btn:hover {
+            background: var(--primary-light);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .tb-divider {
+            width: 1px;
+            height: 22px;
+            background: var(--border);
+            margin: 0 4px;
+        }
+
+        .template-select {
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            color: var(--text-color);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Assistant Bars */
+        .assistant-section {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .assistant-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .assistant-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            min-width: 70px;
+        }
+
+        .emoji-pill, .hashtag-pill {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 4px 10px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none;
+        }
+
+        .emoji-pill:hover, .hashtag-pill:hover {
+            background: var(--primary-light);
+            border-color: var(--primary);
+            transform: translateY(-1px);
+        }
+
+        .hashtag-pill {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            padding: 0 25px 25px;
+            min-height: 55vh;
+        }
+
+        @media (max-width: 1100px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .section {
+            display: flex;
+            flex-direction: column;
+            background: var(--light);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            height: 100%;
+        }
+
+        .highlight-box {
+            border: 3px solid var(--primary);
+            border-radius: 10px;
+            padding: 20px;
+            background: var(--card-bg);
+            box-shadow: 0 4px 12px rgba(10, 102, 194, 0.12);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .highlight-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .highlight-title-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .textarea-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .textarea-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            color: var(--secondary);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        textarea {
+            flex: 1;
+            width: 100%;
+            padding: 16px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 17px;
+            line-height: 1.6;
+            resize: none;
+            transition: all 0.3s;
+            background: var(--input-bg);
+            color: var(--text-color);
+            min-height: 380px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(10, 102, 194, 0.2);
+        }
+
+        /* Post Optimizer Progress & Metrics */
+        .optimizer-bar {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .metrics-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        .progress-track {
+            height: 6px;
+            background: var(--border);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--success);
+            transition: width 0.3s, background 0.3s;
+        }
+
+        /* "See More" Fold Badge Indicator */
+        .fold-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .fold-indicator.truncated {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .copy-btn-top {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .copy-btn-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(10, 102, 194, 0.25);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-title-group">
+                <h1><i class="fas fa-bold"></i> LinkedIn Bold & Post Formatting Generator</h1>
+                <div class="subtitle">Format posts, add emojis & hashtags, check character limits & fold previews</div>
+            </div>
+            <div class="header-actions">
+                <button id="themeToggleBtn" class="theme-toggle-btn">
+                    <i class="fas fa-moon"></i> Dark Mode
+                </button>
+            </div>
+        </header>
+        
+        <div class="alert">
+            <div class="alert-info">
+                <i class="fas fa-info-circle"></i>
+                <div><strong>LinkedIn Compatible Formatting:</strong> Converts standard Markdown (`**bold**`, `*italic*`, `~strikethrough~`, `__underline__`, `` `monospace` ``) to LinkedIn Unicode characters!</div>
+            </div>
+            <div id="draftBadge" class="draft-badge">
+                <i class="fas fa-check-circle"></i> Draft restored <button id="resetDraftBtn" class="reset-draft-btn">Reset</button>
+            </div>
+        </div>
+        
+        <!-- Format Selection Cards -->
+        <div class="format-options">
+            <div class="format-card selected" data-format="unicode">
+                <div class="format-card-header">
+                    <input type="radio" name="format" value="unicode" id="format-unicode" checked>
+                    <label for="format-unicode">Unicode Bold <span class="recommended-badge">Recommended</span></label>
+                </div>
+                <div class="format-description">Standard Unicode bold font supported across all LinkedIn platforms</div>
+                <div class="format-example">Example: SocialFinder -> 𝗦𝗼𝗰𝗶𝗮𝗹𝗙𝗶𝗻𝗱𝗲𝗿</div>
+            </div>
+            
+            <div class="format-card" data-format="serif">
+                <div class="format-card-header">
+                    <input type="radio" name="format" value="serif" id="format-serif">
+                    <label for="format-serif">Serif Bold</label>
+                </div>
+                <div class="format-description">Elegant serif bold style for professional announcements</div>
+                <div class="format-example">Example: SocialFinder -> 𝐒𝐨𝐜𝐢𝐚𝐥𝐅𝐢𝐧𝐝𝐞𝐫</div>
+            </div>
+            
+            <div class="format-card" data-format="script">
+                <div class="format-card-header">
+                    <input type="radio" name="format" value="script" id="format-script">
+                    <label for="format-script">Script / Cursive</label>
+                </div>
+                <div class="format-description">Fancy script font for creative headings and signatures</div>
+                <div class="format-example">Example: SocialFinder -> 𝒮𝑜𝒸𝒾𝒶𝓁𝐹𝒾𝓃𝒹𝑒𝓇</div>
+            </div>
+            
+            <div class="format-card" data-format="symbols">
+                <div class="format-card-header">
+                    <input type="radio" name="format" value="symbols" id="format-symbols">
+                    <label for="format-symbols">Symbols & Spacing</label>
+                </div>
+                <div class="format-description">Adds decorative star symbols around emphasized text</div>
+                <div class="format-example">Example: SocialFinder -> ✦ SocialFinder ✦</div>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <!-- Left Panel: Input Text -->
+            <div class="section">
+                <div class="highlight-box">
+                    <div class="highlight-title">
+                        <div class="highlight-title-label">
+                            <i class="fas fa-edit"></i> Input Text
+                        </div>
+                        <select id="templateSelect" class="template-select">
+                            <option value="">📋 Load Post Template...</option>
+                            <option value="project">🚀 Project / GitHub Launch</option>
+                            <option value="hiring">💼 Hiring Announcement</option>
+                            <option value="story">💡 Learnings & Key Takeaways</option>
+                            <option value="recap">📌 Event / Milestone Recap</option>
+                        </select>
+                    </div>
+                    
+                    <div class="textarea-container">
+                        <!-- Quick Formatting Toolbar -->
+                        <div class="toolbar">
+                            <button class="tb-btn" id="tbBold" title="Bold text (**text**)"><i class="fas fa-bold"></i> Bold</button>
+                            <button class="tb-btn" id="tbItalic" title="Italic text (*text*)"><i class="fas fa-italic"></i> Italic</button>
+                            <button class="tb-btn" id="tbUnderline" title="Underline text (__text__)"><i class="fas fa-underline"></i> Underline</button>
+                            <button class="tb-btn" id="tbStrike" title="Strikethrough (~text~)"><i class="fas fa-strikethrough"></i> Strike</button>
+                            <button class="tb-btn" id="tbMono" title="Monospace (`text`)"><i class="fas fa-code"></i> Code</button>
+                            <div class="tb-divider"></div>
+                            <button class="tb-btn" id="tbUpper" title="UPPERCASE">AA</button>
+                            <button class="tb-btn" id="tbLower" title="lowercase">aa</button>
+                            <button class="tb-btn" id="tbBullets" title="Add Bullets"><i class="fas fa-list-ul"></i> List</button>
+                            <div class="tb-divider"></div>
+                            <button class="tb-btn" id="tbPaste" title="Paste clipboard"><i class="fas fa-paste"></i> Paste</button>
+                            <button class="tb-btn" id="tbClear" title="Clear text"><i class="fas fa-trash-alt"></i></button>
+                        </div>
+
+                        <div class="textarea-header">
+                            <div>Format using <strong>**bold**</strong>, <strong>*italic*</strong>, <strong>__underline__</strong>, <strong>~strike~</strong></div>
+                        </div>
+
+                        <textarea id="inputText" placeholder="Type or paste your LinkedIn post here. Use markdown syntax like **bold**, *italic*, ~strikethrough~, or __underline__ to emphasize text!"></textarea>
+
+                        <!-- Assistant Panels -->
+                        <div class="assistant-section">
+                            <div class="assistant-row">
+                                <span class="assistant-label">Emojis:</span>
+                                <span class="emoji-pill">🚀</span>
+                                <span class="emoji-pill">💡</span>
+                                <span class="emoji-pill">📈</span>
+                                <span class="emoji-pill">🧠</span>
+                                <span class="emoji-pill">⚡</span>
+                                <span class="emoji-pill">📌</span>
+                                <span class="emoji-pill">🔗</span>
+                                <span class="emoji-pill">✅</span>
+                                <span class="emoji-pill">🔥</span>
+                                <span class="emoji-pill">🎯</span>
+                                <span class="emoji-pill">💻</span>
+                                <span class="emoji-pill">🤝</span>
+                            </div>
+
+                            <div class="assistant-row">
+                                <span class="assistant-label">Hashtags:</span>
+                                <span class="hashtag-pill" data-tag="#SoftwareEngineering">#SoftwareEngineering</span>
+                                <span class="hashtag-pill" data-tag="#CareerGrowth">#CareerGrowth</span>
+                                <span class="hashtag-pill" data-tag="#Tech">#Tech</span>
+                                <span class="hashtag-pill" data-tag="#OpenSource">#OpenSource</span>
+                                <span class="hashtag-pill" data-tag="#WebDev">#WebDev</span>
+                                <span class="hashtag-pill" data-tag="#Productivity">#Productivity</span>
+                            </div>
+                        </div>
+
+                        <!-- Optimizer Metrics & Progress -->
+                        <div class="optimizer-bar">
+                            <div class="metrics-row">
+                                <span><span id="wordCount">0</span> words | <span id="readTime">0</span> min read</span>
+                                <span><span id="charCount">0</span> / 3,000 chars</span>
+                            </div>
+                            <div class="progress-track">
+                                <div id="progressFill" class="progress-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Panel: Output Text -->
+            <div class="section">
+                <div class="highlight-box">
+                    <div class="highlight-title">
+                        <div class="highlight-title-label">
+                            <i class="fas fa-code"></i> Output Text
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span id="foldBadge" class="fold-indicator">
+                                <i class="fas fa-eye"></i> "See More" Fit OK
+                            </span>
+                            <button class="copy-btn-top" id="copyBtn">
+                                <i class="fas fa-copy"></i> Copy to Clipboard
+                            </button>
+                        </div>
+                    </div>
+                    <div class="textarea-container">
+                        <textarea id="outputText" readonly placeholder="Your formatted text will appear here..."></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputText = document.getElementById('inputText');
+            const outputText = document.getElementById('outputText');
+            const copyBtn = document.getElementById('copyBtn');
+            const charCount = document.getElementById('charCount');
+            const wordCount = document.getElementById('wordCount');
+            const readTime = document.getElementById('readTime');
+            const progressFill = document.getElementById('progressFill');
+            const foldBadge = document.getElementById('foldBadge');
+            const themeToggleBtn = document.getElementById('themeToggleBtn');
+            const templateSelect = document.getElementById('templateSelect');
+            const draftBadge = document.getElementById('draftBadge');
+            const resetDraftBtn = document.getElementById('resetDraftBtn');
+            const formatCards = document.querySelectorAll('.format-card');
+            
+            // Post Templates
+            const templates = {
+                project: `🚀 **Introducing ProjectName** — a fast and efficient **username enumeration tool** written in Go!
+
+🔗 **GitHub:** [https://github.com/example/project](https://github.com/example/project)
+
+Inspired by **Sherlock**, but **optimized for high performance**.
+
+## **Features**
+* ⚡ **High performance** – Built with speed in mind
+* 🎨 **Clean Output** – Easy-to-read formatted output
+* 📋 **Custom Options** – Fully customizable configurations
+
+🧠 **Built with Passion** | 🤝 **Open for Contributions**
+
+#SoftwareEngineering #OpenSource #Tech`,
+                hiring: `💼 **We're Hiring!** We are looking for a talented **Full-Stack Software Engineer** to join our growing team.
+
+## **What You'll Do:**
+* 🛠️ Build scalable web applications
+* ⚡ Optimize system performance
+* 🤝 Collaborate with a world-class team
+
+👉 **Apply now or send a DM:** [https://example.com/careers](https://example.com/careers)
+
+#Hiring #SoftwareEngineering #TechJobs #Careers`,
+                story: `💡 **Key Takeaways From My Latest Engineering Journey**
+
+Here are **3 important lessons** I learned building production-ready applications this year:
+
+1️⃣ **Keep Architecture Simple** – Over-engineering early slows progress.
+2️⃣ **Focus on User Experience** – Fast, responsive interfaces always win.
+3️⃣ **Automate Repetitive Tasks** – Save time for high-value problem solving.
+
+What has been your biggest takeaway recently? Let me know below! 👇
+
+#CareerGrowth #Productivity #SoftwareEngineering`,
+                recap: `📌 **Event Milestone & Accomplishment**
+
+Excited to share that we just launched **Version 2.0** of our platform! 🎉
+
+* 📈 **10x Speed Improvement**
+* 🎨 **Redesigned User Interface**
+* 🔒 **Enhanced Security & Reliability**
+
+Huge thank you to everyone who contributed to making this release possible! 🙏
+
+#Tech #ProductLaunch #Innovation #WebDev`
+            };
+
+            // Unicode Converter Helper using CodePoint offsets
+            function convertFont(text, style) {
+                let result = '';
+                for (let i = 0; i < text.length; i++) {
+                    const code = text.charCodeAt(i);
+                    let cp = null;
+                    
+                    if (style === 'bold') {
+                        if (code >= 65 && code <= 90) cp = 0x1D56C + (code - 65);
+                        else if (code >= 97 && code <= 122) cp = 0x1D586 + (code - 97);
+                        else if (code >= 48 && code <= 57) cp = 0x1D7CE + (code - 48);
+                    } else if (style === 'serif') {
+                        if (code >= 65 && code <= 90) cp = 0x1D400 + (code - 65);
+                        else if (code >= 97 && code <= 122) cp = 0x1D41A + (code - 97);
+                        else if (code >= 48 && code <= 57) cp = 0x1D7CE + (code - 48);
+                    } else if (style === 'italic') {
+                        if (code >= 65 && code <= 90) cp = 0x1D670 + (code - 65);
+                        else if (code >= 97 && code <= 122) cp = 0x1D68A + (code - 97);
+                    } else if (style === 'boldItalic') {
+                        if (code >= 65 && code <= 90) cp = 0x1D6D4 + (code - 65);
+                        else if (code >= 97 && code <= 122) cp = 0x1D6EE + (code - 97);
+                    } else if (style === 'script') {
+                        if (code >= 65 && code <= 90) cp = 0x1D4D0 + (code - 65);
+                        else if (code >= 97 && code <= 122) cp = 0x1D4EA + (code - 97);
+                    } else if (style === 'monospace') {
+                        if (code >= 65 && code <= 90) cp = 0x1D6A8 + (code - 65);
+                        else if (code >= 97 && code <= 122) cp = 0x1D6C2 + (code - 97);
+                        else if (code >= 48 && code <= 57) cp = 0x1D7F6 + (code - 48);
+                    }
+
+                    if (cp) {
+                        result += String.fromCodePoint(cp);
+                    } else {
+                        result += text[i];
+                    }
+                }
+                return result;
+            }
+
+            function applyStrikethrough(text) {
+                return text.split('').map(ch => ch + '\u0336').join('');
+            }
+
+            function applyUnderline(text) {
+                return text.split('').map(ch => ch + '\u0332').join('');
+            }
+
+            // Core Converter
+            function convertForLinkedIn(text, formatType) {
+                if (!text) return '';
+                let result = text;
+                
+                // Select Primary Bold Style based on format card selection
+                let primaryStyle = 'bold';
+                if (formatType === 'serif') primaryStyle = 'serif';
+                if (formatType === 'script') primaryStyle = 'script';
+
+                const hasMarkdown = /\*\*|\*|__|~|`/.test(result);
+
+                // If no markdown tags are present, format the entire text according to selected style
+                if (!hasMarkdown) {
+                    if (formatType === 'symbols') return `✦ ${result} ✦`;
+                    return convertFont(result, primaryStyle);
+                }
+
+                // Handle ***bold italic***
+                result = result.replace(/\*\*\*(.*?)\*\*\*/g, (match, p1) => convertFont(p1, 'boldItalic'));
+
+                // Handle **bold**
+                result = result.replace(/\*\*(.*?)\*\*/g, (match, p1) => {
+                    if (formatType === 'symbols') return `✦ ${p1} ✦`;
+                    return convertFont(p1, primaryStyle);
+                });
+
+                // Handle *italic*
+                result = result.replace(/\*(.*?)\*/g, (match, p1) => convertFont(p1, 'italic'));
+
+                // Handle __underline__
+                result = result.replace(/__(.*?)__/g, (match, p1) => applyUnderline(p1));
+
+                // Handle ~strikethrough~
+                result = result.replace(/~(.*?)~/g, (match, p1) => applyStrikethrough(p1));
+
+                // Handle `monospace`
+                result = result.replace(/`(.*?)`/g, (match, p1) => convertFont(p1, 'monospace'));
+
+                return result;
+            }
+            
+            // Realtime Update Function
+            function updateOutput() {
+                const input = inputText.value;
+                const checkedRadio = document.querySelector('input[name="format"]:checked');
+                const formatType = checkedRadio ? checkedRadio.value : 'unicode';
+                const converted = convertForLinkedIn(input, formatType);
+                
+                // Update text
+                outputText.value = converted;
+
+                // Character & Word Metrics
+                const len = input.length;
+                const words = input.trim() ? input.trim().split(/\s+/).length : 0;
+                const readingTime = Math.ceil(words / 200);
+
+                charCount.textContent = len.toLocaleString();
+                wordCount.textContent = words.toLocaleString();
+                readTime.textContent = readingTime;
+
+                // Progress Fill Color & Width
+                const pct = Math.min(100, (len / 3000) * 100);
+                progressFill.style.width = pct + '%';
+                if (len > 3000) {
+                    progressFill.style.backgroundColor = 'var(--danger)';
+                } else if (len > 2500) {
+                    progressFill.style.backgroundColor = 'var(--warning)';
+                } else {
+                    progressFill.style.backgroundColor = 'var(--success)';
+                }
+
+                // LinkedIn "See More" Fold Badge
+                // LinkedIn truncates after approx 210 chars or 4 lines
+                const lineCount = (input.match(/\n/g) || []).length + 1;
+                if (len > 210 || lineCount > 4) {
+                    foldBadge.className = 'fold-indicator truncated';
+                    foldBadge.innerHTML = '<i class="fas fa-exclamation-circle"></i> Truncated at "See More"';
+                } else {
+                    foldBadge.className = 'fold-indicator';
+                    foldBadge.innerHTML = '<i class="fas fa-check-circle"></i> "See More" Fit OK';
+                }
+
+                // Auto-save draft
+                localStorage.setItem('linkedin_generator_draft', input);
+            }
+
+            // Selection Helpers for Toolbar
+            function wrapSelection(prefix, suffix) {
+                const start = inputText.selectionStart;
+                const end = inputText.selectionEnd;
+                const sel = inputText.value.substring(start, end) || 'text';
+                const replacement = prefix + sel + suffix;
+                
+                inputText.value = inputText.value.substring(0, start) + replacement + inputText.value.substring(end);
+                inputText.focus();
+                inputText.setSelectionRange(start + prefix.length, start + prefix.length + sel.length);
+                updateOutput();
+            }
+
+            // Prevent focus loss when clicking toolbar buttons
+            document.querySelectorAll('.tb-btn').forEach(btn => {
+                btn.addEventListener('mousedown', (e) => e.preventDefault());
+            });
+
+            // Toolbar Action Events
+            document.getElementById('tbBold').addEventListener('click', () => wrapSelection('**', '**'));
+            document.getElementById('tbItalic').addEventListener('click', () => wrapSelection('*', '*'));
+            document.getElementById('tbUnderline').addEventListener('click', () => wrapSelection('__', '__'));
+            document.getElementById('tbStrike').addEventListener('click', () => wrapSelection('~', '~'));
+            document.getElementById('tbMono').addEventListener('click', () => wrapSelection('`', '`'));
+            
+            document.getElementById('tbUpper').addEventListener('click', () => {
+                const start = inputText.selectionStart;
+                const end = inputText.selectionEnd;
+                const sel = inputText.value.substring(start, end);
+                if (sel) {
+                    inputText.value = inputText.value.substring(0, start) + sel.toUpperCase() + inputText.value.substring(end);
+                    updateOutput();
+                }
+            });
+
+            document.getElementById('tbLower').addEventListener('click', () => {
+                const start = inputText.selectionStart;
+                const end = inputText.selectionEnd;
+                const sel = inputText.value.substring(start, end);
+                if (sel) {
+                    inputText.value = inputText.value.substring(0, start) + sel.toLowerCase() + inputText.value.substring(end);
+                    updateOutput();
+                }
+            });
+
+            document.getElementById('tbBullets').addEventListener('click', () => {
+                const start = inputText.selectionStart;
+                const end = inputText.selectionEnd;
+                const sel = inputText.value.substring(start, end);
+                if (sel) {
+                    const bulleted = sel.split('\n').map(l => l.startsWith('* ') || l.startsWith('• ') ? l : '• ' + l).join('\n');
+                    inputText.value = inputText.value.substring(0, start) + bulleted + inputText.value.substring(end);
+                } else {
+                    inputText.value += '\n• ';
+                }
+                updateOutput();
+            });
+
+            document.getElementById('tbPaste').addEventListener('click', async () => {
+                try {
+                    const text = await navigator.clipboard.readText();
+                    if (text) {
+                        inputText.value += text;
+                        updateOutput();
+                    }
+                } catch (e) {
+                    alert('Clipboard paste permission denied. Please paste manually into the text area.');
+                }
+            });
+
+            document.getElementById('tbClear').addEventListener('click', () => {
+                if (inputText.value && confirm('Are you sure you want to clear the input text?')) {
+                    inputText.value = '';
+                    updateOutput();
+                }
+            });
+
+            // Template Selector
+            templateSelect.addEventListener('change', (e) => {
+                const val = e.target.value;
+                if (val && templates[val]) {
+                    inputText.value = templates[val];
+                    updateOutput();
+                }
+            });
+
+            // Emoji Pills
+            document.querySelectorAll('.emoji-pill').forEach(pill => {
+                pill.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const char = pill.textContent.trim();
+                    const start = inputText.selectionStart || inputText.value.length;
+                    const end = inputText.selectionEnd || inputText.value.length;
+                    inputText.value = inputText.value.substring(0, start) + char + ' ' + inputText.value.substring(end);
+                    inputText.focus();
+                    inputText.setSelectionRange(start + char.length + 1, start + char.length + 1);
+                    updateOutput();
+                });
+            });
+
+            // Hashtag Pills
+            document.querySelectorAll('.hashtag-pill').forEach(pill => {
+                pill.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const tag = pill.getAttribute('data-tag');
+                    if (!inputText.value.includes(tag)) {
+                        inputText.value += (inputText.value.endsWith('\n') || !inputText.value ? '' : ' ') + tag;
+                        inputText.focus();
+                        updateOutput();
+                    }
+                });
+            });
+            
+            // Copy Button
+            copyBtn.addEventListener('click', function() {
+                if (!outputText.value) return;
+                
+                try {
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(outputText.value)
+                            .then(showCopiedFeedback)
+                            .catch(fallbackCopy);
+                    } else {
+                        fallbackCopy();
+                    }
+                } catch (e) {
+                    fallbackCopy();
+                }
+            });
+
+            function fallbackCopy() {
+                outputText.select();
+                document.execCommand('copy');
+                showCopiedFeedback();
+            }
+
+            function showCopiedFeedback() {
+                const originalHTML = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                copyBtn.style.backgroundColor = 'var(--success)';
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalHTML;
+                    copyBtn.style.backgroundColor = '';
+                }, 2000);
+            }
+            
+            // Format Cards
+            formatCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    const radio = this.querySelector('input[type="radio"]');
+                    radio.checked = true;
+                    formatCards.forEach(c => c.classList.remove('selected'));
+                    this.classList.add('selected');
+                    updateOutput();
+                });
+            });
+
+            document.querySelectorAll('input[name="format"]').forEach(radio => {
+                radio.addEventListener('change', updateOutput);
+            });
+
+            // Theme Toggle
+            const savedTheme = localStorage.getItem('linkedin_generator_theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeButton(savedTheme);
+
+            themeToggleBtn.addEventListener('click', () => {
+                const current = document.documentElement.getAttribute('data-theme');
+                const next = current === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', next);
+                localStorage.setItem('linkedin_generator_theme', next);
+                updateThemeButton(next);
+            });
+
+            function updateThemeButton(theme) {
+                if (theme === 'dark') {
+                    themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+                } else {
+                    themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
+                }
+            }
+
+            // Restore Draft
+            const savedDraft = localStorage.getItem('linkedin_generator_draft');
+            if (savedDraft) {
+                inputText.value = savedDraft;
+                draftBadge.style.display = 'inline-flex';
+            }
+
+            resetDraftBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                localStorage.removeItem('linkedin_generator_draft');
+                inputText.value = '';
+                draftBadge.style.display = 'none';
+                updateOutput();
+            });
+
+            // Real-time Listeners
+            inputText.addEventListener('input', updateOutput);
+            inputText.addEventListener('keyup', updateOutput);
+            inputText.addEventListener('change', updateOutput);
+            
+            // Initialize
+            updateOutput();
+        });
+    </script>
+</body>
+</html>

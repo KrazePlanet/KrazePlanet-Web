@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="KrazePlanet Wordlists - The ultimate bug bounty & security research wordlist repository with instant search, line counts, and CLI copy commands.">
+  <title>KrazePlanet Wordlists | Ultimate Bug Bounty Repository</title>
+
+  <link rel="icon" href="https://krazeplanet.com/favicon.ico" type="image/png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- Glow Decorative Background Elements -->
+  <div class="glow-backdrop">
+    <div class="glow-orb-1"></div>
+    <div class="glow-orb-2"></div>
+  </div>
+
+  <div class="app-container">
+
+    <!-- Top Navigation Bar -->
+    <header class="navbar">
+      <a href="/" class="logo">
+        <img src="https://krazeplanet.com/favicon.png" alt="KrazePlanet Logo" class="logo-img">
+        <span class="logo-text">KrazePlanet <span class="logo-badge">WORDLISTS</span></span>
+      </a>
+      <nav class="nav-links">
+        <a href="about.html" class="nav-link-btn">
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          About
+        </a>
+        <a href="https://github.com/rix4uni/WordList" target="_blank" class="btn-github">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+          </svg>
+          GitHub Repository
+        </a>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <h1 class="hero-title">Bug Bounty & Recon Wordlists</h1>
+      <p class="hero-description">
+        Curated attack surface discovery, content fuzzing, secrets exposure, and technology-specific wordlists built for
+        modern security researchers.
+      </p>
+    </section>
+
+    <!-- Search Input Bar -->
+    <div class="search-wrapper">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" class="search-input-box"
+        placeholder="Search filename, category, technology (e.g., xss, laravel, backup, s3, graphql, ssrf)..."
+        autocomplete="off">
+      <button id="searchClearBtn" class="search-clear-btn" title="Clear search">✕</button>
+    </div>
+
+    <!-- Category Filters Row with Cyber Dropdown for More Categories -->
+    <div class="category-pills-row">
+      <div id="categoryPills" class="category-pills-primary">
+        <!-- Generated dynamically by app.js -->
+      </div>
+
+      <div id="moreCategoriesDropdown" class="custom-dropdown">
+        <button type="button" id="moreCategoriesTrigger" class="btn-more-categories-trigger">
+          <span>✨ + More</span>
+          <svg class="dropdown-chevron" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div id="moreCategoriesMenu" class="custom-dropdown-menu" style="width: 230px;">
+          <!-- Generated dynamically by app.js -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter & Sort Bar -->
+    <div class="filter-bar">
+      <div id="resultsCount" class="results-count">
+        Showing <strong>0</strong> wordlists
+      </div>
+      <div class="sort-group">
+        <label class="sort-label">Sort by:</label>
+        <div id="customSortDropdown" class="custom-dropdown">
+          <button type="button" id="customSortTrigger" class="custom-dropdown-trigger">
+            <span id="customSortSelectedText">Category Grouping (Default)</span>
+            <svg class="dropdown-chevron" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div id="customSortMenu" class="custom-dropdown-menu">
+            <div class="custom-dropdown-option active" data-value="category-asc">
+              <span>Category Grouping (Default)</span>
+              <svg class="check-icon" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <div class="custom-dropdown-option" data-value="name-asc">
+              <span>Filename (A-Z)</span>
+              <svg class="check-icon" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <div class="custom-dropdown-option" data-value="lines-desc">
+              <span>Line Count (High to Low)</span>
+              <svg class="check-icon" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <div class="custom-dropdown-option" data-value="downloads-desc">
+              <span>Downloads (Most Popular)</span>
+              <svg class="check-icon" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <div class="custom-dropdown-option" data-value="size-desc">
+              <span>File Size (Largest First)</span>
+              <svg class="check-icon" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Wordlists Table Container (Matching Provided UI Screenshot) -->
+    <div class="table-card-container">
+      <table class="wordlists-table">
+        <thead>
+          <tr>
+            <th style="width: 44px; text-align: center;">
+              <input type="checkbox" id="selectAllCheckbox" class="custom-checkbox" title="Select All Visible">
+            </th>
+            <th>Filename</th>
+            <th>Line Count</th>
+            <th>File Size</th>
+            <th>Last Updated</th>
+            <th style="text-align: right;">Download</th>
+          </tr>
+        </thead>
+        <tbody id="wordlistsTableBody">
+          <!-- Populated dynamically by app.js -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Floating Batch Action Bar for Selected Wordlists -->
+    <div id="batchActionBar" class="batch-action-bar">
+      <div class="batch-bar-left">
+        <div class="selected-count-badge"><span id="selectedCountText">0</span> wordlists selected</div>
+      </div>
+      <div class="batch-bar-right">
+        <button id="btnGenerateScript" class="btn-batch-action primary">
+          ⚡ Generate Bash Script
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Wordlist Inspector Modal -->
+  <div id="modalOverlay" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <h3 id="modalFilename" class="modal-title">wordlist.txt</h3>
+          <span id="modalCategory" class="filename-desc">Category / SubCategory</span>
+        </div>
+        <button id="modalCloseBtn" class="modal-close-btn">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-meta-grid">
+          <div>
+            <div id="modalLines" class="meta-item-val">0</div>
+            <div class="meta-item-lbl">Line Count</div>
+          </div>
+          <div>
+            <div id="modalSize" class="meta-item-val">0 KB</div>
+            <div class="meta-item-lbl">File Size</div>
+          </div>
+          <div>
+            <div id="modalUpdated" class="meta-item-val">-</div>
+            <div class="meta-item-lbl">Last Updated</div>
+          </div>
+          <div>
+            <div id="modalDownloads" class="meta-item-val">0</div>
+            <div class="meta-item-lbl">Downloads</div>
+          </div>
+        </div>
+
+        <p id="modalDescription" style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.95rem;"></p>
+
+        <div class="sample-preview-header">
+          <span>Sample Preview (First 8 lines)</span>
+        </div>
+        <pre id="modalSampleCode" class="sample-code-box"></pre>
+
+        <!-- ⚡ CLI Tool Command Generator Section -->
+        <div class="cmd-generator-section">
+          <div class="cmd-generator-header">
+            <div class="cmd-generator-title">
+              <span>⚡ Tool-Specific Command Generator</span>
+            </div>
+            <div class="target-url-input-group">
+              <label for="targetUrlInput">Target:</label>
+              <input type="text" id="targetUrlInput" class="target-url-input" value="https://target.com"
+                placeholder="https://target.com">
+            </div>
+          </div>
+
+          <div id="toolTabsContainer" class="tool-tabs-bar">
+            <!-- Populated dynamically based on category -->
+          </div>
+
+          <div class="cmd-snippet-box">
+            <code
+              id="cmdSnippetText">ffuf -w https://wordlists-cdn.krazeplanet.com/5m-subdomains.txt -u https://target.com/FUZZ</code>
+            <button id="btnCopyCmdSnippet" class="btn-copy-snippet" title="Copy Command">
+              📋 Copy
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button id="modalCopyUrlBtn" class="btn-download"
+          style="border-color: var(--border-color); color: var(--text-muted); background: transparent;">
+          📋 Copy Download URL
+        </button>
+        <a id="modalDownloadBtn" href="#" target="_blank" class="btn-download">
+          ⬇ Download Wordlist
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Batch Download Script Modal -->
+  <div id="batchScriptModalOverlay" class="modal-overlay">
+    <div class="modal-card" style="max-width: 680px;">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">⚡ Batch Download Bash Script</h3>
+          <span class="filename-desc">Run this script on your VPS / Kali to download all selected wordlists at
+            once.</span>
+        </div>
+        <button id="batchScriptCloseBtn" class="modal-close-btn">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <pre id="batchScriptCode" class="sample-code-box" style="max-height: 280px;"></pre>
+      </div>
+
+      <div class="modal-footer">
+        <button id="btnCopyBatchScript" class="btn-download">
+          📋 Copy Script to Clipboard
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="data.js?v=20"></script>
+  <script src="app.js?v=20"></script>
+</body>
+
+</html>

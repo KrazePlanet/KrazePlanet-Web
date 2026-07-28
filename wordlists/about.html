@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="About KrazePlanet Wordlists - Curated attack surface discovery, fuzzing, and payload wordlists for bug bounty hunters and security researchers.">
+  <title>About | KrazePlanet Wordlists</title>
+
+  <link rel="icon" href="https://krazeplanet.com/favicon.png" type="image/png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- Glow Decorative Background Elements -->
+  <div class="glow-backdrop">
+    <div class="glow-orb-1"></div>
+    <div class="glow-orb-2"></div>
+  </div>
+
+  <div class="app-container">
+
+    <!-- Top Navigation Bar -->
+    <header class="navbar">
+      <a href="index.html" class="logo">
+        <img src="https://krazeplanet.com/favicon.png" alt="KrazePlanet Logo" class="logo-img">
+        <span class="logo-text">KrazePlanet <span class="logo-badge">WORDLISTS</span></span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link-btn">
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+          </svg>
+          Home
+        </a>
+        <a href="https://github.com/rix4uni/WordList" target="_blank" class="btn-github">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+          </svg>
+          GitHub Repository
+        </a>
+      </nav>
+    </header>
+
+    <!-- About Hero Section -->
+    <main class="about-page-main">
+      <section class="about-hero">
+        <div class="about-badge">⚡ COMMUNITY RECON REPOSITORY</div>
+        <h1 class="about-title">Empowering Bug Bounty Hunters & Researchers</h1>
+        <p class="about-subtitle">
+          A high-performance repository built to streamline attack surface discovery, web fuzzing, and vulnerability scanning.
+        </p>
+      </section>
+
+      <!-- Statement Hero Card -->
+      <section class="statement-card">
+        <div class="statement-header">
+          <div class="statement-quote-mark">“</div>
+          <h2>Creator's Statement & Mission</h2>
+        </div>
+        <blockquote class="statement-body">
+          "This is a collection of wordlists for all bug bounty hunters. Some of these lists I created myself, and others were compiled and created by other researchers. A huge thank you to whoever created these wordlists or contributed to the security community!"
+        </blockquote>
+        <div class="statement-author">
+          <div class="author-avatar">🛡️</div>
+          <div>
+            <div class="author-name">KrazePlanet Security</div>
+            <div class="author-role">Bug Bounty Researcher & Curator</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Key Pillars Grid -->
+      <section class="pillars-section">
+        <h2 class="section-heading">Why KrazePlanet Wordlists?</h2>
+        <div class="pillars-grid">
+          <div class="pillar-card">
+            <div class="pillar-icon">📁</div>
+            <h3>Structured & Categorized</h3>
+            <p>Organized into logical security categories—Subdomains, DNS, Directories, Secrets, API Testing, Mobile, and Vulnerabilities.</p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon">⚡</div>
+            <h3>Tool-Specific Commands</h3>
+            <p>Generate one-click executable CLI commands tailored for <code>ffuf</code>, <code>gobuster</code>, <code>feroxbuster</code>, <code>dirsearch</code>, and more.</p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon">📦</div>
+            <h3>Batch Recon Bundles</h3>
+            <p>Multi-select multiple wordlists to instantly generate high-speed Bash setup scripts for your VPS or Kali Linux instances.</p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon">🌐</div>
+            <h3>Fast CDN Delivery</h3>
+            <p>All assets are hosted on global CDN endpoints for max download speed during active red-teaming and recon runs.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Community Gratitude Section -->
+      <section class="gratitude-card">
+        <div class="gratitude-content">
+          <span class="gratitude-heart">💖</span>
+          <h3>Special Thanks to Open Source Contributors</h3>
+          <p>
+            Security is a collaborative effort. KrazePlanet Wordlists stands on the shoulders of giants in the cybersecurity community. We express immense gratitude to all researchers, developers, and bounty hunters who publish open-source lists and tools.
+          </p>
+        </div>
+      </section>
+
+      <!-- Call To Action -->
+      <section class="about-cta-section">
+        <h2>Ready to Launch Your Recon Run?</h2>
+        <p>Explore over 100+ curated wordlists with instant line counts, sample previews, and CLI command generators.</p>
+        <div class="cta-buttons">
+          <a href="index.html" class="btn-cta-primary">⚡ Explore Wordlists Repository</a>
+          <a href="https://github.com/rix4uni/WordList" target="_blank" class="btn-cta-secondary">⭐ Star on GitHub</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="about-footer">
+      <div class="footer-brand">KrazePlanet Wordlists</div>
+      <p>© 2026 KrazePlanet Security. Built for Bug Bounty Hunters & Security Researchers.</p>
+    </footer>
+
+  </div>
+
+</body>
+
+</html>
