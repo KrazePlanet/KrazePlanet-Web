@@ -232,12 +232,17 @@
             <!-- Populated dynamically based on category -->
           </div>
 
-          <div class="cmd-snippet-box">
-            <code
-              id="cmdSnippetText">ffuf -w https://wordlists-cdn.krazeplanet.com/5m-subdomains.txt -u https://target.com/FUZZ</code>
-            <button id="btnCopyCmdSnippet" class="btn-copy-snippet" title="Copy Command">
-              📋 Copy
-            </button>
+          <div class="cmd-snippet-wrapper">
+            <div class="cmd-snippet-header">
+              <span class="cmd-snippet-lang">⚡ EXECUTABLE BASH COMMAND</span>
+              <button id="btnCopyCmdSnippet" class="btn-copy-snippet" title="Copy Command">
+                📋 Copy
+              </button>
+            </div>
+            <div class="cmd-snippet-body">
+              <code
+                id="cmdSnippetText">wget -q -nc https://wordlists-cdn.krazeplanet.com/5m-subdomains.txt && ffuf -w 5m-subdomains.txt -u https://target.com/FUZZ</code>
+            </div>
           </div>
         </div>
       </div>

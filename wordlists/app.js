@@ -79,58 +79,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const category = item.category;
     const subCat = item.subCategory;
+    const filename = item.name || url.split('/').pop();
+    const wgetPrefix = `wget -q -nc ${url} && `;
 
     if (subCat === 'Subdomains') {
       return [
-        { name: 'ffuf', cmd: `ffuf -w ${url} -u https://FUZZ.${domain}` },
-        { name: 'puredns', cmd: `puredns bruteforce ${url} ${domain}` },
-        { name: 'gobuster', cmd: `gobuster dns -d ${domain} -w ${url}` },
-        { name: 'shuffledns', cmd: `shuffledns -d ${domain} -w ${url} -r resolvers.txt` },
-        { name: 'curl', cmd: `curl -sO ${url}` }
+        { name: 'ffuf', cmd: `${wgetPrefix}ffuf -w ${filename} -u https://FUZZ.${domain}` },
+        { name: 'puredns', cmd: `${wgetPrefix}puredns bruteforce ${filename} ${domain}` },
+        { name: 'gobuster', cmd: `${wgetPrefix}gobuster dns -d ${domain} -w ${filename}` },
+        { name: 'shuffledns', cmd: `${wgetPrefix}shuffledns -d ${domain} -w ${filename} -r resolvers.txt` }
       ];
     }
 
     if (subCat === 'Parameters') {
       return [
-        { name: 'arjun', cmd: `arjun -u ${target} -w ${url}` },
-        { name: 'x8', cmd: `x8 -u "${target}" -w ${url}` },
-        { name: 'ffuf', cmd: `ffuf -w ${url} -u ${target}?FUZZ=1` },
-        { name: 'curl', cmd: `curl -sO ${url}` }
+        { name: 'arjun', cmd: `${wgetPrefix}arjun -u ${target} -w ${filename}` },
+        { name: 'x8', cmd: `${wgetPrefix}x8 -u "${target}" -w ${filename}` },
+        { name: 'ffuf', cmd: `${wgetPrefix}ffuf -w ${filename} -u ${target}?FUZZ=1` }
       ];
     }
 
     if (subCat === 'DNS') {
       return [
-        { name: 'puredns', cmd: `puredns bruteforce subdomains.txt ${domain} -r ${url}` },
-        { name: 'massdns', cmd: `massdns -r ${url} -t A subdomains.txt` },
-        { name: 'curl', cmd: `curl -sO ${url}` }
+        { name: 'puredns', cmd: `${wgetPrefix}puredns bruteforce subdomains.txt ${domain} -r ${filename}` },
+        { name: 'massdns', cmd: `${wgetPrefix}massdns -r ${filename} -t A subdomains.txt` }
       ];
     }
 
     if (subCat === 'Virtual Hosts') {
       return [
-        { name: 'ffuf', cmd: `ffuf -w ${url} -u ${target} -H "Host: FUZZ"` },
-        { name: 'gobuster', cmd: `gobuster vhost -u ${target} -w ${url}` },
-        { name: 'curl', cmd: `curl -sO ${url}` }
+        { name: 'ffuf', cmd: `${wgetPrefix}ffuf -w ${filename} -u ${target} -H "Host: FUZZ"` },
+        { name: 'gobuster', cmd: `${wgetPrefix}gobuster vhost -u ${target} -w ${filename}` }
       ];
     }
 
     if (item.name === 'jwt.txt') {
       return [
-        { name: 'hashcat', cmd: `hashcat -m 16500 jwt.txt ${url}` },
-        { name: 'john', cmd: `john --wordlist=${url} --format=HMAC-SHA256 jwt.txt` },
-        { name: 'curl', cmd: `curl -sO ${url}` }
+        { name: 'hashcat', cmd: `${wgetPrefix}hashcat -m 16500 jwt.txt ${filename}` },
+        { name: 'john', cmd: `${wgetPrefix}john --wordlist=${filename} --format=HMAC-SHA256 jwt.txt` }
       ];
     }
 
     // Default for Directories, Files, API, Cloud, Vulnerabilities, Tech
     return [
-      { name: 'ffuf', cmd: `ffuf -w ${url} -u ${target}/FUZZ` },
-      { name: 'gobuster', cmd: `gobuster dir -u ${target} -w ${url}` },
-      { name: 'dirsearch', cmd: `dirsearch -u ${target} -w ${url}` },
-      { name: 'feroxbuster', cmd: `feroxbuster -u ${target} -w ${url}` },
-      { name: 'ffufscan', cmd: `echo "${target}" | ffufscan --filter --wordlist ${url}` },
-      { name: 'curl', cmd: `curl -sO ${url}` }
+      { name: 'ffuf', cmd: `${wgetPrefix}ffuf -w ${filename} -u ${target}/FUZZ` },
+      { name: 'gobuster', cmd: `${wgetPrefix}gobuster dir -u ${target} -w ${filename}` },
+      { name: 'dirsearch', cmd: `${wgetPrefix}dirsearch -u ${target} -w ${filename}` },
+      { name: 'feroxbuster', cmd: `${wgetPrefix}feroxbuster -u ${target} -w ${filename}` },
+      { name: 'ffufscan', cmd: `${wgetPrefix}echo "${target}" | ffufscan --filter --wordlist ${filename}` }
     ];
   }
 
@@ -170,6 +166,15 @@ document.addEventListener('DOMContentLoaded', () => {
   btnCopyCmdSnippet.addEventListener('click', () => {
     copyToClipboard(cmdSnippetText.textContent);
     showToast(`${activeToolName} command copied to clipboard!`);
+    const origHtml = btnCopyCmdSnippet.innerHTML;
+    btnCopyCmdSnippet.innerHTML = '✓ Copied!';
+    btnCopyCmdSnippet.style.borderColor = '#10b981';
+    btnCopyCmdSnippet.style.color = '#10b981';
+    setTimeout(() => {
+      btnCopyCmdSnippet.innerHTML = origHtml;
+      btnCopyCmdSnippet.style.borderColor = '';
+      btnCopyCmdSnippet.style.color = '';
+    }, 1800);
   });
 
   // Primary Categories (Always visible)
@@ -460,8 +465,8 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
         const url = btn.getAttribute('data-url');
-        copyToClipboard(url);
-        showToast('Download URL copied to clipboard!');
+        copyToClipboard(`wget -q -nc ${url}`);
+        showToast('wget download command copied to clipboard!');
       });
     });
 
@@ -551,8 +556,17 @@ document.addEventListener('DOMContentLoaded', () => {
   if (modalCopyUrlBtn) {
     modalCopyUrlBtn.addEventListener('click', () => {
       if (activeItemModal) {
-        copyToClipboard(activeItemModal.downloadUrl);
-        showToast('Download URL copied to clipboard!');
+        copyToClipboard(`wget -q -nc ${activeItemModal.downloadUrl}`);
+        showToast('wget download command copied to clipboard!');
+        const origHtml = modalCopyUrlBtn.innerHTML;
+        modalCopyUrlBtn.innerHTML = '✓ Copied!';
+        modalCopyUrlBtn.style.borderColor = '#10b981';
+        modalCopyUrlBtn.style.color = '#10b981';
+        setTimeout(() => {
+          modalCopyUrlBtn.innerHTML = origHtml;
+          modalCopyUrlBtn.style.borderColor = '';
+          modalCopyUrlBtn.style.color = '';
+        }, 1800);
       }
     });
   }
@@ -614,7 +628,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const selectedItems = WORDLISTS_DATA.filter(i => selectedWordlistIds.has(i.id));
     if (selectedItems.length === 0) return;
 
-    const urls = selectedItems.map(i => `curl -sO ${i.downloadUrl}`).join('\n');
+    const urls = selectedItems.map(i => `wget -q -nc ${i.downloadUrl}`).join('\n');
     const script = `#!/bin/bash
 # KrazePlanet Wordlists - Batch Recon Download Script
 # Selected Wordlists: ${selectedItems.length}
